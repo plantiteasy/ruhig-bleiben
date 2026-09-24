@@ -147,7 +147,7 @@
     box.innerHTML = res.map(function (r, i) {
       var inner = r.e.kind === "s" ? situationHTML(r.e.item, true) : cardHTML(r.e.item);
       return (i === 1 ? '<p class="alt-t">Passt vielleicht auch:</p>' : "") +
-        '<article class="ans' + (i === 0 ? " top" : "") + '">' + inner +
+        '<article class="ans' + (i === 0 ? " top" : "") + '" data-id="' + esc(r.e.item.id) + '">' + inner +
         (i === 0 ? '<div class="ans-row"><button class="btn" type="button" id="speak">Vorlesen</button></div>' : "") + "</article>";
     }).join("");
     var sp = $("speak");
@@ -178,29 +178,67 @@
     if (code === "aborted") return "";
     return "Spracheingabe unterbrochen (" + code + ").";
   }
-  var activeRec = null;
+  /* Das Mikrofon hört zu, bis erneut getippt wird oder 5 Sekunden Stille sind. Android beendet die Erkennung
+     bei jeder Pause selbst – dann wird sie sofort neu gestartet und der Text weiter gesammelt. */
+  var SILENCE_MS = 5000, activeListen = null;
+  function mergeText(a, b) {
+    a = (a || "").trim(); b = (b || "").trim();
+    if (!b) return a;
+    if (!a) return b;
+    if (b.indexOf(a) === 0) return b; // Android liefert manchmal den ganzen Satz noch einmal
+    if (a.slice(-b.length) === b) return a; // doppelt gelieferte Teile nicht zweimal anhängen
+    return a + " " + b;
+  }
   function listen(onText, onEnd, onErr) {
     if (!SR) { onErr("Spracheingabe gibt es in diesem Browser nicht. Nutze Chrome (Android) oder Safari (iPhone) – oder tippe die Frage."); return null; }
-    try {
-      var r = new SR(); r.lang = lang; r.interimResults = true; r.continuous = false; r.maxAlternatives = 1;
-      var finalText = "";
+    var ctl = { stopped: false, done: false, text: "", err: "", lastSpeech: Date.now(), rec: null, timer: null };
+    function finish() {
+      if (ctl.done) return;
+      ctl.done = true; clearInterval(ctl.timer); if (activeListen === ctl) activeListen = null;
+      if (ctl.err) onErr(ctl.err);
+      onEnd(ctl.text);
+    }
+    function startOne() {
+      var r = new SR(), seg = "";
+      r.lang = lang; r.interimResults = true; r.continuous = true; r.maxAlternatives = 1;
       r.onresult = function (ev) {
-        var interim = "";
-        for (var i = ev.resultIndex; i < ev.results.length; i++) {
-          if (ev.results[i].isFinal) finalText += ev.results[i][0].transcript; else interim += ev.results[i][0].transcript;
+        var fin = "", interim = "";
+        for (var i = 0; i < ev.results.length; i++) {
+          var t = ev.results[i][0].transcript;
+          if (ev.results[i].isFinal) fin = mergeText(fin, t); else interim += t;
         }
-        onText(finalText, interim);
+        seg = fin; ctl.lastSpeech = Date.now();
+        onText(mergeText(ctl.text, seg), interim.trim());
       };
-      r.onerror = function (ev) { onErr(srError(ev.error)); };
-      r.onend = function () { activeRec = null; onEnd(finalText); };
-      r.start(); activeRec = r; return r;
-    } catch (e) { onErr("Spracheingabe konnte nicht starten."); return null; }
+      r.onspeechstart = function () { ctl.lastSpeech = Date.now(); };
+      r.onerror = function (ev) {
+        if (ev.error === "no-speech" || ev.error === "aborted") return; // Pause – das regelt die 5-Sekunden-Grenze
+        ctl.stopped = true; ctl.err = srError(ev.error);
+      };
+      r.onend = function () {
+        ctl.text = mergeText(ctl.text, seg); seg = "";
+        if (!ctl.stopped && Date.now() - ctl.lastSpeech < SILENCE_MS) {
+          try { startOne(); return; } catch (e) {}
+        }
+        finish();
+      };
+      ctl.rec = r; r.start();
+    }
+    ctl.stop = function () {
+      if (ctl.stopped) return;
+      ctl.stopped = true;
+      try { ctl.rec.stop(); } catch (e) { finish(); }
+    };
+    ctl.timer = setInterval(function () { if (Date.now() - ctl.lastSpeech >= SILENCE_MS) ctl.stop(); }, 250);
+    try { startOne(); } catch (e) { clearInterval(ctl.timer); onErr("Spracheingabe konnte nicht starten."); return null; }
+    activeListen = ctl;
+    return ctl;
   }
-  function stopListening() { if (activeRec) { try { activeRec.stop(); } catch (e) {} } }
+  function stopListening() { if (activeListen) activeListen.stop(); }
 
   $("mic").addEventListener("click", function () {
     var mic = $("mic"), err = $("ask-err");
-    if (activeRec) { stopListening(); return; }
+    if (activeListen) { stopListening(); return; }
     err.hidden = true;
     var r = listen(function (fin, interim) { $("transcript").textContent = (fin + " " + interim).trim(); },
       function (fin) {
@@ -513,7 +551,7 @@
   });
   [].forEach.call(document.querySelectorAll(".dict"), function (b) {
     b.addEventListener("click", function () {
-      if (activeRec) { stopListening(); return; }
+      if (activeListen) { stopListening(); return; }
       var f = $(b.getAttribute("data-for")), base = f.value;
       var r = listen(function (fin, interim) { f.value = (base ? base + " " : "") + (fin + " " + interim).trim(); },
         function (fin) { b.setAttribute("aria-pressed", "false"); b.textContent = "Diktieren"; if (fin) f.value = (base ? base + " " : "") + fin.trim(); saveProto(); },
@@ -563,17 +601,35 @@
   });
 
   /* ---------- Wissen ---------- */
+  var wCat = "";
+  function renderCats() {
+    var used = {};
+    D.cards.forEach(function (c) { used[c.cat] = (used[c.cat] || 0) + 1; });
+    $("w-cats").innerHTML = '<button type="button" class="chip" data-cat="" aria-pressed="' + (wCat === "") + '">Alle</button>' +
+      D.cats.filter(function (c) { return used[c[0]]; }).map(function (c) {
+        return '<button type="button" class="chip" data-cat="' + c[0] + '" aria-pressed="' + (wCat === c[0]) + '">' + esc(c[1]) + "</button>";
+      }).join("");
+  }
   function renderWissen(q) {
     var nq = norm(q || ""), words = nq ? nq.split(" ").map(function (w) { return w.length > 6 ? w.slice(0, w.length - 2) : w; }) : [];
     var list = D.cards.filter(function (c) {
+      if (wCat && c.cat !== wCat) return false;
       if (!words.length) return true;
       var hay = norm(c.title + " " + c.text + " " + c.kw.join(" "));
       return words.every(function (w) { return hay.indexOf(w) > -1; });
     });
-    $("w-list").innerHTML = list.map(function (c) { return '<article class="w-card">' + cardHTML(c) + "</article>"; }).join("");
+    $("w-list").innerHTML = list.map(function (c) { return '<article class="w-card" data-id="' + esc(c.id) + '">' + cardHTML(c) + "</article>"; }).join("");
     $("w-empty").hidden = list.length > 0;
   }
-  $("w-q").addEventListener("input", function () { renderWissen($("w-q").value); });
+  $("w-q").addEventListener("input", function () {
+    // Wer tippt, sucht in allen Themen – sonst findet „Messer“ unter „Verkehr“ nichts.
+    if ($("w-q").value.trim() && wCat) { wCat = ""; renderCats(); }
+    renderWissen($("w-q").value);
+  });
+  $("w-cats").addEventListener("click", function (e) {
+    var b = e.target.closest(".chip"); if (!b) return;
+    wCat = b.getAttribute("data-cat"); $("w-q").value = ""; renderCats(); renderWissen("");
+  });
 
   /* ---------- Installieren ---------- */
   var installEv = null;
@@ -595,7 +651,7 @@
   });
 
   /* ---------- Start ---------- */
-  buildCorpus(); renderGrid(); syncSeg(); loadProto(); renderDeadlines(); renderLetters(); renderWissen(""); syncInstall(); route(); loadRecs();
+  buildCorpus(); renderGrid(); syncSeg(); loadProto(); renderDeadlines(); renderLetters(); renderCats(); renderWissen(""); syncInstall(); route(); loadRecs();
   if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
     var hadController = !!navigator.serviceWorker.controller;
     // Neue Version direkt nach dem Öffnen: einmal neu laden, damit geänderte Inhalte sofort gelten.

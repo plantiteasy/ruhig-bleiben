@@ -164,3 +164,9 @@ body.rec-on{padding-bottom:calc(var(--tabs-h) + env(safe-area-inset-bottom,0px) 
 .btn:active,.sit:active,.say-b:active,.tool:active,.seg-b:active,.back:active{filter:brightness(.93)}
 .tabs a:active{background:color-mix(in srgb,var(--accent) 9%,transparent)}
 .mic:active{transform:scale(.98)}
+.chips{display:flex;gap:8px;overflow-x:auto;margin-inline:-16px;padding:2px 16px 4px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chip{appearance:none;font:inherit;font-size:14px;font-weight:600;white-space:nowrap;flex:none;color:var(--ink);background:var(--surface);
+  border:1px solid var(--line);border-radius:999px;padding:7px 13px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}

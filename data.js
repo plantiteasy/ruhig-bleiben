@@ -162,29 +162,35 @@ window.RB = {
     }
   ],
 
+  cats: [
+    ["kontrolle", "Kontrolle"], ["verkehr", "Verkehr"], ["filmen", "Filmen & Handy"], ["durchsuchung", "Durchsuchung"],
+    ["festnahme", "Festnahme"], ["bahn", "Bus & Bahn"], ["verbote", "Messer & Cannabis"], ["fremd", "Ausländer"],
+    ["arbeit", "Arbeit & Zoll"], ["danach", "Danach"]
+  ],
+
   cards: [
     {
-      id: "k-ausweis", title: "Muss ich meinen Ausweis dabeihaben?", tone: "warn", toneLabel: "Kommt drauf an",
+      id: "k-ausweis", cat: "kontrolle", title: "Muss ich meinen Ausweis dabeihaben?", tone: "warn", toneLabel: "Kommt drauf an",
       text: "Deutsche müssen einen Ausweis besitzen, aber nicht mitführen. Ausländer müssen Pass oder Aufenthaltstitel auf Verlangen der Polizei vorzeigen – praktisch heißt das: immer dabeihaben. Auf Baustellen gilt wegen Zollkontrollen eine Mitführungspflicht. Hast du den Ausweis dabei, musst du ihn zeigen.",
       law: "§ 1, § 32 PAuswG · § 47a, § 98 AufenthG · § 2a SchwarzArbG",
       kw: ["ausweis dabei", "mitführ", "pass", "aufenthalt", "baustell", "паспорт", "носить", "с собой", "внж", "стройк", "документ"]
     },
     {
-      id: "k-fragen", title: "Muss ich Fragen beantworten?", tone: "right", toneLabel: "Nein",
+      id: "k-fragen", cat: "kontrolle", title: "Muss ich Fragen beantworten?", tone: "right", toneLabel: "Nein",
       text: "Zur Sache darfst du schweigen – als Beschuldigter und als Zeuge. Zur Polizei musst du als Zeuge nur, wenn die Staatsanwaltschaft die Vorladung angeordnet hat. Die Personalien musst du trotzdem angeben.",
       say: [["Ich mache keine Angaben zur Sache. Ich möchte zuerst mit einem Anwalt sprechen.", "Я не даю показаний по делу. Сначала хочу поговорить с адвокатом."]],
       law: "§§ 55, 136, 163 Abs. 3 StPO",
       kw: ["frag", "antwort", "schweig", "aussag", "zeug", "vorlad", "вопрос", "отвеч", "молч", "показан", "свидетел", "повестк"]
     },
     {
-      id: "k-grund", title: "Darf die Polizei ohne Grund kontrollieren?", tone: "can", toneLabel: "Teilweise",
+      id: "k-grund", cat: "kontrolle", title: "Darf die Polizei ohne Grund kontrollieren?", tone: "can", toneLabel: "Teilweise",
       text: "In BW in bestimmten Fällen ja: an „gefährlichen Orten“, bei Veranstaltungen, im öffentlichen Verkehr, an Kontrollstellen und in der Stuttgarter Waffenverbotszone. Menschen nach Hautfarbe oder Herkunft auszuwählen ist rechtswidrig. Nach dem Grund fragen darfst du immer.",
       say: [["Aus welchem Grund werde ich kontrolliert?", "По какой причине меня проверяют?"]],
       law: "§ 27 PolG BW · § 42c WaffG · OVG NRW 5 A 294/16",
       kw: ["ohne grund", "grundlos", "anlass", "hautfarb", "herkunft", "racial", "без причин", "просто так", "без повод", "цвет кож", "расизм", "почему остановил"]
     },
     {
-      id: "k-paragraf", title: "Muss der Polizist Grund oder Paragrafen nennen?", tone: "right", toneLabel: "Grund: ja",
+      id: "k-paragraf", cat: "kontrolle", title: "Muss der Polizist Grund oder Paragrafen nennen?", tone: "right", toneLabel: "Grund: ja",
       text: "Den Paragrafen nicht. Bei einer strafrechtlichen Kontrolle muss er sagen, welche Straftat dir vorgeworfen wird. Bei einer polizeirechtlichen Kontrolle kannst du eine schriftliche Bestätigung der Maßnahme verlangen – dann muss sie begründet werden.",
       say: [
         ["Welche Straftat wird mir vorgeworfen?", "В каком преступлении меня подозревают?"],
@@ -194,58 +200,58 @@ window.RB = {
       kw: ["paragraf", "paragraph", "rechtsgrundlag", "vorwurf", "vorgeworfen", "straftat", "параграф", "статья", "основан", "подозрева", "в чем"]
     },
     {
-      id: "k-name", title: "Wie erfahre ich Name und Nummer des Polizisten?", tone: "right", toneLabel: "Fragen",
+      id: "k-name", cat: "kontrolle", title: "Wie erfahre ich Name und Nummer des Polizisten?", tone: "right", toneLabel: "Fragen",
       text: "Eine Nummer tragen in BW nur geschlossene Einheiten der Bereitschaftspolizei. Nach Vorgabe des Innenministeriums zeigen Beamte auf Verlangen ihren Dienstausweis und nennen Name und Dienststelle – Ausnahmen gibt es. Notiere immer Kennzeichen und Uhrzeit.",
       say: [["Bitte zeigen Sie mir Ihren Dienstausweis und nennen Sie mir Ihren Namen und Ihre Dienststelle.", "Покажите удостоверение и назовите имя и участок."]],
       law: "§ 55 Abs. 5 LBG BW · Vorgabe IM BW zum Dienstausweis",
       kw: ["dienstnummer", "dienstausweis", "name des polizist", "nummer", "kennzeich", "имя полицейск", "номер", "жетон", "значок", "удостоверен", "кто он"]
     },
     {
-      id: "k-filmen", title: "Darf ich die Polizei filmen?", tone: "right", toneLabel: "Video: ja",
+      id: "k-filmen", cat: "filmen", title: "Darf ich die Polizei filmen?", tone: "right", toneLabel: "Video: ja",
       text: "Video ohne Ton im öffentlichen Raum: ja, wenn du nicht störst. Ton: umstritten – manche Gerichte sehen eine Straftat nach § 201 StGB, andere nicht, wenn Umstehende mithören können; der BGH hat nicht entschieden. Veröffentlichen nur mit unkenntlichen Gesichtern.",
       say: [["Ich filme ohne Ton zur Beweissicherung und behindere Sie nicht.", "Снимаю без звука для доказательств и вам не мешаю."]],
       law: "BVerfG 1 BvR 2501/13 · VG Berlin 1 K 334/23 · § 201 StGB · § 33 KUG",
       kw: ["film", "video", "kamera", "aufnahm", "aufnehm", "ton", "сним", "съем", "видео", "камер", "запис", "звук"]
     },
     {
-      id: "k-tabu", title: "Was darf ich auf keinen Fall sagen oder tun?", tone: "no", toneLabel: "Tabu",
+      id: "k-tabu", cat: "kontrolle", title: "Was darf ich auf keinen Fall sagen oder tun?", tone: "no", toneLabel: "Tabu",
       text: "Beleidigung ist eine Straftat: Mittelfinger, „Schwein“, „Arschloch“. „Bulle“ allein ist nicht immer strafbar, Duzen auch nicht – wer aber nach der Bitte weiter duzt, riskiert es. Schubsen oder Losreißen ist Widerstand, ein tätlicher Angriff kostet 3 Monate bis 5 Jahre. Sag „Sie“, kurz und ruhig.",
       law: "§§ 185, 194 Abs. 3 StGB · §§ 113, 114 StGB · OLG Hamburg 1 ORs 13/25",
       kw: ["beleidig", "schimpf", "mittelfing", "duz", "bulle", "widerstand", "оскорб", "мат", "палец", "ругат", "на ты", "сопротивл", "нельзя говорить"]
     },
     {
-      id: "k-wohnung", title: "Polizei an der Wohnungstür", tone: "right", toneLabel: "Beschluss nötig",
+      id: "k-wohnung", cat: "durchsuchung", title: "Polizei an der Wohnungstür", tone: "right", toneLabel: "Beschluss nötig",
       text: "Grundsätzlich nur mit richterlichem Beschluss, sonst nur bei Gefahr im Verzug. Du darfst anwesend sein. Nachts von 21 bis 6 Uhr nur in Ausnahmefällen. Ein Verzeichnis der mitgenommenen Sachen gibt es nur auf Verlangen.",
       say: [["Ich möchte den Durchsuchungsbeschluss sehen.", "Покажите постановление об обыске."]],
       law: "Art. 13 GG · §§ 105–107 StPO · § 36 PolG BW",
       kw: ["wohnung", "tür", "haus", "durchsuchungsbeschluss", "nachts", "квартир", "дом", "двер", "ордер", "постановлен"]
     },
     {
-      id: "k-bodycam", title: "Bodycam-Aufnahme sichern", tone: "warn", toneLabel: "4 Wochen",
+      id: "k-bodycam", cat: "danach", title: "Bodycam-Aufnahme sichern", tone: "warn", toneLabel: "4 Wochen",
       text: "Bodycam-Aufnahmen werden spätestens nach 4 Wochen gelöscht, außer sie werden als Beweis gebraucht. Deshalb sofort schriftlich beim Polizeipräsidium Stuttgart die Sicherung beantragen – die Vorlage findest du unter „Danach“.",
       law: "§ 44 Abs. 5–11, § 75 Abs. 5 PolG BW",
       kw: ["bodycam", "körperkamera", "kamera der polizei", "sichern", "бодикам", "камера полиц", "нательн", "сохран"]
     },
     {
-      id: "k-beschwerde", title: "Wo kann ich mich beschweren?", tone: "warn", toneLabel: "3 Monate",
+      id: "k-beschwerde", cat: "danach", title: "Wo kann ich mich beschweren?", tone: "warn", toneLabel: "3 Monate",
       text: "Kostenlos: die Bürgerbeauftragte des Landes BW, zugleich Polizeibeauftragte – innerhalb von 3 Monaten, aber nicht parallel zu einem Straf- oder Gerichtsverfahren. Dienstaufsichtsbeschwerde schriftlich an das Polizeipräsidium Stuttgart. Eine Strafanzeige gegen Beamte ist ein eigener Weg. Die Reihenfolge ist wichtig – erst mit einem Anwalt sprechen.",
       law: "buergerbeauftragte-bw.de · PP Stuttgart, Hahnemannstraße 1 · § 340 StGB",
       kw: ["beschwer", "anzeig", "bürgerbeauftrag", "melden", "жалоб", "пожалов", "заявлен", "куда писать"]
     },
     {
-      id: "k-geld", title: "Bekomme ich Schadensersatz?", tone: "can", toneLabel: "Wenig",
+      id: "k-geld", cat: "danach", title: "Bekomme ich Schadensersatz?", tone: "can", toneLabel: "Wenig",
       text: "Nicht wie in den USA. Beispiele: 3.000 € für eine unverhältnismäßige Zwangsmaßnahme (LG Berlin II, 2025), 75 € pro Tag bei ungerechtfertigter Freiheitsentziehung. Realistisches Ziel: gerichtlich feststellen lassen, dass die Maßnahme rechtswidrig war. Kostenrisiko bei einer Niederlage grob 1.600 € – eine Schätzung.",
       law: "§ 839 BGB · Art. 34 GG · § 7 StrEG · LG Berlin II 26 O 17/23",
       kw: ["schadensersatz", "schmerzensgeld", "entschädig", "klag", "geld", "деньг", "компенсац", "отсуд", "иск", "суд"]
     },
     {
-      id: "k-messer", title: "Messer in Stuttgart", tone: "no", toneLabel: "Verboten",
+      id: "k-messer", cat: "verbote", title: "Messer in Stuttgart", tone: "no", toneLabel: "Verboten",
       text: "Waffenverbotszone Innenstadt, unter anderem Hauptbahnhof, Schlossgarten und Rathaus: freitags, samstags und vor Feiertagen von 18 bis 8 Uhr sind alle Messer verboten, Kontrollen ohne Verdacht, Bußgeld bis 10.000 €. In Bussen und Bahnen in BW gilt seit 2025 ein Messerverbot mit Stichproben. Ausnahmen für Werkzeug im Beruf sind noch nicht geklärt – bis dahin nicht mitführen.",
       law: "Verordnung Waffenverbotszone Stuttgart · §§ 42, 42c WaffG",
       kw: ["messer", "waffe", "cutter", "werkzeug", "verbotszone", "stadtbahn", "bus", "нож", "оруж", "зона", "автобус", "штутгарт", "карман"]
     },
     {
-      id: "k-dauer", title: "Wie lange darf mich die Polizei festhalten?", tone: "right", toneLabel: "Grenzen",
+      id: "k-dauer", cat: "festnahme", title: "Wie lange darf mich die Polizei festhalten?", tone: "right", toneLabel: "Grenzen",
       text: "Zur Identitätsfeststellung nach StPO höchstens 12 Stunden. Polizeilicher Gewahrsam in BW ohne Richter nur bis zum Ende des nächsten Tages, mit Richter höchstens 2 Wochen. Nach einer Festnahme spätestens am Tag danach zum Richter.",
       law: "§ 163c StPO · § 33 PolG BW · Art. 104 GG · § 128 StPO",
       kw: ["wie lange", "festhalt", "stunden", "gewahrsam", "сколько", "держать", "часов", "задерж"]

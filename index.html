@@ -49,7 +49,7 @@
   <!-- Fragen -->
   <section class="view" id="v-fragen" hidden aria-labelledby="h-fragen">
     <h1 id="h-fragen">Frage stellen</h1>
-    <p class="lead">Tippe auf das Mikrofon und frag kurz, zum Beispiel „Darf ich filmen?“ oder «Можно ли снимать?». Nur deine Frage wird verarbeitet, solange das Mikrofon an ist.</p>
+    <p class="lead">Tippe auf das Mikrofon und frag kurz, zum Beispiel „Darf ich filmen?“ oder «Можно ли снимать?». Das Mikrofon hört zu, bis du noch einmal tippst oder 5 Sekunden nichts sagst. Verarbeitet wird nur deine Frage.</p>
     <div class="seg" role="group" aria-label="Sprache der Spracheingabe">
       <button type="button" class="seg-b" data-lang="de-DE" aria-pressed="true">Deutsch</button>
       <button type="button" class="seg-b" data-lang="ru-RU" aria-pressed="false">Русский</button>
@@ -169,6 +169,7 @@
     <h1 id="h-wissen">Wissen</h1>
     <label for="w-q" class="sr">Wissen durchsuchen</label>
     <input id="w-q" type="search" placeholder="Suchen: Ausweis, filmen, Messer …" autocomplete="off">
+    <div class="chips" id="w-cats" role="group" aria-label="Themen"></div>
     <div id="w-list" class="w-list"></div>
     <p class="err" id="w-empty" hidden>Nichts gefunden. Versuch: filmen, Ausweis, Test, Handy, Beschwerde.</p>
     <div class="note-box">
