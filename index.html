@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#F2F4F1" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0E1412" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Ruhig">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<title>Ruhig bleiben</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="app-head">
+  <div class="brand">
+    <img class="logo" src="icons/icon-192.png" alt="" width="36" height="36">
+    <div>
+      <p class="name">Ruhig bleiben</p>
+      <p class="meta">Prototyp · Baden-Württemberg · Stand 24.09.2026 · keine Rechtsberatung</p>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <!-- Jetzt -->
+  <section class="view" id="v-jetzt" aria-labelledby="h-jetzt">
+    <h1 id="h-jetzt">Was passiert gerade?</h1>
+    <p class="lead">Tippe auf deine Situation. Du bekommst sofort, was du sagen und was du lassen solltest.</p>
+    <div class="sit-grid" id="sit-grid"></div>
+    <div class="quick">
+      <a class="btn primary" href="#aufnahme" id="q-film" data-act="film">Video ohne Ton</a>
+      <a class="btn" href="#fragen">Frage stellen</a>
+      <a class="btn" href="#danach">Protokoll</a>
+    </div>
+  </section>
+
+  <!-- Situation -->
+  <section class="view" id="v-situation" hidden aria-live="polite">
+    <button class="back" type="button" id="sit-back">Zurück</button>
+    <div id="sit-body"></div>
+  </section>
+
+  <!-- Fragen -->
+  <section class="view" id="v-fragen" hidden aria-labelledby="h-fragen">
+    <h1 id="h-fragen">Frage stellen</h1>
+    <p class="lead">Tippe auf das Mikrofon und frag kurz, zum Beispiel „Darf ich filmen?“ oder «Можно ли снимать?». Nur deine Frage wird verarbeitet, solange das Mikrofon an ist.</p>
+    <div class="seg" role="group" aria-label="Sprache der Spracheingabe">
+      <button type="button" class="seg-b" data-lang="de-DE" aria-pressed="true">Deutsch</button>
+      <button type="button" class="seg-b" data-lang="ru-RU" aria-pressed="false">Русский</button>
+    </div>
+    <button class="mic" type="button" id="mic" aria-pressed="false">
+      <span class="mic-dot" aria-hidden="true"></span>
+      <span class="mic-label" id="mic-label">Tippen und fragen</span>
+    </button>
+    <p class="transcript" id="transcript" aria-live="polite"></p>
+    <form class="ask-form" id="ask-form">
+      <label for="ask-input" class="sr">Frage eintippen</label>
+      <input id="ask-input" type="search" placeholder="Oder tippen: filmen, Ausweis, Test …" autocomplete="off" enterkeyhint="search">
+      <button class="btn" type="submit">Suchen</button>
+    </form>
+    <p class="err" id="ask-err" hidden></p>
+    <div id="answers" class="answers"></div>
+  </section>
+
+  <!-- Aufnahme -->
+  <section class="view" id="v-aufnahme" hidden aria-labelledby="h-aufnahme">
+    <h1 id="h-aufnahme">Aufnahme</h1>
+    <div id="rec-start">
+      <p class="lead">Video ohne Ton ist erlaubt, solange du nicht störst. Ton nur mit Einwilligung aller, die sprechen.</p>
+      <div class="rec-modes">
+        <button class="btn primary big-btn" type="button" id="rec-silent">Video ohne Ton starten</button>
+        <button class="btn big-btn" type="button" id="rec-consent">Mit Ton – nur mit Einwilligung</button>
+      </div>
+    </div>
+    <div id="consent-step" hidden>
+      <p class="step-label">Frag laut und warte auf die Antwort:</p>
+      <p class="consent-de" id="consent-de"></p>
+      <p class="consent-ru" id="consent-ru"></p>
+      <div class="rec-modes">
+        <button class="btn primary big-btn" type="button" id="consent-yes">Alle sind einverstanden – mit Ton</button>
+        <button class="btn big-btn" type="button" id="consent-no">Nicht einverstanden – Video ohne Ton</button>
+        <button class="btn ghost" type="button" id="consent-cancel">Abbrechen</button>
+      </div>
+      <p class="hint">Tipp: Lass dir die Einwilligung zu Beginn der Aufnahme noch einmal bestätigen.</p>
+    </div>
+    <div id="rec-live" hidden>
+      <div class="rec-frame">
+        <video id="preview" playsinline muted autoplay></video>
+        <div class="rec-badge"><span class="rec-dot" aria-hidden="true"></span><span id="rec-mode">Aufnahme</span> · <span id="rec-time">00:00</span></div>
+      </div>
+      <button class="btn stop big-btn" type="button" id="rec-stop">Aufnahme beenden</button>
+    </div>
+    <p class="err" id="rec-err" hidden></p>
+    <div class="note-box">
+      <p><strong>Prototyp:</strong> Die Aufnahme bleibt nur in dieser Sitzung. Sofort nach dem Stopp „Sichern“ tippen und an dich selbst oder in deine Cloud schicken. Automatische Cloud-Sicherung kommt in der App.</p>
+    </div>
+    <div id="rec-list" class="rec-list"></div>
+  </section>
+
+  <!-- Danach -->
+  <section class="view" id="v-danach" hidden aria-labelledby="h-danach">
+    <h1 id="h-danach">Danach</h1>
+    <p class="lead">Noch am selben Tag: Gedächtnisprotokoll. Diktieren geht mit dem Mikrofon neben jedem Feld.</p>
+    <div class="seg" role="group" aria-label="Sprache fürs Diktieren">
+      <button type="button" class="seg-b" data-lang="de-DE" aria-pressed="true">Diktat Deutsch</button>
+      <button type="button" class="seg-b" data-lang="ru-RU" aria-pressed="false">Диктовка по-русски</button>
+    </div>
+
+    <form class="proto" id="proto" autocomplete="off">
+      <div class="row2">
+        <div class="field"><label for="p-datum">Datum</label><input type="date" id="p-datum" name="datum"></div>
+        <div class="field"><label for="p-zeit">Uhrzeit</label><input type="time" id="p-zeit" name="zeit"></div>
+      </div>
+      <div class="field">
+        <div class="lab-row"><label for="p-ort">Ort</label><span class="tools"><button type="button" class="tool" id="p-gps">Standort einfügen</button><button type="button" class="tool dict" data-for="p-ort" aria-label="Ort diktieren">Diktieren</button></span></div>
+        <textarea id="p-ort" name="ort" rows="2" placeholder="Straße, Haltestelle, Richtung"></textarea>
+      </div>
+      <div class="field">
+        <div class="lab-row"><label for="p-beamte">Beamte und Fahrzeuge</label><button type="button" class="tool dict" data-for="p-beamte" aria-label="Beamte diktieren">Diktieren</button></div>
+        <textarea id="p-beamte" name="beamte" rows="2" placeholder="Namen, Dienststelle, Kennzeichen, Aussehen"></textarea>
+      </div>
+      <div class="field">
+        <div class="lab-row"><label for="p-ablauf">Was ist passiert?</label><button type="button" class="tool dict" data-for="p-ablauf" aria-label="Ablauf diktieren">Diktieren</button></div>
+        <textarea id="p-ablauf" name="ablauf" rows="6" placeholder="Der Reihe nach, mit Uhrzeiten, so genau wie möglich"></textarea>
+      </div>
+      <div class="field">
+        <div class="lab-row"><label for="p-zitate">Wörtliche Aussagen</label><button type="button" class="tool dict" data-for="p-zitate" aria-label="Aussagen diktieren">Diktieren</button></div>
+        <textarea id="p-zitate" name="zitate" rows="3" placeholder="Wer hat was genau gesagt?"></textarea>
+      </div>
+      <div class="field">
+        <div class="lab-row"><label for="p-zeugen">Zeugen</label><button type="button" class="tool dict" data-for="p-zeugen" aria-label="Zeugen diktieren">Diktieren</button></div>
+        <textarea id="p-zeugen" name="zeugen" rows="2" placeholder="Name und Kontakt, nur mit Einverständnis"></textarea>
+      </div>
+      <div class="field">
+        <label for="p-aufnahmen">Aufnahmen</label>
+        <textarea id="p-aufnahmen" name="aufnahmen" rows="2" placeholder="Wird aus „Aufnahme“ übernommen: Uhrzeit, Dauer, Prüfsumme"></textarea>
+      </div>
+      <div class="field">
+        <div class="lab-row"><label for="p-schaden">Verletzungen und Schäden</label><button type="button" class="tool dict" data-for="p-schaden" aria-label="Schäden diktieren">Diktieren</button></div>
+        <textarea id="p-schaden" name="schaden" rows="2" placeholder="Was, wo, Arztbesuch, Fotos"></textarea>
+      </div>
+      <div class="field"><label for="p-name">Dein Name und Anschrift (für Briefe)</label><input id="p-name" name="name" type="text" placeholder="Vorname Nachname, Straße, PLZ Ort"></div>
+    </form>
+    <div class="actions">
+      <button class="btn primary" type="button" id="p-copy">Protokoll kopieren</button>
+      <button class="btn" type="button" id="p-share">Teilen</button>
+      <button class="btn" type="button" id="p-file">Als Datei</button>
+      <button class="btn ghost" type="button" id="p-clear">Neues Protokoll</button>
+    </div>
+    <p class="hint" id="p-msg" aria-live="polite"></p>
+
+    <h2>Fristen</h2>
+    <ul class="deadlines" id="deadlines"></ul>
+
+    <h2>Briefe</h2>
+    <div id="letters"></div>
+  </section>
+
+  <!-- Wissen -->
+  <section class="view" id="v-wissen" hidden aria-labelledby="h-wissen">
+    <h1 id="h-wissen">Wissen</h1>
+    <label for="w-q" class="sr">Wissen durchsuchen</label>
+    <input id="w-q" type="search" placeholder="Suchen: Ausweis, filmen, Messer …" autocomplete="off">
+    <div id="w-list" class="w-list"></div>
+    <p class="err" id="w-empty" hidden>Nichts gefunden. Versuch: filmen, Ausweis, Test, Handy, Beschwerde.</p>
+    <div class="note-box">
+      <p><strong>Auf den Home-Bildschirm:</strong> In Safari „Teilen“ und dann „Zum Home-Bildschirm“. Danach funktionieren Situationen und Wissen auch ohne Internet.</p>
+      <p>Allgemeine Information, keine Rechtsberatung. Geprüft anhand von Gesetzen und Gerichtsentscheidungen, noch nicht von einem Anwalt. Quellen: <a href="https://www.gesetze-im-internet.de/" rel="noopener" target="_blank">gesetze-im-internet.de</a> · <a href="https://lxgesetze.de/polg/27" rel="noopener" target="_blank">PolG BW</a> · <a href="https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2025/07/rk20250709_1bvr097525.html" rel="noopener" target="_blank">BVerfG 2025</a> · <a href="https://www.buergerbeauftragte-bw.de/" rel="noopener" target="_blank">Bürgerbeauftragte BW</a> · <a href="https://www.stuttgart.de/waffenverbotszone" rel="noopener" target="_blank">Waffenverbotszone</a></p>
+    </div>
+  </section>
+</main>
+
+<nav class="tabs" aria-label="Bereiche">
+  <a href="#jetzt" data-tab="jetzt">Jetzt</a>
+  <a href="#fragen" data-tab="fragen">Fragen</a>
+  <a href="#aufnahme" data-tab="aufnahme">Aufnahme</a>
+  <a href="#danach" data-tab="danach">Danach</a>
+  <a href="#wissen" data-tab="wissen">Wissen</a>
+</nav>
+
+<div class="bigscreen" id="big" hidden role="dialog" aria-modal="true" aria-labelledby="big-de">
+  <button class="btn big-close" type="button" id="big-close">Schließen</button>
+  <p class="big-de" id="big-de"></p>
+  <p class="big-ru" id="big-ru"></p>
+</div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
