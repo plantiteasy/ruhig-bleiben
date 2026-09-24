@@ -91,7 +91,7 @@ window.RB = {
       doo: [
         "Nichts löschen. Eine besondere Befugnis, das Löschen anzuordnen, hat die Polizei nicht.",
         "Nimmt die Polizei das Handy als Beweismittel mit: nicht festhalten, Widerspruch sagen, Bescheinigung verlangen. Nach deinem Widerspruch soll sie binnen 3 Tagen die Bestätigung durch ein Gericht beantragen.",
-        "Vorher Biometrie sperren: iPhone – Seitentaste und Lauter-Taste 2 Sekunden halten, danach ist der Code nötig."
+        "Vorher Biometrie sperren, dann ist der Code nötig. iPhone: Seitentaste und Lauter-Taste 2 Sekunden halten. Android: Ein/Aus-Taste gedrückt halten und „Sperrmodus“ tippen – falls er fehlt, unter Einstellungen › Sperrbildschirm einschalten."
       ],
       dont: [
         "Den PIN nicht nennen – das musst du nicht.",

@@ -24,6 +24,7 @@
       <p class="meta">Prototyp · Baden-Württemberg · Stand 24.09.2026 · keine Rechtsberatung</p>
     </div>
   </div>
+  <button class="btn inst" type="button" data-install hidden>Installieren</button>
 </header>
 
 <main id="main">
@@ -58,6 +59,7 @@
       <span class="mic-label" id="mic-label">Tippen und fragen</span>
     </button>
     <p class="transcript" id="transcript" aria-live="polite"></p>
+    <p class="hint center">Die Erkennung übernimmt dein Browser (Chrome über Google, Safari über Apple). Die App speichert deine Frage nicht.</p>
     <form class="ask-form" id="ask-form">
       <label for="ask-input" class="sr">Frage eintippen</label>
       <input id="ask-input" type="search" placeholder="Oder tippen: filmen, Ausweis, Test …" autocomplete="off" enterkeyhint="search">
@@ -94,10 +96,11 @@
         <div class="rec-badge"><span class="rec-dot" aria-hidden="true"></span><span id="rec-mode">Aufnahme</span> · <span id="rec-time">00:00</span></div>
       </div>
       <button class="btn stop big-btn" type="button" id="rec-stop">Aufnahme beenden</button>
+      <p class="hint">Bildschirm anlassen und die App nicht wechseln – sonst stoppt das Handy die Kamera. Was bis dahin aufgenommen ist, bleibt gespeichert.</p>
     </div>
     <p class="err" id="rec-err" hidden></p>
     <div class="note-box">
-      <p><strong>Prototyp:</strong> Die Aufnahme bleibt nur in dieser Sitzung. Sofort nach dem Stopp „Sichern“ tippen und an dich selbst oder in deine Cloud schicken. Automatische Cloud-Sicherung kommt in der App.</p>
+      <p><strong>Wird jede Sekunde auf dem Gerät gespeichert,</strong> auch wenn die App abstürzt. Trotzdem nach dem Stopp „Sichern“ tippen und an dich selbst oder in deine Cloud schicken – falls das Handy abgenommen wird. Automatische Cloud-Sicherung fehlt noch.</p>
     </div>
     <div id="rec-list" class="rec-list"></div>
   </section>
@@ -169,11 +172,15 @@
     <div id="w-list" class="w-list"></div>
     <p class="err" id="w-empty" hidden>Nichts gefunden. Versuch: filmen, Ausweis, Test, Handy, Beschwerde.</p>
     <div class="note-box">
-      <p><strong>Auf den Home-Bildschirm:</strong> In Safari „Teilen“ und dann „Zum Home-Bildschirm“. Danach funktionieren Situationen und Wissen auch ohne Internet.</p>
+      <p id="install-help"></p>
+      <button class="btn primary" type="button" data-install hidden>App installieren</button>
+      <p>Deine Daten bleiben auf dem Gerät: Protokoll und Aufnahmen gehen an keinen Server.</p>
       <p>Allgemeine Information, keine Rechtsberatung. Geprüft anhand von Gesetzen und Gerichtsentscheidungen, noch nicht von einem Anwalt. Quellen: <a href="https://www.gesetze-im-internet.de/" rel="noopener" target="_blank">gesetze-im-internet.de</a> · <a href="https://lxgesetze.de/polg/27" rel="noopener" target="_blank">PolG BW</a> · <a href="https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2025/07/rk20250709_1bvr097525.html" rel="noopener" target="_blank">BVerfG 2025</a> · <a href="https://www.buergerbeauftragte-bw.de/" rel="noopener" target="_blank">Bürgerbeauftragte BW</a> · <a href="https://www.stuttgart.de/waffenverbotszone" rel="noopener" target="_blank">Waffenverbotszone</a></p>
     </div>
   </section>
 </main>
+
+<a class="rec-float" id="rec-float" href="#aufnahme" hidden><span class="rec-dot" aria-hidden="true"></span>Aufnahme läuft · <span id="rec-float-time">00:00</span></a>
 
 <nav class="tabs" aria-label="Bereiche">
   <a href="#jetzt" data-tab="jetzt">Jetzt</a>

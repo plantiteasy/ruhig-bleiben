@@ -3,6 +3,9 @@
   var D = window.RB;
   var $ = function (id) { return document.getElementById(id); };
   var LS_PROTO = "rb-protokoll-v1", LS_LANG = "rb-lang-v1";
+  var UA = navigator.userAgent || "";
+  var IS_ANDROID = /Android/i.test(UA);
+  var IS_IOS = /iPhone|iPad|iPod/i.test(UA) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -11,16 +14,24 @@
   function fmtDate(d) { return pad(d.getDate()) + "." + pad(d.getMonth() + 1) + "." + d.getFullYear(); }
   function fmtTime(d) { return pad(d.getHours()) + ":" + pad(d.getMinutes()); }
   function isoDate(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
-  function flash(el, text) { el.textContent = text; clearTimeout(el._t); el._t = setTimeout(function () { el.textContent = ""; }, 3500); }
+  function flash(el, text, ms) { el.textContent = text; clearTimeout(el._t); el._t = setTimeout(function () { el.textContent = ""; }, ms || 3500); }
+  function mb(n) { var m = (n || 0) / 1048576; return (m < 10 ? m.toFixed(1).replace(".", ",") : String(Math.round(m))) + " MB"; }
+  function permHelp(what) {
+    if (IS_ANDROID) return what + " ist blockiert. In Chrome: Menü ⋮ › Einstellungen › Website-Einstellungen › " + what + " – diese Seite erlauben.";
+    if (IS_IOS) return what + " ist blockiert. Einstellungen › Apps › Safari › " + what + " – auf „Fragen“ oder „Erlauben“ stellen.";
+    return what + " ist blockiert. In den Website-Einstellungen des Browsers erlauben.";
+  }
 
   /* ---------- Views ---------- */
-  var views = ["jetzt", "fragen", "aufnahme", "danach", "wissen", "situation"];
+  var views = ["jetzt", "fragen", "aufnahme", "danach", "wissen", "situation"], currentView = "jetzt";
   function show(name) {
+    currentView = name;
     views.forEach(function (v) { $("v-" + v).hidden = v !== name; });
     var tab = name === "situation" ? "jetzt" : name;
     [].forEach.call(document.querySelectorAll(".tabs a"), function (a) {
       if (a.getAttribute("data-tab") === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
+    updateRecFloat();
     window.scrollTo(0, 0);
   }
   function route() {
@@ -70,13 +81,28 @@
 
   /* ---------- Big phrase screen ---------- */
   var lastFocus = null, wakeLock = null;
-  function keepAwake() { try { if (navigator.wakeLock) navigator.wakeLock.request("screen").then(function (l) { wakeLock = l; }).catch(function () {}); } catch (e) {} }
-  function releaseAwake() { try { if (wakeLock) { wakeLock.release(); wakeLock = null; } } catch (e) {} }
-  function openBig(de, ru, from) { $("big-de").textContent = de; $("big-ru").textContent = ru || ""; $("big").hidden = false; lastFocus = from; $("big-close").focus(); keepAwake(); }
-  function closeBig() { $("big").hidden = true; if (!recState) releaseAwake(); if (lastFocus) lastFocus.focus(); }
+  function keepAwake() {
+    try {
+      if (!navigator.wakeLock || wakeLock) return;
+      navigator.wakeLock.request("screen").then(function (l) {
+        wakeLock = l;
+        l.addEventListener("release", function () { if (wakeLock === l) wakeLock = null; });
+      }).catch(function () {});
+    } catch (e) {}
+  }
+  function releaseAwake() { try { if (wakeLock) { var l = wakeLock; wakeLock = null; l.release(); } } catch (e) {} }
+  function needAwake() { return !!(recState && recState.rec) || !$("big").hidden; }
+  function openBig(de, ru, from) {
+    $("big-de").textContent = de; $("big-ru").textContent = ru || ""; $("big").hidden = false; lastFocus = from; $("big-close").focus(); keepAwake();
+    // Eigener Verlaufseintrag: Die Zurück-Taste von Android schließt das Großbild statt die Seite zu verlassen.
+    try { history.pushState({ rbBig: 1 }, ""); } catch (e) {}
+  }
+  function hideBig() { $("big").hidden = true; if (!needAwake()) releaseAwake(); if (lastFocus) { try { lastFocus.focus({ preventScroll: true }); } catch (e) {} } }
+  function closeBig() { if ($("big").hidden) return; if (history.state && history.state.rbBig) history.back(); else hideBig(); }
+  window.addEventListener("popstate", function () { if (!$("big").hidden) hideBig(); });
   $("big-close").addEventListener("click", closeBig);
   $("big").addEventListener("click", function (e) { if (e.target.id === "big" || e.target.id === "big-de" || e.target.id === "big-ru") closeBig(); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !$("big").hidden) closeBig(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeBig(); });
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest(".say-b");
     if (b) openBig(b.getAttribute("data-de"), b.getAttribute("data-ru"), b);
@@ -143,9 +169,18 @@
   [].forEach.call(document.querySelectorAll(".seg-b"), function (b) {
     b.addEventListener("click", function () { lang = b.getAttribute("data-lang"); lsSet(LS_LANG, lang); syncSeg(); });
   });
+  function srError(code) {
+    if (code === "not-allowed") return permHelp("Mikrofon");
+    if (code === "service-not-allowed") return IS_IOS ? "Spracheingabe ist gesperrt: Einstellungen › Allgemein › Tastatur › Diktierfunktion einschalten. Oder die Frage tippen." : "Spracheingabe ist in diesem Browser gesperrt. Tippe die Frage.";
+    if (code === "network") return "Spracheingabe braucht Internet. Tippe die Frage – die Antworten kommen auch offline.";
+    if (code === "no-speech") return "Nichts gehört. Noch einmal tippen und kurz fragen.";
+    if (code === "audio-capture") return "Kein Mikrofon gefunden.";
+    if (code === "aborted") return "";
+    return "Spracheingabe unterbrochen (" + code + ").";
+  }
   var activeRec = null;
   function listen(onText, onEnd, onErr) {
-    if (!SR) { onErr("Spracheingabe gibt es in diesem Browser nicht. Auf dem iPhone Safari nutzen, sonst tippen."); return null; }
+    if (!SR) { onErr("Spracheingabe gibt es in diesem Browser nicht. Nutze Chrome (Android) oder Safari (iPhone) – oder tippe die Frage."); return null; }
     try {
       var r = new SR(); r.lang = lang; r.interimResults = true; r.continuous = false; r.maxAlternatives = 1;
       var finalText = "";
@@ -156,7 +191,7 @@
         }
         onText(finalText, interim);
       };
-      r.onerror = function (ev) { onErr(ev.error === "not-allowed" ? "Mikrofon ist nicht erlaubt. In den Einstellungen für Safari freigeben." : "Spracheingabe unterbrochen (" + ev.error + ")."); };
+      r.onerror = function (ev) { onErr(srError(ev.error)); };
       r.onend = function () { activeRec = null; onEnd(finalText); };
       r.start(); activeRec = r; return r;
     } catch (e) { onErr("Spracheingabe konnte nicht starten."); return null; }
@@ -173,7 +208,7 @@
         var q = fin || $("transcript").textContent;
         if (q) { $("ask-input").value = q; renderAnswers(q); }
       },
-      function (msg) { err.textContent = msg; err.hidden = false; mic.setAttribute("aria-pressed", "false"); $("mic-label").textContent = "Tippen und fragen"; });
+      function (msg) { err.textContent = msg; err.hidden = !msg; mic.setAttribute("aria-pressed", "false"); $("mic-label").textContent = "Tippen und fragen"; });
     if (r) { mic.setAttribute("aria-pressed", "true"); $("mic-label").textContent = "Ich höre … tippen zum Stoppen"; $("transcript").textContent = ""; }
   });
   $("ask-form").addEventListener("submit", function (e) {
@@ -183,87 +218,220 @@
   });
   $("ask-input").addEventListener("input", function () { $("ask-err").hidden = true; });
 
+  /* ---------- Aufnahmen auf dem Gerät (IndexedDB) ----------
+     Jede Sekunde landet ein Stück der Aufnahme in "chunks". Stürzt die App ab oder wird sie geschlossen,
+     setzt loadRecs() die Stücke beim nächsten Start wieder zu einer Datei zusammen. */
+  var dbP = null, storageOK = true;
+  function db() {
+    if (!dbP) {
+      dbP = new Promise(function (res, rej) {
+        if (!window.indexedDB) { rej(new Error("IndexedDB fehlt")); return; }
+        var r = indexedDB.open("rb-aufnahmen", 1);
+        r.onupgradeneeded = function () {
+          var d = r.result;
+          if (!d.objectStoreNames.contains("recs")) d.createObjectStore("recs", { keyPath: "id" });
+          if (!d.objectStoreNames.contains("chunks")) d.createObjectStore("chunks", { keyPath: "k" });
+        };
+        r.onsuccess = function () { res(r.result); };
+        r.onerror = function () { rej(r.error); };
+      });
+      dbP.catch(function () { dbP = null; });
+    }
+    return dbP;
+  }
+  function tx(stores, mode, fn) {
+    return db().then(function (d) {
+      return new Promise(function (res, rej) {
+        var t = d.transaction(stores, mode), out, req = fn(t);
+        if (req) req.onsuccess = function () { out = req.result; };
+        t.oncomplete = function () { res(out); };
+        t.onerror = function () { rej(t.error); };
+        t.onabort = function () { rej(t.error); };
+      });
+    });
+  }
+  function chunkRange(id) { return IDBKeyRange.bound([id, 0], [id, Infinity]); }
+  function putRec(r) {
+    var o = {}; Object.keys(r).forEach(function (k) { if (k !== "url") o[k] = r[k]; });
+    return tx("recs", "readwrite", function (t) { t.objectStore("recs").put(o); });
+  }
+  function putChunk(id, seq, data) { return tx("chunks", "readwrite", function (t) { t.objectStore("chunks").put({ k: [id, seq], data: data }); }); }
+  function getChunks(id) { return tx("chunks", "readonly", function (t) { return t.objectStore("chunks").getAll(chunkRange(id)); }); }
+  function delChunks(id) { return tx("chunks", "readwrite", function (t) { t.objectStore("chunks").delete(chunkRange(id)); }); }
+  function allRecs() { return tx("recs", "readonly", function (t) { return t.objectStore("recs").getAll(); }); }
+  function delRec(id) { return tx(["recs", "chunks"], "readwrite", function (t) { t.objectStore("recs").delete(id); t.objectStore("chunks").delete(chunkRange(id)); }); }
+  function storageFail() {
+    if (!storageOK) return;
+    storageOK = false;
+    recError("Speichern auf dem Gerät klappt nicht (Speicher voll oder privater Modus). Die Aufnahme läuft weiter – nach dem Stopp sofort „Sichern“.");
+  }
+  function hashBlob(blob) {
+    if (!window.crypto || !crypto.subtle || !blob.arrayBuffer) return Promise.reject(new Error("kein SHA-256"));
+    return blob.arrayBuffer().then(function (buf) { return crypto.subtle.digest("SHA-256", buf); }).then(function (h) {
+      return Array.prototype.map.call(new Uint8Array(h), function (b) { return b.toString(16).padStart(2, "0"); }).join("");
+    });
+  }
+
   /* ---------- Recording ---------- */
   var recState = null, recordings = [], pendingAct = null;
-  function pickMime() {
-    var c = ["video/mp4;codecs=avc1", "video/mp4", "video/webm;codecs=vp9", "video/webm;codecs=vp8", "video/webm"];
+  function pickMime(withAudio) {
+    var c = withAudio
+      ? ["video/mp4;codecs=avc1,mp4a.40.2", "video/mp4", "video/webm;codecs=vp9,opus", "video/webm;codecs=vp8,opus", "video/webm"]
+      : ["video/mp4;codecs=avc1", "video/mp4", "video/webm;codecs=vp9", "video/webm;codecs=vp8", "video/webm"];
     if (!window.MediaRecorder || !MediaRecorder.isTypeSupported) return "";
     for (var i = 0; i < c.length; i++) if (MediaRecorder.isTypeSupported(c[i])) return c[i];
     return "";
   }
-  function recError(msg) { var e = $("rec-err"); e.textContent = msg; e.hidden = !msg; }
+  function baseType(m) { return String(m || "").split(";")[0] || "video/mp4"; }
+  function fileName(r) {
+    var s = r.started, ext = /webm/.test(r.type) ? "webm" : /quicktime/.test(r.type) ? "mov" : "mp4";
+    return "kontrolle_" + isoDate(s) + "_" + pad(s.getHours()) + "-" + pad(s.getMinutes()) + "-" + pad(s.getSeconds()) +
+      (r.withAudio ? "_mit-ton" : "_ohne-ton") + (r.status === "recovered" ? "_wiederhergestellt" : "") + "." + ext;
+  }
+  function recError(msg) { var e = $("rec-err"); e.textContent = msg || ""; e.hidden = !msg; }
   function setRecUI(stage) {
     $("rec-start").hidden = stage !== "start"; $("consent-step").hidden = stage !== "consent"; $("rec-live").hidden = stage !== "live";
   }
+  function camError(e, withAudio) {
+    var n = e && e.name;
+    if (n === "NotAllowedError" || n === "SecurityError") return permHelp(withAudio ? "Kamera oder Mikrofon" : "Kamera");
+    if (n === "NotFoundError" || n === "OverconstrainedError") return "Keine passende Kamera gefunden.";
+    if (n === "NotReadableError" || n === "AbortError") return "Die Kamera ist belegt. Andere Kamera-Apps schließen und noch einmal tippen.";
+    return "Kamera konnte nicht starten (" + (n || "Fehler") + ").";
+  }
   function startRecording(withAudio, consentAt) {
+    if (recState) return;
     recError("");
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) {
-      recError("Aufnehmen geht hier nicht. Die Seite muss über https laufen, auf dem iPhone in Safari."); setRecUI("start"); return;
+      recError("Aufnehmen geht in diesem Browser nicht. Nutze Chrome (Android) oder Safari (iPhone), die Seite muss über https laufen."); setRecUI("start"); return;
     }
+    recState = { pending: true };
     navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" }, width: { ideal: 1280 }, height: { ideal: 720 } }, audio: !!withAudio })
       .then(function (stream) {
-        var mime = pickMime(), rec;
-        try { rec = mime ? new MediaRecorder(stream, { mimeType: mime }) : new MediaRecorder(stream); } catch (e) { rec = new MediaRecorder(stream); }
-        var chunks = [], started = new Date();
-        rec.ondataavailable = function (ev) { if (ev.data && ev.data.size) chunks.push(ev.data); };
-        rec.onstop = function () { finishRecording(chunks, rec.mimeType || mime || "video/mp4", started, withAudio, consentAt, stream); };
+        // Ein Schlüsselbild pro Sekunde: Chrome schreibt MP4 sonst erst beim Stopp – bei einem Absturz wäre alles weg.
+        var mime = pickMime(withAudio), opts = { videoBitsPerSecond: 2500000, videoKeyFrameIntervalDuration: 1000 }, rec, seq = 0, chunks = [];
+        if (mime) opts.mimeType = mime;
+        try { rec = new MediaRecorder(stream, opts); } catch (e) { rec = new MediaRecorder(stream); }
+        var started = new Date();
+        var r = { id: "r" + started.getTime(), started: started, ended: null, dur: 0, withAudio: !!withAudio, consentAt: consentAt || null,
+          type: "", name: "", hash: "", size: 0, status: "recording" };
+        rec.ondataavailable = function (ev) {
+          if (!ev.data || !ev.data.size) return;
+          chunks.push(ev.data); r.size += ev.data.size;
+          if (storageOK) putChunk(r.id, seq++, ev.data).catch(storageFail);
+        };
+        rec.onstop = function () { finishRecording(r, chunks, stream); };
+        try { rec.start(1000); } catch (e) { stream.getTracks().forEach(function (t) { t.stop(); }); throw e; }
+        r.type = baseType(rec.mimeType || mime); r.name = fileName(r);
+        recState = { rec: rec, r: r, timer: setInterval(tick, 500) };
+        stream.getVideoTracks().forEach(function (t) { t.addEventListener("ended", stopRecording); });
         var v = $("preview"); v.srcObject = stream; v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () {});
-        rec.start(1000);
-        recState = { rec: rec, started: started, timer: setInterval(tick, 500) };
+        if (storageOK) putRec(r).catch(storageFail);
+        else recError("Dieses Gerät speichert Aufnahmen nicht dauerhaft. Nach dem Stopp sofort „Sichern“.");
+        if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function () {});
         $("rec-mode").textContent = withAudio ? "Mit Ton (Einwilligung " + fmtTime(consentAt) + ")" : "Ohne Ton";
-        tick(); setRecUI("live"); keepAwake();
+        tick(); setRecUI("live"); keepAwake(); updateRecFloat();
       })
-      .catch(function (e) {
-        setRecUI("start");
-        recError(e && e.name === "NotAllowedError" ? "Kamera ist nicht erlaubt. In den Einstellungen für Safari freigeben." : "Kamera konnte nicht starten (" + (e && e.name || "Fehler") + ").");
-      });
+      .catch(function (e) { recState = null; setRecUI("start"); recError(camError(e, withAudio)); });
   }
   function tick() {
-    if (!recState) return;
-    var s = Math.floor((Date.now() - recState.started.getTime()) / 1000);
-    $("rec-time").textContent = pad(Math.floor(s / 60)) + ":" + pad(s % 60);
+    if (!recState || !recState.r) return;
+    var s = Math.floor((Date.now() - recState.r.started.getTime()) / 1000), t = pad(Math.floor(s / 60)) + ":" + pad(s % 60);
+    $("rec-time").textContent = t; $("rec-float-time").textContent = t;
   }
-  function stopRecording() { if (recState && recState.rec.state !== "inactive") recState.rec.stop(); }
-  function finishRecording(chunks, mime, started, withAudio, consentAt, stream) {
-    clearInterval(recState && recState.timer); recState = null; releaseAwake();
+  function updateRecFloat() {
+    var on = !!(recState && recState.rec);
+    $("rec-float").hidden = !on || currentView === "aufnahme";
+    document.body.classList.toggle("rec-on", on);
+  }
+  function stopRecording() { if (recState && recState.rec && recState.rec.state !== "inactive") { try { recState.rec.stop(); } catch (e) {} } }
+  function saveFinal(r) {
+    if (!storageOK) return Promise.resolve();
+    // Erst die fertige Datei speichern, dann die Einzelstücke löschen – so geht bei einem Absturz dazwischen nichts verloren.
+    return putRec(r).then(function () { return delChunks(r.id); }).catch(storageFail);
+  }
+  function finishRecording(r, chunks, stream) {
+    if (recState && recState.r === r) { clearInterval(recState.timer); recState = null; }
     stream.getTracks().forEach(function (t) { t.stop(); }); $("preview").srcObject = null;
-    var type = mime.split(";")[0], ext = type.indexOf("mp4") > -1 ? "mp4" : "webm";
-    var blob = new Blob(chunks, { type: type }), ended = new Date();
-    var dur = Math.max(1, Math.round((ended - started) / 1000));
-    var name = "kontrolle_" + isoDate(started) + "_" + pad(started.getHours()) + "-" + pad(started.getMinutes()) + "-" + pad(started.getSeconds()) + (withAudio ? "_mit-ton" : "_ohne-ton") + "." + ext;
-    var item = { blob: blob, url: URL.createObjectURL(blob), name: name, started: started, dur: dur, withAudio: withAudio, consentAt: consentAt, hash: "" };
-    recordings.unshift(item); setRecUI("start"); renderRecs();
-    if (window.crypto && crypto.subtle) {
-      blob.arrayBuffer().then(function (buf) { return crypto.subtle.digest("SHA-256", buf); }).then(function (h) {
-        item.hash = Array.prototype.map.call(new Uint8Array(h), function (b) { return b.toString(16).padStart(2, "0"); }).join(""); renderRecs();
-      }).catch(function () {});
-    }
+    if (!needAwake()) releaseAwake();
+    updateRecFloat(); setRecUI("start");
+    if (!chunks.length) { recError("Die Aufnahme ist leer. Bitte noch einmal starten."); delRec(r.id).catch(function () {}); return; }
+    var blob = new Blob(chunks, { type: r.type }), ended = new Date();
+    r.ended = ended; r.dur = Math.max(1, Math.round((ended - r.started) / 1000)); r.size = blob.size; r.blob = blob; r.status = "done";
+    recordings.unshift(r); renderRecs();
+    hashBlob(blob).then(function (h) { r.hash = h; }, function () { r.noHash = true; })
+      .then(function () { renderRecs(); return saveFinal(r); });
+  }
+  function recover(r) {
+    return getChunks(r.id).then(function (rows) {
+      if (!rows || !rows.length) return delRec(r.id);
+      var blob = new Blob(rows.map(function (x) { return x.data; }), { type: r.type || "video/webm" });
+      r.blob = blob; r.size = blob.size; r.status = "recovered"; r.approx = true;
+      r.dur = rows.length; r.ended = new Date(r.started.getTime() + rows.length * 1000); r.name = fileName(r);
+      recordings.push(r); recordings.sort(function (a, b) { return b.started - a.started; }); renderRecs();
+      return hashBlob(blob).then(function (h) { r.hash = h; }, function () { r.noHash = true; })
+        .then(function () { renderRecs(); return saveFinal(r); });
+    }).catch(function () {});
+  }
+  function loadRecs() {
+    allRecs().then(function (list) {
+      list = (list || []).sort(function (a, b) { return b.started - a.started; });
+      recordings = list.filter(function (x) { return x.status !== "recording"; });
+      renderRecs();
+      list.filter(function (x) { return x.status === "recording"; }).forEach(recover);
+    }).catch(function () { storageOK = false; });
+  }
+  function recMeta(r) {
+    return fmtDate(r.started) + " · " + fmtTime(r.started) + " Uhr · " + (r.approx ? "ca. " : "") + r.dur + " s · " + mb(r.size) + " · " +
+      (r.withAudio ? "mit Ton, Einwilligung " + fmtTime(r.consentAt) : "ohne Ton");
   }
   function recLine(r) {
-    return fmtDate(r.started) + " " + fmtTime(r.started) + " Uhr, " + r.dur + " s, " + (r.withAudio ? "mit Ton, Einwilligung um " + fmtTime(r.consentAt) : "ohne Ton") +
-      (r.hash ? ", SHA-256 " + r.hash : "") + ", Datei " + r.name;
+    return fmtDate(r.started) + " " + fmtTime(r.started) + " Uhr, " + (r.approx ? "ca. " : "") + r.dur + " s, " +
+      (r.withAudio ? "mit Ton, Einwilligung um " + fmtTime(r.consentAt) : "ohne Ton") +
+      (r.status === "recovered" ? ", unterbrochen und wiederhergestellt" : "") + (r.hash ? ", SHA-256 " + r.hash : "") + ", Datei " + r.name;
   }
   function renderRecs() {
-    $("rec-list").innerHTML = recordings.map(function (r, i) {
-      return '<div class="rec-item"><video src="' + r.url + '" controls playsinline preload="metadata"></video>' +
-        '<p class="rec-meta">' + esc(fmtDate(r.started) + " · " + fmtTime(r.started) + " Uhr · " + r.dur + " s · " + (r.withAudio ? "mit Ton, Einwilligung " + fmtTime(r.consentAt) : "ohne Ton")) + "</p>" +
-        '<p class="hash">SHA-256: ' + (r.hash ? esc(r.hash) : "wird berechnet …") + "</p>" +
-        '<div class="actions"><button class="btn primary" type="button" data-share="' + i + '">Sichern</button>' +
-        '<a class="btn" href="' + r.url + '" download="' + esc(r.name) + '">Laden</a>' +
-        '<button class="btn" type="button" data-proto="' + i + '">Ins Protokoll</button></div></div>';
-    }).join("");
+    var box = $("rec-list");
+    if (!recordings.length) { box.innerHTML = ""; return; }
+    var total = 0; recordings.forEach(function (r) { total += r.size || 0; });
+    box.innerHTML = '<h2>Auf diesem Gerät</h2><p class="hint">' + recordings.length + (recordings.length === 1 ? " Aufnahme" : " Aufnahmen") + ", " + mb(total) +
+      ". „Sichern“ schickt die Datei an dich selbst (Telegram, WhatsApp, Mail) oder in Google Drive.</p>" +
+      recordings.map(function (r) {
+        if (!r.url && r.blob) r.url = URL.createObjectURL(r.blob);
+        return '<div class="rec-item" data-id="' + esc(r.id) + '">' +
+          (r.status === "recovered" ? '<p class="rec-flag">Wiederhergestellt – die Aufnahme wurde unterbrochen</p>' : "") +
+          '<video src="' + r.url + '" controls playsinline preload="metadata"></video>' +
+          '<p class="rec-meta">' + esc(recMeta(r)) + "</p>" +
+          '<p class="hash">SHA-256: ' + (r.hash ? esc(r.hash) : r.noHash ? "nicht berechnet (Datei zu groß)" : "wird berechnet …") + "</p>" +
+          '<div class="actions"><button class="btn primary" type="button" data-share>Sichern</button>' +
+          '<button class="btn" type="button" data-dl>Laden</button>' +
+          '<button class="btn" type="button" data-proto>Ins Protokoll</button>' +
+          '<button class="btn ghost" type="button" data-del>Löschen</button></div></div>';
+      }).join("");
   }
+  function recById(id) { for (var i = 0; i < recordings.length; i++) if (recordings[i].id === id) return recordings[i]; return null; }
+  function downloadURL(url, name) { var a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); }
   $("rec-list").addEventListener("click", function (e) {
-    var s = e.target.closest("[data-share]"), p = e.target.closest("[data-proto]");
-    if (s) {
-      var r = recordings[+s.getAttribute("data-share")], file = new File([r.blob], r.name, { type: r.blob.type });
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        navigator.share({ files: [file], title: r.name, text: "SHA-256: " + r.hash }).catch(function () {});
-      } else { var a = document.createElement("a"); a.href = r.url; a.download = r.name; document.body.appendChild(a); a.click(); a.remove(); }
-    }
-    if (p) {
-      var rr = recordings[+p.getAttribute("data-proto")], f = $("p-aufnahmen");
-      f.value = (f.value ? f.value + "\n" : "") + recLine(rr); saveProto(); p.textContent = "Übernommen";
+    var b = e.target.closest("button"), item = e.target.closest(".rec-item");
+    var r = b && item ? recById(item.getAttribute("data-id")) : null;
+    if (!r) return;
+    if (b.hasAttribute("data-share")) {
+      var file = new File([r.blob], r.name, { type: r.type });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) navigator.share({ files: [file], title: r.name, text: r.hash ? "SHA-256: " + r.hash : r.name }).catch(function () {});
+      else downloadURL(r.url, r.name);
+    } else if (b.hasAttribute("data-dl")) {
+      downloadURL(r.url, r.name);
+    } else if (b.hasAttribute("data-proto")) {
+      var f = $("p-aufnahmen"); f.value = (f.value ? f.value + "\n" : "") + recLine(r); saveProto(); b.textContent = "Übernommen";
+    } else if (b.hasAttribute("data-del")) {
+      if (!b._armed) {
+        b._armed = true; b.textContent = "Wirklich löschen?"; b.classList.add("armed");
+        setTimeout(function () { b._armed = false; b.textContent = "Löschen"; b.classList.remove("armed"); }, 4000);
+        return;
+      }
+      delRec(r.id).catch(function () {});
+      if (r.url) URL.revokeObjectURL(r.url);
+      recordings = recordings.filter(function (x) { return x !== r; }); renderRecs();
     }
   });
   $("rec-silent").addEventListener("click", function () { startRecording(false, null); });
@@ -274,10 +442,16 @@
   $("rec-stop").addEventListener("click", stopRecording);
   $("consent-de").textContent = D.consent.de; $("consent-ru").textContent = D.consent.ru;
   window.addEventListener("hashchange", function () {
-    if (location.hash === "#aufnahme" && pendingAct === "consent") setRecUI("consent");
+    if (location.hash === "#aufnahme" && pendingAct === "consent" && !recState) setRecUI("consent");
     if (location.hash === "#aufnahme" && pendingAct === "film" && !recState) startRecording(false, null);
     pendingAct = null;
   });
+  document.addEventListener("visibilitychange", function () {
+    if (document.visibilityState === "visible") { if (needAwake()) keepAwake(); return; }
+    // App geht in den Hintergrund: den Rest sofort speichern, bevor das Handy die Kamera stoppt.
+    if (recState && recState.rec && recState.rec.state === "recording") { try { recState.rec.requestData(); } catch (e) {} }
+  });
+  window.addEventListener("beforeunload", function (e) { if (recState && recState.rec) { e.preventDefault(); e.returnValue = ""; } });
 
   /* ---------- Protocol ---------- */
   var fields = ["datum", "zeit", "ort", "beamte", "ablauf", "zitate", "zeugen", "aufnahmen", "schaden", "name"];
@@ -314,8 +488,8 @@
   $("p-copy").addEventListener("click", function () { copyText(protoText(), $("p-msg")); });
   $("p-share").addEventListener("click", function () { shareText("Gedächtnisprotokoll", protoText(), $("p-msg")); });
   $("p-file").addEventListener("click", function () {
-    var blob = new Blob([protoText()], { type: "text/plain;charset=utf-8" }), a = document.createElement("a");
-    a.href = URL.createObjectURL(blob); a.download = "gedaechtnisprotokoll_" + $("p-datum").value + ".txt"; document.body.appendChild(a); a.click(); a.remove();
+    var blob = new Blob([protoText()], { type: "text/plain;charset=utf-8" });
+    downloadURL(URL.createObjectURL(blob), "gedaechtnisprotokoll_" + $("p-datum").value + ".txt");
   });
   var clearArmed = false;
   $("p-clear").addEventListener("click", function () {
@@ -330,9 +504,12 @@
     b.textContent = "Suche …";
     navigator.geolocation.getCurrentPosition(function (pos) {
       var la = pos.coords.latitude.toFixed(5), lo = pos.coords.longitude.toFixed(5), f = $("p-ort");
-      f.value = (f.value ? f.value + "\n" : "") + "Standort " + la + ", " + lo + " (±" + Math.round(pos.coords.accuracy) + " m) https://maps.apple.com/?ll=" + la + "," + lo;
+      f.value = (f.value ? f.value + "\n" : "") + "Standort " + la + ", " + lo + " (±" + Math.round(pos.coords.accuracy) + " m) https://www.openstreetmap.org/?mlat=" + la + "&mlon=" + lo + "#map=18/" + la + "/" + lo;
       b.textContent = "Standort einfügen"; saveProto();
-    }, function () { b.textContent = "Standort einfügen"; flash($("p-msg"), "Standort nicht erlaubt oder nicht gefunden"); }, { enableHighAccuracy: true, timeout: 12000 });
+    }, function (err) {
+      b.textContent = "Standort einfügen";
+      if (err && err.code === 1) flash($("p-msg"), permHelp("Standort"), 9000); else flash($("p-msg"), "Standort nicht gefunden. Draußen noch einmal versuchen.");
+    }, { enableHighAccuracy: true, timeout: 12000 });
   });
   [].forEach.call(document.querySelectorAll(".dict"), function (b) {
     b.addEventListener("click", function () {
@@ -340,7 +517,7 @@
       var f = $(b.getAttribute("data-for")), base = f.value;
       var r = listen(function (fin, interim) { f.value = (base ? base + " " : "") + (fin + " " + interim).trim(); },
         function (fin) { b.setAttribute("aria-pressed", "false"); b.textContent = "Diktieren"; if (fin) f.value = (base ? base + " " : "") + fin.trim(); saveProto(); },
-        function (msg) { b.setAttribute("aria-pressed", "false"); b.textContent = "Diktieren"; flash($("p-msg"), msg); });
+        function (msg) { b.setAttribute("aria-pressed", "false"); b.textContent = "Diktieren"; if (msg) flash($("p-msg"), msg, 9000); });
       if (r) { b.setAttribute("aria-pressed", "true"); b.textContent = "Stopp"; }
     });
   });
@@ -398,9 +575,33 @@
   }
   $("w-q").addEventListener("input", function () { renderWissen($("w-q").value); });
 
+  /* ---------- Installieren ---------- */
+  var installEv = null;
+  function isStandalone() { return (window.matchMedia && matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true; }
+  function syncInstall() {
+    [].forEach.call(document.querySelectorAll("[data-install]"), function (b) { b.hidden = !installEv || isStandalone(); });
+    $("install-help").innerHTML = isStandalone() ? "<strong>Installiert.</strong> Situationen und Wissen funktionieren auch ohne Internet." :
+      IS_IOS ? "<strong>Auf den Home-Bildschirm:</strong> In Safari „Teilen“ und dann „Zum Home-Bildschirm“. Danach funktionieren Situationen und Wissen auch ohne Internet." :
+      IS_ANDROID ? "<strong>Als App installieren:</strong> In Chrome oben rechts ⋮ und dann „App installieren“ oder „Zum Startbildschirm hinzufügen“. Danach funktionieren Situationen und Wissen auch ohne Internet." :
+      "<strong>Als App aufs Handy:</strong> Android – in Chrome ⋮ und „App installieren“. iPhone – in Safari „Teilen“ und „Zum Home-Bildschirm“.";
+  }
+  window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); installEv = e; syncInstall(); });
+  window.addEventListener("appinstalled", function () { installEv = null; syncInstall(); });
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest && e.target.closest("[data-install]");
+    if (!b || !installEv) return;
+    var ev = installEv; installEv = null; syncInstall();
+    try { var p = ev.prompt(); if (p && p.catch) p.catch(function () {}); } catch (x) {}
+  });
+
   /* ---------- Start ---------- */
-  buildCorpus(); renderGrid(); syncSeg(); loadProto(); renderDeadlines(); renderLetters(); renderWissen(""); route();
+  buildCorpus(); renderGrid(); syncSeg(); loadProto(); renderDeadlines(); renderLetters(); renderWissen(""); syncInstall(); route(); loadRecs();
   if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
+    var hadController = !!navigator.serviceWorker.controller;
+    // Neue Version direkt nach dem Öffnen: einmal neu laden, damit geänderte Inhalte sofort gelten.
+    navigator.serviceWorker.addEventListener("controllerchange", function () {
+      if (hadController && !recState && performance.now() < 15000) location.reload();
+    });
     window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () {}); });
   }
 })();

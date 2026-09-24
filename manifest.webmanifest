@@ -1,6 +1,7 @@
 {
   "name": "Ruhig bleiben",
   "short_name": "Ruhig",
+  "description": "Polizeikontrolle in Baden-Württemberg: was du sagen und lassen solltest, Video ohne Ton, Gedächtnisprotokoll. Prototyp, keine Rechtsberatung.",
   "lang": "de",
   "start_url": "./#jetzt",
   "scope": "./",
