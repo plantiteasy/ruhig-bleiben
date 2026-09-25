@@ -551,6 +551,7 @@
     var c = withAudio
       ? ["video/mp4;codecs=avc1,mp4a.40.2", "video/mp4", "video/webm;codecs=vp9,opus", "video/webm;codecs=vp8,opus", "video/webm"]
       : ["video/mp4;codecs=avc1", "video/mp4", "video/webm;codecs=vp9", "video/webm;codecs=vp8", "video/webm"];
+    // Bewusst avc1, nicht avc3: iPhone und Mac (AVFoundation) spielen avc3-MP4 nicht ab – getestet 25.09.2026.
     if (!window.MediaRecorder || !MediaRecorder.isTypeSupported) return "";
     for (var i = 0; i < c.length; i++) if (MediaRecorder.isTypeSupported(c[i])) return c[i];
     return "";
