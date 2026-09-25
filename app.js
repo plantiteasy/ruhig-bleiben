@@ -2,10 +2,12 @@
   "use strict";
   var D = window.RB;
   var $ = function (id) { return document.getElementById(id); };
-  var LS_PROTO = "rb-protokoll-v1", LS_LANG = "rb-lang-v1";
+  var LS_PROTO = "rb-protokoll-v1", LS_PROTO_PREV = "rb-protokoll-vorher-v1", LS_LANG = "rb-lang-v1", LS_PROTO_SAVED = "rb-protokoll-gesichert-v1";
   var UA = navigator.userAgent || "";
   var IS_ANDROID = /Android/i.test(UA);
   var IS_IOS = /iPhone|iPad|iPod/i.test(UA) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  // Browser in Telegram, WhatsApp, Instagram usw.: Kamera oft gesperrt, Speicher unsicher.
+  var IS_INAPP = /; wv\)|Telegram|WhatsApp|Instagram|FBAN|FBAV|Line\//i.test(UA);
 
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
@@ -15,7 +17,7 @@
   function fmtTime(d) { return pad(d.getHours()) + ":" + pad(d.getMinutes()); }
   function isoDate(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
   function flash(el, text, ms) { el.textContent = text; clearTimeout(el._t); el._t = setTimeout(function () { el.textContent = ""; }, ms || 3500); }
-  function mb(n) { var m = (n || 0) / 1048576; return (m < 10 ? m.toFixed(1).replace(".", ",") : String(Math.round(m))) + " MB"; }
+  function mb(n) { var m = (n || 0) / 1048576; return (m < 10 ? m.toFixed(1).replace(".", ",") : String(Math.round(m))) + (UI === "ru" ? " МБ" : " MB"); }
   /* ---------- Sprache der Oberfläche (DE/RU) ----------
      Inhalte stehen in data.js deutsch, die russische Fassung jeweils in „ru“. Sätze zum Sagen bleiben immer deutsch
      (groß), darunter russisch – gezeigt wird ja der Polizei. Paragrafen und Briefe an Behörden bleiben deutsch. */
@@ -42,7 +44,7 @@
       sr_none: "Spracheingabe gibt es in diesem Browser nicht. Nutze Chrome (Android) oder Safari (iPhone) – oder tippe die Frage.", sr_start: "Spracheingabe konnte nicht starten.",
       perm_android: "{w} ist blockiert. In Chrome: Menü ⋮ › Einstellungen › Website-Einstellungen › {s} – diese Seite erlauben.",
       perm_ios: "{w} ist blockiert. Einstellungen › Apps › Safari › {s} – auf „Fragen“ oder „Erlauben“ stellen.", perm_other: "{w} ist blockiert. In den Website-Einstellungen des Browsers erlauben.",
-      w_mic: "Mikrofon", s_mic: "Mikrofon", w_cam: "Kamera", s_cam: "Kamera", w_cammic: "Kamera oder Mikrofon", s_cammic: "Kamera und Mikrofon", w_geo: "Standort", s_geo: "Standort",
+      w_mic: "Mikrofon", s_mic: "Mikrofon", w_cam: "Kamera", s_cam: "Kamera", w_cammic: "Kamera oder Mikrofon", s_cammic: "Kamera bzw. Mikrofon", w_geo: "Standort", s_geo: "Standort",
       rec_h: "Aufnahme", rec_lead: "Video ohne Ton ist erlaubt, solange du nicht störst. Ton nur mit Einwilligung aller, die sprechen.",
       rec_silent: "Video ohne Ton starten", rec_consent: "Mit Ton – nur mit Einwilligung", consent_ask: "Frag laut und warte auf die Antwort:",
       consent_yes: "Alle sind einverstanden – mit Ton", consent_no: "Nicht einverstanden – Video ohne Ton", cancel: "Abbrechen",
@@ -54,37 +56,48 @@
       rec_nocam: "Keine passende Kamera gefunden.", rec_busy: "Die Kamera ist belegt. Andere Kamera-Apps schließen und noch einmal tippen.", rec_camfail: "Kamera konnte nicht starten ({x}).",
       rec_storage: "Speichern auf dem Gerät klappt nicht (Speicher voll oder privater Modus). Die Aufnahme läuft weiter – nach dem Stopp sofort „Sichern“.",
       rec_nopersist: "Dieses Gerät speichert Aufnahmen nicht dauerhaft. Nach dem Stopp sofort „Sichern“.", rec_empty: "Die Aufnahme ist leer. Bitte noch einmal starten.",
-      recs_h: "Auf diesem Gerät", recs_one: "Aufnahme", recs_many: "Aufnahmen", recs_hint: "„Sichern“ schickt die Datei an dich selbst (Telegram, WhatsApp, Mail) oder in Google Drive.",
+      recs_h: "Auf diesem Gerät", recs_one: "Aufnahme", recs_many: "Aufnahmen", recs_hint: "„Sichern“ schickt die Originaldatei an dich selbst: in Telegram „Als Datei senden“, in WhatsApp als „Dokument“ – sonst wird das Video verkleinert. Oder in Google Drive.",
+      rec_saved: "Gespeichert auf diesem Handy. Jetzt „Sichern“ tippen – falls das Handy abgenommen wird.", rec_share_big: "Zu groß zum direkten Teilen (über 50 MB). Die Datei liegt jetzt unter „Downloads“ – dort antippen › Teilen › Google Drive oder Telegram (als Datei).",
+      rec_cut: "Aufnahme gestoppt – das Handy hat die Kamera beendet ({x} Uhr). Das Video bis dahin ist gespeichert.", rec_try_silent: "Oder ohne Ton filmen: „Video ohne Ton starten“ tippen.",
+      perm_inapp: "Du bist im Browser von Telegram, WhatsApp o. Ä. Hier sind Kamera und Mikrofon oft gesperrt und Aufnahmen gehen leicht verloren. Öffne die Seite in Chrome: Menü ⋮ › „Im Browser öffnen“.",
       rec_recovered: "Wiederhergestellt – die Aufnahme wurde unterbrochen", hash_wait: "wird berechnet …", hash_na: "nicht berechnet (Datei zu groß)",
-      b_share: "Sichern", b_dl: "Laden", b_proto: "Ins Protokoll", b_del: "Löschen", b_del_sure: "Wirklich löschen?", b_taken: "Übernommen",
+      b_share: "Sichern", b_dl: "Herunterladen", b_proto: "Ins Protokoll", b_del: "Löschen", b_del_sure: "Wirklich löschen?", b_taken: "Übernommen",
       m_clock: " Uhr", m_ca: "ca. ", m_sec: " s", m_audio: "mit Ton, Einwilligung {x}", m_silent: "ohne Ton",
       danach_h: "Danach", danach_lead: "Noch am selben Tag: Gedächtnisprotokoll. Diktieren geht mit dem Mikrofon neben jedem Feld.",
       seg_dict_aria: "Sprache fürs Diktieren", dict_de: "Diktat Deutsch", dict_ru: "Диктовка по-русски", dict: "Diktieren", gps: "Standort einfügen", gps_wait: "Suche …",
       f_datum: "Datum", f_zeit: "Uhrzeit", f_ort: "Ort", f_beamte: "Beamte und Fahrzeuge", f_ablauf: "Was ist passiert?", f_zitate: "Wörtliche Aussagen", f_zeugen: "Zeugen",
       f_aufnahmen: "Aufnahmen", f_schaden: "Verletzungen und Schäden", f_name: "Dein Name und Anschrift (für Briefe)",
       ph_ort: "Straße, Haltestelle, Richtung", ph_beamte: "Namen, Dienststelle, Kennzeichen, Aussehen", ph_ablauf: "Der Reihe nach, mit Uhrzeiten, so genau wie möglich",
-      ph_zitate: "Wer hat was genau gesagt?", ph_zeugen: "Name und Kontakt, nur mit Einverständnis", ph_aufnahmen: "Wird aus „Aufnahme“ übernommen: Uhrzeit, Dauer, Prüfsumme",
+      ph_zitate: "Wer hat was genau gesagt?", ph_zeugen: "Name und Kontakt, nur mit Einverständnis", ph_aufnahmen: "Unter „Aufnahme“ bei der Aufnahme „Ins Protokoll“ tippen",
       ph_schaden: "Was, wo, Arztbesuch, Fotos", ph_name: "Vorname Nachname, Straße, PLZ Ort",
-      p_copy: "Protokoll kopieren", share: "Teilen", p_file: "Als Datei", p_clear: "Neues Protokoll", p_clear_sure: "Wirklich leeren?", p_new: "Neues Protokoll angelegt",
+      p_copy: "Protokoll kopieren", share: "Teilen", p_file: "Als Datei", p_clear: "Protokoll löschen", p_clear_sure: "Wirklich löschen?", p_new: "Protokoll gelöscht.", p_undo: "Rückgängig", p_restored: "Protokoll wiederhergestellt",
+      p_backup: "Nur auf diesem Handy gespeichert – ein iPhone löscht es nach einigen Tagen ohne Nutzung. Jetzt „Als Datei“ oder „Teilen“ an dich selbst.",
+      when_check: "Datum und Uhrzeit des Vorfalls – bitte prüfen, nicht die jetzige Zeit.", sr_none_p: "Diktieren gibt es in diesem Browser nicht. Tippe den Text ins Feld.",
+      sr_net_p: "Diktieren braucht Internet. Tippe den Text ins Feld.", sr_blocked_p: "Diktieren ist in diesem Browser gesperrt. Tippe den Text ins Feld.",
+      l_missing: "Vor dem Senden noch ausfüllen: {x}.", l_cyr: "Der Brief geht an deutsche Behörden: Ort und Name in lateinischen Buchstaben, die Schilderung auf Deutsch.",
+      dl_bc_over: "Frist vorbei – Aufnahmen sind wahrscheinlich gelöscht. Trotzdem schicken und Anwalt fragen.", act_notdienst: "Anwaltsnotdienst Stuttgart anrufen", alt_more: "Öffnen",
       copied: "Kopiert", copy_fail: "Kopieren ging nicht – bitte „Teilen“ nutzen", geo_na: "Standort ist hier nicht verfügbar", geo_fail: "Standort nicht gefunden. Draußen noch einmal versuchen.",
       fristen_h: "Fristen", briefe_h: "Briefe",
       dl_proto: "Gedächtnisprotokoll", dl_proto_d: "am selben Tag – {x}", dl_bc: "Bodycam-Sicherung beantragen", dl_bc_d: "sofort; gelöscht wird spätestens am {x}",
       dl_bb: "Bürgerbeauftragte BW", dl_bb_d: "bis {x}, nicht parallel zu einem Straf- oder Gerichtsverfahren", dl_anwalt: "Anwalt", dl_anwalt_d: "vor jeder Beschwerde oder Anzeige sprechen",
       left_over: "abgelaufen", left_today: "heute", left_1: "noch 1 Tag", left_n: "noch {x} Tage",
       l_to: "An:", l_copy: "Kopieren", l_mail: "In Mail öffnen",
-      wissen_h: "Wissen", w_label: "Wissen durchsuchen", w_ph: "Suchen: Ausweis, filmen, Messer …", w_cats: "Themen", w_all: "Alle",
-      w_empty: "Nichts gefunden. Versuch: filmen, Ausweis, Test, Handy, Beschwerde.",
+      wissen_h: "Wissen", w_label: "Wissen durchsuchen", w_ph: "Suchen: pusten, Ausweis, filmen …", w_cats: "Themen", w_all: "Alle",
+      w_empty: "Nichts gefunden. Versuch: pusten, Ausweis, filmen, Handy, Beschwerde.", w_sits: "Situationen",
       data_note: "Deine Daten bleiben auf dem Gerät: Protokoll und Aufnahmen gehen an keinen Server.",
       disclaimer: "Allgemeine Information, keine Rechtsberatung. Geprüft anhand von Gesetzen und Gerichtsentscheidungen, noch nicht von einem Anwalt. Quellen: {links}",
       i_done: "<strong>Installiert.</strong> Situationen und Wissen funktionieren auch ohne Internet.",
       i_ios: "<strong>Auf den Home-Bildschirm:</strong> In Safari „Teilen“ und dann „Zum Home-Bildschirm“. Danach funktionieren Situationen und Wissen auch ohne Internet.",
       i_android: "<strong>Als App installieren:</strong> In Chrome oben rechts ⋮ und dann „App installieren“ oder „Zum Startbildschirm hinzufügen“. Danach funktionieren Situationen und Wissen auch ohne Internet.",
       i_other: "<strong>Als App aufs Handy:</strong> Android – in Chrome ⋮ und „App installieren“. iPhone – in Safari „Teilen“ und „Zum Home-Bildschirm“.",
+      i_samsung: "<strong>Als App installieren:</strong> Menü ≡ unten rechts › „Seite hinzufügen zu“ › „Startbildschirm“. Danach funktionieren Situationen und Wissen auch ohne Internet.",
+      i_firefox: "<strong>Als App installieren:</strong> Menü ⋮ › „Installieren“ oder „Zum Startbildschirm hinzufügen“. Am zuverlässigsten läuft die App in Chrome.",
+      i_crios: "<strong>Auf den Home-Bildschirm:</strong> Chrome auf dem iPhone: Teilen-Symbol oben › „Zum Home-Bildschirm“. Klappt das nicht, die Seite in Safari öffnen.",
       prof_h: "Mein Profil", prof_open: "Mein Profil", prof_lead: "Freiwillig. Mit ein paar Angaben passen die Hinweise besser zu dir – zum Beispiel, wie lange dein Führerschein hier noch gilt.",
       pf_by: "Geburtsjahr", pf_none: "Keine Angabe", pf_nat: "Staatsangehörigkeit", pf_nat_de: "Deutsch", pf_nat_eu: "EU-Staat", pf_nat_andere: "Anderes Land",
       pf_status: "Aufenthalt", pf_st_p24: "Schutz nach § 24 (Ukraine)", pf_st_titel: "Aufenthaltstitel", pf_st_asyl: "Asyl oder Duldung", pf_st_visum: "Visum oder anderes",
       pf_fs: "Führerschein aus", pf_fs_de: "Deutschland", pf_fs_eu: "EU-Staat", pf_fs_ua: "Ukraine", pf_fs_dritt: "Anderes Land, z. B. Russland oder Kasachstan", pf_fs_kein: "Kein Führerschein",
-      pf_fsdatum: "Führerschein erhalten am", pf_seit: "In Deutschland gemeldet seit", pf_seit_hint: "Ab diesem Tag läuft die 6-Monats-Frist für deinen Führerschein.", d_tag: "Tag", d_mon: "Monat", d_jahr: "Jahr", d_missing: "Noch wählen: {x}", d_invalid: "Dieses Datum gibt es nicht – bitte den Tag prüfen.", d_future: "Das Datum liegt in der Zukunft – bitte prüfen.",
+      pf_fsdatum: "Führerschein erhalten am", pf_seit: "Seit wann wohnst du in Deutschland?", pf_seit_hint: "Der erste Tag in Deutschland – nicht der Einzug in die jetzige Wohnung. Ab diesem Tag laufen die 6 Monate.", d_tag: "Tag", d_mon: "Monat", d_jahr: "Jahr", d_missing: "Noch wählen: {x}", d_invalid: "Dieses Datum gibt es nicht – bitte den Tag prüfen.", d_future: "Das Datum liegt in der Zukunft – bitte prüfen.",
       mon_1: "Januar", mon_2: "Februar", mon_3: "März", mon_4: "April", mon_5: "Mai", mon_6: "Juni", mon_7: "Juli", mon_8: "August", mon_9: "September", mon_10: "Oktober", mon_11: "November", mon_12: "Dezember",
       pf_bau: "Ich arbeite auf Baustellen",
       prof_privacy: "Bleibt nur auf diesem Handy, nichts wird gesendet. Die Hinweise folgen festen Regeln aus den Karten – keine Rechtsberatung.",
@@ -93,15 +106,19 @@
       fd_invite: "Genauer für dich: ein kurzes Profil – freiwillig, bleibt auf dem Handy.", fd_invite_go: "Ausfüllen", fd_hide: "Ausblenden",
       n_fs_over: "Dein ausländischer Führerschein gilt in Deutschland seit dem {d} nicht mehr. Nicht mehr fahren – sonst ermittelt die Polizei wegen Fahrens ohne Fahrerlaubnis. Umschreiben lassen.",
       n_fs_soon: "Dein ausländischer Führerschein gilt hier nur noch {n} – bis zum {d}. Jetzt bei der Führerscheinstelle umschreiben lassen.",
-      n_fs_ok: "Dein ausländischer Führerschein gilt hier bis zum {d} – 6 Monate ab deiner Anmeldung. Umschreibung rechtzeitig beantragen.",
-      n_fs_ask: "Trag im Profil ein, seit wann du in Deutschland gemeldet bist – dann siehst du, wie lange dein Führerschein hier noch gilt.",
+      n_fs_ok: "Dein ausländischer Führerschein gilt hier bis zum {d} – 6 Monate ab deinem Zuzug nach Deutschland. Umschreibung rechtzeitig beantragen.",
+      n_fs_today: "Dein ausländischer Führerschein gilt hier nur noch heute ({d}). Ab morgen nicht mehr fahren – umschreiben lassen.",
+      n_ua_ask: "Hast du Schutz nach § 24? Dann gilt dein ukrainischer Führerschein weiter – trag es im Profil unter „Aufenthalt“ ein. Sonst gilt er 6 Monate ab Zuzug.",
+      n_ua24_over: "Laut Stand der App endete der Schutz nach § 24 am 04.03.2027. Prüfe deinen Aufenthaltstitel: Wurde der Schutz verlängert, gilt der Führerschein weiter – sonst erst klären, dann fahren.",
+      n_pass_asyl: "Mit Asyl oder Duldung: Aufenthaltsgestattung oder Duldungsbescheinigung immer dabeihaben und der Polizei auf Verlangen zeigen – der Pass liegt oft bei der Behörde.",
+      n_fs_ask: "Trag im Profil ein, seit wann du in Deutschland wohnst – dann siehst du, wie lange dein Führerschein hier noch gilt.",
       n_ua_extra: " Ukrainische Führerscheine lassen sich seit 18.08.2026 ohne Prüfung umschreiben.",
       n_ua24: "Dein ukrainischer Führerschein gilt mit § 24 ohne Übersetzung, derzeit bis zum 04.03.2027 ({n}). Aufenthaltstitel und EU-Verordnung 2022/1280 ausgedruckt dabeihaben. Seit 18.08.2026 ohne Prüfung umschreibbar.",
       n_null: "Für dich gilt am Steuer 0,0 Promille und kein Cannabis – {g}. Das gilt auch auf dem E-Scooter.",
-      n_null_u21: "unter 21", n_null_b21: "bis zu deinem 21. Geburtstag", n_null_pz: "Probezeit, voraussichtlich bis zum {d}",
-      n_pass_eu: "Als EU-Bürger: Pass oder Personalausweis immer dabeihaben und auf Verlangen zeigen.",
-      n_pass: "Als ausländischer Staatsbürger: Pass oder Aufenthaltstitel immer dabeihaben und auf Verlangen zeigen.",
-      n_bau: "Auf der Baustelle: Ausweis immer im Original dabei (bis 5.000 €). Beim Zoll musst du Fragen zu deiner Arbeit beantworten – anders als bei der Polizei.",
+      n_null_u21: "unter 21", n_null_b21: "bis zu deinem 21. Geburtstag in diesem Jahr", n_null_pz: "in der Probezeit, voraussichtlich bis zum {d}", n_and: " und ",
+      n_pass_eu: "Als EU-Bürger: Pass oder Personalausweis immer dabeihaben und der Polizei auf Verlangen zeigen.",
+      n_pass: "Als ausländischer Staatsbürger: Pass oder Aufenthaltstitel immer dabeihaben und der Polizei auf Verlangen zeigen.",
+      n_bau: "Auf der Baustelle: Ausweis immer im Original dabei (sonst Bußgeld bis 5.000 €). Beim Zoll musst du Fragen zu deiner Arbeit beantworten – anders als bei der Polizei.",
       days_1: "1 Tag", days_n: "{n} Tage"
     },
     ru: {
@@ -124,49 +141,60 @@
       sr_none: "В этом браузере нет голосового ввода. Используй Chrome (Android) или Safari (iPhone) — или напиши вопрос.", sr_start: "Голосовой ввод не запустился.",
       perm_android: "Доступ к {w} заблокирован. В Chrome: меню ⋮ › Настройки › Настройки сайтов › {s} — разрешить для этого сайта.",
       perm_ios: "Доступ к {w} заблокирован. Настройки › Приложения › Safari › {s} — выбрать «Спрашивать» или «Разрешить».", perm_other: "Доступ к {w} заблокирован. Разреши его в настройках сайта в браузере.",
-      w_mic: "микрофону", s_mic: "Микрофон", w_cam: "камере", s_cam: "Камера", w_cammic: "камере или микрофону", s_cammic: "Камера и Микрофон", w_geo: "местоположению", s_geo: "Геоданные",
+      w_mic: "микрофону", s_mic: "Микрофон", w_cam: "камере", s_cam: "Камера", w_cammic: "камере или микрофону", s_cammic: "Камера или Микрофон", w_geo: "местоположению", s_geo: "Геоданные",
       rec_h: "Запись", rec_lead: "Видео без звука можно, пока ты не мешаешь. Звук — только с согласия всех, кто говорит.",
       rec_silent: "Начать видео без звука", rec_consent: "Со звуком — только с согласия", consent_ask: "Спроси вслух и дождись ответа:",
       consent_yes: "Все согласны — со звуком", consent_no: "Не согласны — видео без звука", cancel: "Отмена",
       consent_tip: "Совет: в начале записи попроси ещё раз подтвердить согласие.", rec_stop: "Остановить запись",
       rec_live_hint: "Не выключай экран и не переключайся на другое приложение — иначе телефон остановит камеру. Всё, что уже записано, сохранится.",
-      rec_note: "<strong>Запись сохраняется на телефоне каждую секунду,</strong> даже если приложение упадёт. Всё равно после остановки нажми «Сохранить» и отправь себе или в своё облако — на случай, если телефон заберут. Автоматического облака пока нет.",
+      rec_note: "<strong>Запись сохраняется на телефоне каждую секунду,</strong> даже если приложение упадёт. Всё равно после остановки нажми «Отправить себе» и отправь себе или в своё облако — на случай, если телефон заберут. Автоматического облака пока нет.",
       rec_running: "Идёт запись", mode_audio: "Со звуком (согласие {x})", mode_silent: "Без звука",
       rec_nobrowser: "В этом браузере запись не работает. Используй Chrome (Android) или Safari (iPhone), сайт должен открываться по https.",
       rec_nocam: "Подходящая камера не найдена.", rec_busy: "Камера занята. Закрой другие приложения с камерой и нажми ещё раз.", rec_camfail: "Камера не запустилась ({x}).",
-      rec_storage: "Сохранить на телефоне не получается (память заполнена или приватный режим). Запись продолжается — после остановки сразу нажми «Сохранить».",
-      rec_nopersist: "Этот телефон не хранит записи надолго. После остановки сразу нажми «Сохранить».", rec_empty: "Запись пустая. Начни ещё раз.",
-      recs_h: "На этом телефоне", recs_one: "запись", recs_few: "записи", recs_many: "записей", recs_hint: "«Сохранить» отправляет файл тебе же (Telegram, WhatsApp, почта) или в Google Drive.",
+      rec_storage: "Сохранить на телефоне не получается (память заполнена или приватный режим). Запись продолжается — после остановки сразу нажми «Отправить себе».",
+      rec_nopersist: "Этот телефон не хранит записи надолго. После остановки сразу нажми «Отправить себе».", rec_empty: "Запись пустая. Начни ещё раз.",
+      recs_h: "На этом телефоне", recs_one: "запись", recs_few: "записи", recs_many: "записей", recs_hint: "«Отправить себе» отправляет оригинальный файл: в Telegram — «Отправить как файл», в WhatsApp — как «Документ», иначе видео сожмётся. Или в Google Drive.",
+      rec_saved: "Сохранено на этом телефоне. Теперь нажми «Отправить себе» — на случай, если телефон заберут.", rec_share_big: "Файл слишком большой для прямой отправки (больше 50 МБ). Он сохранён в «Загрузки» — открой его там › Поделиться › Google Drive или Telegram (как файл).",
+      rec_cut: "Запись остановлена — телефон отключил камеру ({x}). Видео до этого момента сохранено.", rec_try_silent: "Или снимай без звука: нажми «Начать видео без звука».",
+      perm_inapp: "Ты во встроенном браузере Telegram, WhatsApp или другого мессенджера. Здесь камера и микрофон часто заблокированы, а записи легко потерять. Открой страницу в Chrome: меню ⋮ › «Открыть в браузере».",
       rec_recovered: "Восстановлено — запись была прервана", hash_wait: "считается …", hash_na: "не посчитана (файл слишком большой)",
-      b_share: "Сохранить", b_dl: "Скачать", b_proto: "В протокол", b_del: "Удалить", b_del_sure: "Точно удалить?", b_taken: "Добавлено",
+      b_share: "Отправить себе", b_dl: "Скачать", b_proto: "В протокол", b_del: "Удалить", b_del_sure: "Точно удалить?", b_taken: "Добавлено",
       m_clock: "", m_ca: "ок. ", m_sec: " с", m_audio: "со звуком, согласие {x}", m_silent: "без звука",
       danach_h: "После", danach_lead: "В тот же день: протокол по памяти. Надиктовать можно кнопкой у каждого поля.",
       seg_dict_aria: "Язык диктовки", dict_de: "Диктовка по-немецки", dict_ru: "Диктовка по-русски", dict: "Диктовать", gps: "Вставить место", gps_wait: "Ищу …",
       f_datum: "Дата", f_zeit: "Время", f_ort: "Место", f_beamte: "Полицейские и машины", f_ablauf: "Что произошло?", f_zitate: "Точные слова", f_zeugen: "Свидетели",
       f_aufnahmen: "Записи", f_schaden: "Травмы и ущерб", f_name: "Твоё имя и адрес (для писем)",
       ph_ort: "Улица, остановка, направление", ph_beamte: "Имена, участок, номера машин, внешность", ph_ablauf: "По порядку, со временем, как можно точнее",
-      ph_zitate: "Кто что именно сказал?", ph_zeugen: "Имя и контакт, только с согласия", ph_aufnahmen: "Добавляется из «Записи»: время, длительность, контрольная сумма",
+      ph_zitate: "Кто что именно сказал?", ph_zeugen: "Имя и контакт, только с согласия", ph_aufnahmen: "В «Записи» нажми «В протокол» у нужной записи",
       ph_schaden: "Что, где, врач, фото", ph_name: "Имя Фамилия, улица, индекс, город",
-      p_copy: "Копировать протокол", share: "Поделиться", p_file: "Файлом", p_clear: "Новый протокол", p_clear_sure: "Точно очистить?", p_new: "Новый протокол создан",
+      p_copy: "Копировать протокол", share: "Поделиться", p_file: "Файлом", p_clear: "Удалить протокол", p_clear_sure: "Точно удалить?", p_new: "Протокол удалён.", p_undo: "Отменить", p_restored: "Протокол восстановлен",
+      p_backup: "Хранится только на этом телефоне — iPhone удаляет такие данные через несколько дней без использования. Сейчас нажми «Файлом» или «Поделиться» себе.",
+      when_check: "Дата и время случая — проверь, это не «сейчас».", sr_none_p: "В этом браузере нет диктовки. Напиши текст в поле.",
+      sr_net_p: "Для диктовки нужен интернет. Напиши текст в поле.", sr_blocked_p: "Диктовка в этом браузере заблокирована. Напиши текст в поле.",
+      l_missing: "Перед отправкой заполни: {x}.", l_cyr: "Письмо уйдёт в немецкие органы: место и имя латиницей, как в паспорте, описание — по-немецки (переключи «Диктовка по-немецки»).",
+      dl_bc_over: "Срок прошёл — записи, скорее всего, удалены. Всё равно отправь и спроси адвоката.", act_notdienst: "Позвонить дежурному адвокату (Штутгарт)", alt_more: "Открыть",
       copied: "Скопировано", copy_fail: "Скопировать не удалось — нажми «Поделиться»", geo_na: "Местоположение здесь недоступно", geo_fail: "Место не найдено. Попробуй ещё раз на улице.",
       fristen_h: "Сроки", briefe_h: "Письма",
       dl_proto: "Протокол по памяти", dl_proto_d: "в тот же день — {x}", dl_bc: "Попросить сохранить записи камер", dl_bc_d: "сразу; удалят не позже {x}",
       dl_bb: "Уполномоченная по делам граждан BW", dl_bb_d: "до {x}, не параллельно с уголовным делом или судом", dl_anwalt: "Адвокат", dl_anwalt_d: "поговорить до любой жалобы или заявления",
       left_over: "срок истёк", left_today: "сегодня",
       l_to: "Кому:", l_copy: "Копировать", l_mail: "Открыть в почте",
-      wissen_h: "Знания", w_label: "Поиск по знаниям", w_ph: "Поиск: паспорт, снимать, нож …", w_cats: "Темы", w_all: "Все",
-      w_empty: "Ничего не найдено. Попробуй: снимать, паспорт, тест, телефон, жалоба.",
+      wissen_h: "Знания", w_label: "Поиск по знаниям", w_ph: "Поиск: дуть, паспорт, снимать …", w_cats: "Темы", w_all: "Все",
+      w_empty: "Ничего не найдено. Попробуй: дуть, паспорт, снимать, телефон, жалоба.", w_sits: "Ситуации",
       data_note: "Твои данные остаются на телефоне: протокол и записи не уходят ни на какой сервер.",
       disclaimer: "Общая информация, не юридическая консультация. Проверено по законам и решениям судов, адвокатом ещё не проверено. Источники: {links}",
       i_done: "<strong>Установлено.</strong> Ситуации и знания работают и без интернета.",
       i_ios: "<strong>На экран «Домой»:</strong> в Safari нажми «Поделиться», затем «На экран „Домой“». После этого ситуации и знания работают и без интернета.",
       i_android: "<strong>Установить как приложение:</strong> в Chrome справа вверху ⋮, затем «Установить приложение» или «Добавить на главный экран». После этого ситуации и знания работают и без интернета.",
       i_other: "<strong>Приложение на телефон:</strong> Android — в Chrome ⋮ и «Установить приложение». iPhone — в Safari «Поделиться» и «На экран „Домой“».",
+      i_samsung: "<strong>Установить как приложение:</strong> меню ≡ справа внизу › «Добавить страницу на» › «Главный экран». После этого ситуации и знания работают и без интернета.",
+      i_firefox: "<strong>Установить как приложение:</strong> меню ⋮ › «Установить» или «Добавить на главный экран». Надёжнее всего приложение работает в Chrome.",
+      i_crios: "<strong>На экран «Домой»:</strong> в Chrome на iPhone — значок «Поделиться» вверху › «На экран „Домой“». Если не получается, открой страницу в Safari.",
       prof_h: "Мой профиль", prof_open: "Мой профиль", prof_lead: "По желанию. Несколько данных — и подсказки точнее подойдут тебе, например сколько ещё действуют твои права.",
       pf_by: "Год рождения", pf_none: "Не указано", pf_nat: "Гражданство", pf_nat_de: "Германия", pf_nat_eu: "Страна ЕС", pf_nat_andere: "Другая страна",
       pf_status: "Статус пребывания", pf_st_p24: "Защита по § 24 (Украина)", pf_st_titel: "Вид на жительство", pf_st_asyl: "Убежище или Duldung", pf_st_visum: "Виза или другое",
       pf_fs: "Права выданы в", pf_fs_de: "Германии", pf_fs_eu: "стране ЕС", pf_fs_ua: "Украине", pf_fs_dritt: "другой стране, например России или Казахстане", pf_fs_kein: "Прав нет",
-      pf_fsdatum: "Дата получения прав", pf_seit: "Прописан в Германии с", pf_seit_hint: "С этого дня идут 6 месяцев, пока действуют иностранные права.", d_tag: "День", d_mon: "Месяц", d_jahr: "Год", d_missing: "Ещё выбери: {x}", d_invalid: "Такой даты нет — проверь день.", d_future: "Эта дата ещё не наступила — проверь.",
+      pf_fsdatum: "Дата получения прав", pf_seit: "С какого дня ты живёшь в Германии?", pf_seit_hint: "Первый день жизни в Германии, а не въезд в нынешнюю квартиру. С этого дня идут 6 месяцев.", d_tag: "День", d_mon: "Месяц", d_jahr: "Год", d_missing: "Ещё выбери: {x}", d_invalid: "Такой даты нет — проверь день.", d_future: "Эта дата ещё не наступила — проверь.",
       mon_1: "январь", mon_2: "февраль", mon_3: "март", mon_4: "апрель", mon_5: "май", mon_6: "июнь", mon_7: "июль", mon_8: "август", mon_9: "сентябрь", mon_10: "октябрь", mon_11: "ноябрь", mon_12: "декабрь",
       pf_bau: "Работаю на стройках",
       prof_privacy: "Остаётся только на этом телефоне, ничего не отправляется. Подсказки строятся по готовым правилам из карточек — это не юридическая консультация.",
@@ -175,14 +203,18 @@
       fd_invite: "Точнее для тебя: короткий профиль — по желанию, остаётся на телефоне.", fd_invite_go: "Заполнить", fd_hide: "Скрыть",
       n_fs_over: "Твои иностранные права в Германии не действуют с {d}. Не садись за руль — иначе полиция возбудит дело за езду без прав. Поменяй права.",
       n_fs_soon: "Твои иностранные права действуют здесь ещё {n} — до {d}. Сейчас подай на обмен в ведомство по правам (Führerscheinstelle).",
-      n_fs_ok: "Твои иностранные права действуют здесь до {d} — 6 месяцев с прописки. Подай на обмен вовремя.",
-      n_fs_ask: "Укажи в профиле, с какого дня ты прописан в Германии, — тогда увидишь, сколько ещё действуют твои права.",
+      n_fs_ok: "Твои иностранные права действуют здесь до {d} — 6 месяцев с переезда в Германию. Подай на обмен вовремя.",
+      n_fs_today: "Твои иностранные права действуют здесь только сегодня ({d}). С завтрашнего дня не садись за руль — поменяй права.",
+      n_ua_ask: "У тебя защита по § 24? Тогда украинские права действуют дальше — укажи это в профиле в поле «Статус пребывания». Иначе они действуют 6 месяцев с переезда.",
+      n_ua24_over: "По данным приложения защита по § 24 закончилась 04.03.2027. Проверь свой вид на жительство: если защиту продлили, права действуют дальше — иначе сначала выясни, потом садись за руль.",
+      n_pass_asyl: "При убежище или Duldung: всегда носи с собой Aufenthaltsgestattung или справку о Duldung и показывай полиции по требованию — паспорт часто хранится у ведомства.",
+      n_fs_ask: "Укажи в профиле, с какого дня ты живёшь в Германии, — тогда увидишь, сколько ещё действуют твои права.",
       n_ua_extra: " Украинские права с 18.08.2026 можно обменять без экзаменов.",
       n_ua24: "Твои украинские права с § 24 действуют без перевода, сейчас до 04.03.2027 ({n}). Держи при себе вид на жительство и распечатку регламента ЕС 2022/1280. С 18.08.2026 их можно обменять без экзаменов.",
       n_null: "Для тебя за рулём: 0,0 промилле и никакого каннабиса — {g}. На электросамокате тоже.",
-      n_null_u21: "тебе нет 21", n_null_b21: "до твоего 21-го дня рождения", n_null_pz: "испытательный срок, примерно до {d}",
-      n_pass_eu: "Гражданину ЕС: паспорт или удостоверение личности всегда с собой, показывать по требованию.",
-      n_pass: "Иностранцу: паспорт или вид на жительство всегда с собой, показывать по требованию.",
+      n_null_u21: "тебе нет 21", n_null_b21: "до твоего 21-го дня рождения в этом году", n_null_pz: "на испытательном сроке, примерно до {d}", n_and: " и ",
+      n_pass_eu: "Гражданину ЕС: паспорт или удостоверение личности всегда с собой, показывать полиции по требованию.",
+      n_pass: "Иностранцу: паспорт или вид на жительство всегда с собой, показывать полиции по требованию.",
       n_bau: "На стройке: документ всегда в оригинале с собой (штраф до 5 000 €). Таможне ты обязан отвечать на вопросы о работе — в отличие от полиции.",
       days_1: "1 день", days_n: "{n} дн."
     }
@@ -204,16 +236,19 @@
 
   // what: "mic", "cam", "cammic" oder "geo"
   function permHelp(what) {
+    if (IS_INAPP) return t("perm_inapp");
     var k = IS_ANDROID ? "perm_android" : IS_IOS ? "perm_ios" : "perm_other";
     return t(k).replace("{w}", t("w_" + what)).replace("{s}", t("s_" + what));
   }
 
   /* ---------- Views ---------- */
-  var views = ["jetzt", "fragen", "aufnahme", "danach", "wissen", "situation", "profil"], currentView = "jetzt", backTo = "jetzt";
+  var views = ["jetzt", "fragen", "aufnahme", "danach", "wissen", "situation", "profil"], currentView = "jetzt";
+  var lastTab = "jetzt";
   function show(name) {
+    if (name !== currentView) { stopListening(); if (name !== "fragen") stopSpeaking(); }
     currentView = name;
     views.forEach(function (v) { $("v-" + v).hidden = v !== name; });
-    var tab = name === "situation" || name === "profil" ? "jetzt" : name;
+    var tab = name === "situation" || name === "profil" ? lastTab : name; lastTab = tab;
     [].forEach.call(document.querySelectorAll(".tabs a"), function (a) {
       if (a.getAttribute("data-tab") === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
@@ -224,7 +259,7 @@
     var h = (location.hash || "#jetzt").slice(1);
     if (h.indexOf("s/") === 0) { var s = findSituation(h.slice(2)); if (s) { renderSituation(s); show("situation"); return; } }
     var v = views.indexOf(h) > -1 && h !== "situation" ? h : "jetzt";
-    if (v === "profil" && currentView !== "profil") { backTo = currentView === "situation" ? "jetzt" : currentView; fillProfileForm(); }
+    if (v === "danach") refreshProtoNow();
     show(v);
   }
   window.addEventListener("hashchange", route);
@@ -247,8 +282,8 @@
   }
   function sayButtons(list) {
     return (list || []).map(function (p) {
-      return '<button class="say-b" type="button" data-de="' + esc(p[0]) + '" data-ru="' + esc(p[1] || "") + '"><span class="say-de">' + esc(p[0]) +
-        '</span><span class="say-ru">' + esc(p[1] || "") + '</span><span class="say-tap">' + esc(t("tap")) + "</span></button>";
+      return '<button class="say-b" type="button" data-de="' + esc(p[0]) + '" data-ru="' + esc(p[1] || "") + '"><span class="say-de" lang="de">' + esc(p[0]) +
+        '</span><span class="say-ru" lang="ru">' + esc(p[1] || "") + '</span><span class="say-tap">' + esc(t("tap")) + "</span></button>";
     }).join("");
   }
   function actionButtons(actions) {
@@ -256,23 +291,43 @@
       if (a === "film") return '<a class="btn primary" href="#aufnahme" data-act="film">' + esc(t("act_film")) + "</a>";
       if (a === "consent") return '<a class="btn" href="#aufnahme" data-act="consent">' + esc(t("act_consent")) + "</a>";
       if (a === "protokoll") return '<a class="btn" href="#danach">' + esc(t("act_proto")) + "</a>";
+      if (a.indexOf("tel:") === 0) return '<a class="btn primary" href="' + esc(a) + '">' + esc(t("act_notdienst")) + "</a>";
       if (a.indexOf("situation:") === 0) { var sit = findSituation(a.slice(10)); return sit ? '<a class="btn" href="#s/' + sit.id + '">' + esc(L(sit, "title")) + "</a>" : ""; }
       return "";
     }).join("");
   }
-  function situationHTML(s, compact) {
+  function fdBox(list) {
+    return list.length ? '<div class="fd-box"><div class="fd-head"><p class="block-t">' + esc(t("fd_h")) + '</p><a class="fd-edit" href="#profil">' + esc(t("fd_edit")) + "</a></div>" + list.map(noteHTML).join("") + "</div>" : "";
+  }
+  function situationHTML(s, compact, noHead) {
     var note = L(s, "note"), mine = profileNotes().filter(function (n) { return n.sits.indexOf(s.id) > -1; });
-    return '<div class="s-head"><h' + (compact ? "3" : "1") + ">" + esc(L(s, "title")) + "</h" + (compact ? "3" : "1") + '><span class="pill ' + s.tone + '">' + esc(L(s, "toneLabel")) + "</span></div>" +
-      (mine.length ? '<div class="fd-box"><p class="block-t">' + esc(t("fd_h")) + "</p>" + mine.map(noteHTML).join("") + "</div>" : "") +
+    // Dringendes (rot/gelb) über „Sag“, reine Info erst unter „Lass“ – die Sätze sollen ohne Scrollen sichtbar bleiben.
+    var urgent = mine.filter(function (n) { return n.lv !== "info"; }), info = mine.filter(function (n) { return n.lv === "info"; });
+    return (noHead ? "" : '<div class="s-head"><h' + (compact ? "3" : "1") + ">" + esc(L(s, "title")) + "</h" + (compact ? "3" : "1") + '><span class="pill ' + s.tone + '">' + esc(L(s, "toneLabel")) + "</span></div>") +
+      fdBox(urgent) +
       '<div class="block"><p class="block-t say">' + esc(t("b_say")) + "</p>" + sayButtons(s.say) + "</div>" +
-      '<div class="block"><p class="block-t do">' + esc(t("b_do")) + '</p><ul class="pts">' + L(s, "doo").map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" +
+      '<div class="block"><p class="block-t do">' + esc(t("b_do")) + '</p><ul class="pts">' + L(s, "doo").map(function (x) { return "<li>" + telLinks(esc(x)) + "</li>"; }).join("") + "</ul></div>" +
       '<div class="block"><p class="block-t dont">' + esc(t("b_dont")) + '</p><ul class="pts">' + L(s, "dont").map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" +
+      fdBox(info) +
       (note ? '<p class="note">' + esc(note) + "</p>" : "") +
-      '<p class="law">' + esc(s.law) + "</p>" +
+      '<p class="law" lang="de">' + esc(s.law) + "</p>" +
       '<div class="s-actions">' + actionButtons(s.actions) + "</div>";
   }
   function renderSituation(s) { $("sit-body").innerHTML = '<div class="view" style="padding:0">' + situationHTML(s, false) + "</div>"; }
-  $("sit-back").addEventListener("click", function () { location.hash = "#jetzt"; });
+  // „Zurück“ wie die Zurück-Taste: dorthin, woher man kam (Fragen, andere Situation …). Ohne Vorgeschichte (Link direkt geöffnet) nach „Jetzt“.
+  // Jeder Verlaufseintrag bekommt seine Tiefe (history.state.d); so weiß „Zurück“, ob es noch in der App zurückgeht,
+  // und die Scrollposition kommt beim Zurückgehen wieder.
+  var depth = 0, replacing = false, scrollPos = {};
+  (function () { var st = history.state; depth = st && st.d != null ? st.d : 0; try { history.replaceState({ d: depth }, ""); } catch (e) {} })();
+  window.addEventListener("hashchange", function () {
+    var st = history.state;
+    if (st && st.d != null && !replacing) { depth = st.d; if (scrollPos[depth]) window.scrollTo(0, scrollPos[depth]); }
+    else { if (!replacing) depth++; try { history.replaceState({ d: depth }, ""); } catch (e) {} }
+    replacing = false;
+  });
+  window.addEventListener("scroll", function () { scrollPos[depth] = window.scrollY; }, { passive: true });
+  function goBack() { if (depth > 0) history.back(); else { replacing = true; location.replace("#jetzt"); } }
+  $("sit-back").addEventListener("click", goBack);
 
   /* ---------- Big phrase screen ---------- */
   var lastFocus = null, wakeLock = null;
@@ -288,15 +343,17 @@
   function releaseAwake() { try { if (wakeLock) { var l = wakeLock; wakeLock = null; l.release(); } } catch (e) {} }
   function needAwake() { return !!(recState && recState.rec) || !$("big").hidden; }
   function openBig(de, ru, from) {
-    $("big-de").textContent = de; $("big-ru").textContent = ru || ""; $("big").hidden = false; lastFocus = from; $("big-close").focus(); keepAwake();
+    $("big-de").textContent = de; $("big-ru").textContent = ru || ""; $("big").hidden = false; lastFocus = from; keepAwake();
+    setInert(true); $("big").scrollTop = 0; $("big-close").focus();
     // Eigener Verlaufseintrag: Die Zurück-Taste von Android schließt das Großbild statt die Seite zu verlassen.
     try { history.pushState({ rbBig: 1 }, ""); } catch (e) {}
   }
-  function hideBig() { $("big").hidden = true; if (!needAwake()) releaseAwake(); if (lastFocus) { try { lastFocus.focus({ preventScroll: true }); } catch (e) {} } }
+  // Hinter dem Großbild ist nichts antippbar oder per Tab erreichbar.
+  function setInert(on) { ["main", "rec-float"].forEach(function (id) { var el = $(id); if (el) el.inert = on; }); [].forEach.call(document.querySelectorAll(".app-head,.tabs"), function (el) { el.inert = on; }); }
+  function hideBig() { $("big").hidden = true; setInert(false); if (!needAwake()) releaseAwake(); if (lastFocus) { try { lastFocus.focus({ preventScroll: true }); } catch (e) {} } }
   function closeBig() { if ($("big").hidden) return; if (history.state && history.state.rbBig) history.back(); else hideBig(); }
   window.addEventListener("popstate", function () { if (!$("big").hidden) hideBig(); });
   $("big-close").addEventListener("click", closeBig);
-  $("big").addEventListener("click", function (e) { if (e.target.id === "big" || e.target.id === "big-de" || e.target.id === "big-ru") closeBig(); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeBig(); });
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest(".say-b");
@@ -307,7 +364,7 @@
 
   /* ---------- Matching ---------- */
   function norm(s) {
-    return String(s || "").toLowerCase().replace(/\u00ad/g, "").replace(/ё/g, "е").replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss")
+    return String(s || "").toLowerCase().replace(/\u00ad/g, "").replace(/ё/g, "е").replace(/[ії]/g, "и").replace(/є/g, "е").replace(/ґ/g, "г").replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss")
       .replace(/[^a-z0-9а-я ]+/g, " ").replace(/\s+/g, " ").trim();
   }
   // „~“ vor dem Suchwort: allgemein, zählt 1 Punkt (z. B. „за рул“ passt zu vielen Fragen).
@@ -333,7 +390,8 @@
       if (w.indexOf(k) === 0) best = 2;
       else if (k.length >= 5 && w.length >= 4 && k.indexOf(w) !== 0) { // „kontrolle“ ist nicht „kontrolleur“
         var n = 0; while (n < k.length && k.charAt(n) === w.charAt(n)) n++;
-        if (n >= Math.max(4, k.length - 2)) best = 1;
+        // Kurze Suchwörter brauchen fast das ganze Wort („handy“ ist nicht „handschellen“), die Länge darf kaum abweichen.
+        if (n >= Math.max(4, k.length - (k.length > 6 ? 2 : 1)) && Math.abs(w.length - k.length) <= 2) best = 1;
       }
     }
     return best;
@@ -349,9 +407,10 @@
     return q;
   }
   var STOP = ["darf", "muss", "kann", "mich", "mein", "meine", "polizei", "wird", "werden", "eine", "einen", "nicht", "habe", "haben", "wurde", "wurden",
-    "werde", "bekomm", "bekommen", "sagen", "zeigen", "machen", "frage", "welche", "warum", "wieso", "jetzt", "heute", "gestern", "immer", "schon", "bitte",
+    "werde", "will", "soll", "bekomm", "bekommen", "sagen", "zeigen", "machen", "frage", "welche", "warum", "wieso", "jetzt", "heute", "gestern", "immer", "schon", "bitte",
     "можно", "меня", "если", "нужно", "надо", "полиция", "полицию", "полиции", "чтобы", "могут", "может", "должен", "сейчас", "почему"];
-  function match(q) {
+  function match(q) { return score(q).slice(0, 3); }
+  function score(q) {
     var nq = " " + norm(q) + " ";
     if (nq.trim().length < 2) return [];
     var all = nq.trim().split(" ");
@@ -365,38 +424,52 @@
       });
       words.forEach(function (w) { if (e.title.indexOf(w) > -1) sc += 1; });
       return { e: e, sc: sc, best: best };
-    }).filter(function (r) { return r.sc > 0; }).sort(function (a, b) { return b.sc - a.sc || b.best - a.best; }).slice(0, 3);
+    }).filter(function (r) { return r.sc > 0; }).sort(function (a, b) { return b.sc - a.sc || b.best - a.best; });
   }
-  function cardHTML(c) {
-    return '<div class="w-head"><h3>' + esc(L(c, "title")) + '</h3><span class="pill ' + c.tone + '">' + esc(L(c, "toneLabel")) + "</span></div>" +
-      "<p>" + esc(L(c, "text")) + "</p>" + (c.say ? sayButtons(c.say) : "") + '<p class="law">' + esc(c.law) + "</p>";
+  // Telefonnummern (0711 …) antippbar machen – im Stress abtippen klappt nicht.
+  function telLinks(html) { return html.replace(/(?:\+49|\b0)\d{2,4}(?: ?\d{2,4}){2,4}\b/g, function (m) { return '<a href="tel:' + m.replace(/ /g, "") + '">' + m + "</a>"; }); }
+  function cardHTML(c, noHead) {
+    return (noHead ? "" : '<div class="w-head"><h3>' + esc(L(c, "title")) + '</h3><span class="pill ' + c.tone + '">' + esc(L(c, "toneLabel")) + "</span></div>") +
+      "<p>" + telLinks(esc(L(c, "text"))) + "</p>" + (c.say ? sayButtons(c.say) : "") + '<p class="law" lang="de">' + esc(c.law) + "</p>";
   }
   function speakText(e) {
     var it = e.item;
     if (e.kind === "s") return L(it, "title") + ". " + t("speak_say") + ": " + it.say[0][UI === "ru" ? 1 : 0] + " " + L(it, "doo")[0];
     return L(it, "title") + ". " + L(it, "text");
   }
-  function renderAnswers(q) {
+  function stopSpeaking() { try { if ("speechSynthesis" in window) speechSynthesis.cancel(); } catch (e) {} }
+  // fromUser: nach dem Suchen Tastatur zu und zur Antwort scrollen – sonst liegt sie unter der Tastatur.
+  function renderAnswers(q, fromUser) {
     var res = match(q), box = $("answers");
+    stopSpeaking();
     if (!res.length) {
       // Russisch gefragt oder russische Oberfläche: Hinweis auf Russisch
       box.innerHTML = '<p class="err">' + esc(UI === "ru" || /[а-яё]/i.test(q) ? T.ru.no_card : T.de.no_card) + "</p>";
-      return;
+    } else {
+      box.innerHTML = res.map(function (r, i) {
+        var it = r.e.item, sit = r.e.kind === "s";
+        if (i === 0) return '<article class="ans top" data-id="' + esc(it.id) + '">' + (sit ? situationHTML(it, true) : cardHTML(it)) +
+          '<div class="ans-row"><button class="btn" type="button" id="speak">' + esc(t("speak")) + "</button></div></article>";
+        // Weitere Treffer nur als Zeile zum Aufklappen – sonst wird die Seite sechs Bildschirme lang.
+        return (i === 1 ? '<p class="alt-t">' + esc(t("alt")) + "</p>" : "") +
+          '<article class="ans alt" data-id="' + esc(it.id) + '"><details><summary><h3>' + esc(L(it, "title")) + '</h3><span class="pill ' + it.tone + '">' + esc(L(it, "toneLabel")) + "</span></summary>" +
+          (sit ? situationHTML(it, true, true) : cardHTML(it, true)) + "</details></article>";
+      }).join("");
+      var sp = $("speak"), talking = false;
+      sp.addEventListener("click", function () {
+        if (!("speechSynthesis" in window)) { sp.textContent = t("speak_na"); return; }
+        if (talking) { talking = false; stopSpeaking(); sp.textContent = t("speak"); return; }
+        stopSpeaking();
+        var u = new SpeechSynthesisUtterance(speakText(res[0].e)); u.lang = UI === "ru" ? "ru-RU" : "de-DE"; u.rate = 1;
+        u.onend = u.onerror = function () { talking = false; sp.textContent = t("speak"); };
+        talking = true; speechSynthesis.speak(u); sp.textContent = t("stop");
+      });
     }
-    box.innerHTML = res.map(function (r, i) {
-      var inner = r.e.kind === "s" ? situationHTML(r.e.item, true) : cardHTML(r.e.item);
-      return (i === 1 ? '<p class="alt-t">' + esc(t("alt")) + "</p>" : "") +
-        '<article class="ans' + (i === 0 ? " top" : "") + '" data-id="' + esc(r.e.item.id) + '">' + inner +
-        (i === 0 ? '<div class="ans-row"><button class="btn" type="button" id="speak">' + esc(t("speak")) + "</button></div>" : "") + "</article>";
-    }).join("");
-    var sp = $("speak");
-    if (sp) sp.addEventListener("click", function () {
-      if (!("speechSynthesis" in window)) { sp.textContent = t("speak_na"); return; }
-      if (speechSynthesis.speaking) { speechSynthesis.cancel(); sp.textContent = t("speak"); return; }
-      var u = new SpeechSynthesisUtterance(speakText(res[0].e)); u.lang = UI === "ru" ? "ru-RU" : "de-DE"; u.rate = 1;
-      u.onend = function () { sp.textContent = t("speak"); };
-      speechSynthesis.speak(u); sp.textContent = t("stop");
-    });
+    if (fromUser) {
+      $("ask-input").blur();
+      var first = box.firstElementChild;
+      if (first) { try { first.scrollIntoView({ block: "start", behavior: "smooth" }); } catch (e) { first.scrollIntoView(); } }
+    }
   }
 
   /* ---------- Speech recognition ---------- */
@@ -408,10 +481,11 @@
   [].forEach.call(document.querySelectorAll(".seg-b"), function (b) {
     b.addEventListener("click", function () { lang = b.getAttribute("data-lang"); lsSet(LS_LANG, lang); syncSeg(); });
   });
-  function srError(code) {
+  function srError(code, ctx) {
+    var p = ctx === "proto" ? "_p" : "";
     if (code === "not-allowed") return permHelp("mic");
-    if (code === "service-not-allowed") return IS_IOS ? t("sr_ios") : t("sr_blocked");
-    if (code === "network") return t("sr_net");
+    if (code === "service-not-allowed") return IS_IOS ? t("sr_ios") : t("sr_blocked" + p);
+    if (code === "network") return t("sr_net" + p);
     if (code === "no-speech") return t("sr_nospeech");
     if (code === "audio-capture") return t("sr_audio");
     if (code === "aborted") return "";
@@ -428,8 +502,8 @@
     if (a.slice(-b.length) === b) return a; // doppelt gelieferte Teile nicht zweimal anhängen
     return a + " " + b;
   }
-  function listen(onText, onEnd, onErr) {
-    if (!SR) { onErr(t("sr_none")); return null; }
+  function listen(onText, onEnd, onErr, ctx) {
+    if (!SR) { onErr(t(ctx === "proto" ? "sr_none_p" : "sr_none")); return null; }
     var ctl = { stopped: false, done: false, text: "", err: "", lastSpeech: Date.now(), rec: null, timer: null };
     function finish() {
       if (ctl.done) return;
@@ -452,7 +526,7 @@
       r.onspeechstart = function () { ctl.lastSpeech = Date.now(); };
       r.onerror = function (ev) {
         if (ev.error === "no-speech" || ev.error === "aborted") return; // Pause – das regelt die 5-Sekunden-Grenze
-        ctl.stopped = true; ctl.err = srError(ev.error);
+        ctl.stopped = true; ctl.err = srError(ev.error, ctx);
       };
       r.onend = function () {
         ctl.text = mergeText(ctl.text, seg); seg = "";
@@ -483,15 +557,18 @@
       function (fin) {
         mic.setAttribute("aria-pressed", "false"); $("mic-label").textContent = t("mic_idle");
         var q = fin || $("transcript").textContent;
-        if (q) { $("ask-input").value = q; renderAnswers(q); }
+        if (q) { $("ask-input").value = q; renderAnswers(q, true); }
       },
-      function (msg) { err.textContent = msg; err.hidden = !msg; mic.setAttribute("aria-pressed", "false"); $("mic-label").textContent = t("mic_idle"); });
+      function (msg) {
+        err.textContent = msg; err.hidden = !msg; mic.setAttribute("aria-pressed", "false"); $("mic-label").textContent = t("mic_idle");
+        if (msg) { try { err.scrollIntoView({ block: "center", behavior: "smooth" }); } catch (e) {} }
+      });
     if (r) { mic.setAttribute("aria-pressed", "true"); $("mic-label").textContent = t("mic_on"); $("transcript").textContent = ""; }
   });
   $("ask-form").addEventListener("submit", function (e) {
     e.preventDefault(); var q = $("ask-input").value.trim();
     if (!q) { $("ask-err").textContent = t("ask_empty"); $("ask-err").hidden = false; return; }
-    $("ask-err").hidden = true; $("transcript").textContent = q; renderAnswers(q);
+    $("ask-err").hidden = true; $("transcript").textContent = q; renderAnswers(q, true);
   });
   $("ask-input").addEventListener("input", function () { $("ask-err").hidden = true; });
 
@@ -572,14 +649,14 @@
   }
   function camError(e, withAudio) {
     var n = e && e.name;
-    if (n === "NotAllowedError" || n === "SecurityError") return permHelp(withAudio ? "cammic" : "cam");
+    if (n === "NotAllowedError" || n === "SecurityError") return withAudio ? permHelp("cammic") + " " + t("rec_try_silent") : permHelp("cam");
     if (n === "NotFoundError" || n === "OverconstrainedError") return t("rec_nocam");
     if (n === "NotReadableError" || n === "AbortError") return t("rec_busy");
     return t("rec_camfail", n || "?");
   }
   function startRecording(withAudio, consentAt) {
     if (recState) return;
-    recError("");
+    recError(""); storageOK = true; // nach einem Speicherfehler bei jeder neuen Aufnahme wieder versuchen
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) {
       recError(t("rec_nobrowser")); setRecUI("start"); return;
     }
@@ -602,7 +679,7 @@
         try { rec.start(1000); } catch (e) { stream.getTracks().forEach(function (t) { t.stop(); }); throw e; }
         r.type = baseType(rec.mimeType || mime); r.name = fileName(r);
         recState = { rec: rec, r: r, timer: setInterval(tick, 500) };
-        stream.getVideoTracks().forEach(function (t) { t.addEventListener("ended", stopRecording); });
+        stream.getVideoTracks().forEach(function (tr) { tr.addEventListener("ended", function () { r.cut = true; stopRecording(); }); });
         var v = $("preview"); v.srcObject = stream; v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () {});
         if (storageOK) putRec(r).catch(storageFail);
         else recError(t("rec_nopersist"));
@@ -634,10 +711,14 @@
     stream.getTracks().forEach(function (t) { t.stop(); }); $("preview").srcObject = null;
     if (!needAwake()) releaseAwake();
     updateRecFloat(); setRecUI("start");
+    if (r.cut) { recError(t("rec_cut", fmtTime(new Date()))); try { if (navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch (e) {} }
     if (!chunks.length) { recError(t("rec_empty")); delRec(r.id).catch(function () {}); return; }
     var blob = new Blob(chunks, { type: r.type }), ended = new Date();
     r.ended = ended; r.dur = Math.max(1, Math.round((ended - r.started) / 1000)); r.size = blob.size; r.blob = blob; r.status = "done";
+    r.fresh = true; recordings.forEach(function (x) { x.fresh = false; });
     recordings.unshift(r); renderRecs();
+    var it = document.querySelector("#rec-list .rec-item");
+    if (it && currentView === "aufnahme") { try { it.scrollIntoView({ block: "center", behavior: "smooth" }); } catch (e) { it.scrollIntoView(); } }
     hashBlob(blob).then(function (h) { r.hash = h; }, function () { r.noHash = true; })
       .then(function () { renderRecs(); return saveFinal(r); });
   }
@@ -681,12 +762,22 @@
           '<video src="' + r.url + '" controls playsinline preload="metadata"></video>' +
           '<p class="rec-meta">' + esc(recMeta(r)) + "</p>" +
           '<p class="hash">SHA-256: ' + (r.hash ? esc(r.hash) : esc(r.noHash ? t("hash_na") : t("hash_wait"))) + "</p>" +
+          (r.fresh ? '<p class="rec-fresh">' + esc(t("rec_saved")) + "</p>" : "") +
           '<div class="actions"><button class="btn primary" type="button" data-share>' + esc(t("b_share")) + "</button>" +
           '<button class="btn" type="button" data-dl>' + esc(t("b_dl")) + "</button>" +
-          '<button class="btn" type="button" data-proto>' + esc(t("b_proto")) + "</button>" +
-          '<button class="btn ghost" type="button" data-del>' + esc(t("b_del")) + "</button></div></div>";
+          '<button class="btn" type="button" data-proto>' + esc(t(inProto(r) ? "b_taken" : "b_proto")) + "</button>" +
+          '<button class="btn ghost" type="button" data-del>' + esc(t("b_del")) + '</button></div><p class="field-msg rec-msg" aria-live="polite"></p></div>';
       }).join("");
   }
+  function inProto(r) { return !!r.name && $("p-aufnahmen").value.indexOf(r.name) > -1; }
+  function addToProto(r, b) {
+    if (inProto(r)) { b.textContent = t("b_taken"); return; }
+    // Erst wenn die Prüfsumme fertig ist – sonst fehlt sie im Protokoll.
+    if (!r.hash && !r.noHash) { b.textContent = t("hash_wait"); setTimeout(function () { addToProto(r, b); }, 400); return; }
+    var f = $("p-aufnahmen"); f.value = (f.value ? f.value + "\n" : "") + recLine(r); saveProto(); b.textContent = t("b_taken");
+  }
+  var SHARE_MAX = 50 * 1048576; // Chrome teilt größere Dateien nicht (Web Share)
+  function recFallback(r, item) { downloadURL(r.url, r.name); item.querySelector(".rec-msg").textContent = t("rec_share_big"); }
   function recById(id) { for (var i = 0; i < recordings.length; i++) if (recordings[i].id === id) return recordings[i]; return null; }
   function downloadURL(url, name) { var a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); }
   $("rec-list").addEventListener("click", function (e) {
@@ -694,16 +785,19 @@
     var r = b && item ? recById(item.getAttribute("data-id")) : null;
     if (!r) return;
     if (b.hasAttribute("data-share")) {
+      r.fresh = false; var fr = item.querySelector(".rec-fresh"); if (fr) fr.remove();
+      if ((r.size || 0) > SHARE_MAX) { recFallback(r, item); return; }
       var file = new File([r.blob], r.name, { type: r.type });
-      if (navigator.canShare && navigator.canShare({ files: [file] })) navigator.share({ files: [file], title: r.name, text: r.hash ? "SHA-256: " + r.hash : r.name }).catch(function () {});
+      if (navigator.canShare && navigator.canShare({ files: [file] })) navigator.share({ files: [file], title: r.name, text: r.hash ? "SHA-256: " + r.hash : r.name }).catch(function (e) { if (!e || e.name !== "AbortError") recFallback(r, item); });
       else downloadURL(r.url, r.name);
     } else if (b.hasAttribute("data-dl")) {
       downloadURL(r.url, r.name);
     } else if (b.hasAttribute("data-proto")) {
-      var f = $("p-aufnahmen"); f.value = (f.value ? f.value + "\n" : "") + recLine(r); saveProto(); b.textContent = t("b_taken");
+      addToProto(r, b);
     } else if (b.hasAttribute("data-del")) {
-      if (!b._armed) {
-        b._armed = true; b.textContent = t("b_del_sure"); b.classList.add("armed");
+      if (!b._armed || Date.now() - b._armed < 700) { // Doppeltipp darf nicht löschen
+        if (b._armed) return;
+        b._armed = Date.now(); b.textContent = t("b_del_sure"); b.classList.add("armed");
         setTimeout(function () { b._armed = false; b.textContent = t("b_del"); b.classList.remove("armed"); }, 4000);
         return;
       }
@@ -719,6 +813,7 @@
   $("consent-cancel").addEventListener("click", function () { setRecUI("start"); });
   $("rec-stop").addEventListener("click", stopRecording);
   $("consent-de").textContent = D.consent.de; $("consent-ru").textContent = D.consent.ru;
+  if (IS_INAPP) recError(t("perm_inapp")); // gleich sagen, nicht erst nach dem ersten Fehlversuch
   window.addEventListener("hashchange", function () {
     if (location.hash === "#aufnahme" && pendingAct === "consent" && !recState) setRecUI("consent");
     if (location.hash === "#aufnahme" && pendingAct === "film" && !recState) startRecording(false, null);
@@ -734,22 +829,44 @@
   /* ---------- Protocol ---------- */
   var fields = ["datum", "zeit", "ort", "beamte", "ablauf", "zitate", "zeugen", "aufnahmen", "schaden", "name"];
   function protoData() { var o = {}; fields.forEach(function (f) { o[f] = $("p-" + f).value; }); return o; }
-  function saveProto() { lsSet(LS_PROTO, JSON.stringify(protoData())); renderDeadlines(); renderLetters(); }
+  function saveProto() {
+    var o = protoData(); o.zeitOk = protoZeitOk; lsSet(LS_PROTO, JSON.stringify(o)); renderDeadlines(); renderLetters(); syncProtoHints(o);
+  }
+  // Datum/Uhrzeit werden beim ersten Öffnen mit „jetzt“ vorbelegt – der Hinweis bleibt, bis man sie selbst bestätigt oder ändert.
+  var protoZeitOk = false, protoFilledAt = 0;
+  function syncProtoHints(o) {
+    var d = $("p-datum").value;
+    $("p-when-msg").textContent = d && d > isoDate(new Date()) ? t("d_future") : protoZeitOk ? "" : t("when_check");
+    $("p-backup").hidden = !(o && o.ablauf && o.ablauf.trim()) || lsGet(LS_PROTO_SAVED) === "1";
+  }
+  ["p-datum", "p-zeit"].forEach(function (id) { $(id).addEventListener("change", function () { protoZeitOk = true; saveProto(); }); });
   function loadProto() {
     var raw = lsGet(LS_PROTO), o = null;
     try { o = raw ? JSON.parse(raw) : null; } catch (e) { o = null; }
     var now = new Date();
     fields.forEach(function (f) { $("p-" + f).value = o && o[f] ? o[f] : ""; });
-    if (!$("p-datum").value) $("p-datum").value = isoDate(now);
+    protoZeitOk = !!(o && o.zeitOk);
+    if (!$("p-datum").value) { $("p-datum").value = isoDate(now); protoZeitOk = false; protoFilledAt = Date.now(); }
     if (!$("p-zeit").value) $("p-zeit").value = fmtTime(now);
+    $("p-datum").max = isoDate(now);
+    syncProtoHints(o);
+  }
+  // Noch nichts geschrieben und die Vorbelegung ist Stunden alt (App lief im Hintergrund): neu auf „jetzt“ setzen.
+  function refreshProtoNow() {
+    var o = protoData(), empty = !["ort", "beamte", "ablauf", "zitate", "zeugen", "schaden"].some(function (f) { return o[f]; });
+    if (empty && !protoZeitOk && protoFilledAt && Date.now() - protoFilledAt > 3 * 3600 * 1000) {
+      var now = new Date(); $("p-datum").value = isoDate(now); $("p-zeit").value = fmtTime(now); $("p-datum").max = isoDate(now); protoFilledAt = Date.now();
+      renderDeadlines(); renderLetters();
+    }
   }
   var saveT;
   $("proto").addEventListener("input", function () { clearTimeout(saveT); saveT = setTimeout(saveProto, 300); });
-  function protoDateObj() { var v = $("p-datum").value; if (!v) return new Date(); var p = v.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function protoDateObj() { var v = $("p-datum").value; if (!v) return null; var p = v.split("-"); return new Date(+p[0], +p[1] - 1, +p[2]); }
+  function protoDateText() { var d = protoDateObj(); return d ? fmtDate(d) : "[Datum]"; }
   function protoText() {
     var o = protoData();
     return "GEDÄCHTNISPROTOKOLL\nErstellt am: " + fmtDate(new Date()) + ", " + fmtTime(new Date()) + " Uhr\n\n" +
-      "Vorfall am: " + fmtDate(protoDateObj()) + (o.zeit ? ", " + o.zeit + " Uhr" : "") + "\n" +
+      "Vorfall am: " + protoDateText() + (o.zeit ? ", " + o.zeit + " Uhr" : "") + "\n" +
       "Ort: " + (o.ort || "-") + "\n\nBeteiligte Beamte und Fahrzeuge:\n" + (o.beamte || "-") +
       "\n\nAblauf:\n" + (o.ablauf || "-") + "\n\nWörtliche Aussagen:\n" + (o.zitate || "-") +
       "\n\nZeugen:\n" + (o.zeugen || "-") + "\n\nAufnahmen:\n" + (o.aufnahmen || "-") +
@@ -764,39 +881,63 @@
     if (navigator.share) navigator.share({ title: title, text: text }).catch(function () {}); else copyText(text, msgEl);
   }
   $("p-copy").addEventListener("click", function () { copyText(protoText(), $("p-msg")); });
-  $("p-share").addEventListener("click", function () { shareText("Gedächtnisprotokoll", protoText(), $("p-msg")); });
+  $("p-share").addEventListener("click", function () { shareText("Gedächtnisprotokoll", protoText(), $("p-msg")); protoSaved(); });
+  function protoSaved() { lsSet(LS_PROTO_SAVED, "1"); $("p-backup").hidden = true; }
   $("p-file").addEventListener("click", function () {
     var blob = new Blob([protoText()], { type: "text/plain;charset=utf-8" });
-    downloadURL(URL.createObjectURL(blob), "gedaechtnisprotokoll_" + $("p-datum").value + ".txt");
+    downloadURL(URL.createObjectURL(blob), "gedaechtnisprotokoll_" + ($("p-datum").value || isoDate(new Date())) + ".txt");
+    protoSaved();
   });
-  var clearArmed = false;
+  var clearArmed = 0, undoT;
   $("p-clear").addEventListener("click", function () {
     var b = $("p-clear");
-    if (!clearArmed) { clearArmed = true; b.textContent = t("p_clear_sure"); setTimeout(function () { clearArmed = false; b.textContent = t("p_clear"); }, 4000); return; }
-    clearArmed = false; b.textContent = t("p_clear");
-    var keepName = $("p-name").value; lsSet(LS_PROTO, ""); loadProto(); $("p-name").value = keepName; saveProto(); flash($("p-msg"), t("p_new"));
+    if (!clearArmed) { clearArmed = Date.now(); b.textContent = t("p_clear_sure"); setTimeout(function () { clearArmed = 0; b.textContent = t("p_clear"); }, 4000); return; }
+    if (Date.now() - clearArmed < 700) return; // Doppeltipp löscht nicht
+    clearArmed = 0; b.textContent = t("p_clear");
+    lsSet(LS_PROTO_PREV, lsGet(LS_PROTO) || JSON.stringify(protoData()));
+    var keepName = $("p-name").value; lsSet(LS_PROTO, ""); loadProto(); $("p-name").value = keepName; saveProto(); flash($("p-msg"), t("p_new"), 15000);
+    $("p-undo").hidden = false; clearTimeout(undoT); undoT = setTimeout(function () { $("p-undo").hidden = true; }, 15000);
   });
+  $("p-undo").addEventListener("click", function () {
+    var prev = lsGet(LS_PROTO_PREV); if (!prev) return;
+    lsSet(LS_PROTO, prev); loadProto(); renderDeadlines(); renderLetters(); $("p-undo").hidden = true; flash($("p-msg"), t("p_restored"));
+  });
+  // Meldungen direkt unter dem Feld, dessen Knopf getippt wurde – nicht irgendwo unten auf der Seite.
+  function fieldMsg(btn, text) { var m = btn.closest(".field").querySelector(".field-msg"); if (m) m.textContent = text || ""; }
   $("p-gps").addEventListener("click", function () {
     var b = $("p-gps");
-    if (!navigator.geolocation) { flash($("p-msg"), t("geo_na")); return; }
-    b.textContent = t("gps_wait");
+    if (b.disabled) return;
+    fieldMsg(b, "");
+    if (!navigator.geolocation) { fieldMsg(b, t("geo_na")); return; }
+    b.textContent = t("gps_wait"); b.disabled = true;
     navigator.geolocation.getCurrentPosition(function (pos) {
       var la = pos.coords.latitude.toFixed(5), lo = pos.coords.longitude.toFixed(5), f = $("p-ort");
       f.value = (f.value ? f.value + "\n" : "") + "Standort " + la + ", " + lo + " (±" + Math.round(pos.coords.accuracy) + " m) https://www.openstreetmap.org/?mlat=" + la + "&mlon=" + lo + "#map=18/" + la + "/" + lo;
-      b.textContent = t("gps"); saveProto();
+      b.textContent = t("gps"); b.disabled = false; saveProto();
     }, function (err) {
-      b.textContent = t("gps");
-      if (err && err.code === 1) flash($("p-msg"), permHelp("geo"), 9000); else flash($("p-msg"), t("geo_fail"));
+      b.textContent = t("gps"); b.disabled = false;
+      fieldMsg(b, err && err.code === 1 ? permHelp("geo") : t("geo_fail"));
     }, { enableHighAccuracy: true, timeout: 12000 });
   });
   [].forEach.call(document.querySelectorAll(".dict"), function (b) {
     b.addEventListener("click", function () {
-      if (activeListen) { stopListening(); return; }
-      var f = $(b.getAttribute("data-for")), base = f.value;
-      var r = listen(function (fin, interim) { f.value = (base ? base + " " : "") + (fin + " " + interim).trim(); },
-        function (fin) { b.setAttribute("aria-pressed", "false"); b.textContent = t("dict"); if (fin) f.value = (base ? base + " " : "") + fin.trim(); saveProto(); },
-        function (msg) { b.setAttribute("aria-pressed", "false"); b.textContent = t("dict"); if (msg) flash($("p-msg"), msg, 9000); });
-      if (r) { b.setAttribute("aria-pressed", "true"); b.textContent = t("stop"); }
+      if (activeListen) { // läuft schon: dasselbe Feld = Stopp, anderes Feld = dorthin wechseln
+        var same = activeListen._btn === b; stopListening();
+        if (same) return;
+        setTimeout(function () { b.click(); }, 200); return;
+      }
+      var f = $(b.getAttribute("data-for")), base = f.value, stopped = false;
+      fieldMsg(b, "");
+      // Wer während des Diktats selbst tippt, beendet es – getippter Text geht vor.
+      function typed() { stopped = true; if (r) r.stop(); }
+      var r = listen(function (fin, interim) {
+          if (stopped) return;
+          f.value = (base ? base + " " : "") + (fin + " " + interim).trim();
+          clearTimeout(saveT); saveT = setTimeout(saveProto, 800);
+        },
+        function (fin) { f.removeEventListener("input", typed); b.setAttribute("aria-pressed", "false"); b.textContent = t("dict"); if (fin && !stopped) f.value = (base ? base + " " : "") + fin.trim(); saveProto(); },
+        function (msg) { f.removeEventListener("input", typed); b.setAttribute("aria-pressed", "false"); b.textContent = t("dict"); if (msg) fieldMsg(b, msg); }, "proto");
+      if (r) { r._btn = b; f.addEventListener("input", typed); b.setAttribute("aria-pressed", "true"); b.textContent = t("stop"); }
     });
   });
 
@@ -805,27 +946,38 @@
   function addMonths(d, n) { var x = new Date(d); var day = x.getDate(); x.setDate(1); x.setMonth(x.getMonth() + n); var last = new Date(x.getFullYear(), x.getMonth() + 1, 0).getDate(); x.setDate(Math.min(day, last)); return x; }
   function daysLeft(d) { var today = new Date(); today.setHours(0, 0, 0, 0); var x = new Date(d); x.setHours(0, 0, 0, 0); return Math.round((x - today) / 86400000); }
   function renderDeadlines() {
-    var d = protoDateObj(), bc = addDays(d, 28), bb = addMonths(d, 3);
-    var items = [
-      [t("dl_proto"), t("dl_proto_d", fmtDate(d))],
-      [t("dl_bc"), t("dl_bc_d", fmtDate(bc)) + " (" + leftText(daysLeft(bc)) + ")"],
-      [t("dl_bb"), t("dl_bb_d", fmtDate(bb) + " (" + leftText(daysLeft(bb)) + ")")],
-      [t("dl_anwalt"), t("dl_anwalt_d")]
+    var d = protoDateObj() || new Date(), bc = addDays(d, 28), bb = addMonths(d, 3), nbc = daysLeft(bc), nbb = daysLeft(bb);
+    var items = [ // [Titel, Text, Tage bis Fristende oder null]
+      [t("dl_proto"), t("dl_proto_d", fmtDate(d)), null],
+      [t("dl_bc"), nbc < 0 ? t("dl_bc_over") : t("dl_bc_d", fmtDate(bc)) + " (" + leftText(nbc) + ")", nbc],
+      [t("dl_bb"), t("dl_bb_d", fmtDate(bb) + " (" + leftText(nbb) + ")"), nbb],
+      [t("dl_anwalt"), t("dl_anwalt_d"), null]
     ];
-    $("deadlines").innerHTML = items.map(function (x) { return '<li class="dl"><span class="dl-t">' + esc(x[0]) + '</span><span class="dl-d">' + esc(x[1]) + "</span></li>"; }).join("");
+    $("deadlines").innerHTML = items.map(function (x) {
+      var cls = x[2] == null ? "" : x[2] < 0 ? " dl-over" : x[2] <= 7 ? " dl-soon" : "";
+      return '<li class="dl' + cls + '"><span class="dl-t">' + esc(x[0]) + '</span><span class="dl-d">' + esc(x[1]) + "</span></li>";
+    }).join("");
   }
   function fillLetter(body) {
     var o = protoData();
-    var map = { datum: fmtDate(protoDateObj()), zeit: o.zeit || "[Uhrzeit]", ort: (o.ort || "[Ort]").split("\n")[0],
+    // Ort: die erste eigene Zeile; eine GPS-Zeile nur als „in der Nähe der GPS-Position …“, ohne Kartenlink.
+    var lines = (o.ort || "").split("\n").filter(function (x) { return x.trim(); });
+    var ort = lines.filter(function (x) { return x.indexOf("Standort ") !== 0; })[0];
+    if (!ort && lines[0]) { var gm = lines[0].match(/Standort ([\d.]+, [\d.]+)/); ort = gm ? "der Nähe der GPS-Position " + gm[1] : lines[0]; }
+    var map = { datum: protoDateText(), zeit: o.zeit || "[Uhrzeit]", ort: ort || "[Ort]",
       beamte: o.beamte ? o.beamte.replace(/\n/g, "; ") : "Beamte und Kennzeichen unbekannt", ablauf: o.ablauf || "[kurze Schilderung]", name: o.name || "[Name, Anschrift]" };
     return body.replace(/\{(\w+)\}/g, function (m, k) { return map[k] != null ? map[k] : m; });
   }
   function renderLetters() {
-    var letters = D.letters;
+    var letters = D.letters, o = protoData(), miss = [], cyr = /[\u0400-\u04ff]/;
+    if (!o.ort) miss.push(t("f_ort")); if (!o.name) miss.push(t("f_name"));
+    var warn = (miss.length ? '<p class="field-msg">' + esc(t("l_missing", miss.join(", "))) + "</p>" : "") +
+      (cyr.test(o.ort + o.beamte + o.name + o.ablauf) ? '<p class="field-msg">' + esc(t("l_cyr")) + "</p>" : "");
     $("letters").innerHTML = Object.keys(letters).map(function (k) {
       var l = letters[k], text = fillLetter(l.body), isMail = l.to.indexOf("@") > -1;
       var mail = isMail ? "mailto:" + l.to + "?subject=" + encodeURIComponent(l.title) + "&body=" + encodeURIComponent(text) : "";
-      return '<div class="letter"><h3>' + esc(L(l, "title")) + '</h3><p class="hint">' + esc(L(l, "hint")) + "</p><p>" + esc(t("l_to")) + ' <span class="to">' + esc(l.to) + "</span></p>" +
+      return '<div class="letter"><h3>' + esc(L(l, "title")) + '</h3><p class="hint">' + esc(L(l, "hint")) + "</p>" + warn + "<p>" + esc(t("l_to")) + ' <span class="to">' + esc(l.to) + "</span>" +
+        (l.post ? '<br><span class="hint">' + esc(l.post) + "</span>" : "") + "</p>" +
         '<pre lang="de">' + esc(text) + '</pre><div class="actions"><button class="btn primary" type="button" data-copy="' + k + '">' + esc(t("l_copy")) + "</button>" +
         (isMail ? '<a class="btn" href="' + mail + '">' + esc(t("l_mail")) + "</a>" : "") +
         '<button class="btn" type="button" data-sharel="' + k + '">' + esc(t("share")) + '</button></div><p class="hint" data-msg="' + k + '" aria-live="polite"></p></div>';
@@ -849,16 +1001,26 @@
         return '<button type="button" class="chip" data-cat="' + c[0] + '" aria-pressed="' + (wCat === c[0]) + '">' + esc(UI === "ru" && c[2] ? c[2] : c[1]) + "</button>";
       }).join("");
   }
+  // Mit Suchtext: dieselbe Suche wie unter „Fragen“ (Situationen zuerst, dann Karten nach Punkten).
+  // Findet sie nichts, zählen Wortanfänge im ganzen Kartentext.
   function renderWissen(q) {
-    var nq = norm(q || ""), words = nq ? nq.split(" ").map(function (w) { return w.length > 6 ? w.slice(0, w.length - 2) : w; }) : [];
-    var list = D.cards.filter(function (c) {
-      if (wCat && c.cat !== wCat) return false;
-      if (!words.length) return true;
-      var hay = norm(c.title + " " + c.text + " " + c.kw.join(" ") + (c.ru ? " " + c.ru.title + " " + c.ru.text : ""));
-      return words.every(function (w) { return hay.indexOf(w) > -1; });
-    });
-    $("w-list").innerHTML = list.map(function (c) { return '<article class="w-card" data-id="' + esc(c.id) + '">' + cardHTML(c) + "</article>"; }).join("");
-    $("w-empty").hidden = list.length > 0;
+    var nq = norm(q || ""), sits = [], list;
+    if (nq) {
+      var hits = score(q);
+      sits = hits.filter(function (r) { return r.e.kind === "s"; }).slice(0, 3).map(function (r) { return r.e.item; });
+      list = hits.filter(function (r) { return r.e.kind === "c"; }).map(function (r) { return r.e.item; });
+      if (!list.length && !sits.length) {
+        var words = nq.split(" ").map(function (w) { return w.length > 6 ? w.slice(0, w.length - 2) : w; });
+        list = D.cards.filter(function (c) {
+          var hay = norm(c.title + " " + c.text + " " + c.kw.join(" ") + (c.ru ? " " + c.ru.title + " " + c.ru.text : "")).split(" ");
+          return words.every(function (w) { return hay.some(function (x) { return x.indexOf(w) === 0; }); });
+        });
+      }
+    } else list = D.cards.filter(function (c) { return !wCat || c.cat === wCat; });
+    $("w-list").innerHTML = (sits.length ? '<div class="w-sits"><p class="block-t">' + esc(t("w_sits")) + "</p>" + sits.map(function (s) {
+      return '<a class="btn" href="#s/' + s.id + '">' + esc(L(s, "title")) + "</a>"; }).join("") + "</div>" : "") +
+      list.map(function (c) { return '<article class="w-card" data-id="' + esc(c.id) + '">' + cardHTML(c) + "</article>"; }).join("");
+    $("w-empty").hidden = list.length > 0 || sits.length > 0;
   }
   $("w-q").addEventListener("input", function () {
     // Wer tippt, sucht in allen Themen – sonst findet „Messer“ unter „Verkehr“ nichts.
@@ -875,7 +1037,8 @@
   function isStandalone() { return (window.matchMedia && matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true; }
   function syncInstall() {
     [].forEach.call(document.querySelectorAll("[data-install]"), function (b) { b.hidden = !installEv || isStandalone(); });
-    $("install-help").innerHTML = t(isStandalone() ? "i_done" : IS_IOS ? "i_ios" : IS_ANDROID ? "i_android" : "i_other");
+    var k = isStandalone() ? "i_done" : /SamsungBrowser/.test(UA) ? "i_samsung" : /CriOS/.test(UA) ? "i_crios" : /Firefox|FxiOS/.test(UA) ? "i_firefox" : IS_IOS ? "i_ios" : IS_ANDROID ? "i_android" : "i_other";
+    $("install-help").innerHTML = t(k);
   }
   window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); installEv = e; syncInstall(); });
   window.addEventListener("appinstalled", function () { installEv = null; syncInstall(); });
@@ -935,27 +1098,41 @@
     return n + (m10 === 1 && m100 !== 11 ? " день" : m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14) ? " дня" : " дней");
   }
   // Jeder Hinweis: Stufe (red/amber/info), Text und die Situationen, in denen er oben erscheint.
+  // home: auch auf der Startseite zeigen (nur Rotes und bald ablaufende Fristen – nicht die dauerhafte 0,0-Regel).
   function profileNotes() {
     var p = prof, out = [], y = new Date().getFullYear(), fs = p.fs || "", ua24 = fs === "ua" && p.status === "p24";
-    if (fs === "dritt" || (fs === "ua" && !ua24)) { // 6 Monate ab Wohnsitz (§ 29 FeV)
-      var seit = parseDay(p.seit), extra = fs === "ua" ? t("n_ua_extra") : "", where = ["papiere", "verkehr"];
-      if (!seit) out.push({ lv: "info", tx: t("n_fs_ask"), sits: ["papiere"] });
+    var drive = ["papiere", "verkehr", "unfall", "handysteuer", "test"];
+    // Ukrainischer Führerschein ohne Angabe zum Aufenthalt: erst nach § 24 fragen, statt fälschlich „abgelaufen“ zu melden.
+    var uaAsk = fs === "ua" && !p.status && p.nat !== "de" && p.nat !== "eu";
+    if (uaAsk) out.push({ lv: "info", tx: t("n_ua_ask"), sits: ["papiere", "verkehr"] });
+    else if (fs === "dritt" || (fs === "ua" && !ua24)) { // 6 Monate ab Wohnsitz (§ 29 FeV)
+      var seit = parseDay(p.seit), extra = fs === "ua" ? t("n_ua_extra") : "";
+      if (!seit) out.push({ lv: "info", tx: t("n_fs_ask"), sits: ["papiere", "verkehr"] });
       else {
+        // Vorsichtig gerechnet: Der Tag „6 Monate später“ gilt schon als erster Tag ohne Gültigkeit – lieber einen Tag zu früh warnen.
         var end = addMonths(seit, 6), n = daysLeft(end);
-        if (n < 0) out.push({ lv: "red", tx: t("n_fs_over").replace("{d}", fmtDate(end)) + extra, sits: where });
-        else if (n <= 60) out.push({ lv: "amber", tx: t("n_fs_soon").replace("{n}", daysText(n)).replace("{d}", fmtDate(end)) + extra, sits: where });
-        else out.push({ lv: "info", tx: t("n_fs_ok").replace("{d}", fmtDate(end)) + extra, sits: where });
+        var last = addDays(end, -1), nl = n - 1;
+        if (nl < 0) out.push({ lv: "red", home: 1, tx: t("n_fs_over").replace("{d}", fmtDate(end)) + extra, sits: drive });
+        else if (nl === 0) out.push({ lv: "red", home: 1, tx: t("n_fs_today").replace("{d}", fmtDate(last)) + extra, sits: drive });
+        else if (nl <= 60) out.push({ lv: "amber", home: 1, tx: t("n_fs_soon").replace("{n}", daysText(nl)).replace("{d}", fmtDate(last)) + extra, sits: drive });
+        else out.push({ lv: "info", tx: t("n_fs_ok").replace("{d}", fmtDate(last)) + extra, sits: drive });
       }
     }
-    if (ua24) out.push({ lv: daysLeft(UA24_END) <= 90 ? "amber" : "info", tx: t("n_ua24").replace("{n}", leftText(daysLeft(UA24_END))), sits: ["papiere", "verkehr"] });
-    var by = parseInt(p.by, 10), g = ""; // 0,0 Promille unter 21 und in der Probezeit (§ 24c StVG)
-    if (by > 1900 && by <= y) { if (y - by < 21) g = t("n_null_u21"); else if (y - by === 21) g = t("n_null_b21"); }
-    if (!g && (fs === "de" || fs === "eu")) {
-      var fd = parseDay(p.fsdatum), pz = fd ? addMonths(fd, 24) : null;
-      if (pz && daysLeft(pz) >= 0) g = t("n_null_pz").replace("{d}", fmtDate(pz));
+    if (ua24) {
+      var nu = daysLeft(UA24_END);
+      if (nu < 0) out.push({ lv: "red", home: 1, tx: t("n_ua24_over"), sits: drive });
+      else out.push({ lv: nu <= 90 ? "amber" : "info", home: nu <= 90 ? 1 : 0, tx: t("n_ua24").replace("{n}", leftText(nu)), sits: drive });
     }
-    if (g) out.push({ lv: "amber", tx: t("n_null").replace("{g}", g), sits: ["test", "verkehr", "escooter", "unfall"] });
-    if (p.nat === "eu" || p.nat === "andere") out.push({ lv: "info", tx: t(p.nat === "eu" ? "n_pass_eu" : "n_pass"), sits: ["personalien", "verkehr", "kontrolleur", "zoll"] });
+    // 0,0 Promille (§ 24c StVG): unter 21 UND in der Probezeit – beides kann gleichzeitig gelten und unterschiedlich lange dauern.
+    var by = parseInt(p.by, 10), g = [];
+    if (by > 1900 && by <= y) { if (y - by < 21) g.push(t("n_null_u21")); else if (y - by === 21) g.push(t("n_null_b21")); }
+    if (fs === "de" || fs === "eu") {
+      var fd = parseDay(p.fsdatum), pz = fd ? addMonths(fd, 24) : null;
+      if (pz && daysLeft(pz) >= 0) g.push(t("n_null_pz").replace("{d}", fmtDate(pz)));
+    }
+    if (g.length) out.push({ lv: "amber", tx: t("n_null").replace("{g}", g.join(t("n_and"))), sits: ["test", "verkehr", "escooter", "unfall"] });
+    var passK = p.nat === "eu" ? "n_pass_eu" : p.nat === "andere" ? (p.status === "asyl" ? "n_pass_asyl" : "n_pass") : "";
+    if (passK) out.push({ lv: "info", tx: t(passK), sits: ["personalien", "verkehr", "zoll"] });
     if (p.bau) out.push({ lv: "info", tx: t("n_bau"), sits: ["zoll", "personalien"] });
     var rank = { red: 0, amber: 1, info: 2 };
     return out.sort(function (a, b) { return rank[a.lv] - rank[b.lv]; });
@@ -963,12 +1140,12 @@
   function noteHTML(n) { return '<p class="fd fd-' + n.lv + '">' + esc(n.tx) + "</p>"; }
   function renderFuerDich() {
     // Startseite nur Dringendes (rot/gelb) – die Kacheln sollen im Stress oben bleiben. Alles andere steht in der passenden Situation.
-    var box = $("fuer-dich"), notes = profileNotes(), urgent = notes.filter(function (n) { return n.lv !== "info"; });
-    if (urgent.length) {
-      box.innerHTML = '<div class="fd-box"><div class="fd-head"><p class="block-t">' + esc(t("fd_h")) + '</p><a class="fd-edit" href="#profil">' + esc(t("fd_edit")) + "</a></div>" +
-        urgent.slice(0, 2).map(noteHTML).join("") + "</div>";
-    } else if (!hasProfile() && lsGet(LS_PROF_HIDE) !== "aus") {
-      box.innerHTML = '<div class="fd-invite"><p>' + esc(t("fd_invite")) + '</p><a class="btn" href="#profil">' + esc(t("fd_invite_go")) + "</a>" +
+    // Höchstens ein Hinweis, damit die Kacheln auf kleinen Handys sichtbar bleiben.
+    var box = $("fuer-dich"), notes = profileNotes(), urgent = notes.filter(function (n) { return n.home; });
+    if (urgent.length) box.innerHTML = fdBox(urgent.slice(0, 1));
+    else if (hasProfile()) box.innerHTML = '<p class="fd-line"><a class="fd-edit" href="#profil">' + esc(t("prof_open")) + "</a></p>";
+    else if (lsGet(LS_PROF_HIDE) !== "aus") {
+      box.innerHTML = '<div class="fd-invite"><a href="#profil">' + esc(t("fd_invite")) + "</a>" +
         '<button class="fd-x" type="button" id="fd-hide" aria-label="' + esc(t("fd_hide")) + '">×</button></div>';
     } else box.innerHTML = "";
     $("prof-notes").innerHTML = notes.length ? notes.map(noteHTML).join("") : '<p class="hint">' + esc(t("fd_empty")) + "</p>";
@@ -976,7 +1153,7 @@
   $("fuer-dich").addEventListener("click", function (e) { if (e.target.id === "fd-hide") { lsSet(LS_PROF_HIDE, "aus"); renderFuerDich(); } });
   function syncProfileFields() {
     var nat = $("pf-nat").value, fs = $("pf-fs").value, ua24 = nat === "andere" && $("pf-status").value === "p24";
-    $("pf-status-f").hidden = nat !== "andere";
+    $("pf-status-f").hidden = !(nat === "andere" || (fs === "ua" && nat !== "de" && nat !== "eu"));
     $("pf-fsdatum-f").hidden = !(fs === "de" || fs === "eu");
     $("pf-seit-f").hidden = !(fs === "dritt" || (fs === "ua" && !ua24));
   }
@@ -987,7 +1164,11 @@
   function saveProfile() {
     syncProfileFields(); dateMsgs();
     var o = {};
-    Object.keys(pf).forEach(function (k) { var el = $(pf[k]), v = String(el.value || "").trim(); if (v && !el.closest(".field").hidden) o[k] = v; });
+    Object.keys(pf).forEach(function (k) {
+      var el = $(pf[k]), v = String(el.value || "").trim(); if (el.closest(".field").hidden) return;
+      if (v) o[k] = v;
+      else if (el.check && el.check() && prof[k]) o[k] = prof[k]; // halb geändertes Datum: bis es fertig ist, gilt das alte
+    });
     if ($("pf-bau").checked) o.bau = true;
     prof = o;
     if (hasProfile()) lsSet(LS_PROF, JSON.stringify(o)); else { try { localStorage.removeItem(LS_PROF); } catch (e) {} }
@@ -1002,10 +1183,10 @@
     var b = $("prof-del");
     if (!profDelArmed) { profDelArmed = true; b.textContent = t("prof_del_sure"); setTimeout(function () { profDelArmed = false; b.textContent = t("prof_del"); }, 4000); return; }
     profDelArmed = false; b.textContent = t("prof_del");
-    prof = {}; try { localStorage.removeItem(LS_PROF); } catch (e) {}
+    prof = {}; try { localStorage.removeItem(LS_PROF); localStorage.removeItem(LS_PROF_HIDE); } catch (e) {}
     fillProfileForm(); renderFuerDich(); flash($("prof-msg"), t("prof_deleted"));
   });
-  $("prof-back").addEventListener("click", function () { location.hash = "#" + backTo; });
+  $("prof-back").addEventListener("click", goBack);
 
   /* ---------- Sprache umschalten ---------- */
   var linksHTML = null;
@@ -1027,7 +1208,7 @@
     if (u === UI || !T[u]) return;
     UI = u; lsSet(LS_UI, u);
     if (!lsGet(LS_LANG)) { lang = u === "ru" ? "ru-RU" : "de-DE"; syncSeg(); } // Spracheingabe folgt, solange nicht selbst gewählt
-    applyUI(); renderGrid(); renderFuerDich(); renderCats(); renderWissen($("w-q").value); renderDeadlines(); renderLetters(); syncInstall(); renderRecs();
+    applyUI(); renderGrid(); renderFuerDich(); renderCats(); renderWissen($("w-q").value); renderDeadlines(); renderLetters(); syncProtoHints(protoData()); syncInstall(); renderRecs();
     if (currentView === "situation") route();
     if ($("answers").innerHTML && $("ask-input").value.trim()) renderAnswers($("ask-input").value.trim());
   }
@@ -1038,8 +1219,11 @@
   if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
     var hadController = !!navigator.serviceWorker.controller;
     // Neue Version direkt nach dem Öffnen: einmal neu laden, damit geänderte Inhalte sofort gelten.
+    // Aber nie, wenn schon getippt wurde oder ein Satz groß gezeigt wird – dann gilt die neue Version beim nächsten Öffnen.
+    var userActed = false;
+    ["pointerdown", "keydown"].forEach(function (ev) { document.addEventListener(ev, function () { userActed = true; }, { capture: true, once: true }); });
     navigator.serviceWorker.addEventListener("controllerchange", function () {
-      if (hadController && !recState && performance.now() < 15000) location.reload();
+      if (hadController && !recState && !userActed && $("big").hidden && performance.now() < 15000) location.reload();
     });
     window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () {}); });
   }

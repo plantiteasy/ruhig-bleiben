@@ -39,7 +39,7 @@ window.RB = {
           "Не уезжай, не запирай двери, не подписывай то, чего не понимаешь."],
         note: "Забыл документы: 10 € за каждый. Отказ выйти из машины: 20 €. Не остановился по требованию: 70 € и 1 балл."
       },
-      kw: ["~verkehrskontroll", "~angehalten", "~anhalten", "fahrzeugschein", "aussteig", "warndreieck", "verbandkasten", "warnweste", "~auto", "~fahr", "wohin", "fahrziel", "woher",
+      kw: ["зупин", "blaulicht", "мигалк", "anhaltesignal", "bitte folgen", "~verkehrskontroll", "~angehalten", "~anhalten", "fahrzeugschein", "aussteig", "warndreieck", "verbandkasten", "warnweste", "~auto", "~fahr", "wohin", "fahrziel", "woher",
         "~остановил", "тормознул", "гаишник", "гаи", "~машин", "~авто", "техпаспорт", "выйти из машин", "выйти из авто", "аптечк", "~знак", "~за рул", "куда ед", "откуда", "куда направля"]
     },
     {
@@ -72,7 +72,7 @@ window.RB = {
           "Не предлагай копию или фото вместо прав и ничего не объясняй по поводу обвинения."],
         note: "Ездить после того, как права забрали, — отдельное преступление. Если меняешь вид на жительство, с украинскими правами снова остаётся только 6 месяцев."
       },
-      kw: ["~fuehrerschein", "fahrerlaubnis", "papiere", "vergessen", "~auslaendisch", "~umschreib", "~ukrain", "fahren ohne", "digital", "i kfz", "fuehrerschein zuhause",
+      kw: ["посвидч", "водийськ", "~fuehrerschein", "fahrerlaubnis", "papiere", "vergessen", "~auslaendisch", "~umschreib", "~ukrain", "fahren ohne", "digital", "i kfz", "fuehrerschein zuhause",
         "водительск", "забыл прав", "права дома", "права с собой", "техпаспорт", "нет с собой", "права на телефон", "права в телефон", "~обмен прав", "~иностранные права", "~российские права", "~украинские права", "~казахские права",
         "без прав", "~права действ", "электронн", "в приложени", "фото прав", "копия прав", "~права"]
     },
@@ -110,7 +110,7 @@ window.RB = {
           "Не мешай физически брать кровь — это сопротивление."],
         note: "Первое нарушение с 0,5 промилле или 3,5 нг/мл THC: 500 €, 1 месяц запрета водить, 2 балла. Алкоголь и THC вместе: 1 000 €. Если анализ крови чистый, дело закрывают и платить за него не нужно."
       },
-      kw: ["alkohol", "pusten", "drogen", "test", "blut", "blutabnahm", "blutentnahm", "blutprob", "promill", "thc", "urin", "wischtest", "trunken", "roehrchen", "atemtest", "vortest", "schnelltest", "speichel",
+      kw: ["trinken", "wie viel", "wieviel", "пить за рул", "выпи", "wein", "вино", "alkohol", "pusten", "drogen", "test", "blut", "blutabnahm", "blutentnahm", "blutprob", "promill", "thc", "urin", "wischtest", "trunken", "roehrchen", "atemtest", "vortest", "schnelltest", "speichel",
         "augen", "rote augen", "pupill", "taschenlampe", "leuchtet", "medikament", "ritalin", "rezept", "schmerzmittel", "finger nase", "linie", "einbein", "bier", "getrunken",
         "алко", "пил", "выпил", "пиво", "пьян", "выпивш", "дунуть", "дуть", "продуть", "подуть", "дыхн", "трубк", "трубочк", "наркот", "тест", "кровь", "трав", "промил", "моч",
         "глаз", "красные глаз", "зрачк", "фонарик", "по носу", "пальц", "по линии", "на одной ноге", "упражнен", "риталин", "рецепт", "лекарств", "таблетк"]
@@ -175,7 +175,7 @@ window.RB = {
         dont: ["Ничего не держи, не придерживай дверь, никого не отталкивай — это сопротивление.",
           "Не открывай сумки сам, ничего не объясняй, ничего не подписывай."]
       },
-      kw: ["!kofferraum", "handschuhfach", "auto durchsuch", "wagen durchsuch", "fahrzeug durchsuch", "durchsucht mein auto", "durchsucht das auto",
+      kw: ["обшук", "!kofferraum", "handschuhfach", "auto durchsuch", "wagen durchsuch", "fahrzeug durchsuch", "durchsucht mein auto", "durchsucht das auto",
         "!багажник", "бардачок", "обыскать машин", "обыск машин", "досмотр машин", "обыскивают машин", "обыскали машин", "шмон машин", "обыск в машин", "роет", "рыл", "роются"]
     },
     {
@@ -275,14 +275,14 @@ window.RB = {
           "Не оскорбляй, никаких жестов."],
         note: "Отказ назвать данные: штраф до 1 000 €. Удостоверение с собой, но не показал: до 3 000 €. Если личность не установить, полиция может задержать и отвезти в участок."
       },
-      kw: ["personalien", "ausweis", "~kontroll", "pass", "adress", "name angeb", "паспорт", "документ", "данные", "провер", "назвать имя", "называть имя", "имя"]
+      kw: ["~улиц", "пешком", "подошл", "подошел", "~парк", "~strasse", "zu fuss", "angesprochen", "зупин", "personalien", "ausweis", "~kontroll", "pass", "adress", "name angeb", "паспорт", "документ", "данные", "провер", "назвать имя", "называть имя", "имя"]
     },
     {
       id: "durchsuchung", group: "weg", title: "Durchsuchung", sub: "Person, Tasche, Wohnung", tone: "can", toneLabel: "Nicht zustimmen",
       say: [
         ["Ich stimme der Durchsuchung nicht zu. Ich leiste keinen Widerstand.", "Я не согласен на обыск. Я не сопротивляюсь."],
         ["Ich möchte von einer Person meines Geschlechts durchsucht werden.", "Прошу, чтобы меня обыскивал человек моего пола."],
-        ["Ich möchte den Durchsuchungsbeschluss sehen.", "Покажите постановление об обыске."],
+        ["Ich möchte den Durchsuchungs\u00ADbeschluss sehen.", "Покажите постановление об обыске."],
         ["Bitte geben Sie mir ein Verzeichnis der beschlagnahmten Gegenstände.", "Дайте, пожалуйста, список изъятого."]
       ],
       doo: [
@@ -306,7 +306,7 @@ window.RB = {
           "Штутгарт: в зоне запрета оружия в центре по пятницам, субботам и перед праздниками с 18 до 8 часов могут обыскать без подозрения."],
         dont: ["Не держись, не вырывайся, не толкайся: сопротивление — до 3 лет, нападение — от 3 месяцев до 5 лет."]
       },
-      kw: ["durchsuch", "tasche", "rucksack", "abtast", "tastet", "wohnung", "beschluss", "bahnhof", "auszieh", "entkleid", "nackt",
+      kw: ["обшук", "durchsuch", "tasche", "rucksack", "abtast", "tastet", "wohnung", "beschluss", "bahnhof", "auszieh", "entkleid", "nackt",
         "hauptbahnhof", "!обыск", "досмотр", "сумк", "карман", "рюкзак", "квартир", "ордер", "~вокзал", "раздет", "раздева", "раздеть", "вывернут", "выверн", "обшмон"]
     },
     {
@@ -402,7 +402,7 @@ window.RB = {
         dont: ["Не называй PIN — ты не обязан.",
           "Но знай: палец могут приложить силой (BGH 2025, при обыске по постановлению судьи)."]
       },
-      kw: ["~handy", "lösch", "video lösch", "beschlagnahm", "sicherstell", "pin", "code", "entsperr", "~finger", "face id", "handy mit", "nimmt mein handy", "handy weg",
+      kw: ["!удали", "удалить запис", "удали видео", "~handy", "lösch", "video lösch", "beschlagnahm", "sicherstell", "pin", "code", "entsperr", "~finger", "face id", "handy mit", "nimmt mein handy", "handy weg",
         "~телефон", "удал", "удалить видео", "стер", "изъяли телефон", "изъять телефон", "забрали телефон", "забрал телефон", "посмотреть телефон", "в мой телефон",
         "пин", "код", "пароль", "разблок", "приложить палец", "отпечатком"]
     },
@@ -446,23 +446,25 @@ window.RB = {
       doo: [
         "Ruhig bleiben, keinen Widerstand leisten.",
         "Anwalt verlangen und Angehörige benachrichtigen lassen – das ist dein Recht. Der Dolmetscher ist kostenlos.",
-        "Nach einer Festnahme musst du spätestens am Tag danach einem Richter vorgeführt werden. Nur zur Identitätsfeststellung nach StPO: höchstens 12 Stunden."
+        "Nach einer Festnahme musst du spätestens am Tag danach einem Richter vorgeführt werden. Nur zur Identitätsfeststellung nach StPO: höchstens 12 Stunden.",
+        "Anwaltsnotdienst Stuttgart, rund um die Uhr: 0711 998 899 66."
       ],
       dont: [
         "Nichts unterschreiben, was du nicht verstehst.",
         "Nicht „nur kurz erklären“ – jede Erklärung ist eine Aussage."
       ],
       law: "Art. 104 GG · §§ 114b, 114c, 128, 163c StPO · § 187 GVG · § 33 PolG BW",
-      actions: ["protokoll"],
+      actions: ["tel:+4971199889966", "protokoll"],
       ru: {
         title: "Задержание или участок", sub: "Тебя забирают", toneLabel: "Твои права",
         doo: ["Сохраняй спокойствие, не сопротивляйся.",
           "Требуй адвоката и сообщения родным — это твоё право. Переводчик бесплатный.",
-          "После задержания тебя должны доставить к судье не позднее следующего дня. Только для установления личности по StPO — максимум 12 часов."],
+          "После задержания тебя должны доставить к судье не позднее следующего дня. Только для установления личности по StPO — максимум 12 часов.",
+          "Дежурный адвокат в Штутгарте, круглосуточно: 0711 998 899 66."],
         dont: ["Ничего не подписывай, если не понимаешь.",
           "Не «объясняй коротко» — любое объяснение считается показаниями."]
       },
-      kw: ["festnahm", "festgenommen", "verhaft", "wache", "revier", "anwalt", "~dolmetsch", "zelle", "mitgenommen werden", "zur wache",
+      kw: ["mitkomm", "auf die wache", "aufs revier", "festnahm", "festgenommen", "verhaft", "wache", "revier", "anwalt", "~dolmetsch", "zelle", "mitgenommen werden", "zur wache",
         "задерж", "арест", "участок", "адвокат", "~переводчик", "родн", "позвонить", "меня везут", "везут", "повезли", "меня забрал", "меня задерж", "отделени", "в отдел"]
     },
     {
@@ -477,7 +479,7 @@ window.RB = {
         "Sofort sichern: an dich selbst oder in deine Cloud schicken."
       ],
       dont: [
-        "Keinen Ton heimlich aufnehmen – umstritten nach § 201 StGB, das Handy kann beschlagnahmt werden.",
+        "Keinen Ton ohne Einwilligung aufnehmen – auch nicht offen: nach § 201 StGB umstritten, das Handy kann beschlagnahmt werden.",
         "Keine Gesichter veröffentlichen und keine Daten von Beamten verbreiten."
       ],
       law: "BVerfG 1 BvR 2501/13 · VG Berlin 1 K 334/23 · § 201 StGB · § 33 KUG · § 126a StGB",
@@ -487,10 +489,10 @@ window.RB = {
         doo: ["Видео без звука можно, пока ты не мешаешь — держи дистанцию.",
           "Звук — только с согласия всех, кто говорит. В начале записи попроси ещё раз подтвердить согласие.",
           "Сразу сохрани: отправь себе или в своё облако."],
-        dont: ["Не записывай звук тайно — это спорно по § 201 StGB, телефон могут изъять.",
+        dont: ["Не записывай звук без согласия — даже открыто: по § 201 StGB это спорно, телефон могут изъять.",
           "Не публикуй лица и не распространяй данные полицейских."]
       },
-      kw: ["film", "video", "kamera", "aufnahm", "aufnehm", "ton", "einwillig", "сним", "снимать", "съем", "видео", "камер", "запис", "звук", "разговор", "~соглас"]
+      kw: ["знима", "film", "video", "kamera", "aufnahm", "aufnehm", "ton", "einwillig", "сним", "снимать", "съем", "видео", "камер", "запис", "звук", "разговор", "~соглас"]
     }
   ],
 
@@ -503,20 +505,20 @@ window.RB = {
   cards: [
     {
       id: "k-ausweis", cat: "kontrolle", title: "Muss ich meinen Ausweis dabeihaben?", tone: "warn", toneLabel: "Kommt drauf an",
-      text: "Deutsche müssen einen Ausweis besitzen, aber nicht mitführen. Ausländer müssen Pass oder Aufenthaltstitel auf Verlangen der Polizei vorzeigen – praktisch heißt das: immer dabeihaben. Auf Baustellen gilt wegen Zollkontrollen eine Mitführungspflicht. Hast du den Ausweis dabei, musst du ihn zeigen.",
+      text: "Deutsche müssen einen Ausweis besitzen, aber nicht mitführen. Ausländer müssen Pass oder Aufenthaltstitel auf Verlangen der Polizei vorzeigen – praktisch heißt das: immer dabeihaben. Im Asylverfahren oder mit Duldung: die Aufenthaltsgestattung oder Duldungsbescheinigung. Auf Baustellen gilt wegen Zollkontrollen eine Mitführungspflicht. Hast du den Ausweis dabei, musst du ihn zeigen.",
       law: "§ 1, § 32 PAuswG · § 47a, § 98 AufenthG · § 2a SchwarzArbG",
       ru: { title: "Обязан ли я носить с собой документ?", toneLabel: "Зависит",
-        text: "Немцы обязаны иметь удостоверение личности, но не обязаны носить его с собой. Иностранцы по требованию полиции должны показать паспорт или вид на жительство — на практике это значит: всегда с собой. На стройке из-за проверок таможни документ обязателен. Если документ при тебе, его нужно показать." },
-      kw: ["ausweis dabei", "mitführ", "pass", "aufenthalt", "baustell", "ausweis vergessen", "pass vergessen", "ohne ausweis", "паспорт", "носить", "с собой", "внж", "стройк", "~документ", "забыл паспорт", "паспорт дома", "без паспорт", "без документ", "аусвайс"]
+        text: "Немцы обязаны иметь удостоверение личности, но не обязаны носить его с собой. Иностранцы по требованию полиции должны показать паспорт или вид на жительство — на практике это значит: всегда с собой. При убежище или Duldung — Aufenthaltsgestattung или справку о Duldung. На стройке из-за проверок таможни документ обязателен. Если документ при тебе, его нужно показать." },
+      kw: ["personalausweis", "ausweis dabei", "mitführ", "pass", "aufenthalt", "baustell", "ausweis vergessen", "pass vergessen", "ohne ausweis", "паспорт", "носить", "~с собой", "внж", "стройк", "~документ", "забыл паспорт", "паспорт дома", "без паспорт", "без документ", "аусвайс"]
     },
     {
       id: "k-fragen", cat: "kontrolle", title: "Muss ich Fragen beantworten?", tone: "right", toneLabel: "Nein",
-      text: "Zur Sache darfst du schweigen – als Beschuldigter und als Zeuge. Zur Polizei musst du als Zeuge nur, wenn die Staatsanwaltschaft die Vorladung angeordnet hat. Die Personalien musst du trotzdem angeben.",
+      text: "Zur Sache darfst du schweigen – als Beschuldigter und als Zeuge. Zur Polizei musst du als Zeuge nur, wenn die Staatsanwaltschaft die Vorladung angeordnet hat. Die Personalien musst du trotzdem angeben. Ein Protokoll musst du nicht unterschreiben – unterschreibe nichts, was du nicht verstehst.",
       say: [["Ich mache keine Angaben zur Sache. Ich möchte zuerst mit einem Anwalt sprechen.", "Я не даю показаний по делу. Сначала хочу поговорить с адвокатом."]],
       law: "§§ 55, 136, 163 Abs. 3 StPO",
       ru: { title: "Обязан ли я отвечать на вопросы?", toneLabel: "Нет",
-        text: "По делу можешь молчать — и как подозреваемый, и как свидетель. Идти в полицию свидетелем нужно, только если вызов назначила прокуратура. Личные данные всё равно нужно назвать." },
-      kw: ["frag", "antwort", "schweig", "aussag", "~zeug", "вопрос", "отвеч", "молч", "показан", "~свидетел"]
+        text: "По делу можешь молчать — и как подозреваемый, и как свидетель. Идти в полицию свидетелем нужно, только если вызов назначила прокуратура. Личные данные всё равно нужно назвать. Подписывать протокол не обязан — не подписывай то, чего не понимаешь." },
+      kw: ["~was sagen", "~etwas sagen", "~nichts sagen", "~was soll ich sag", "~что говор", "~что сказат", "~что мне говор", "unterschreib", "unterschrift", "подпис", "aussage verweig", "frag", "antwort", "schweig", "aussag", "~zeug", "вопрос", "отвеч", "молч", "показан", "~свидетел"]
     },
     {
       id: "k-grund", cat: "kontrolle", title: "Darf die Polizei ohne Grund kontrollieren?", tone: "can", toneLabel: "Teilweise",
@@ -546,7 +548,7 @@ window.RB = {
       law: "§ 55 Abs. 5 LBG BW · Vorgabe IM BW zum Dienstausweis",
       ru: { title: "Как узнать имя и номер полицейского?", toneLabel: "Спроси",
         text: "Номер в BW носят только подразделения оперативной полиции (Bereitschaftspolizei). По указанию МВД земли полицейские по требованию показывают служебное удостоверение и называют имя и участок — бывают исключения. Всегда записывай номер машины и время." },
-      kw: ["dienstnummer", "dienstausweis", "name des polizist", "nummer", "kennzeich", "имя полицейск", "номер", "жетон", "значок", "удостоверен", "кто он"]
+      kw: ["зовут", "dienstnummer", "dienstausweis", "name des polizist", "nummer", "kennzeich", "имя полицейск", "номер", "жетон", "значок", "удостоверен", "кто он"]
     },
     {
       id: "k-filmen", cat: "filmen", title: "Darf ich die Polizei filmen?", tone: "right", toneLabel: "Video: ja",
@@ -555,7 +557,7 @@ window.RB = {
       law: "BVerfG 1 BvR 2501/13 · VG Berlin 1 K 334/23 · § 201 StGB · § 33 KUG",
       ru: { title: "Можно ли снимать полицию?", toneLabel: "Видео — да",
         text: "Видео без звука в общественном месте — да, если не мешаешь. Звук — спорно: одни суды видят в этом преступление по § 201 StGB, другие нет, если разговор слышат окружающие; Верховный суд (BGH) это не решил. Публиковать — только с неузнаваемыми лицами." },
-      kw: ["film", "video", "kamera", "aufnahm", "aufnehm", "ton", "filmen erlaubt", "сним", "снимать", "съем", "видео", "камер", "запис", "звук", "разговор", "снимать полицию", "на телефон"]
+      kw: ["знима", "film", "video", "kamera", "aufnahm", "aufnehm", "ton", "filmen erlaubt", "сним", "снимать", "съем", "видео", "камер", "запис", "звук", "разговор", "снимать полицию", "на телефон"]
     },
     {
       id: "k-tabu", cat: "kontrolle", title: "Was darf ich auf keinen Fall sagen oder tun?", tone: "no", toneLabel: "Tabu",
@@ -577,7 +579,7 @@ window.RB = {
     {
       id: "k-wohnung", cat: "durchsuchung", title: "Polizei an der Wohnungstür", tone: "right", toneLabel: "Beschluss nötig",
       text: "Grundsätzlich nur mit richterlichem Beschluss, sonst nur bei Gefahr im Verzug. Du darfst anwesend sein. Nachts von 21 bis 6 Uhr nur in Ausnahmefällen. Ein Verzeichnis der mitgenommenen Sachen gibt es nur auf Verlangen.",
-      say: [["Ich möchte den Durchsuchungsbeschluss sehen.", "Покажите постановление об обыске."]],
+      say: [["Ich möchte den Durchsuchungs\u00ADbeschluss sehen.", "Покажите постановление об обыске."]],
       law: "Art. 13 GG · §§ 105–107 StPO · § 36 PolG BW",
       ru: { title: "Полиция у двери квартиры", toneLabel: "Нужен ордер",
         text: "В принципе только по постановлению судьи, иначе лишь при срочной опасности. Ты вправе присутствовать. Ночью с 21 до 6 часов — только в исключительных случаях. Опись изъятого дают только по требованию." },
@@ -597,7 +599,7 @@ window.RB = {
       law: "buergerbeauftragte-bw.de · PP Stuttgart, Hahnemannstraße 1 · § 340 StGB · § 164 StGB · PolBeauftrG",
       ru: { title: "Куда жаловаться?", toneLabel: "3 месяца",
         text: "Бесплатно: уполномоченная по делам граждан BW, она же уполномоченная по полиции, — в течение 3 месяцев и не параллельно с уголовным делом или судом; на федеральную полицию — уполномоченному по полиции при Бундестаге, 6 месяцев. Служебная жалоба — письменно в полицейское управление. Заявление на полицейских — отдельный путь. Часто в ответ приходит встречное заявление, например об оскорблении или ложном доносе, — поэтому сначала поговори с адвокатом." },
-      kw: ["beschwer", "anzeig", "bürgerbeauftrag", "melden", "жалоб", "пожалов", "заявлен", "куда писать"]
+      kw: ["geschlagen", "gewalt", "verletz", "handschell", "удар", "избил", "толкн", "наручник", "beschwer", "anzeig", "bürgerbeauftrag", "melden", "жалоб", "пожалов", "заявлен", "куда писать"]
     },
     {
       id: "k-geld", cat: "danach", title: "Bekomme ich Schadensersatz?", tone: "can", toneLabel: "Wenig",
@@ -613,7 +615,7 @@ window.RB = {
       law: "§§ 55, 67, 111 OWiG · § 52 StPO · § 31a StVZO · §§ 4c, 23, 26 StVG",
       ru: { title: "Письмо из полиции или штрафного ведомства", toneLabel: "Сроки",
         text: "Anhörungsbogen (ты под подозрением): обязательно только указать личные данные, по делу можешь молчать. Zeugenfragebogen владельцу машины: родственников как водителей называть не обязан, но тогда могут обязать вести журнал поездок (Fahrtenbuch). Назвать ложного водителя — штраф до 30 000 €. Против штрафного решения (Bußgeldbescheid) — письменное возражение в течение 2 недель со дня вручения. С 01.07.2026 нарушения ПДД, как правило, погашаются давностью через 6 месяцев; Anhörungsbogen прерывает срок." },
-      kw: ["anhoerung", "anhoerungsbogen", "zeugenfragebogen", "bussgeldbescheid", "bussgeld", "brief", "post von", "einspruch", "fahrer benennen", "fahrtenbuch", "blitzer", "geblitzt", "verjaehr", "письмо", "анкет", "заполнить", "по почте", "fragebogen", "formular", "ausfuellen", "анхерунг", "бусгельд", "пришло письмо", "пришел штраф", "обжалова", "кто был за рул", "фото с камеры", "блитцер", "камера скорост", "опросный лист"]
+      kw: ["штраф", "радар", "сфоткал", "bussgeld", "anhoerung", "anhoerungsbogen", "zeugenfragebogen", "bussgeldbescheid", "bussgeld", "brief", "post von", "einspruch", "fahrer benennen", "fahrtenbuch", "blitzer", "geblitzt", "verjaehr", "письмо", "анкет", "заполнить", "по почте", "fragebogen", "formular", "ausfuellen", "анхерунг", "бусгельд", "пришло письмо", "пришел штраф", "обжалова", "кто был за рул", "фото с камеры", "блитцер", "камера скорост", "опросный лист"]
     },
     {
       id: "k-vorladung", cat: "danach", title: "Vorladung von der Polizei", tone: "right", toneLabel: "Oft keine Pflicht",
@@ -673,7 +675,7 @@ window.RB = {
       law: "EU-VO 2022/1280 · § 24 AufenthG · § 29 FeV · Anlage 11 FeV",
       ru: { title: "Украинские права", toneLabel: "Действуют с § 24",
         text: "Со статусом защиты по § 24 украинские права действуют без перевода, пока действует защита — сейчас до 04.03.2027. Многие полицейские этого не знают: держи при себе вид на жительство и распечатку регламента ЕС 2022/1280. Если старые права считают поддельными: выписка из реестра МВД Украины с переводом, через адвоката. С 18.08.2026 их можно обменять на немецкие без экзаменов — лучше до смены вида на жительство, после неё остаётся только 6 месяцев." },
-      kw: ["ukrain", "schutzstatus", "2022 1280", "gefaelscht", "faelsch", "alter fuehrerschein", "украин", "беженц", "статус защит", "украинские права", "поддел", "фальшив", "старые права", "старого образц"]
+      kw: ["посвидч", "водийськ", "ukrain", "schutzstatus", "2022 1280", "gefaelscht", "faelsch", "alter fuehrerschein", "украин", "беженц", "статус защит", "украинские права", "поддел", "фальшив", "старые права", "старого образц"]
     },
     {
       id: "k-fsweg", cat: "verkehr", title: "Die Polizei nimmt meinen Führerschein mit", tone: "right", toneLabel: "Widersprechen",
@@ -682,7 +684,7 @@ window.RB = {
       law: "§§ 94, 98, 111a StPO · § 69 StGB · § 21 Abs. 2 StVG",
       ru: { title: "Полиция забирает мои права", toneLabel: "Возражай",
         text: "Забрать права полиция может только при подозрении в преступлении, за которое их могут лишить, — например, алкоголь или наркотики за рулём или бегство с места ДТП. Скажи, что возражаешь, и потребуй справку. Тогда полиция должна в течение 3 дней обратиться в суд. До этого сам за руль не садись — это отдельное преступление." },
-      kw: ["fuehrerschein weg", "fuehrerschein abgenommen", "fuehrerschein mitgenommen", "fuehrerschein beschlagnahm", "fuehrerschein eingezogen", "abgenomm", "eingezog", "забрали права", "изъяли права", "отобрали права", "лишили прав", "забрала права", "забрали фюрер"]
+      kw: ["fuehrerschein abgeben", "права сдать", "fuehrerschein weg", "fuehrerschein abgenommen", "fuehrerschein mitgenommen", "fuehrerschein beschlagnahm", "fuehrerschein eingezogen", "abgenomm", "eingezog", "забрали права", "изъяли права", "отобрали права", "лишили прав", "забрала права", "забрали фюрер"]
     },
     {
       id: "k-nichteinverstanden", cat: "durchsuchung", title: "Durchsuchung: „Ich bin nicht einverstanden“ laut sagen", tone: "right", toneLabel: "Laut sagen",
@@ -708,7 +710,7 @@ window.RB = {
       law: "§§ 3, 5 KCanG · §§ 24a, 24c StVG",
       ru: { title: "Каннабис с собой или курил вчера?", toneLabel: "25 г · 3,5 нг",
         text: "С 18 лет можно: с собой до 25 г, дома до 50 г и 3 растения. Нельзя курить рядом с несовершеннолетними, в пределах видимости школ, детских и спортивных площадок (до 100 м) и в пешеходных зонах с 7 до 20 часов. За рулём предел THC — 3,5 нг/мл в крови, может хватить и вчерашнего употребления. До 21 года и на испытательном сроке — за рулём никакого каннабиса." },
-      kw: ["cannabis", "kiff", "gras", "joint", "marihuana", "weed", "wie viel gramm", "gras dabei", "gestern gekifft", "каннабис", "травы", "траву", "сколько трав", "травы можно", "косяк", "марихуан", "покурил", "курил", "курил вчера", "грамм"]
+      kw: ["!трав", "cannabis", "kiff", "gras", "joint", "marihuana", "weed", "wie viel gramm", "gras dabei", "gestern gekifft", "каннабис", "травы", "траву", "сколько трав", "травы можно", "косяк", "марихуан", "покурил", "курил", "курил вчера", "грамм"]
     },
     {
       id: "k-notdienst", cat: "festnahme", title: "Sofort einen Anwalt – Notdienst Stuttgart", tone: "right", toneLabel: "Rund um die Uhr",
@@ -717,15 +719,15 @@ window.RB = {
       law: "§§ 136, 140, 141 StPO · anwaltverein-stuttgart.de",
       ru: { title: "Срочно адвокат — дежурная служба Штутгарта", toneLabel: "Круглосуточно",
         text: "Дежурные адвокаты по уголовным делам в Штутгарте, круглосуточно: 0711 998 899 66 (AnwaltVerein Stuttgart). Полиция обязана помочь тебе связаться с адвокатом. Можно попросить назначить защитника; самое позднее перед судьёй по аресту его назначат. Если тебя осудят, расходы обычно платишь сам." },
-      kw: ["notdienst", "anwalt nummer", "anwalt telefon", "verteidiger", "pflichtverteidiger", "anwalt sofort", "дежурн", "номер адвокат", "дежурного адвокат", "телефон адвокат", "защитник", "позвонить адвокат"]
+      kw: ["~адвокат", "~anwalt", "notdienst", "anwalt nummer", "anwalt telefon", "verteidiger", "pflichtverteidiger", "anwalt sofort", "дежурн", "номер адвокат", "дежурного адвокат", "телефон адвокат", "защитник", "позвонить адвокат"]
     },
     {
-      id: "k-essen", cat: "verkehr", title: "Essen, Trinken, Rauchen am Steuer", tone: "can", toneLabel: "Nicht verboten",
-      text: "Essen, Trinken und Rauchen am Steuer sind nicht ausdrücklich verboten. Wer dabei aber unaufmerksam fährt oder andere gefährdet, riskiert ein Bußgeld und bei einem Unfall Mitschuld. Ein Handy darfst du während der Fahrt nicht in die Hand nehmen: 100 € und 1 Punkt.",
+      id: "k-essen", cat: "verkehr", title: "Essen, Kaffee, Rauchen am Steuer", tone: "can", toneLabel: "Nicht verboten",
+      text: "Alkohol ist etwas anderes: 0,5 Promille, unter 21 und in der Probezeit 0,0 – siehe Alkoholtest. Essen, Kaffee, Wasser und Rauchen am Steuer sind nicht ausdrücklich verboten. Wer dabei aber unaufmerksam fährt oder andere gefährdet, riskiert ein Bußgeld und bei einem Unfall Mitschuld. Ein Handy darfst du während der Fahrt nicht in die Hand nehmen: 100 € und 1 Punkt.",
       law: "§ 1 Abs. 2 StVO · § 23 Abs. 1a StVO",
-      ru: { title: "Есть, пить, курить за рулём", toneLabel: "Не запрещено",
-        text: "Есть, пить и курить за рулём прямо не запрещено. Но если при этом отвлекаешься или создаёшь опасность — штраф, а при ДТП частичная вина. Брать телефон в руку во время езды нельзя: 100 € и 1 балл." },
-      kw: ["essen", "trinken", "rauchen", "kaffee", "burger", "doener", "gegessen", "есть за рул", "можно ли есть", "ел за рул", "еда", "пить за рул", "курить за рул", "кофе", "бургер", "шаурм", "бутерброд", "перекус"]
+      ru: { title: "Есть, пить кофе, курить за рулём", toneLabel: "Не запрещено",
+        text: "Алкоголь — другое дело: 0,5 промилле, до 21 года и на испытательном сроке 0,0 — см. «Тест на алкоголь». Есть, пить кофе или воду и курить за рулём прямо не запрещено. Но если при этом отвлекаешься или создаёшь опасность — штраф, а при ДТП частичная вина. Брать телефон в руку во время езды нельзя: 100 € и 1 балл." },
+      kw: ["essen", "~trinken", "rauchen", "kaffee", "burger", "doener", "gegessen", "есть за рул", "можно ли есть", "ел за рул", "еда", "~пить за рул", "курить за рул", "кофе", "бургер", "шаурм", "бутерброд", "перекус"]
     },
     {
       id: "k-unfallflucht", cat: "verkehr", title: "Nach dem Unfall: Wie lange warten?", tone: "no", toneLabel: "Nicht wegfahren",
@@ -767,7 +769,7 @@ window.RB = {
       law: "§ 187 GVG · § 163a Abs. 5 StPO · § 114b StPO · § 111 OWiG",
       ru: { title: "Я не понимаю по-немецки", toneLabel: "Бесплатно",
         text: "Если тебя допрашивают как подозреваемого, тебе положен переводчик — бесплатно, и в полиции тоже. Скажи об этом сразу и до этого ничего не говори по делу. Не подписывай то, чего не понимаешь. При обычной проверке права на переводчика нет — данные о себе назвать всё равно нужно. Важные документы — ордер на арест, Strafbefehl, приговор — обычно переводят письменно." },
-      kw: ["dolmetsch", "uebersetz", "kein deutsch", "verstehe nicht", "sprache", "russisch", "переводчик", "перевод", "не понимаю", "по немецки", "не говорю по", "язык", "на русском"]
+      kw: ["перекладач", "dolmetsch", "uebersetz", "kein deutsch", "verstehe nicht", "sprache", "russisch", "переводчик", "перевод", "не понимаю", "по немецки", "не говорю по", "язык", "на русском"]
     },
     {
       id: "k-strafbefehl", cat: "fremd", title: "Strafbefehl, Aufenthalt und Einbürgerung", tone: "warn", toneLabel: "2 Wochen",
@@ -783,15 +785,15 @@ window.RB = {
     bodycam: {
       title: "Bodycam-Aufnahmen sichern lassen",
       to: "stuttgart.pp@polizei.bwl.de",
-      hint: "Sofort schicken: Aufnahmen werden spätestens nach 4 Wochen gelöscht.",
-      ru: { title: "Письмо: сохранить записи нательных камер", hint: "Отправь сразу: записи удаляют не позже чем через 4 недели. Письмо на немецком — так и отправляй." },
+      hint: "Sofort schicken: Aufnahmen werden spätestens nach 4 Wochen gelöscht. Adresse gilt für das Polizeipräsidium Stuttgart – anderswo in BW an dein Präsidium; bei der Bundespolizei (Bahnhof, Zug) an die Bundespolizei.",
+      ru: { title: "Письмо: сохранить записи нательных камер", hint: "Отправь сразу: записи удаляют не позже чем через 4 недели. Письмо на немецком — не переводи его; сначала заполни выше место, имя и адрес. Адрес — полицейское управление Штутгарта; в другом месте BW — в своё управление, на федеральную полицию (вокзал, поезд) — в Bundespolizei." },
       body: "Sehr geehrte Damen und Herren,\n\nam {datum} gegen {zeit} Uhr wurde ich in {ort} von Beamten Ihres Präsidiums kontrolliert ({beamte}).\n\nIch bitte Sie, alle Bodycam-Aufnahmen dieses Einsatzes zu sichern und nicht zu löschen, da ich sie als Beweismittel benötige (§ 44 Abs. 10, § 75 Abs. 5 PolG BW). Bitte bestätigen Sie mir die Sicherung schriftlich.\n\nMit freundlichen Grüßen\n{name}"
     },
     beschwerde: {
       title: "Dienstaufsichtsbeschwerde",
-      to: "Polizeipräsidium Stuttgart, Hahnemannstraße 1, 70191 Stuttgart",
-      hint: "Vorher mit einem Anwalt sprechen: Eine Beschwerde kann laufende Verfahren beeinflussen.",
-      ru: { title: "Служебная жалоба (Dienstaufsichtsbeschwerde)", hint: "Сначала поговори с адвокатом: жалоба может повлиять на текущие дела. Письмо на немецком — так и отправляй." },
+      to: "stuttgart.pp@polizei.bwl.de", post: "Polizeipräsidium Stuttgart, Hahnemannstraße 1, 70191 Stuttgart",
+      hint: "Vorher mit einem Anwalt sprechen: Eine Beschwerde kann laufende Verfahren beeinflussen. Gilt für das Polizeipräsidium Stuttgart – bei der Bundespolizei an die Bundespolizei.",
+      ru: { title: "Служебная жалоба (Dienstaufsichtsbeschwerde)", hint: "Сначала поговори с адвокатом: жалоба может повлиять на текущие дела. Письмо на немецком — не переводи его; сначала заполни выше место, имя и адрес. Адрес — полицейское управление Штутгарта; на федеральную полицию — в Bundespolizei." },
       body: "Sehr geehrte Damen und Herren,\n\nhiermit erhebe ich Dienstaufsichtsbeschwerde gegen die Beamten, die mich am {datum} gegen {zeit} Uhr in {ort} kontrolliert haben ({beamte}).\n\nSachverhalt:\n{ablauf}\n\nIch bitte um Prüfung des Verhaltens der Beamten und um schriftliche Mitteilung des Ergebnisses.\n\nMit freundlichen Grüßen\n{name}"
     }
   },

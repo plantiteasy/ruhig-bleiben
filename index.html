@@ -65,7 +65,7 @@
       <div class="field"><label for="pf-fs" data-t="pf_fs">Führerschein aus</label>
         <select id="pf-fs"><option value="" data-t="pf_none">Keine Angabe</option><option value="de" data-t="pf_fs_de">Deutschland</option><option value="eu" data-t="pf_fs_eu">EU-Staat</option><option value="ua" data-t="pf_fs_ua">Ukraine</option><option value="dritt" data-t="pf_fs_dritt">Anderes Land, z. B. Russland oder Kasachstan</option><option value="kein" data-t="pf_fs_kein">Kein Führerschein</option></select></div>
       <div class="field" id="pf-fsdatum-f" hidden><label for="pf-fsdatum-d" data-t="pf_fsdatum">Führerschein erhalten am</label><div class="dsel" id="pf-fsdatum" data-back="75"></div><p class="hint dsel-msg" aria-live="polite"></p></div>
-      <div class="field" id="pf-seit-f" hidden><label for="pf-seit-d" data-t="pf_seit">In Deutschland gemeldet seit</label><div class="dsel" id="pf-seit" data-back="60"></div><p class="hint dsel-msg" aria-live="polite"></p><p class="hint" data-t="pf_seit_hint">Ab diesem Tag läuft die 6-Monats-Frist für deinen Führerschein.</p></div>
+      <div class="field" id="pf-seit-f" hidden><label for="pf-seit-d" data-t="pf_seit">Seit wann wohnst du in Deutschland?</label><div class="dsel" id="pf-seit" data-back="60"></div><p class="hint dsel-msg" aria-live="polite"></p><p class="hint" data-t="pf_seit_hint">Der erste Tag in Deutschland – nicht der Einzug in die jetzige Wohnung. Ab diesem Tag laufen die 6 Monate.</p></div>
       <label class="check"><input type="checkbox" id="pf-bau"> <span data-t="pf_bau">Ich arbeite auf Baustellen</span></label>
     </form>
     <div class="note-box"><p data-t="prof_privacy">Bleibt nur auf diesem Handy, nichts wird gesendet. Die Hinweise folgen festen Regeln aus den Karten – keine Rechtsberatung.</p></div>
@@ -148,33 +148,40 @@
         <div class="field"><label for="p-datum" data-t="f_datum">Datum</label><input type="date" id="p-datum" name="datum"></div>
         <div class="field"><label for="p-zeit" data-t="f_zeit">Uhrzeit</label><input type="time" id="p-zeit" name="zeit"></div>
       </div>
+      <p class="hint field-msg" id="p-when-msg" aria-live="polite"></p>
       <div class="field">
         <div class="lab-row"><label for="p-ort" data-t="f_ort">Ort</label><span class="tools"><button type="button" class="tool" id="p-gps" data-t="gps">Standort einfügen</button><button type="button" class="tool dict" data-for="p-ort" data-t-aria="dict">Diktieren</button></span></div>
         <textarea id="p-ort" name="ort" rows="2" placeholder="Straße, Haltestelle, Richtung" data-t-ph="ph_ort"></textarea>
+        <p class="hint field-msg" aria-live="polite"></p>
       </div>
       <div class="field">
         <div class="lab-row"><label for="p-beamte" data-t="f_beamte">Beamte und Fahrzeuge</label><button type="button" class="tool dict" data-for="p-beamte" data-t-aria="dict">Diktieren</button></div>
         <textarea id="p-beamte" name="beamte" rows="2" placeholder="Namen, Dienststelle, Kennzeichen, Aussehen" data-t-ph="ph_beamte"></textarea>
+        <p class="hint field-msg" aria-live="polite"></p>
       </div>
       <div class="field">
         <div class="lab-row"><label for="p-ablauf" data-t="f_ablauf">Was ist passiert?</label><button type="button" class="tool dict" data-for="p-ablauf" data-t-aria="dict">Diktieren</button></div>
         <textarea id="p-ablauf" name="ablauf" rows="6" placeholder="Der Reihe nach, mit Uhrzeiten, so genau wie möglich" data-t-ph="ph_ablauf"></textarea>
+        <p class="hint field-msg" aria-live="polite"></p>
       </div>
       <div class="field">
         <div class="lab-row"><label for="p-zitate" data-t="f_zitate">Wörtliche Aussagen</label><button type="button" class="tool dict" data-for="p-zitate" data-t-aria="dict">Diktieren</button></div>
         <textarea id="p-zitate" name="zitate" rows="3" placeholder="Wer hat was genau gesagt?" data-t-ph="ph_zitate"></textarea>
+        <p class="hint field-msg" aria-live="polite"></p>
       </div>
       <div class="field">
         <div class="lab-row"><label for="p-zeugen" data-t="f_zeugen">Zeugen</label><button type="button" class="tool dict" data-for="p-zeugen" data-t-aria="dict">Diktieren</button></div>
         <textarea id="p-zeugen" name="zeugen" rows="2" placeholder="Name und Kontakt, nur mit Einverständnis" data-t-ph="ph_zeugen"></textarea>
+        <p class="hint field-msg" aria-live="polite"></p>
       </div>
       <div class="field">
         <label for="p-aufnahmen" data-t="f_aufnahmen">Aufnahmen</label>
-        <textarea id="p-aufnahmen" name="aufnahmen" rows="2" placeholder="Wird aus „Aufnahme“ übernommen: Uhrzeit, Dauer, Prüfsumme" data-t-ph="ph_aufnahmen"></textarea>
+        <textarea id="p-aufnahmen" name="aufnahmen" rows="2" placeholder="Unter „Aufnahme“ bei der Aufnahme „Ins Protokoll“ tippen" data-t-ph="ph_aufnahmen"></textarea>
       </div>
       <div class="field">
         <div class="lab-row"><label for="p-schaden" data-t="f_schaden">Verletzungen und Schäden</label><button type="button" class="tool dict" data-for="p-schaden" data-t-aria="dict">Diktieren</button></div>
         <textarea id="p-schaden" name="schaden" rows="2" placeholder="Was, wo, Arztbesuch, Fotos" data-t-ph="ph_schaden"></textarea>
+        <p class="hint field-msg" aria-live="polite"></p>
       </div>
       <div class="field"><label for="p-name" data-t="f_name">Dein Name und Anschrift (für Briefe)</label><input id="p-name" name="name" type="text" placeholder="Vorname Nachname, Straße, PLZ Ort" data-t-ph="ph_name"></div>
     </form>
@@ -182,9 +189,11 @@
       <button class="btn primary" type="button" id="p-copy" data-t="p_copy">Protokoll kopieren</button>
       <button class="btn" type="button" id="p-share" data-t="share">Teilen</button>
       <button class="btn" type="button" id="p-file" data-t="p_file">Als Datei</button>
-      <button class="btn ghost" type="button" id="p-clear" data-t="p_clear">Neues Protokoll</button>
+      <button class="btn ghost" type="button" id="p-clear" data-t="p_clear">Protokoll löschen</button>
     </div>
     <p class="hint" id="p-msg" aria-live="polite"></p>
+    <button class="btn" type="button" id="p-undo" data-t="p_undo" hidden>Rückgängig</button>
+    <p class="field-msg" id="p-backup" data-t="p_backup" hidden></p>
 
     <h2 data-t="fristen_h">Fristen</h2>
     <ul class="deadlines" id="deadlines"></ul>
@@ -199,9 +208,9 @@
     <label for="w-q" class="sr" data-t="w_label">Wissen durchsuchen</label>
     <input id="w-q" type="search" placeholder="Suchen: Ausweis, filmen, Messer …" data-t-ph="w_ph" autocomplete="off">
     <div class="chips" id="w-cats" role="group" aria-label="Themen" data-t-aria="w_cats"></div>
+    <a class="btn prof-link" href="#profil" data-t="prof_open">Mein Profil</a>
     <div id="w-list" class="w-list"></div>
-    <p class="err" id="w-empty" hidden data-t="w_empty">Nichts gefunden. Versuch: filmen, Ausweis, Test, Handy, Beschwerde.</p>
-    <a class="btn" href="#profil" data-t="prof_open">Mein Profil</a>
+    <p class="err" id="w-empty" hidden data-t="w_empty">Nichts gefunden. Versuch: pusten, Ausweis, filmen, Handy, Beschwerde.</p>
     <div class="note-box">
       <p id="install-help"></p>
       <button class="btn primary" type="button" data-install data-t="install_app" hidden>App installieren</button>
