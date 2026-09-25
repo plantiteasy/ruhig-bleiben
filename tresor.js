@@ -3,7 +3,7 @@
    - Die Aufnahme wird dafür NICHT angehalten: MediaRecorder liefert ohnehin jede Sekunde ein Stück (app.js),
      dieselben Stücke gehen hier zusätzlich in eine Warteschlange und werden der Reihe nach hochgeladen.
    - Schlüssel und Tresor-Nummer entstehen nur aus dem Abholcode (16 Zeichen). Der Server sieht Zufalls-IDs und
-     verschlüsselte Bytes. Einen Löschweg gibt es nicht; der Server löscht selbst nach 7 Tagen.
+     verschlüsselte Bytes. Einen Löschweg gibt es nicht; der Server löscht selbst nach 30 Tagen.
    - Abholen geht auf jedem Handy mit dem Code (Ansicht #tresor). */
 (function () {
   "use strict";
