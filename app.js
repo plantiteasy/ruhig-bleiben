@@ -34,7 +34,7 @@
       b_say: "Sag", b_do: "Tu", b_dont: "Lass", tap: "Groß anzeigen",
       act_film: "Video ohne Ton", act_consent: "Mit Einwilligung aufnehmen", act_proto: "Protokoll danach", act_qh: "Antworten mit §",
       fragen_h: "Frage stellen",
-      fragen_lead: "Tippe auf das Mikrofon und frag kurz, zum Beispiel „Darf ich filmen?“ oder «Можно ли снимать?». Das Mikrofon hört zu, bis du noch einmal tippst oder 5 Sekunden nichts sagst. Verarbeitet wird nur deine Frage.",
+      fragen_lead: "Tippe auf das Mikrofon und frag kurz, zum Beispiel „Darf ich filmen?“ oder «Можно ли снимать?». Die Antwort erscheint als Text, sobald du fertig gesprochen hast. Danach hört das Mikrofon noch 5 Sekunden zu, falls du etwas ergänzen willst. Verarbeitet wird nur deine Frage.",
       seg_ask_aria: "Sprache der Spracheingabe", seg_de: "Deutsch", seg_ru: "Русский", mic_idle: "Tippen und fragen", mic_on: "Ich höre … tippen zum Stoppen",
       fragen_hint: "Die Erkennung übernimmt dein Browser (Chrome über Google, Safari über Apple). Die App speichert deine Frage nicht.",
       ask_label: "Frage eintippen", ask_ph: "Oder tippen: filmen, Ausweis, Test …", ask_go: "Suchen", ask_empty: "Gib zuerst eine Frage ein.",
@@ -133,7 +133,7 @@
       b_say: "Скажи", b_do: "Делай", b_dont: "Не делай", tap: "Показать крупно",
       act_film: "Видео без звука", act_consent: "Запись с согласия", act_proto: "Протокол после", act_qh: "Ответы с §",
       fragen_h: "Задать вопрос",
-      fragen_lead: "Нажми на микрофон и спроси коротко, например «Можно ли снимать?» или „Darf ich filmen?“. Микрофон слушает, пока не нажмёшь ещё раз или 5 секунд не будет слышно речи. Обрабатывается только твой вопрос.",
+      fragen_lead: "Нажми на микрофон и спроси коротко, например «Можно ли снимать?» или „Darf ich filmen?“. Ответ появится текстом, как только договоришь. Потом микрофон ещё 5 секунд слушает, если захочешь что-то добавить. Обрабатывается только твой вопрос.",
       seg_ask_aria: "Язык голосового ввода", seg_de: "По-немецки", seg_ru: "По-русски", mic_idle: "Нажми и спроси", mic_on: "Слушаю… нажми, чтобы остановить",
       fragen_hint: "Речь распознаёт браузер (Chrome через Google, Safari через Apple). Приложение не сохраняет твой вопрос.",
       ask_label: "Ввести вопрос", ask_ph: "Или напиши: снимать, паспорт, тест …", ask_go: "Найти", ask_empty: "Сначала введи вопрос.",
@@ -562,15 +562,28 @@
   }
   function stopListening() { if (activeListen) activeListen.stop(); }
 
+  /* Die Antwort kommt als Text, sobald 1 Sekunde lang kein neues Wort erkannt wurde – nicht erst nach den
+     5 Sekunden Stille. Das Mikrofon hört danach weiter; sagt man noch etwas, wird die Antwort ersetzt. */
+  var LIVE_MS = 1000;
   $("mic").addEventListener("click", function () {
-    var mic = $("mic"), err = $("ask-err");
+    var mic = $("mic"), err = $("ask-err"), liveT = null, shown = "", heard = "";
     if (activeListen) { stopListening(); return; }
     err.hidden = true;
-    var r = listen(function (fin, interim) { $("transcript").textContent = (fin + " " + interim).trim(); },
+    function show(q, end) {
+      if (!q || q === shown) return;
+      if (!end && !match(q).length) return; // halbe Frage ohne Treffer: noch keine „nichts gefunden“-Meldung
+      $("ask-input").value = q; renderAnswers(q, !shown); shown = q;
+    }
+    var r = listen(function (fin, interim) {
+        var q = (fin + " " + interim).trim();
+        $("transcript").textContent = q;
+        if (q === heard) return; // Android meldet denselben Satz manchmal noch einmal – das ist kein neues Wort
+        heard = q; clearTimeout(liveT); liveT = setTimeout(function () { show(q); }, LIVE_MS);
+      },
       function (fin) {
+        clearTimeout(liveT);
         mic.setAttribute("aria-pressed", "false"); $("mic-label").textContent = t("mic_idle");
-        var q = fin || $("transcript").textContent;
-        if (q) { $("ask-input").value = q; renderAnswers(q, true); }
+        show(fin || $("transcript").textContent, true);
       },
       function (msg) {
         err.textContent = msg; err.hidden = !msg; mic.setAttribute("aria-pressed", "false"); $("mic-label").textContent = t("mic_idle");
