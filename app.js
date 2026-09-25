@@ -268,7 +268,7 @@
     if (name !== currentView) { stopListening(); if (name !== "fragen") stopSpeaking(); }
     currentView = name;
     views.forEach(function (v) { $("v-" + v).hidden = v !== name; });
-    var tab = name === "situation" || name === "profil" ? lastTab : name === "kontrolle" ? "aufnahme" : name; lastTab = tab;
+    var tab = name === "situation" || name === "profil" ? lastTab : name === "kontrolle" ? "jetzt" : name; lastTab = tab;
     [].forEach.call(document.querySelectorAll(".tabs a"), function (a) {
       if (a.getAttribute("data-tab") === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
@@ -303,7 +303,7 @@
   }
   function sayButtons(list) {
     return (list || []).map(function (p) {
-      return '<button class="say-b" type="button" data-de="' + esc(p[0]) + '" data-ru="' + esc(p[1] || "") + '"><span class="say-de" lang="de">' + esc(p[0]) +
+      return '<button class="say-b" type="button" data-de="' + esc(p[0]) + '" data-ru="' + esc(p[1] || "") + '"><span class="say-de" lang="de" translate="no">' + esc(p[0]) +
         '</span><span class="say-ru" lang="ru">' + esc(p[1] || "") + '</span><span class="say-tap">' + esc(t("tap")) + "</span></button>";
     }).join("");
   }
@@ -332,7 +332,7 @@
       '<div class="block"><p class="block-t dont">' + esc(t("b_dont")) + '</p><ul class="pts">' + L(s, "dont").map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" +
       fdBox(info) +
       (note ? '<p class="note">' + esc(note) + "</p>" : "") +
-      '<p class="law" lang="de">' + esc(s.law) + "</p>" +
+      '<p class="law" lang="de" translate="no">' + esc(s.law) + "</p>" +
       '<div class="s-actions">' + actionButtons(s.actions) + "</div>";
   }
   function renderSituation(s) { $("sit-body").innerHTML = '<div class="view" style="padding:0">' + situationHTML(s, false) + "</div>"; }
@@ -458,15 +458,15 @@
   function telLinks(html) { return html.replace(/(?:\+49|\b0)\d{2,4}(?: ?\d{2,4}){2,4}\b/g, function (m) { return '<a href="tel:' + m.replace(/ /g, "") + '">' + m + "</a>"; }); }
   function cardHTML(c, noHead) {
     return (noHead ? "" : '<div class="w-head"><h3>' + esc(L(c, "title")) + '</h3><span class="pill ' + c.tone + '">' + esc(L(c, "toneLabel")) + "</span></div>") +
-      "<p>" + telLinks(esc(L(c, "text"))) + "</p>" + (c.say ? sayButtons(c.say) : "") + '<p class="law" lang="de">' + esc(c.law) + "</p>";
+      "<p>" + telLinks(esc(L(c, "text"))) + "</p>" + (c.say ? sayButtons(c.say) : "") + '<p class="law" lang="de" translate="no">' + esc(c.law) + "</p>";
   }
   // Antwort aus der Schnellhilfe (Polizei sagt → Antwort mit §), wenn keine Karte passt – z. B. „Steigen Sie aus“.
   function quickAnsHTML(q) {
     var ru = UI === "ru" && q.ru ? q.ru.say : "";
     return '<article class="ans top" data-id="' + esc(q.id) + '"><div class="w-head"><h3>„' + esc(L(q, "cop")) + '“</h3><span class="pill ' + VTONE[q.v] + '">' + esc(t("v_" + q.v)) + "</span></div>" +
-      '<button class="say-b" type="button" data-de="' + esc(q.say) + '" data-ru="' + esc(ru) + '" data-law="' + esc(q.law) + '" data-why="' + esc(L(q, "why")) + '"><span class="say-de" lang="de">' + esc(nb(q.say)) + "</span>" +
+      '<button class="say-b" type="button" data-de="' + esc(q.say) + '" data-ru="' + esc(ru) + '" data-law="' + esc(q.law) + '" data-why="' + esc(L(q, "why")) + '"><span class="say-de" lang="de" translate="no">' + esc(nb(q.say)) + "</span>" +
       (ru ? '<span class="say-ru" lang="ru">' + esc(nb(ru)) + "</span>" : "") + '<span class="say-tap">' + esc(t("tap")) + "</span></button>" +
-      "<p>" + esc(nb(L(q, "why"))) + '</p><p class="law" lang="de">' + esc(nb(q.law)) + "</p></article>";
+      "<p>" + esc(nb(L(q, "why"))) + '</p><p class="law" lang="de" translate="no">' + esc(nb(q.law)) + "</p></article>";
   }
   function speakText(e) {
     var it = e.item;
@@ -896,8 +896,8 @@
       : Q.filter(function (q) { return q.g === qhCat; });
     $("qh-list").innerHTML = list.map(function (q) {
       return '<button type="button" class="qh-i" data-q="' + esc(q.id) + '"><span class="qh-cop">„' + esc(L(q, "cop")) + '“</span>' +
-        '<span class="pill ' + VTONE[q.v] + '">' + esc(t("v_" + q.v)) + '</span><span class="qh-say" lang="de">' + esc(nb(q.say)) + "</span>" +
-        (UI === "ru" && q.ru ? '<span class="say-ru" lang="ru">' + esc(nb(q.ru.say)) + "</span>" : "") + '<span class="law" lang="de">' + esc(nb(q.law)) + "</span></button>";
+        '<span class="pill ' + VTONE[q.v] + '">' + esc(t("v_" + q.v)) + '</span><span class="qh-say" lang="de" translate="no">' + esc(nb(q.say)) + "</span>" +
+        (UI === "ru" && q.ru ? '<span class="say-ru" lang="ru">' + esc(nb(q.ru.say)) + "</span>" : "") + '<span class="law" lang="de" translate="no">' + esc(nb(q.law)) + "</span></button>";
     }).join("");
   }
   $("qh-cats").addEventListener("click", function (e) { var b = e.target.closest("[data-qc]"); if (!b) return; qhCat = b.getAttribute("data-qc"); renderQuick(); });
@@ -923,7 +923,7 @@
     var b = $("k-rec"); b.textContent = on ? t("k_stop") : t("k_rec"); b.className = "btn k-recbtn " + (on ? "stop" : "primary"); b.disabled = wait;
     if (on) $("k-status").textContent = (recState.r.withAudio ? t("k_rec_audio") : t("k_rec_silent")) + " · " + clock;
     else if (wait) $("k-status").textContent = t("k_rec_wait");
-    else $("k-status").innerHTML = kSaved ? esc(t("k_saved")) + ' <a href="#aufnahme">' + esc(t("k_sichern")) + "</a>" : esc(t("k_norec"));
+    else $("k-status").innerHTML = kSaved ? esc(t("k_saved")) + ' <button type="button" class="k-save" id="k-save">' + esc(t("k_sichern")) + "</button>" : esc(t("k_norec"));
   }
   function renderKontrolle() {
     if (!K) { $("k-start").hidden = true; return; }
@@ -968,6 +968,11 @@
   $("k-role").addEventListener("click", function (e) {
     var b = e.target.closest("[data-kr]"); if (!b) return;
     kRole = b.getAttribute("data-kr"); lsSet(LS_KROLE, kRole); renderKontrolle();
+  });
+  $("k-status").addEventListener("click", function (e) {
+    if (!e.target.closest("#k-save")) return;
+    var b = document.querySelector("#rec-list .rec-item [data-share]");
+    if (b) b.click(); else location.hash = "#aufnahme";
   });
   $("k-rec").addEventListener("click", function () { if (recState && recState.rec) stopRecording(); else if (!recState) startRecording(false, null); });
 
@@ -1209,7 +1214,7 @@
       var mail = isMail ? "mailto:" + l.to + "?subject=" + encodeURIComponent(l.title) + "&body=" + encodeURIComponent(text) : "";
       return '<div class="letter"><h3>' + esc(L(l, "title")) + '</h3><p class="hint">' + esc(L(l, "hint")) + "</p>" + warn + "<p>" + esc(t("l_to")) + ' <span class="to">' + esc(l.to) + "</span>" +
         (l.post ? '<br><span class="hint">' + esc(l.post) + "</span>" : "") + "</p>" +
-        '<pre lang="de">' + esc(text) + '</pre><div class="actions"><button class="btn primary" type="button" data-copy="' + k + '">' + esc(t("l_copy")) + "</button>" +
+        '<pre lang="de" translate="no">' + esc(text) + '</pre><div class="actions"><button class="btn primary" type="button" data-copy="' + k + '">' + esc(t("l_copy")) + "</button>" +
         (isMail ? '<a class="btn" href="' + mail + '">' + esc(t("l_mail")) + "</a>" : "") +
         '<button class="btn" type="button" data-sharel="' + k + '">' + esc(t("share")) + '</button></div><p class="hint" data-msg="' + k + '" aria-live="polite"></p></div>';
     }).join("");
@@ -1458,7 +1463,7 @@
     var userActed = false;
     ["pointerdown", "keydown"].forEach(function (ev) { document.addEventListener(ev, function () { userActed = true; }, { capture: true, once: true }); });
     navigator.serviceWorker.addEventListener("controllerchange", function () {
-      if (hadController && !recState && !userActed && $("big").hidden && performance.now() < 15000) location.reload();
+      if (hadController && !recState && !userActed && $("big").hidden && currentView !== "kontrolle" && performance.now() < 15000) location.reload();
     });
     window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () {}); });
   }

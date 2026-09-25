@@ -277,7 +277,7 @@ select:focus-visible{outline:none;border-color:var(--accent);box-shadow:0 0 0 3p
 .k-all{justify-self:center;font-size:14px;font-weight:600;padding:8px}
 .k-cop{color:var(--muted);font-size:15px;font-style:italic}
 .k-say{font-size:clamp(24px,7.4vw,34px);font-weight:750;line-height:1.2;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
-.k-law{font-size:13px}
+.k-law{font-size:15px;color:var(--ink)}
 .k-dann{background:color-mix(in srgb,var(--warn) 13%,transparent);border-radius:12px;padding:10px 12px;font-size:15px;font-weight:600}
 .k-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .k-more summary{cursor:pointer;font-weight:600;color:var(--accent);min-height:44px;display:flex;align-items:center}
@@ -292,3 +292,4 @@ select:focus-visible{outline:none;border-color:var(--accent);box-shadow:0 0 0 3p
 .k-log:empty{display:none}
 .k-log-t{color:var(--faint);font-variant-numeric:tabular-nums}
 .big-rec{position:absolute;top:calc(env(safe-area-inset-top,0px) + 22px);left:22px;display:flex;gap:6px;align-items:center;font-weight:700;font-size:15px;color:var(--stop);font-variant-numeric:tabular-nums;margin:0}
+.k-save{appearance:none;font:inherit;font-size:15px;font-weight:700;color:var(--accent);background:none;border:0;padding:6px 4px;text-decoration:underline;cursor:pointer;min-height:40px}
