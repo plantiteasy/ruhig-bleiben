@@ -8,7 +8,7 @@
 (function () {
   "use strict";
   var LS_CODE = "rb-tresor-code-v1", LS_URL = "rb-tresor-url";
-  var DEFAULT_URL = ""; // wird nach dem ersten Deploy des Workers gesetzt
+  var DEFAULT_URL = "https://ruhig-bleiben-tresor.ruhig-bleiben-tresor.workers.dev"; // Cloudflare Worker + R2 (EU), siehe ../tresor/README.md
   var ABC = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"; // Crockford: ohne I, L, O, U – nichts zum Verwechseln
   var MAX_PART = 3.5 * 1024 * 1024, GAP_MS = 1500; // unter dem Server-Limit von 4 MB; höchstens ein Upload alle 1,5 s (Server bremst ab 60/min)
   var enc = new TextEncoder(), dec = new TextDecoder();
