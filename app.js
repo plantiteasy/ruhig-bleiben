@@ -543,9 +543,9 @@
   var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   var lang = lsGet(LS_LANG) || (UI === "ru" ? "ru-RU" : "de-DE");
   function syncSeg() {
-    [].forEach.call(document.querySelectorAll(".seg-b"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-lang") === lang ? "true" : "false"); });
+    [].forEach.call(document.querySelectorAll(".seg-b[data-lang]"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-lang") === lang ? "true" : "false"); });
   }
-  [].forEach.call(document.querySelectorAll(".seg-b"), function (b) {
+  [].forEach.call(document.querySelectorAll(".seg-b[data-lang]"), function (b) {
     b.addEventListener("click", function () { lang = b.getAttribute("data-lang"); lsSet(LS_LANG, lang); syncSeg(); });
   });
   function srError(code, ctx) {

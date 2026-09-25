@@ -333,3 +333,4 @@ body.k-mode main{padding-top:calc(env(safe-area-inset-top,0px) + 8px)}
 .einr-msg{font-size:15px;font-weight:600}
 .einr-msg.ok{color:var(--right)}
 .einr-msg.err{color:var(--no);font-weight:500;font-size:14px}
+.einr .seg-b[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}

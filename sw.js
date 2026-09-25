@@ -1,4 +1,4 @@
-var CACHE = "rb-v15";
+var CACHE = "rb-v16";
 var FILES = ["./", "index.html", "styles.css", "data.js", "quick.js", "kontrolle.js", "app.js", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png"];
 self.addEventListener("install", function (e) {
   e.waitUntil(caches.open(CACHE).then(function (c) {
