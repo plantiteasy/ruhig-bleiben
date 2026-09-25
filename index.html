@@ -57,15 +57,15 @@
     <h1 id="h-profil" data-t="prof_h">Mein Profil</h1>
     <p class="lead" data-t="prof_lead">Freiwillig. Mit ein paar Angaben passen die Hinweise besser zu dir – zum Beispiel, wie lange dein Führerschein hier noch gilt.</p>
     <form class="proto" id="prof" autocomplete="off">
-      <div class="field"><label for="pf-by" data-t="pf_by">Geburtsjahr</label><input id="pf-by" type="number" inputmode="numeric" min="1920" max="2020" placeholder="z. B. 1990" data-t-ph="pf_by_ph"></div>
+      <div class="field"><label for="pf-by" data-t="pf_by">Geburtsjahr</label><select id="pf-by"></select></div>
       <div class="field"><label for="pf-nat" data-t="pf_nat">Staatsangehörigkeit</label>
         <select id="pf-nat"><option value="" data-t="pf_none">Keine Angabe</option><option value="de" data-t="pf_nat_de">Deutsch</option><option value="eu" data-t="pf_nat_eu">EU-Staat</option><option value="andere" data-t="pf_nat_andere">Anderes Land</option></select></div>
       <div class="field" id="pf-status-f" hidden><label for="pf-status" data-t="pf_status">Aufenthalt</label>
         <select id="pf-status"><option value="" data-t="pf_none">Keine Angabe</option><option value="p24" data-t="pf_st_p24">Schutz nach § 24 (Ukraine)</option><option value="titel" data-t="pf_st_titel">Aufenthaltstitel</option><option value="asyl" data-t="pf_st_asyl">Asyl oder Duldung</option><option value="visum" data-t="pf_st_visum">Visum oder anderes</option></select></div>
       <div class="field"><label for="pf-fs" data-t="pf_fs">Führerschein aus</label>
         <select id="pf-fs"><option value="" data-t="pf_none">Keine Angabe</option><option value="de" data-t="pf_fs_de">Deutschland</option><option value="eu" data-t="pf_fs_eu">EU-Staat</option><option value="ua" data-t="pf_fs_ua">Ukraine</option><option value="dritt" data-t="pf_fs_dritt">Anderes Land, z. B. Russland oder Kasachstan</option><option value="kein" data-t="pf_fs_kein">Kein Führerschein</option></select></div>
-      <div class="field" id="pf-fsdatum-f" hidden><label for="pf-fsdatum" data-t="pf_fsdatum">Führerschein erhalten am</label><input id="pf-fsdatum" type="date"></div>
-      <div class="field" id="pf-seit-f" hidden><label for="pf-seit" data-t="pf_seit">In Deutschland gemeldet seit</label><input id="pf-seit" type="date"><p class="hint" data-t="pf_seit_hint">Ab diesem Tag läuft die 6-Monats-Frist für deinen Führerschein.</p></div>
+      <div class="field" id="pf-fsdatum-f" hidden><label for="pf-fsdatum-d" data-t="pf_fsdatum">Führerschein erhalten am</label><div class="dsel" id="pf-fsdatum" data-back="75"></div><p class="hint dsel-msg" aria-live="polite"></p></div>
+      <div class="field" id="pf-seit-f" hidden><label for="pf-seit-d" data-t="pf_seit">In Deutschland gemeldet seit</label><div class="dsel" id="pf-seit" data-back="60"></div><p class="hint dsel-msg" aria-live="polite"></p><p class="hint" data-t="pf_seit_hint">Ab diesem Tag läuft die 6-Monats-Frist für deinen Führerschein.</p></div>
       <label class="check"><input type="checkbox" id="pf-bau"> <span data-t="pf_bau">Ich arbeite auf Baustellen</span></label>
     </form>
     <div class="note-box"><p data-t="prof_privacy">Bleibt nur auf diesem Handy, nichts wird gesendet. Die Hinweise folgen festen Regeln aus den Karten – keine Rechtsberatung.</p></div>

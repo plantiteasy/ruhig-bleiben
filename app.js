@@ -81,10 +81,12 @@
       i_android: "<strong>Als App installieren:</strong> In Chrome oben rechts ⋮ und dann „App installieren“ oder „Zum Startbildschirm hinzufügen“. Danach funktionieren Situationen und Wissen auch ohne Internet.",
       i_other: "<strong>Als App aufs Handy:</strong> Android – in Chrome ⋮ und „App installieren“. iPhone – in Safari „Teilen“ und „Zum Home-Bildschirm“.",
       prof_h: "Mein Profil", prof_open: "Mein Profil", prof_lead: "Freiwillig. Mit ein paar Angaben passen die Hinweise besser zu dir – zum Beispiel, wie lange dein Führerschein hier noch gilt.",
-      pf_by: "Geburtsjahr", pf_by_ph: "z. B. 1990", pf_none: "Keine Angabe", pf_nat: "Staatsangehörigkeit", pf_nat_de: "Deutsch", pf_nat_eu: "EU-Staat", pf_nat_andere: "Anderes Land",
+      pf_by: "Geburtsjahr", pf_none: "Keine Angabe", pf_nat: "Staatsangehörigkeit", pf_nat_de: "Deutsch", pf_nat_eu: "EU-Staat", pf_nat_andere: "Anderes Land",
       pf_status: "Aufenthalt", pf_st_p24: "Schutz nach § 24 (Ukraine)", pf_st_titel: "Aufenthaltstitel", pf_st_asyl: "Asyl oder Duldung", pf_st_visum: "Visum oder anderes",
       pf_fs: "Führerschein aus", pf_fs_de: "Deutschland", pf_fs_eu: "EU-Staat", pf_fs_ua: "Ukraine", pf_fs_dritt: "Anderes Land, z. B. Russland oder Kasachstan", pf_fs_kein: "Kein Führerschein",
-      pf_fsdatum: "Führerschein erhalten am", pf_seit: "In Deutschland gemeldet seit", pf_seit_hint: "Ab diesem Tag läuft die 6-Monats-Frist für deinen Führerschein.", pf_bau: "Ich arbeite auf Baustellen",
+      pf_fsdatum: "Führerschein erhalten am", pf_seit: "In Deutschland gemeldet seit", pf_seit_hint: "Ab diesem Tag läuft die 6-Monats-Frist für deinen Führerschein.", d_tag: "Tag", d_mon: "Monat", d_jahr: "Jahr", d_missing: "Noch wählen: {x}", d_invalid: "Dieses Datum gibt es nicht – bitte den Tag prüfen.", d_future: "Das Datum liegt in der Zukunft – bitte prüfen.",
+      mon_1: "Januar", mon_2: "Februar", mon_3: "März", mon_4: "April", mon_5: "Mai", mon_6: "Juni", mon_7: "Juli", mon_8: "August", mon_9: "September", mon_10: "Oktober", mon_11: "November", mon_12: "Dezember",
+      pf_bau: "Ich arbeite auf Baustellen",
       prof_privacy: "Bleibt nur auf diesem Handy, nichts wird gesendet. Die Hinweise folgen festen Regeln aus den Karten – keine Rechtsberatung.",
       prof_del: "Profil löschen", prof_del_sure: "Wirklich löschen?", prof_deleted: "Profil gelöscht", prof_saved: "Gespeichert – nur auf diesem Handy",
       fd_h: "Für dich", fd_empty: "Noch keine Hinweise. Fülle oben aus, was du möchtest.", fd_edit: "Profil ändern",
@@ -161,10 +163,12 @@
       i_android: "<strong>Установить как приложение:</strong> в Chrome справа вверху ⋮, затем «Установить приложение» или «Добавить на главный экран». После этого ситуации и знания работают и без интернета.",
       i_other: "<strong>Приложение на телефон:</strong> Android — в Chrome ⋮ и «Установить приложение». iPhone — в Safari «Поделиться» и «На экран „Домой“».",
       prof_h: "Мой профиль", prof_open: "Мой профиль", prof_lead: "По желанию. Несколько данных — и подсказки точнее подойдут тебе, например сколько ещё действуют твои права.",
-      pf_by: "Год рождения", pf_by_ph: "например 1990", pf_none: "Не указано", pf_nat: "Гражданство", pf_nat_de: "Германия", pf_nat_eu: "Страна ЕС", pf_nat_andere: "Другая страна",
+      pf_by: "Год рождения", pf_none: "Не указано", pf_nat: "Гражданство", pf_nat_de: "Германия", pf_nat_eu: "Страна ЕС", pf_nat_andere: "Другая страна",
       pf_status: "Статус пребывания", pf_st_p24: "Защита по § 24 (Украина)", pf_st_titel: "Вид на жительство", pf_st_asyl: "Убежище или Duldung", pf_st_visum: "Виза или другое",
       pf_fs: "Права выданы в", pf_fs_de: "Германии", pf_fs_eu: "стране ЕС", pf_fs_ua: "Украине", pf_fs_dritt: "другой стране, например России или Казахстане", pf_fs_kein: "Прав нет",
-      pf_fsdatum: "Дата получения прав", pf_seit: "Прописан в Германии с", pf_seit_hint: "С этого дня идут 6 месяцев, пока действуют иностранные права.", pf_bau: "Работаю на стройках",
+      pf_fsdatum: "Дата получения прав", pf_seit: "Прописан в Германии с", pf_seit_hint: "С этого дня идут 6 месяцев, пока действуют иностранные права.", d_tag: "День", d_mon: "Месяц", d_jahr: "Год", d_missing: "Ещё выбери: {x}", d_invalid: "Такой даты нет — проверь день.", d_future: "Эта дата ещё не наступила — проверь.",
+      mon_1: "январь", mon_2: "февраль", mon_3: "март", mon_4: "апрель", mon_5: "май", mon_6: "июнь", mon_7: "июль", mon_8: "август", mon_9: "сентябрь", mon_10: "октябрь", mon_11: "ноябрь", mon_12: "декабрь",
+      pf_bau: "Работаю на стройках",
       prof_privacy: "Остаётся только на этом телефоне, ничего не отправляется. Подсказки строятся по готовым правилам из карточек — это не юридическая консультация.",
       prof_del: "Удалить профиль", prof_del_sure: "Точно удалить?", prof_deleted: "Профиль удалён", prof_saved: "Сохранено — только на этом телефоне",
       fd_h: "Для тебя", fd_empty: "Пока подсказок нет. Заполни выше, что хочешь.", fd_edit: "Изменить профиль",
@@ -888,6 +892,40 @@
   var LS_PROF = "rb-profil-v1", LS_PROF_HIDE = "rb-profil-hinweis-v1", prof = {};
   var UA24_END = new Date(2027, 2, 4); // Schutz nach § 24 derzeit bis 04.03.2027 – wie in der Karte k-ukrainefs
   var pf = { by: "pf-by", nat: "pf-nat", status: "pf-status", fs: "pf-fs", fsdatum: "pf-fsdatum", seit: "pf-seit" };
+  // Datum als drei eigene Listen (Tag · Monat · Jahr): Der Kalender des Handys blättert nur Monat für Monat zurück –
+  // für einen Führerschein von vor 20 Jahren wären das 240 Tipper. .value liefert wie bisher JJJJ-MM-TT oder "".
+  function yearOpts(from, to) { var h = ""; for (var i = from; i >= to; i--) h += '<option value="' + i + '">' + i + "</option>"; return h; }
+  function dateSelect(el) {
+    var y0 = new Date().getFullYear(), id = el.id, h = "", i;
+    h += '<select id="' + id + '-d" data-t-aria="d_tag"><option value="" data-t="d_tag"></option>';
+    for (i = 1; i <= 31; i++) h += '<option value="' + i + '">' + i + "</option>";
+    h += '</select><select id="' + id + '-m" data-t-aria="d_mon"><option value="" data-t="d_mon"></option>';
+    for (i = 1; i <= 12; i++) h += '<option value="' + i + '" data-t="mon_' + i + '"></option>';
+    h += '</select><select id="' + id + '-y" data-t-aria="d_jahr"><option value="" data-t="d_jahr"></option>' + yearOpts(y0, y0 - (+el.getAttribute("data-back") || 60)) + "</select>";
+    el.innerHTML = h;
+    var sd = $(id + "-d"), sm = $(id + "-m"), sy = $(id + "-y");
+    el.check = function () { // "" = gültig oder leer, sonst der Grund
+      var miss = [];
+      if (!sd.value) miss.push(t("d_tag")); if (!sm.value) miss.push(t("d_mon")); if (!sy.value) miss.push(t("d_jahr"));
+      if (miss.length === 3) return "";
+      if (miss.length) return t("d_missing", UI === "ru" ? miss.join(", ").toLowerCase() : miss.join(", "));
+      var x = new Date(+sy.value, +sm.value - 1, +sd.value);
+      if (x.getMonth() !== +sm.value - 1) return t("d_invalid");
+      if (daysLeft(x) > 0) return t("d_future");
+      return "";
+    };
+    Object.defineProperty(el, "value", {
+      get: function () { return sd.value && sm.value && sy.value && !el.check() ? sy.value + "-" + pad(sm.value) + "-" + pad(sd.value) : ""; },
+      set: function (v) {
+        var p = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(v || ""));
+        if (p && !sy.querySelector('option[value="' + p[1] + '"]')) sy.insertAdjacentHTML("beforeend", '<option value="' + p[1] + '">' + p[1] + "</option>");
+        sy.value = p ? p[1] : ""; sm.value = p ? String(+p[2]) : ""; sd.value = p ? String(+p[3]) : "";
+      }
+    });
+  }
+  function dateMsgs() { [].forEach.call(document.querySelectorAll(".dsel"), function (el) { el.parentNode.querySelector(".dsel-msg").textContent = el.check(); }); }
+  [].forEach.call(document.querySelectorAll(".dsel"), dateSelect);
+  (function () { var y0 = new Date().getFullYear(); $("pf-by").innerHTML = '<option value="" data-t="pf_none"></option>' + yearOpts(y0 - 12, y0 - 95); })();
   function loadProfile() { try { prof = JSON.parse(lsGet(LS_PROF) || "{}") || {}; } catch (e) { prof = {}; } }
   function hasProfile() { return Object.keys(prof).length > 0; }
   function parseDay(v) { var p = String(v || "").split("-"); if (p.length !== 3) return null; var d = new Date(+p[0], +p[1] - 1, +p[2]); return isNaN(d.getTime()) ? null : d; }
@@ -944,10 +982,10 @@
   }
   function fillProfileForm() {
     Object.keys(pf).forEach(function (k) { $(pf[k]).value = prof[k] || ""; });
-    $("pf-bau").checked = !!prof.bau; syncProfileFields();
+    $("pf-bau").checked = !!prof.bau; syncProfileFields(); dateMsgs();
   }
   function saveProfile() {
-    syncProfileFields();
+    syncProfileFields(); dateMsgs();
     var o = {};
     Object.keys(pf).forEach(function (k) { var el = $(pf[k]), v = String(el.value || "").trim(); if (v && !el.closest(".field").hidden) o[k] = v; });
     if ($("pf-bau").checked) o.bau = true;
@@ -983,6 +1021,7 @@
     $("mic-label").textContent = activeListen ? t("mic_on") : t("mic_idle");
     [].forEach.call(document.querySelectorAll(".dict"), function (b) { b.textContent = b.getAttribute("aria-pressed") === "true" ? t("stop") : t("dict"); });
     if (recState && recState.r) $("rec-mode").textContent = recModeText(recState.r);
+    dateMsgs();
   }
   function setUI(u) {
     if (u === UI || !T[u]) return;
