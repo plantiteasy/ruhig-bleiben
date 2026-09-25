@@ -33,6 +33,13 @@
       q_ask: "Frage stellen", q_proto: "Protokoll", back: "Zurück", close: "Schließen",
       b_say: "Sag", b_do: "Tu", b_dont: "Lass", tap: "Groß anzeigen",
       act_film: "Video ohne Ton", act_consent: "Mit Einwilligung aufnehmen", act_proto: "Protokoll danach", act_qh: "Antworten mit §",
+      k_start: "Ich werde kontrolliert", k_start_s: "Video ohne Ton startet · Antworten mit § auf einem Bildschirm", k_h: "Was sagt der Polizist?", k_role_aria: "Ich bin",
+      k_ptt: "Stichwort sagen", k_ptt_on: "Ich höre … Stichwort sagen", k_nomatch: "Nicht gefunden: „{x}“. Tippe auf einen Knopf.",
+      k_mic_busy: "Bei einer Aufnahme mit Ton ist das Mikrofon belegt. Tippe auf einen Knopf.", k_all: "Alle 64 Antworten",
+      k_rec: "Video starten", k_stop: "Stopp", k_norec: "Keine Aufnahme", k_rec_wait: "Kamera startet …", k_rec_silent: "Video ohne Ton", k_rec_audio: "Video mit Ton",
+      k_saved: "Aufnahme gespeichert.", k_sichern: "Jetzt sichern", k_big: "Groß zeigen", k_more: "Mehr sagen und warum",
+      k_test_warn: "Testmodus: nur mit Freunden, die Polizei spielen und einverstanden sind. Der Ton geht zur Erkennung an Google. Nicht bei echter Polizei benutzen.",
+      k_listen: "Mithören starten (Test)", k_listen_on: "Mithören stoppen", k_live: "Hört mit (Test):", k_log_share: "Log teilen", k_test_off: "Testmodus aus", k_log_none: "kein Treffer",
       fragen_h: "Frage stellen",
       fragen_lead: "Tippe auf das Mikrofon und frag kurz, zum Beispiel „Darf ich filmen?“ oder «Можно ли снимать?». Die Antwort erscheint als Text, sobald du fertig gesprochen hast. Danach hört das Mikrofon noch 5 Sekunden zu, falls du etwas ergänzen willst. Verarbeitet wird nur deine Frage.",
       seg_ask_aria: "Sprache der Spracheingabe", seg_de: "Deutsch", seg_ru: "Русский", mic_idle: "Tippen und fragen", mic_on: "Ich höre … tippen zum Stoppen",
@@ -132,6 +139,13 @@
       q_ask: "Задать вопрос", q_proto: "Протокол", back: "Назад", close: "Закрыть",
       b_say: "Скажи", b_do: "Делай", b_dont: "Не делай", tap: "Показать крупно",
       act_film: "Видео без звука", act_consent: "Запись с согласия", act_proto: "Протокол после", act_qh: "Ответы с §",
+      k_start: "Меня проверяет полиция", k_start_s: "Запускается видео без звука · ответы с § на одном экране", k_h: "Что говорит полицейский?", k_role_aria: "Я",
+      k_ptt: "Сказать слово", k_ptt_on: "Слушаю… скажи слово", k_nomatch: "Не найдено: «{x}». Нажми на кнопку.",
+      k_mic_busy: "Во время записи со звуком микрофон занят. Нажми на кнопку.", k_all: "Все 64 ответа",
+      k_rec: "Начать видео", k_stop: "Стоп", k_norec: "Запись не идёт", k_rec_wait: "Камера включается…", k_rec_silent: "Видео без звука", k_rec_audio: "Видео со звуком",
+      k_saved: "Запись сохранена.", k_sichern: "Сохранить копию", k_big: "Показать крупно", k_more: "Полный ответ и почему",
+      k_test_warn: "Тестовый режим: только с друзьями, которые играют полицию и согласны. Звук для распознавания уходит в Google. Не использовать с настоящей полицией.",
+      k_listen: "Начать прослушивание (тест)", k_listen_on: "Остановить прослушивание", k_live: "Слушает (тест):", k_log_share: "Поделиться логом", k_test_off: "Выключить тест", k_log_none: "нет совпадения",
       fragen_h: "Задать вопрос",
       fragen_lead: "Нажми на микрофон и спроси коротко, например «Можно ли снимать?» или „Darf ich filmen?“. Ответ появится текстом, как только договоришь. Потом микрофон ещё 5 секунд слушает, если захочешь что-то добавить. Обрабатывается только твой вопрос.",
       seg_ask_aria: "Язык голосового ввода", seg_de: "По-немецки", seg_ru: "По-русски", mic_idle: "Нажми и спроси", mic_on: "Слушаю… нажми, чтобы остановить",
@@ -248,13 +262,13 @@
   }
 
   /* ---------- Views ---------- */
-  var views = ["jetzt", "fragen", "aufnahme", "danach", "wissen", "situation", "profil"], currentView = "jetzt";
+  var views = ["jetzt", "fragen", "aufnahme", "danach", "wissen", "situation", "profil", "kontrolle"], currentView = "jetzt";
   var lastTab = "jetzt";
   function show(name) {
     if (name !== currentView) { stopListening(); if (name !== "fragen") stopSpeaking(); }
     currentView = name;
     views.forEach(function (v) { $("v-" + v).hidden = v !== name; });
-    var tab = name === "situation" || name === "profil" ? lastTab : name; lastTab = tab;
+    var tab = name === "situation" || name === "profil" ? lastTab : name === "kontrolle" ? "aufnahme" : name; lastTab = tab;
     [].forEach.call(document.querySelectorAll(".tabs a"), function (a) {
       if (a.getAttribute("data-tab") === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
@@ -266,6 +280,7 @@
     if (h.indexOf("s/") === 0) { var s = findSituation(h.slice(2)); if (s) { renderSituation(s); show("situation"); return; } }
     var v = views.indexOf(h) > -1 && h !== "situation" ? h : "jetzt";
     if (v === "danach") refreshProtoNow();
+    if (v === "kontrolle" && !(history.state && history.state.rbK)) hideK(); // neu geöffnet: Knöpfe, nicht die alte Antwort
     show(v);
   }
   window.addEventListener("hashchange", route);
@@ -365,7 +380,7 @@
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeBig(); });
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest(".say-b");
-    if (b) openBig(b.getAttribute("data-de"), b.getAttribute("data-ru"), b);
+    if (b) openBig(b.getAttribute("data-de"), b.getAttribute("data-ru"), b, b.getAttribute("data-law") || "", b.getAttribute("data-why") || "");
     var a = e.target.closest && e.target.closest("[data-act]");
     if (a) {
       pendingAct = a.getAttribute("data-act");
@@ -445,6 +460,14 @@
     return (noHead ? "" : '<div class="w-head"><h3>' + esc(L(c, "title")) + '</h3><span class="pill ' + c.tone + '">' + esc(L(c, "toneLabel")) + "</span></div>") +
       "<p>" + telLinks(esc(L(c, "text"))) + "</p>" + (c.say ? sayButtons(c.say) : "") + '<p class="law" lang="de">' + esc(c.law) + "</p>";
   }
+  // Antwort aus der Schnellhilfe (Polizei sagt → Antwort mit §), wenn keine Karte passt – z. B. „Steigen Sie aus“.
+  function quickAnsHTML(q) {
+    var ru = UI === "ru" && q.ru ? q.ru.say : "";
+    return '<article class="ans top" data-id="' + esc(q.id) + '"><div class="w-head"><h3>„' + esc(L(q, "cop")) + '“</h3><span class="pill ' + VTONE[q.v] + '">' + esc(t("v_" + q.v)) + "</span></div>" +
+      '<button class="say-b" type="button" data-de="' + esc(q.say) + '" data-ru="' + esc(ru) + '" data-law="' + esc(q.law) + '" data-why="' + esc(L(q, "why")) + '"><span class="say-de" lang="de">' + esc(nb(q.say)) + "</span>" +
+      (ru ? '<span class="say-ru" lang="ru">' + esc(nb(ru)) + "</span>" : "") + '<span class="say-tap">' + esc(t("tap")) + "</span></button>" +
+      "<p>" + esc(nb(L(q, "why"))) + '</p><p class="law" lang="de">' + esc(nb(q.law)) + "</p></article>";
+  }
   function speakText(e) {
     var it = e.item;
     if (e.kind === "s") return L(it, "title") + ". " + t("speak_say") + ": " + it.say[0][UI === "ru" ? 1 : 0] + " " + L(it, "doo")[0];
@@ -455,7 +478,9 @@
   function renderAnswers(q, fromUser) {
     var res = match(q), box = $("answers");
     stopSpeaking();
-    if (!res.length) {
+    var kq = !res.length && qById(kMatch(q, true));
+    if (kq) box.innerHTML = quickAnsHTML(kq);
+    else if (!res.length) {
       // Russisch gefragt oder russische Oberfläche: Hinweis auf Russisch
       box.innerHTML = '<p class="err">' + esc(UI === "ru" || /[а-яё]/i.test(q) ? T.ru.no_card : T.de.no_card) + "</p>";
     } else {
@@ -515,7 +540,8 @@
     if (a.slice(-b.length) === b) return a; // doppelt gelieferte Teile nicht zweimal anhängen
     return a + " " + b;
   }
-  function listen(onText, onEnd, onErr, ctx) {
+  // endless: ohne 5-Sekunden-Grenze, bis stop() (nur Test-Mithörmodus)
+  function listen(onText, onEnd, onErr, ctx, endless) {
     if (!SR) { onErr(t(ctx === "proto" ? "sr_none_p" : "sr_none")); return null; }
     var ctl = { stopped: false, done: false, text: "", err: "", lastSpeech: Date.now(), rec: null, timer: null };
     function finish() {
@@ -543,7 +569,7 @@
       };
       r.onend = function () {
         ctl.text = mergeText(ctl.text, seg); seg = "";
-        if (!ctl.stopped && Date.now() - ctl.lastSpeech < SILENCE_MS) {
+        if (!ctl.stopped && (endless || Date.now() - ctl.lastSpeech < SILENCE_MS)) {
           try { startOne(); return; } catch (e) {}
         }
         finish();
@@ -555,7 +581,7 @@
       ctl.stopped = true;
       try { ctl.rec.stop(); } catch (e) { finish(); }
     };
-    ctl.timer = setInterval(function () { if (Date.now() - ctl.lastSpeech >= SILENCE_MS) ctl.stop(); }, 250);
+    ctl.timer = setInterval(function () { if (!endless && Date.now() - ctl.lastSpeech >= SILENCE_MS) ctl.stop(); }, 250);
     try { startOne(); } catch (e) { clearInterval(ctl.timer); onErr(t("sr_start")); return null; }
     activeListen = ctl;
     return ctl;
@@ -571,7 +597,7 @@
     err.hidden = true;
     function show(q, end) {
       if (!q || q === shown) return;
-      if (!end && !match(q).length) return; // halbe Frage ohne Treffer: noch keine „nichts gefunden“-Meldung
+      if (!end && !match(q).length && !kMatch(q, true)) return; // halbe Frage ohne Treffer: noch keine „nichts gefunden“-Meldung
       $("ask-input").value = q; renderAnswers(q, !shown); shown = q;
     }
     var r = listen(function (fin, interim) {
@@ -669,7 +695,7 @@
     return "kontrolle_" + isoDate(s) + "_" + pad(s.getHours()) + "-" + pad(s.getMinutes()) + "-" + pad(s.getSeconds()) +
       (r.withAudio ? "_mit-ton" : "_ohne-ton") + (r.status === "recovered" ? "_wiederhergestellt" : "") + "." + ext;
   }
-  function recError(msg) { var e = $("rec-err"); e.textContent = msg || ""; e.hidden = !msg; }
+  function recError(msg) { ["rec-err", "k-err"].forEach(function (id) { var e = $(id); e.textContent = msg || ""; e.hidden = !msg; }); }
   function setRecUI(stage) {
     $("rec-start").hidden = stage !== "start"; $("consent-step").hidden = stage !== "consent"; $("rec-live").hidden = stage !== "live";
   }
@@ -686,7 +712,7 @@
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) {
       recError(t("rec_nobrowser")); setRecUI("start"); return;
     }
-    recState = { pending: true };
+    recState = { pending: true }; kSaved = false; syncKBar();
     navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" }, width: { ideal: 1280 }, height: { ideal: 720 } }, audio: !!withAudio })
       .then(function (stream) {
         // Ein Schlüsselbild pro Sekunde: Chrome schreibt MP4 sonst erst beim Stopp – bei einem Absturz wäre alles weg.
@@ -706,24 +732,25 @@
         r.type = baseType(rec.mimeType || mime); r.name = fileName(r);
         recState = { rec: rec, r: r, timer: setInterval(tick, 500) };
         stream.getVideoTracks().forEach(function (tr) { tr.addEventListener("ended", function () { r.cut = true; stopRecording(); }); });
-        var v = $("preview"); v.srcObject = stream; v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () {});
+        [$("preview"), $("k-thumb")].forEach(function (v) { v.srcObject = stream; v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () {}); });
         if (storageOK) putRec(r).catch(storageFail);
         else recError(t("rec_nopersist"));
         if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function () {});
         $("rec-mode").textContent = recModeText(r);
         tick(); setRecUI("live"); keepAwake(); updateRecFloat();
       })
-      .catch(function (e) { recState = null; setRecUI("start"); recError(camError(e, withAudio)); });
+      .catch(function (e) { recState = null; setRecUI("start"); recError(camError(e, withAudio)); syncKBar(); });
   }
   function recModeText(r) { return r.withAudio ? t("mode_audio", fmtTime(r.consentAt)) : t("mode_silent"); }
   function tick() {
     if (!recState || !recState.r) return;
     var s = Math.floor((Date.now() - recState.r.started.getTime()) / 1000), clock = pad(Math.floor(s / 60)) + ":" + pad(s % 60);
-    $("rec-time").textContent = clock; $("rec-float-time").textContent = clock;
+    $("rec-time").textContent = clock; $("rec-float-time").textContent = clock; $("big-rec-t").textContent = "REC " + clock; syncKBar(clock);
   }
   function updateRecFloat() {
     var on = !!(recState && recState.rec);
-    $("rec-float").hidden = !on || currentView === "aufnahme";
+    $("rec-float").hidden = !on || currentView === "aufnahme" || currentView === "kontrolle";
+    $("big-rec").hidden = !on; syncKBar();
     document.body.classList.toggle("rec-on", on);
   }
   function stopRecording() { if (recState && recState.rec && recState.rec.state !== "inactive") { try { recState.rec.stop(); } catch (e) {} } }
@@ -734,7 +761,7 @@
   }
   function finishRecording(r, chunks, stream) {
     if (recState && recState.r === r) { clearInterval(recState.timer); recState = null; }
-    stream.getTracks().forEach(function (t) { t.stop(); }); $("preview").srcObject = null;
+    stream.getTracks().forEach(function (t) { t.stop(); }); $("preview").srcObject = null; $("k-thumb").srcObject = null; kSaved = true;
     if (!needAwake()) releaseAwake();
     updateRecFloat(); setRecUI("start");
     if (r.cut) { recError(t("rec_cut", fmtTime(new Date()))); try { if (navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch (e) {} }
@@ -844,6 +871,7 @@
     if (location.hash === "#aufnahme" && pendingAct === "consent" && !recState) setRecUI("consent");
     if (location.hash === "#aufnahme" && pendingAct === "film" && !recState) startRecording(false, null);
     if (location.hash === "#aufnahme" && pendingAct === "qh") setTimeout(function () { $("qh").scrollIntoView({ block: "start" }); }, 0);
+    if (location.hash === "#kontrolle" && pendingAct === "kontrolle" && !recState) startRecording(false, null);
     pendingAct = null;
   });
   document.addEventListener("visibilitychange", function () {
@@ -878,6 +906,156 @@
     var q = (D.quick || []).filter(function (x) { return x.id === b.getAttribute("data-q"); })[0]; if (!q) return;
     openBig(q.say, UI === "ru" && q.ru ? q.ru.say : "", b, q.law, L(q, "why"));
   });
+
+  /* ---------- Kontrolle-Modus ----------
+     Ein Bildschirm für die ganze Kontrolle: oben die Aufnahme, darunter je Rolle 10 Knöpfe in der Reihenfolge einer
+     typischen Kontrolle. Ein Tipp zeigt einen kurzen Satz groß, das Ja/Nein und den Paragrafen – ohne Scrollen, die Aufnahme bleibt sichtbar.
+     Inhalte: kontrolle.js (Kurzfassung, Stichwörter) → quick.js (volle, geprüfte Antwort). */
+  var K = D.kontrolle || null, LS_KROLE = "rb-k-rolle-v1", LS_KTEST = "rb-test-mithoeren", kRole = lsGet(LS_KROLE) || "fahrer", kCur = null, kSaved = false;
+  if (K && !K.buttons[kRole]) kRole = "fahrer";
+  function qById(id) { var Q = D.quick || []; for (var i = 0; i < Q.length; i++) if (Q[i].id === id) return Q[i]; return null; }
+  function syncKBar(clock) {
+    if (!$("k-bar")) return;
+    var on = !!(recState && recState.rec), wait = !!(recState && recState.pending);
+    if (on && !clock) { var sec = Math.floor((Date.now() - recState.r.started.getTime()) / 1000); clock = pad(Math.floor(sec / 60)) + ":" + pad(sec % 60); }
+    $("k-dot").hidden = !on; $("k-thumb").hidden = !on;
+    $("k-bar").classList.toggle("on", on);
+    var b = $("k-rec"); b.textContent = on ? t("k_stop") : t("k_rec"); b.className = "btn k-recbtn " + (on ? "stop" : "primary"); b.disabled = wait;
+    if (on) $("k-status").textContent = (recState.r.withAudio ? t("k_rec_audio") : t("k_rec_silent")) + " · " + clock;
+    else if (wait) $("k-status").textContent = t("k_rec_wait");
+    else $("k-status").innerHTML = kSaved ? esc(t("k_saved")) + ' <a href="#aufnahme">' + esc(t("k_sichern")) + "</a>" : esc(t("k_norec"));
+  }
+  function renderKontrolle() {
+    if (!K) { $("k-start").hidden = true; return; }
+    $("k-role").innerHTML = K.roles.map(function (r) {
+      return '<button type="button" class="seg-b" data-kr="' + r[0] + '" aria-pressed="' + (kRole === r[0]) + '">' + esc(UI === "ru" ? r[2] : r[1]) + "</button>";
+    }).join("");
+    $("k-grid").innerHTML = (K.buttons[kRole] || []).map(function (b) {
+      var q = qById(b[0]); if (!q) return "";
+      return '<button type="button" class="k-b" data-k="' + b[0] + '"><span class="k-b-t">' + esc(UI === "ru" ? b[2] : b[1]) + '</span><span class="k-b-v ' + VTONE[q.v] + '">' + esc(t("v_" + q.v)) + "</span></button>";
+    }).join("");
+    $("k-test").hidden = lsGet(LS_KTEST) !== "1";
+    $("k-listen").textContent = kListen ? t("k_listen_on") : t("k_listen");
+    syncKBar();
+    if (kCur) showK(kCur, true);
+  }
+  function showK(id, noPush) {
+    var q = qById(id), k = (K && K.kurz[id]) || {}; if (!q) return;
+    var ru = UI === "ru", dann = ru ? k.dann_ru : k.dann;
+    kCur = id;
+    $("k-cop").textContent = "„" + L(q, "cop") + "“";
+    $("k-v").className = "pill " + VTONE[q.v]; $("k-v").textContent = t("v_" + q.v);
+    $("k-say").textContent = nb(k.de || q.say);
+    $("k-say-ru").textContent = ru ? nb(k.ru || (q.ru && q.ru.say) || "") : ""; $("k-say-ru").hidden = !ru;
+    $("k-law").textContent = nb(k.law || q.law);
+    $("k-dann").textContent = dann || ""; $("k-dann").hidden = !dann;
+    $("k-full").textContent = nb(q.say); $("k-full-ru").textContent = ru && q.ru ? nb(q.ru.say) : ""; $("k-full-ru").hidden = !ru;
+    $("k-why").textContent = nb(L(q, "why")); $("k-lawfull").textContent = nb(q.law);
+    if (!noPush) $("k-more").open = false;
+    $("k-pick").hidden = true; $("k-ans").hidden = false;
+    // Eigener Verlaufseintrag: Die Zurück-Taste führt zu den Knöpfen, nicht aus der Kontrolle heraus.
+    // Ist schon eine Antwort offen (z. B. beim Mithören), ersetzt die neue sie – Zurück führt immer mit einem Schritt zu den Knöpfen.
+    if (!noPush) { try { if (history.state && history.state.rbK) history.replaceState({ rbK: 1, d: depth }, ""); else history.pushState({ rbK: 1, d: depth }, ""); } catch (e) {} window.scrollTo(0, 0); }
+  }
+  function hideK() { kCur = null; $("k-ans").hidden = true; $("k-pick").hidden = false; }
+  window.addEventListener("popstate", function () { if (!(history.state && history.state.rbK) && !$("k-ans").hidden) hideK(); });
+  $("k-back").addEventListener("click", function () { if (history.state && history.state.rbK) history.back(); else hideK(); });
+  $("k-big").addEventListener("click", function () {
+    var q = qById(kCur), k = (K && K.kurz[kCur]) || {}; if (!q) return;
+    openBig(k.de || q.say, UI === "ru" ? k.ru || (q.ru && q.ru.say) || "" : "", $("k-big"), k.law || q.law, (UI === "ru" ? k.dann_ru : k.dann) || "");
+  });
+  $("k-grid").addEventListener("click", function (e) { var b = e.target.closest("[data-k]"); if (b) showK(b.getAttribute("data-k")); });
+  $("k-role").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-kr]"); if (!b) return;
+    kRole = b.getAttribute("data-kr"); lsSet(LS_KROLE, kRole); renderKontrolle();
+  });
+  $("k-rec").addEventListener("click", function () { if (recState && recState.rec) stopRecording(); else if (!recState) startRecording(false, null); });
+
+  /* Stichwort-Abgleich: Wortanfänge zählen, ein Leerzeichen am Stichwort-Ende verlangt das ganze Wort.
+     Punkte = Länge der gefundenen Stichwörter; es gewinnt der Knopf mit den meisten, ab 3 („моч“). */
+  function kScore(n, stems) {
+    var sc = 0;
+    stems.forEach(function (st) { var w = norm(st); if (w && n.indexOf(" " + w + (/ $/.test(st) ? " " : "")) > -1) sc += w.length; });
+    return sc;
+  }
+  function kMatch(text, all) {
+    if (!K) return null;
+    var n = " " + norm(text) + " ", best = null, bs = 2, seen = {};
+    (all ? K.roles.map(function (r) { return r[0]; }) : [kRole]).forEach(function (role) {
+      (K.buttons[role] || []).concat((K.extra && K.extra[role]) || []).forEach(function (b) {
+        var id = b[0], stems = b[3] || b[1];
+        if (seen[id]) return; seen[id] = 1;
+        var sc = kScore(n, stems); if (sc > bs) { bs = sc; best = id; }
+      });
+    });
+    return best;
+  }
+  // Mikrofon für die eigene Stimme: ein Stichwort („pusten“, „Kofferraum“) → Antwort. Nicht bei Aufnahme mit Ton (Mikrofon belegt).
+  var kPTT = null, kListen = null;
+  function micBusy() { return !!(recState && recState.r && recState.r.withAudio); }
+  $("k-ptt").addEventListener("click", function () {
+    var b = $("k-ptt"), heard = $("k-heard"), shown = false;
+    if (kPTT) { kPTT.stop(); return; }
+    if (micBusy()) { heard.textContent = t("k_mic_busy"); return; }
+    if (kListen) kListen.stop();
+    function reset() { kPTT = null; b.setAttribute("aria-pressed", "false"); $("k-ptt-l").textContent = t("k_ptt"); }
+    kPTT = listen(function (fin, interim) {
+        heard.textContent = (fin + " " + interim).trim();
+        var id = !interim && fin && kMatch(fin);
+        if (id && !shown) { shown = true; showK(id); if (kPTT) kPTT.stop(); }
+      },
+      function (fin) {
+        reset();
+        if (shown) { heard.textContent = ""; return; }
+        var id = fin && kMatch(fin);
+        if (id) { heard.textContent = ""; showK(id); } else if (fin) heard.textContent = t("k_nomatch", fin);
+      },
+      function (msg) { reset(); heard.textContent = msg; }, "k");
+    if (kPTT) { b.setAttribute("aria-pressed", "true"); $("k-ptt-l").textContent = t("k_ptt_on"); heard.textContent = ""; }
+  });
+
+  /* Test-Mithörmodus (nur für Proben mit Freunden): hört dauerhaft zu, ordnet jeden Satz einem Knopf der gewählten Rolle zu
+     und öffnet die Antwort von selbst. Einschalten per Link mit ?mithoeren=1. Das Log bleibt nur im Speicher. */
+  var kLog = [];
+  (function () { var m = /[?&]mithoeren=([01])/.exec(location.search); if (m) { if (m[1] === "1") lsSet(LS_KTEST, "1"); else try { localStorage.removeItem(LS_KTEST); } catch (e) {} } })();
+  function kLabel(id) { var r = null; if (K) Object.keys(K.buttons).forEach(function (k) { K.buttons[k].forEach(function (b) { if (b[0] === id) r = UI === "ru" ? b[2] : b[1]; }); }); return r || id; }
+  function renderKLog() {
+    $("k-log").innerHTML = kLog.slice(0, 20).map(function (x) {
+      return "<li><span class=\"k-log-t\">" + fmtTime(x.t) + "</span> „" + esc(x.text) + "“ → <b>" + esc(x.id ? kLabel(x.id) : t("k_log_none")) + "</b></li>";
+    }).join("");
+  }
+  function kListenUI() {
+    var on = !!kListen;
+    $("k-listen").textContent = on ? t("k_listen_on") : t("k_listen"); $("k-listen").setAttribute("aria-pressed", on ? "true" : "false");
+    $("k-live").hidden = !on; if (!on) $("k-live-t").textContent = "";
+  }
+  function kListenStop() { if (kListen) kListen.stop(); }
+  $("k-listen").addEventListener("click", function () {
+    if (kListen) { kListenStop(); return; }
+    if (micBusy()) { $("k-listen-msg").textContent = t("k_mic_busy"); return; }
+    if (kPTT) kPTT.stop();
+    var done = "", qt = null;
+    $("k-listen-msg").textContent = "";
+    kListen = listen(function (fin, interim) {
+        var neu = fin.indexOf(done) === 0 ? fin.slice(done.length).trim() : fin;
+        $("k-live-t").textContent = t("k_live") + " „" + (neu + " " + interim).trim() + "“";
+        clearTimeout(qt);
+        if (!interim && neu) qt = setTimeout(function () {
+          var id = kMatch(neu); done = fin;
+          kLog.unshift({ t: new Date(), text: neu, id: id, role: kRole }); renderKLog();
+          if (id && id !== kCur) showK(id);
+        }, 300);
+      },
+      function () { clearTimeout(qt); kListen = null; kListenUI(); },
+      function (msg) { $("k-listen-msg").textContent = msg; }, "k", true);
+    kListenUI();
+  });
+  $("k-live-stop").addEventListener("click", kListenStop);
+  $("k-log-share").addEventListener("click", function () {
+    var lines = kLog.slice().reverse().map(function (x) { return fmtTime(x.t) + " [" + x.role + "] " + x.text + " -> " + (x.id || "-"); });
+    shareText("Mithör-Test", lines.join("\n") || "-", $("k-listen-msg"));
+  });
+  $("k-test-off").addEventListener("click", function () { kListenStop(); try { localStorage.removeItem(LS_KTEST); } catch (e) {} $("k-test").hidden = true; });
 
   /* ---------- Protocol ---------- */
   var fields = ["datum", "zeit", "ort", "beamte", "ablauf", "zitate", "zeugen", "aufnahmen", "schaden", "name"];
@@ -1261,14 +1439,18 @@
     if (u === UI || !T[u]) return;
     UI = u; lsSet(LS_UI, u);
     if (!lsGet(LS_LANG)) { lang = u === "ru" ? "ru-RU" : "de-DE"; syncSeg(); } // Spracheingabe folgt, solange nicht selbst gewählt
-    applyUI(); renderGrid(); renderFuerDich(); renderCats(); renderWissen($("w-q").value); renderDeadlines(); renderLetters(); syncProtoHints(protoData()); syncInstall(); renderRecs(); renderQuick();
+    applyUI(); renderGrid(); renderFuerDich(); renderCats(); renderWissen($("w-q").value); renderDeadlines(); renderLetters(); syncProtoHints(protoData()); syncInstall(); renderRecs(); renderQuick(); renderKontrolle(); renderKLog();
     if (currentView === "situation") route();
     if ($("answers").innerHTML && $("ask-input").value.trim()) renderAnswers($("ask-input").value.trim());
   }
   [].forEach.call(document.querySelectorAll(".lang-b"), function (b) { b.addEventListener("click", function () { setUI(b.getAttribute("data-ui")); }); });
 
   /* ---------- Start ---------- */
-  applyUI(); loadProfile(); fillProfileForm(); renderFuerDich(); buildCorpus(); renderGrid(); syncSeg(); loadProto(); renderDeadlines(); renderLetters(); renderCats(); renderWissen(""); renderQuick(); syncInstall(); route(); loadRecs();
+  // Homescreen-Shortcut „Kontrolle“ (./?start=1#kontrolle): Video ohne Ton sofort starten; ?start aus der Adresse nehmen, damit Neuladen nicht erneut startet.
+  var kAuto = /[?&]start=1/.test(location.search);
+  if (kAuto) { try { history.replaceState(history.state, "", location.pathname + "#kontrolle"); } catch (e) {} }
+  applyUI(); loadProfile(); fillProfileForm(); renderFuerDich(); buildCorpus(); renderGrid(); syncSeg(); loadProto(); renderDeadlines(); renderLetters(); renderCats(); renderWissen(""); renderQuick(); renderKontrolle(); syncInstall(); route(); loadRecs();
+  if (kAuto && !recState) startRecording(false, null);
   if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
     var hadController = !!navigator.serviceWorker.controller;
     // Neue Version direkt nach dem Öffnen: einmal neu laden, damit geänderte Inhalte sofort gelten.

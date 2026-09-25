@@ -8,6 +8,10 @@
   "display": "standalone",
   "background_color": "#F2F4F1",
   "theme_color": "#1E6B55",
+  "shortcuts": [
+    { "name": "Ich werde kontrolliert", "short_name": "Kontrolle", "description": "Video ohne Ton starten, Antworten mit Paragraf", "url": "./?start=1#kontrolle", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Frage stellen", "short_name": "Frage", "url": "./#fragen", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] }
+  ],
   "icons": [
     { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
