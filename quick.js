@@ -873,21 +873,20 @@ window.RB.quick = [
   "v": "musst_nicht",
   "cop": "Sie dürfen uns nicht filmen – wir haben ein Recht am eigenen Bild!",
   "say": "§ 22 KUG verbietet nur das Verbreiten und öffentliche Zurschaustellen, nicht das Filmen. Ich veröffentliche nichts; die Aufnahme dient nur der Beweissicherung.",
-  "law": "§§ 22, 23, 33 KUG · § 201a Abs. 1 Nr. 2 StGB · BVerwG 6 C 12.11 · BVerfG 1 BvR 2501/13 · LG Hanau 1 Qs 23/22",
-  "why": "Strafbar ist nach § 33 KUG erst das Verbreiten oder öffentliche Zurschaustellen. Das bloße Anfertigen darf die Polizei nur bei konkreten Anhaltspunkten für eine rechtswidrige Veröffentlichung verbieten (BVerwG 6 C 12.11 Rn. 34 f. – SEK-Einsatz in Schwäbisch Hall; BVerfG 1 BvR 2501/13 Rn. 14). Das Sichern in einer privaten Cloud ist kein Zurschaustellen (LG Hanau 1 Qs 23/22). Recht hat der Beamte, sobald du erkennbare Gesichter postest oder streamst (§ 33 KUG). Filmst du hilflose Menschen, etwa Verletzte nach einem Unfall, kann schon das Herstellen der Aufnahme nach § 201a Abs. 1 Nr. 2 StGB strafbar sein.",
+  "law": "§§ 22, 23, 33 KUG · § 201a Abs. 1 Nr. 2 StGB · BVerwG 6 C 12.11 · BVerfG 1 BvR 2501/13",
+  "why": "Strafbar ist nach § 33 KUG erst das Verbreiten oder öffentliche Zurschaustellen. Das bloße Anfertigen darf die Polizei nur bei konkreten Anhaltspunkten für eine rechtswidrige Veröffentlichung verbieten (BVerwG 6 C 12.11 Rn. 34 f. – SEK-Einsatz in Schwäbisch Hall; BVerfG 1 BvR 2501/13 Rn. 14). Eine Kopie, an die nur du selbst kommst, ist nach dem Wortlaut weder Verbreiten noch Zurschaustellen; ein Urteil genau dazu gibt es nicht. Recht hat der Beamte, sobald du erkennbare Gesichter postest oder streamst (§ 33 KUG). Filmst du hilflose Menschen, etwa Verletzte nach einem Unfall, kann schon das Herstellen der Aufnahme nach § 201a Abs. 1 Nr. 2 StGB strafbar sein.",
   "src": [
    "https://www.gesetze-im-internet.de/kunsturhg/__22.html",
    "https://www.gesetze-im-internet.de/kunsturhg/__23.html",
    "https://www.gesetze-im-internet.de/kunsturhg/__33.html",
    "https://www.gesetze-im-internet.de/stgb/__201a.html",
    "https://www.bverwg.de/de/280312U6C12.11.0",
-   "https://testphase.rechtsinformationen.bund.de/v1/case-law/KVRE411101501.html",
-   "https://www.lareda.hessenrecht.hessen.de/perma?d=LARE230005211"
+   "https://testphase.rechtsinformationen.bund.de/v1/case-law/KVRE411101501.html"
   ],
   "ru": {
    "cop": "Вам нельзя нас снимать — у нас есть право на собственное изображение!",
    "say": "§ 22 KUG запрещает только распространять и публично показывать, а не снимать. Я ничего не публикую; запись нужна только как доказательство.",
-   "why": "По § 33 KUG наказуемо только распространение или публичный показ. Саму съёмку полиция может запретить лишь при конкретных признаках незаконной публикации (BVerwG 6 C 12.11, п. 34 и след. — операция спецназа в Швебиш-Халле; BVerfG 1 BvR 2501/13, п. 14). Сохранение в личном облаке — не публичный показ (LG Hanau 1 Qs 23/22). Полицейский прав, как только ты выкладываешь или транслируешь узнаваемые лица (§ 33 KUG). Если ты снимаешь беспомощных людей, например раненых после аварии, наказуемой по § 201a Abs. 1 Nr. 2 StGB может быть уже сама съёмка."
+   "why": "По § 33 KUG наказуемо только распространение или публичный показ. Саму съёмку полиция может запретить лишь при конкретных признаках незаконной публикации (BVerwG 6 C 12.11, п. 34 и след. — операция спецназа в Швебиш-Халле; BVerfG 1 BvR 2501/13, п. 14). Копия, доступная только тебе, по тексту закона — ни распространение, ни показ; решения суда именно об этом нет. Полицейский прав, как только ты выкладываешь или транслируешь узнаваемые лица (§ 33 KUG). Если ты снимаешь беспомощных людей, например раненых после аварии, наказуемой по § 201a Abs. 1 Nr. 2 StGB может быть уже сама съёмка."
   }
  },
  {
@@ -929,6 +928,26 @@ window.RB.quick = [
    "cop": "Я сейчас включаю нательную камеру.",
    "say": "Хорошо. Прошу сохранить эту запись как доказательство и не удалять её (§ 44 Abs. 10 S. 2, § 75 Abs. 5 PolG BW).",
    "why": "Нательную камеру можно применять для предотвращения опасности (§ 44 Abs. 5 PolG BW). Помешать этому ты не вправе, возразить можешь. Дольше 60 секунд запись хранится, только если есть опасность для жизни или здоровья (Abs. 8), иначе она удаляется автоматически (Abs. 11). Сохранённое удаляется не позже чем через четыре недели, если оно не нужно, в том числе «для устранения нехватки доказательств» (Abs. 10 S. 2). Вместо удаления полиция обязана ограничить обработку, если удаление повредит твоим законным интересам или данные нужны как доказательство (§ 75 Abs. 5 S. 3 Nr. 1, 2). Камера полиции не делает твою собственную запись звука законной: LG Hanau из-за неё сначала отменил изъятие телефона (1 Qs 23/22), но в том же деле позже всё же осудил (5 KLs 3350 Js 16251/22)."
+  }
+ },
+ {
+  "id": "aufnahme-eigene-kamera",
+  "g": "aufnahme",
+  "v": "musst_nicht",
+  "cop": "Wir filmen selbst mit der Bodycam, Sie müssen nicht filmen.",
+  "say": "Ihre Bodycam löscht ohne Gefahr für Leib oder Leben nach 60 Sekunden. Ich filme nur Bild ohne Ton, behindere nicht und veröffentliche nichts.",
+  "law": "§ 44 Abs. 8, 10, 11 PolG BW · BVerwG 6 C 12.11 · BVerfG 1 BvR 2501/13 · § 201 Abs. 1 Nr. 1 StGB",
+  "why": "Eine Regel „nur eine Kamera“ gibt es nicht. Das Filmen darf die Polizei nur bei konkreten Anhaltspunkten für eine rechtswidrige Veröffentlichung verbieten (BVerwG 6 C 12.11 Rn. 34 f.; BVerfG 1 BvR 2501/13 Rn. 14). Die Bodycam gehört der Polizei: Ihre Aufnahme wird nach 60 Sekunden automatisch gelöscht, außer Tatsachen sprechen für eine Gefahr für Leib oder Leben (§ 44 Abs. 8, 11 PolG BW); was gespeichert bleibt, spätestens nach vier Wochen (Abs. 10). Dass sie eingeschaltet wird, kannst du nicht verlangen, und an die Aufnahme kommst du in der Regel nur über die Akteneinsicht eines Anwalts. Deine eigene Aufnahme ist deshalb oft der einzige Beweis. Ton nimmst du trotzdem nur mit Einwilligung auf (§ 201 Abs. 1 Nr. 1 StGB).",
+  "src": [
+   "https://www.landesrecht-bw.de/perma?d=jlr-NNLBW00007D29NN00000000058",
+   "https://www.bverwg.de/de/280312U6C12.11.0",
+   "https://testphase.rechtsinformationen.bund.de/v1/case-law/KVRE411101501.html",
+   "https://www.gesetze-im-internet.de/stgb/__201.html"
+  ],
+  "ru": {
+   "cop": "Мы сами снимаем на нательную камеру, вам снимать не нужно.",
+   "say": "Ваша камера без опасности для жизни или здоровья удаляет запись через 60 секунд. Я снимаю только изображение без звука, не мешаю и ничего не публикую.",
+   "why": "Правила «только одна камера» нет. Запретить съёмку полиция может лишь при конкретных признаках незаконной публикации (BVerwG 6 C 12.11, п. 34 и след.; BVerfG 1 BvR 2501/13, п. 14). Нательная камера принадлежит полиции: её запись удаляется автоматически через 60 секунд, если факты не указывают на опасность для жизни или здоровья (§ 44 Abs. 8, 11 PolG BW); сохранённое — не позже чем через четыре недели (Abs. 10). Требовать её включения ты не можешь, а получить запись обычно можно только через ознакомление адвоката с делом. Поэтому твоя собственная запись часто единственное доказательство. Звук всё равно пишешь только с согласия (§ 201 Abs. 1 Nr. 1 StGB)."
   }
  },
  {

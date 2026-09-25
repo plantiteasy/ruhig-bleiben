@@ -35,7 +35,7 @@
       act_film: "Video ohne Ton", act_consent: "Mit Einwilligung aufnehmen", act_proto: "Protokoll danach", act_qh: "Antworten mit §",
       k_start: "Ich werde kontrolliert", k_start_s: "Video ohne Ton startet · Antworten mit § auf einem Bildschirm", k_h: "Was sagt der Polizist?", k_role_aria: "Ich bin",
       k_ptt: "Stichwort sagen", k_ptt_on: "Ich höre … Stichwort sagen", k_nomatch: "Nicht gefunden: „{x}“. Tippe auf einen Knopf.",
-      k_mic_busy: "Bei einer Aufnahme mit Ton ist das Mikrofon belegt. Tippe auf einen Knopf.", k_all: "Alle 64 Antworten",
+      k_mic_busy: "Bei einer Aufnahme mit Ton ist das Mikrofon belegt. Tippe auf einen Knopf.", k_all: "Alle 65 Antworten",
       k_rec: "Video starten", k_stop: "Stopp", k_norec: "Keine Aufnahme", k_rec_wait: "Kamera startet …", k_rec_silent: "Video ohne Ton", k_rec_audio: "Video mit Ton",
       k_saved: "Aufnahme gespeichert.", k_sichern: "Jetzt sichern", k_big: "Zeigen", k_more: "Mehr und warum",
       k_test_warn: "Testmodus: nur mit Freunden, die Polizei spielen und einverstanden sind. Der Ton geht zur Erkennung an Google. Nicht bei echter Polizei benutzen.",
@@ -46,6 +46,15 @@
       einr_cam: "Jetzt erlauben", einr_cam_ok: "✓ Erlaubt", einr_4: "Auf den Startbildschirm", einr_4h: "Danach: lange auf das App-Symbol drücken → „Kontrolle“ startet sofort das Video.",
       einr_5: "Einmal üben", einr_try: "Kontrolle-Bildschirm ansehen (ohne Aufnahme)", einr_test: "Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google)",
       einr_6: "Optional: Profil", einr_prof: "Führerschein, Aufenthalt – für passende Hinweise", einr_done: "Fertig",
+      einr_tr: "Tresor: Kopie außerhalb des Handys", einr_tr_h: "Während du filmst, geht jede Sekunde verschlüsselt ins Netz. Nimmt jemand das Handy weg oder löscht darauf, bleibt die Kopie 7 Tage. Ohne deinen Code kommt niemand ran – auch wir nicht.",
+      einr_tr_on: "Tresor einschalten", einr_tr_data: "Braucht mobiles Internet, etwa 9 MB pro Minute Video.", einr_tr_code: "Dein Code. Aufschreiben oder einer Vertrauensperson schicken – auf dem Handy nützt er dir nichts, wenn es weg ist:",
+      einr_tr_share: "Code an Vertrauensperson senden", einr_tr_pick: "Video mit Code holen", einr_tr_off: "Tresor ausschalten", einr_tr_sure: "Sicher? Tippe nochmal – ohne Code kommt niemand mehr an alte Videos",
+      tr_share_text: "Mein Tresor-Code für „Ruhig bleiben“: {x}\nWird mir das Handy abgenommen, holst du damit meine Videos (7 Tage):", tr_copied: "Code kopiert",
+      tr_h: "Video aus dem Tresor holen", tr_lead: "Geht auf jedem Handy, auch wenn deins weg ist – du brauchst nur den Code. Videos bleiben 7 Tage, danach löscht der Server sie.",
+      tr_code: "Code (16 Zeichen)", tr_find: "Videos suchen", tr_bad: "Der Code hat 16 Zeichen, zum Beispiel 7K2M-QX4P-9RTD-WF3N.", tr_none: "Keine Videos zu diesem Code. Nach 7 Tagen sind sie gelöscht.",
+      tr_err: "Tresor nicht erreichbar. Internet prüfen und nochmal tippen.", tr_loading: "Suche …", tr_get: "Video holen", tr_getting: "Lade Teil {x}", tr_ready: "Fertig. Speichern oder teilen – der Tresor löscht nach 7 Tagen.",
+      tr_skipped: "Teile ließen sich nicht entschlüsseln und fehlen: {x}", tr_na: "Tresor ist in dieser Version noch nicht verfügbar.", rec_tr_link: "Video aus dem Tresor holen",
+      k_tr_ok: "Tresor {x}", k_tr_lag: "Tresor: kein Netz, gesichert bis {x}", k_tr_done: "alles im Tresor", k_tr_wait: "Tresor verbindet …",
       fragen_h: "Frage stellen",
       fragen_lead: "Tippe auf das Mikrofon und frag kurz, zum Beispiel „Darf ich filmen?“ oder «Можно ли снимать?». Die Antwort erscheint als Text, sobald du fertig gesprochen hast. Danach hört das Mikrofon noch 5 Sekunden zu, falls du etwas ergänzen willst. Verarbeitet wird nur deine Frage.",
       seg_ask_aria: "Sprache der Spracheingabe", seg_de: "Deutsch", seg_ru: "Русский", mic_idle: "Tippen und fragen", mic_on: "Ich höre … tippen zum Stoppen",
@@ -147,7 +156,7 @@
       act_film: "Видео без звука", act_consent: "Запись с согласия", act_proto: "Протокол после", act_qh: "Ответы с §",
       k_start: "Меня проверяет полиция", k_start_s: "Запускается видео без звука · ответы с § на одном экране", k_h: "Что говорит полицейский?", k_role_aria: "Я",
       k_ptt: "Сказать слово", k_ptt_on: "Слушаю… скажи слово", k_nomatch: "Не найдено: «{x}». Нажми на кнопку.",
-      k_mic_busy: "Во время записи со звуком микрофон занят. Нажми на кнопку.", k_all: "Все 64 ответа",
+      k_mic_busy: "Во время записи со звуком микрофон занят. Нажми на кнопку.", k_all: "Все 65 ответа",
       k_rec: "Начать видео", k_stop: "Стоп", k_norec: "Запись не идёт", k_rec_wait: "Камера включается…", k_rec_silent: "Видео без звука", k_rec_audio: "Видео со звуком",
       k_saved: "Запись сохранена.", k_sichern: "Сохранить копию", k_big: "Показать полицейскому", k_more: "Подробнее и почему",
       k_test_warn: "Тестовый режим: только с друзьями, которые играют полицию и согласны. Звук для распознавания уходит в Google. Не использовать с настоящей полицией.",
@@ -158,6 +167,15 @@
       einr_cam: "Разрешить сейчас", einr_cam_ok: "✓ Разрешено", einr_4: "Значок на главный экран", einr_4h: "Потом: долго нажми на значок приложения → «Kontrolle» сразу включает видео.",
       einr_5: "Один раз попробовать", einr_try: "Посмотреть экран проверки (без записи)", einr_test: "Потренироваться с другом: включить тест прослушивания (звук уходит в Google)",
       einr_6: "По желанию: профиль", einr_prof: "Права, вид на жительство — для точных подсказок", einr_done: "Готово",
+      einr_tr: "Сейф: копия вне телефона", einr_tr_h: "Пока ты снимаешь, каждая секунда зашифрованной уходит в интернет. Если телефон отберут или на нём удалят видео, копия хранится 7 дней. Без твоего кода её не откроет никто — даже мы.",
+      einr_tr_on: "Включить сейф", einr_tr_data: "Нужен мобильный интернет, около 9 МБ на минуту видео.", einr_tr_code: "Твой код. Запиши его или отправь доверенному человеку — в телефоне он не поможет, если телефон заберут:",
+      einr_tr_share: "Отправить код доверенному человеку", einr_tr_pick: "Забрать видео по коду", einr_tr_off: "Выключить сейф", einr_tr_sure: "Точно? Нажми ещё раз — без кода к старым видео уже никто не попадёт",
+      tr_share_text: "Мой код сейфа в «Ruhig bleiben»: {x}\nЕсли у меня отберут телефон, по нему ты заберёшь мои видео (7 дней):", tr_copied: "Код скопирован",
+      tr_h: "Забрать видео из сейфа", tr_lead: "Работает на любом телефоне, даже если твой забрали, — нужен только код. Видео хранятся 7 дней, потом сервер их удаляет.",
+      tr_code: "Код (16 знаков)", tr_find: "Найти видео", tr_bad: "В коде 16 знаков, например 7K2M-QX4P-9RTD-WF3N.", tr_none: "По этому коду видео нет. Через 7 дней они удаляются.",
+      tr_err: "Сейф недоступен. Проверь интернет и нажми ещё раз.", tr_loading: "Ищу …", tr_get: "Забрать видео", tr_getting: "Загружаю часть {x}", tr_ready: "Готово. Сохрани или отправь — через 7 дней сейф удалит видео.",
+      tr_skipped: "Не удалось расшифровать части, их нет в видео: {x}", tr_na: "Сейф в этой версии пока недоступен.", rec_tr_link: "Забрать видео из сейфа",
+      k_tr_ok: "Сейф {x}", k_tr_lag: "Сейф: нет сети, сохранено до {x}", k_tr_done: "всё в сейфе", k_tr_wait: "Сейф подключается …",
       fragen_h: "Задать вопрос",
       fragen_lead: "Нажми на микрофон и спроси коротко, например «Можно ли снимать?» или „Darf ich filmen?“. Ответ появится текстом, как только договоришь. Потом микрофон ещё 5 секунд слушает, если захочешь что-то добавить. Обрабатывается только твой вопрос.",
       seg_ask_aria: "Язык голосового ввода", seg_de: "По-немецки", seg_ru: "По-русски", mic_idle: "Нажми и спроси", mic_on: "Слушаю… нажми, чтобы остановить",
@@ -274,13 +292,13 @@
   }
 
   /* ---------- Views ---------- */
-  var views = ["jetzt", "fragen", "aufnahme", "danach", "wissen", "situation", "profil", "kontrolle", "einrichten"], currentView = "jetzt";
+  var views = ["jetzt", "fragen", "aufnahme", "danach", "wissen", "situation", "profil", "kontrolle", "einrichten", "tresor"], currentView = "jetzt";
   var lastTab = "jetzt";
   function show(name) {
     if (name !== currentView) { stopListening(); if (name !== "fragen") stopSpeaking(); }
     currentView = name;
     views.forEach(function (v) { $("v-" + v).hidden = v !== name; });
-    var tab = name === "situation" || name === "profil" ? lastTab : name === "kontrolle" || name === "einrichten" ? "jetzt" : name; lastTab = tab;
+    var tab = name === "situation" || name === "profil" ? lastTab : name === "kontrolle" || name === "einrichten" ? "jetzt" : name === "tresor" ? "aufnahme" : name; lastTab = tab;
     document.body.classList.toggle("k-mode", name === "kontrolle"); // Vollbild: ohne Kopf und Tabs, Fußleiste mit Stichwort und Menü
     [].forEach.call(document.querySelectorAll(".tabs a"), function (a) {
       if (a.getAttribute("data-tab") === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
@@ -290,12 +308,14 @@
   }
   function route() {
     var h = (location.hash || "#jetzt").slice(1);
+    if (h.indexOf("tresor=") === 0) { trPrefill = decodeURIComponent(h.slice(7)); h = "tresor"; }
     if (h.indexOf("s/") === 0) { var s = findSituation(h.slice(2)); if (s) { renderSituation(s); show("situation"); return; } }
     var v = views.indexOf(h) > -1 && h !== "situation" ? h : "jetzt";
     if (v === "danach") refreshProtoNow();
     if (v === "kontrolle" && !(history.state && history.state.rbK)) hideK(); // neu geöffnet: Knöpfe, nicht die alte Antwort
     if (v === "einrichten") renderEinrichten();
     show(v);
+    if (v === "tresor") openTresor();
   }
   window.addEventListener("hashchange", route);
 
@@ -745,7 +765,8 @@
     navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" }, width: { ideal: 1280 }, height: { ideal: 720 } }, audio: !!withAudio })
       .then(function (stream) {
         // Ein Schlüsselbild pro Sekunde: Chrome schreibt MP4 sonst erst beim Stopp – bei einem Absturz wäre alles weg.
-        var mime = pickMime(withAudio), opts = { videoBitsPerSecond: 2500000, videoKeyFrameIntervalDuration: 1000 }, rec, seq = 0, chunks = [];
+        // Mit Tresor kleiner (1,2 statt 2,5 Mbit/s), damit der Upload am Straßenrand mit dem Filmen mithält.
+        var mime = pickMime(withAudio), opts = { videoBitsPerSecond: trOn() ? 1200000 : 2500000, videoKeyFrameIntervalDuration: 1000 }, rec, seq = 0, chunks = [], tv = null;
         if (mime) opts.mimeType = mime;
         try { rec = new MediaRecorder(stream, opts); } catch (e) { rec = new MediaRecorder(stream); }
         var started = new Date();
@@ -755,10 +776,14 @@
           if (!ev.data || !ev.data.size) return;
           chunks.push(ev.data); r.size += ev.data.size;
           if (storageOK) putChunk(r.id, seq++, ev.data).catch(storageFail);
+          if (tv) tv.push(ev.data); // dasselbe Stück zusätzlich in den Tresor – die Aufnahme läuft dabei weiter
         };
-        rec.onstop = function () { finishRecording(r, chunks, stream); };
+        rec.onstop = function () { if (tv) tv.end(); finishRecording(r, chunks, stream); };
         try { rec.start(1000); } catch (e) { stream.getTracks().forEach(function (t) { t.stop(); }); throw e; }
         r.type = baseType(rec.mimeType || mime); r.name = fileName(r);
+        trState = null; tv = trOn() ? TR.begin({ started: started, type: r.type, withAudio: !!withAudio, consentAt: consentAt }, function (st) { trState = st; trShow(); syncKBar(); }) : null;
+        if (tv) r.tresor = tv.rec;
+        trShow();
         recState = { rec: rec, r: r, timer: setInterval(tick, 500) };
         stream.getVideoTracks().forEach(function (tr) { tr.addEventListener("ended", function () { r.cut = true; stopRecording(); }); });
         [$("preview"), $("k-thumb")].forEach(function (v) { v.srcObject = stream; v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () {}); });
@@ -953,9 +978,9 @@
     var b = $("k-rec");
     if (!(on && kStopArmed)) { b.textContent = on ? t("k_stop") : t("k_rec"); b.className = "btn k-recbtn " + (on ? "stop" : "primary"); }
     b.disabled = wait;
-    if (on) $("k-status").textContent = (recState.r.withAudio ? t("k_rec_audio") : t("k_rec_silent")) + " · " + clock;
+    if (on) $("k-status").textContent = (recState.r.withAudio ? t("k_rec_audio") : t("k_rec_silent")) + " · " + clock + (trState ? " · " + trText() : "");
     else if (wait) $("k-status").textContent = t("k_rec_wait");
-    else $("k-status").innerHTML = kSaved ? esc(t("k_saved")) + ' <button type="button" class="k-save" id="k-save">' + esc(t("k_sichern")) + "</button>" : esc(t("k_norec"));
+    else $("k-status").innerHTML = kSaved ? esc(t("k_saved")) + (trState ? " · " + esc(trText()) : "") + ' <button type="button" class="k-save" id="k-save">' + esc(t("k_sichern")) + "</button>" : esc(t("k_norec"));
   }
   function roleSeg() {
     return K.roles.map(function (r) {
@@ -1128,7 +1153,7 @@
      Kamera-Erlaubnis vorher holen: Sonst erscheint die Browser-Frage erst, wenn der Polizist am Fenster steht. */
   var LS_SETUP = "rb-einrichten-v1";
   function renderEinrichten() {
-    $("einr-role").innerHTML = K ? roleSeg() : "";
+    $("einr-role").innerHTML = K ? roleSeg() : ""; renderEinrTr();
     $("einr-test").checked = lsGet(LS_KTEST) === "1";
     $("einr-inst").innerHTML = $("install-help").innerHTML;
     try {
@@ -1151,6 +1176,96 @@
   });
   $("einr-done").addEventListener("click", function () { lsSet(LS_SETUP, isoDate(new Date())); renderFuerDich(); location.hash = "#jetzt"; });
   $("einr-back").addEventListener("click", goBack);
+
+  /* ---------- Tresor (tresor.js): verschlüsselte Kopie der laufenden Aufnahme außerhalb des Handys ----------
+     Einschalten in „Einrichten“ (Code entsteht auf dem Handy). Abholen in #tresor – auf jedem Handy mit dem Code. */
+  var TR = window.RBTresor || null, trState = null, trPrefill = "", trFound = [];
+  function trOn() { return !!(TR && TR.available() && TR.getCode()); }
+  function mmss(sec) { return pad(Math.floor(sec / 60)) + ":" + pad(sec % 60); }
+  function trText() {
+    var st = trState; if (!st) return "";
+    if (st.done) return t("k_tr_done");
+    if (!st.lastOk && !st.fails) return t("k_tr_wait");
+    if (st.fails && st.secRecorded - st.secSafe > 3) return t("k_tr_lag", mmss(st.secSafe));
+    return t("k_tr_ok", mmss(st.secSafe));
+  }
+  function trShow() { var e = $("rec-tr"); if (!e) return; var x = trText(); e.textContent = x; e.hidden = !x; }
+  function renderEinrTr() {
+    var box = $("einr-tr"), T0 = window.RBTresor; if (!box) return;
+    var avail = !!(T0 && T0.available()); // ohne Server-Adresse (noch nicht ausgeliefert) bleibt der Tresor unsichtbar
+    box.parentNode.hidden = !avail; $("rec-tr-link").hidden = !avail;
+    if (!avail) { box.innerHTML = ""; return; }
+    var code = T0.getCode();
+    box.innerHTML = !code
+      ? '<button class="btn primary" type="button" data-tr="on">' + esc(t("einr_tr_on")) + '</button><p class="hint">' + esc(t("einr_tr_data")) + "</p>"
+      : '<p class="hint">' + esc(t("einr_tr_code")) + '</p><p class="tr-code" lang="de" translate="no" id="tr-mycode">' + esc(code) + "</p>" +
+        '<div class="actions"><button class="btn primary" type="button" data-tr="share">' + esc(t("einr_tr_share")) + "</button>" +
+        '<a class="btn" href="#tresor">' + esc(t("einr_tr_pick")) + '</a><button class="btn ghost" type="button" data-tr="off">' + esc(t("einr_tr_off")) + "</button></div>" +
+        '<p class="hint">' + esc(t("einr_tr_data")) + '</p><p class="einr-msg" id="einr-tr-msg" aria-live="polite"></p>';
+  }
+  function trLink() { return location.origin + location.pathname + "#tresor"; }
+  $("einr-tr").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-tr]"); if (!b || !TR) return;
+    var a = b.getAttribute("data-tr");
+    if (a === "on") { TR.setCode(TR.newCode()); renderEinrTr(); return; }
+    if (a === "share") {
+      var text = t("tr_share_text", TR.getCode()) + " " + trLink();
+      if (navigator.share) navigator.share({ title: t("einr_tr"), text: text }).catch(function () {});
+      else copyText(text, $("einr-tr-msg"));
+      return;
+    }
+    if (a === "off") {
+      if (!b._armed) { b._armed = true; b.textContent = t("einr_tr_sure"); b.classList.add("armed"); setTimeout(function () { b._armed = false; b.textContent = t("einr_tr_off"); b.classList.remove("armed"); }, 4000); return; }
+      TR.setCode(null); renderEinrTr();
+    }
+  });
+  function openTresor() {
+    if (!TR || !TR.available()) { $("tr-msg").textContent = t("tr_na"); return; }
+    var inp = $("tr-code");
+    if (trPrefill) { inp.value = TR.norm(trPrefill) ? TR.fmt(trPrefill) : trPrefill; trPrefill = ""; findTresor(); }
+    else if (!inp.value && TR.getCode()) inp.value = TR.getCode();
+  }
+  function trName(r) {
+    var d = new Date(r.meta.started), ext = /webm/.test(r.meta.type) ? "webm" : "mp4";
+    return "tresor_" + isoDate(d) + "_" + pad(d.getHours()) + "-" + pad(d.getMinutes()) + "-" + pad(d.getSeconds()) + (r.meta.withAudio ? "_mit-ton" : "_ohne-ton") + "." + ext;
+  }
+  function findTresor() {
+    var msg = $("tr-msg"), list = $("tr-list"), code = TR && TR.norm($("tr-code").value);
+    list.innerHTML = "";
+    if (!TR || !TR.available()) { msg.textContent = t("tr_na"); return; }
+    if (!code) { msg.textContent = t("tr_bad"); return; }
+    msg.textContent = t("tr_loading");
+    TR.list(code).then(function (recs) {
+      trFound = recs; msg.textContent = recs.length ? "" : t("tr_none");
+      list.innerHTML = recs.map(function (r, i) {
+        var d = new Date(r.meta.started);
+        return '<div class="rec-item" data-i="' + i + '"><p class="rec-meta">' + esc(fmtDate(d) + ", " + fmtTime(d) + " · " + (r.meta.withAudio ? t("m_audio", r.meta.consentAt ? fmtTime(new Date(r.meta.consentAt)) : "–") : t("m_silent")) + " · " + mb(r.bytes)) + "</p>" +
+          '<div class="tr-out"></div><div class="actions"><button class="btn primary" type="button" data-get>' + esc(t("tr_get")) + '</button></div><p class="field-msg rec-msg" aria-live="polite"></p></div>';
+      }).join("");
+    }, function () { msg.textContent = t("tr_err"); });
+  }
+  $("tr-form").addEventListener("submit", function (e) { e.preventDefault(); findTresor(); });
+  $("tr-code").addEventListener("input", function () { $("tr-msg").textContent = ""; });
+  $("tr-list").addEventListener("click", function (e) {
+    var b = e.target.closest("button"), item = e.target.closest(".rec-item"); if (!b || !item) return;
+    var r = trFound[+item.getAttribute("data-i")], m = item.querySelector(".rec-msg"); if (!r) return;
+    if (b.hasAttribute("data-get")) {
+      if (r.busy) return; r.busy = true; b.disabled = true;
+      TR.fetchRec($("tr-code").value, r, function (n, all) { m.textContent = t("tr_getting", n + "/" + all); }).then(function (res) {
+        r.busy = false; b.disabled = false; r.blob = res.blob; r.name = trName(r); r.url = URL.createObjectURL(res.blob);
+        m.textContent = res.skipped ? t("tr_skipped", res.skipped) : t("tr_ready"); m.classList.toggle("ok", !res.skipped);
+        item.querySelector(".tr-out").innerHTML = '<video src="' + r.url + '" controls playsinline preload="metadata"></video><p class="hash tr-hash">SHA-256: …</p>';
+        item.querySelector(".actions").innerHTML = '<button class="btn primary" type="button" data-share>' + esc(t("b_share")) + '</button><button class="btn" type="button" data-dl>' + esc(t("b_dl")) + "</button>";
+        hashBlob(res.blob).then(function (h) { r.hash = h; item.querySelector(".tr-hash").textContent = "SHA-256: " + h; }, function () { item.querySelector(".tr-hash").textContent = "SHA-256: " + t("hash_na"); });
+      }, function () { r.busy = false; b.disabled = false; m.textContent = t("tr_err"); });
+    } else if (b.hasAttribute("data-dl")) downloadURL(r.url, r.name);
+    else if (b.hasAttribute("data-share")) {
+      var file = new File([r.blob], r.name, { type: r.blob.type });
+      if (r.blob.size <= SHARE_MAX && navigator.canShare && navigator.canShare({ files: [file] })) navigator.share({ files: [file], title: r.name, text: r.hash ? "SHA-256: " + r.hash : r.name }).catch(function () {});
+      else { downloadURL(r.url, r.name); m.textContent = t("rec_share_big"); }
+    }
+  });
+  $("tr-back").addEventListener("click", goBack);
 
   /* ---------- Protocol ---------- */
   var fields = ["datum", "zeit", "ort", "beamte", "ablauf", "zitate", "zeugen", "aufnahmen", "schaden", "name"];
@@ -1529,6 +1644,7 @@
     $("mic-label").textContent = activeListen ? t("mic_on") : t("mic_idle");
     [].forEach.call(document.querySelectorAll(".dict"), function (b) { b.textContent = b.getAttribute("aria-pressed") === "true" ? t("stop") : t("dict"); });
     if (recState && recState.r) $("rec-mode").textContent = recModeText(recState.r);
+    renderEinrTr(); trShow();
     dateMsgs();
   }
   function setUI(u) {

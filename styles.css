@@ -334,3 +334,10 @@ body.k-mode main{padding-top:calc(env(safe-area-inset-top,0px) + 8px)}
 .einr-msg.ok{color:var(--right)}
 .einr-msg.err{color:var(--no);font-weight:500;font-size:14px}
 .einr .seg-b[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+
+/* Tresor */
+.tr-code{font-family:var(--mono);font-size:clamp(17px,5.6vw,24px);font-weight:700;letter-spacing:.04em;padding:10px 8px;border:2px dashed var(--accent);border-radius:12px;text-align:center;user-select:all;white-space:nowrap}
+.field-msg.ok{color:var(--right)}
+.rec-tr{font-size:14px;font-weight:600;color:var(--right);margin:0}
+#tr-code{font-family:var(--mono);font-size:20px;letter-spacing:.05em;text-transform:uppercase}
+.einr-tr{display:grid;gap:8px}

@@ -75,7 +75,7 @@
       <h1 id="k-h" class="k-h" data-t="k_h">Was sagt der Polizist?</h1>
       <div class="k-grid" id="k-grid"></div>
       <p class="k-hint" id="k-hint" hidden></p>
-      <a class="k-all" href="#aufnahme" data-act="qh" data-t="k_all">Alle 64 Antworten</a>
+      <a class="k-all" href="#aufnahme" data-act="qh" data-t="k_all">Alle 65 Antworten</a>
       <div class="k-test" id="k-test" hidden>
         <p class="k-test-w" data-t="k_test_warn">Testmodus: nur mit Freunden, die Polizei spielen und einverstanden sind. Der Ton geht zur Erkennung an Google. Nicht bei echter Polizei benutzen.</p>
         <button class="btn" type="button" id="k-listen" aria-pressed="false" data-t="k_listen">Mithören starten (Test)</button>
@@ -112,6 +112,9 @@
       <li><p class="einr-t" data-t="einr_5">Einmal üben</p>
         <a class="btn" href="#kontrolle" id="einr-try" data-t="einr_try">Kontrolle-Bildschirm ansehen (ohne Aufnahme)</a>
         <label class="check"><input type="checkbox" id="einr-test"> <span data-t="einr_test">Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google)</span></label></li>
+      <li><p class="einr-t" data-t="einr_tr">Tresor: Kopie außerhalb des Handys</p>
+        <p class="hint" data-t="einr_tr_h">Während du filmst, geht jede Sekunde verschlüsselt ins Netz.</p>
+        <div class="einr-tr" id="einr-tr"></div></li>
       <li><p class="einr-t" data-t="einr_6">Optional: Profil</p><a class="btn ghost" href="#profil" data-t="einr_prof">Führerschein, Aufenthalt – für passende Hinweise</a></li>
     </ol>
     <button class="btn primary big-btn" type="button" id="einr-done" data-t="einr_done">Fertig</button>
@@ -179,6 +182,7 @@
         <button class="btn primary big-btn" type="button" id="rec-silent" data-t="rec_silent">Video ohne Ton starten</button>
         <button class="btn big-btn" type="button" id="rec-consent" data-t="rec_consent">Mit Ton – nur mit Einwilligung</button>
       </div>
+      <a class="btn ghost" href="#tresor" id="rec-tr-link" data-t="rec_tr_link" hidden>Video aus dem Tresor holen</a>
     </div>
     <div id="consent-step" hidden>
       <p class="step-label" data-t="consent_ask">Frag laut und warte auf die Antwort:</p>
@@ -196,6 +200,7 @@
         <video id="preview" playsinline muted autoplay></video>
         <div class="rec-badge"><span class="rec-dot" aria-hidden="true"></span><span id="rec-mode">Aufnahme</span> · <span id="rec-time">00:00</span></div>
       </div>
+      <p class="rec-tr" id="rec-tr" hidden></p>
       <button class="btn stop big-btn" type="button" id="rec-stop" data-t="rec_stop">Aufnahme beenden</button>
       <p class="hint" data-t="rec_live_hint">Bildschirm anlassen und die App nicht wechseln – sonst stoppt das Handy die Kamera. Was bis dahin aufgenommen ist, bleibt gespeichert.</p>
     </div>
@@ -214,6 +219,20 @@
   </section>
 
   <!-- Danach -->
+  <!-- Tresor: Video mit dem Code holen – auf jedem Handy, auch wenn das eigene weg ist -->
+  <section class="view" id="v-tresor" hidden aria-labelledby="h-tresor">
+    <button class="back" type="button" id="tr-back" data-t="back">Zurück</button>
+    <h1 id="h-tresor" data-t="tr_h">Video aus dem Tresor holen</h1>
+    <p class="lead" data-t="tr_lead">Geht auf jedem Handy, auch wenn deins weg ist – du brauchst nur den Code.</p>
+    <form class="proto" id="tr-form" autocomplete="off">
+      <div class="field"><label for="tr-code" data-t="tr_code">Code (16 Zeichen)</label>
+        <input type="text" id="tr-code" inputmode="text" autocapitalize="characters" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX" lang="de" translate="no"></div>
+      <button class="btn primary big-btn" type="submit" id="tr-find" data-t="tr_find">Videos suchen</button>
+    </form>
+    <p class="field-msg" id="tr-msg" aria-live="polite"></p>
+    <div class="rec-list" id="tr-list"></div>
+  </section>
+
   <section class="view" id="v-danach" hidden aria-labelledby="h-danach">
     <h1 id="h-danach" data-t="danach_h">Danach</h1>
     <p class="lead" data-t="danach_lead">Noch am selben Tag: Gedächtnisprotokoll. Diktieren geht mit dem Mikrofon neben jedem Feld.</p>
@@ -323,6 +342,7 @@
 <script src="data.js"></script>
 <script src="quick.js"></script>
 <script src="kontrolle.js"></script>
+<script src="tresor.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
