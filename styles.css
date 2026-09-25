@@ -92,7 +92,7 @@ ul.pts{margin:0;padding-left:18px;display:grid;gap:6px}
 @keyframes pulse{50%{transform:scale(.7);opacity:.6}}
 .transcript{min-height:1.5em;text-align:center;font-size:17px;font-weight:600}
 .ask-form{display:flex;gap:8px}
-input[type=search],input[type=text],input[type=date],input[type=time],textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--surface);
+input[type=search],input[type=text],input[type=number],input[type=date],input[type=time],textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--surface);
   border:1px solid var(--line);border-radius:12px;padding:11px 13px;outline:none}
 textarea{resize:vertical;line-height:1.45}
 input:focus-visible,textarea:focus-visible{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 22%,transparent)}
@@ -188,3 +188,17 @@ body.rec-on{padding-bottom:calc(var(--tabs-h) + env(safe-area-inset-bottom,0px) 
 .app-head .meta{flex-basis:100%;order:3;margin:0}
 /* Lange Etiketten dürfen in der Kachel umbrechen statt überzustehen */
 .sit .pill{white-space:normal;max-width:100%;border-radius:10px}
+/* Profil: „Für dich“-Hinweise mit farbiger Kante je nach Dringlichkeit */
+.fd-box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+.fd-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.fd-edit{font-size:13px;color:var(--accent);text-decoration:none;font-weight:600}
+.fd{margin:0;font-size:14.5px;line-height:1.45;padding:2px 0 2px 10px;border-left:3px solid var(--accent);overflow-wrap:anywhere}
+.fd-amber{border-left-color:var(--warn)}
+.fd-red{border-left-color:var(--no);font-weight:600}
+.fd-list{display:grid;gap:10px}
+.fd-invite{position:relative;background:color-mix(in srgb,var(--accent) 8%,var(--surface));border:1px dashed color-mix(in srgb,var(--accent) 45%,transparent);border-radius:14px;padding:12px 44px 12px 14px;display:grid;gap:10px;justify-items:start}
+.fd-invite p{margin:0;font-size:14.5px}
+.fd-x{position:absolute;top:6px;right:6px;appearance:none;border:0;background:transparent;color:var(--muted);font-size:22px;line-height:1;width:36px;height:36px;border-radius:10px;cursor:pointer}
+.check{display:flex;gap:10px;align-items:center;font-size:16px;min-height:44px}
+.check input{width:22px;height:22px;accent-color:var(--accent)}
+select{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;min-height:46px}

@@ -79,7 +79,28 @@
       i_done: "<strong>Installiert.</strong> Situationen und Wissen funktionieren auch ohne Internet.",
       i_ios: "<strong>Auf den Home-Bildschirm:</strong> In Safari „Teilen“ und dann „Zum Home-Bildschirm“. Danach funktionieren Situationen und Wissen auch ohne Internet.",
       i_android: "<strong>Als App installieren:</strong> In Chrome oben rechts ⋮ und dann „App installieren“ oder „Zum Startbildschirm hinzufügen“. Danach funktionieren Situationen und Wissen auch ohne Internet.",
-      i_other: "<strong>Als App aufs Handy:</strong> Android – in Chrome ⋮ und „App installieren“. iPhone – in Safari „Teilen“ und „Zum Home-Bildschirm“."
+      i_other: "<strong>Als App aufs Handy:</strong> Android – in Chrome ⋮ und „App installieren“. iPhone – in Safari „Teilen“ und „Zum Home-Bildschirm“.",
+      prof_h: "Mein Profil", prof_open: "Mein Profil", prof_lead: "Freiwillig. Mit ein paar Angaben passen die Hinweise besser zu dir – zum Beispiel, wie lange dein Führerschein hier noch gilt.",
+      pf_by: "Geburtsjahr", pf_by_ph: "z. B. 1990", pf_none: "Keine Angabe", pf_nat: "Staatsangehörigkeit", pf_nat_de: "Deutsch", pf_nat_eu: "EU-Staat", pf_nat_andere: "Anderes Land",
+      pf_status: "Aufenthalt", pf_st_p24: "Schutz nach § 24 (Ukraine)", pf_st_titel: "Aufenthaltstitel", pf_st_asyl: "Asyl oder Duldung", pf_st_visum: "Visum oder anderes",
+      pf_fs: "Führerschein aus", pf_fs_de: "Deutschland", pf_fs_eu: "EU-Staat", pf_fs_ua: "Ukraine", pf_fs_dritt: "Anderes Land, z. B. Russland oder Kasachstan", pf_fs_kein: "Kein Führerschein",
+      pf_fsdatum: "Führerschein erhalten am", pf_seit: "In Deutschland gemeldet seit", pf_seit_hint: "Ab diesem Tag läuft die 6-Monats-Frist für deinen Führerschein.", pf_bau: "Ich arbeite auf Baustellen",
+      prof_privacy: "Bleibt nur auf diesem Handy, nichts wird gesendet. Die Hinweise folgen festen Regeln aus den Karten – keine Rechtsberatung.",
+      prof_del: "Profil löschen", prof_del_sure: "Wirklich löschen?", prof_deleted: "Profil gelöscht", prof_saved: "Gespeichert – nur auf diesem Handy",
+      fd_h: "Für dich", fd_empty: "Noch keine Hinweise. Fülle oben aus, was du möchtest.", fd_edit: "Profil ändern",
+      fd_invite: "Genauer für dich: ein kurzes Profil – freiwillig, bleibt auf dem Handy.", fd_invite_go: "Ausfüllen", fd_hide: "Ausblenden",
+      n_fs_over: "Dein ausländischer Führerschein gilt in Deutschland seit dem {d} nicht mehr. Nicht mehr fahren – sonst ermittelt die Polizei wegen Fahrens ohne Fahrerlaubnis. Umschreiben lassen.",
+      n_fs_soon: "Dein ausländischer Führerschein gilt hier nur noch {n} – bis zum {d}. Jetzt bei der Führerscheinstelle umschreiben lassen.",
+      n_fs_ok: "Dein ausländischer Führerschein gilt hier bis zum {d} – 6 Monate ab deiner Anmeldung. Umschreibung rechtzeitig beantragen.",
+      n_fs_ask: "Trag im Profil ein, seit wann du in Deutschland gemeldet bist – dann siehst du, wie lange dein Führerschein hier noch gilt.",
+      n_ua_extra: " Ukrainische Führerscheine lassen sich seit 18.08.2026 ohne Prüfung umschreiben.",
+      n_ua24: "Dein ukrainischer Führerschein gilt mit § 24 ohne Übersetzung, derzeit bis zum 04.03.2027 ({n}). Aufenthaltstitel und EU-Verordnung 2022/1280 ausgedruckt dabeihaben. Seit 18.08.2026 ohne Prüfung umschreibbar.",
+      n_null: "Für dich gilt am Steuer 0,0 Promille und kein Cannabis – {g}. Das gilt auch auf dem E-Scooter.",
+      n_null_u21: "unter 21", n_null_b21: "bis zu deinem 21. Geburtstag", n_null_pz: "Probezeit, voraussichtlich bis zum {d}",
+      n_pass_eu: "Als EU-Bürger: Pass oder Personalausweis immer dabeihaben und auf Verlangen zeigen.",
+      n_pass: "Als ausländischer Staatsbürger: Pass oder Aufenthaltstitel immer dabeihaben und auf Verlangen zeigen.",
+      n_bau: "Auf der Baustelle: Ausweis immer im Original dabei (bis 5.000 €). Beim Zoll musst du Fragen zu deiner Arbeit beantworten – anders als bei der Polizei.",
+      days_1: "1 Tag", days_n: "{n} Tage"
     },
     ru: {
       meta: "Прототип · Баден-Вюртемберг · на 25.09.2026 · не юридическая консультация", install: "Установить", install_app: "Установить приложение",
@@ -138,7 +159,28 @@
       i_done: "<strong>Установлено.</strong> Ситуации и знания работают и без интернета.",
       i_ios: "<strong>На экран «Домой»:</strong> в Safari нажми «Поделиться», затем «На экран „Домой“». После этого ситуации и знания работают и без интернета.",
       i_android: "<strong>Установить как приложение:</strong> в Chrome справа вверху ⋮, затем «Установить приложение» или «Добавить на главный экран». После этого ситуации и знания работают и без интернета.",
-      i_other: "<strong>Приложение на телефон:</strong> Android — в Chrome ⋮ и «Установить приложение». iPhone — в Safari «Поделиться» и «На экран „Домой“»."
+      i_other: "<strong>Приложение на телефон:</strong> Android — в Chrome ⋮ и «Установить приложение». iPhone — в Safari «Поделиться» и «На экран „Домой“».",
+      prof_h: "Мой профиль", prof_open: "Мой профиль", prof_lead: "По желанию. Несколько данных — и подсказки точнее подойдут тебе, например сколько ещё действуют твои права.",
+      pf_by: "Год рождения", pf_by_ph: "например 1990", pf_none: "Не указано", pf_nat: "Гражданство", pf_nat_de: "Германия", pf_nat_eu: "Страна ЕС", pf_nat_andere: "Другая страна",
+      pf_status: "Статус пребывания", pf_st_p24: "Защита по § 24 (Украина)", pf_st_titel: "Вид на жительство", pf_st_asyl: "Убежище или Duldung", pf_st_visum: "Виза или другое",
+      pf_fs: "Права выданы в", pf_fs_de: "Германии", pf_fs_eu: "стране ЕС", pf_fs_ua: "Украине", pf_fs_dritt: "другой стране, например России или Казахстане", pf_fs_kein: "Прав нет",
+      pf_fsdatum: "Дата получения прав", pf_seit: "Прописан в Германии с", pf_seit_hint: "С этого дня идут 6 месяцев, пока действуют иностранные права.", pf_bau: "Работаю на стройках",
+      prof_privacy: "Остаётся только на этом телефоне, ничего не отправляется. Подсказки строятся по готовым правилам из карточек — это не юридическая консультация.",
+      prof_del: "Удалить профиль", prof_del_sure: "Точно удалить?", prof_deleted: "Профиль удалён", prof_saved: "Сохранено — только на этом телефоне",
+      fd_h: "Для тебя", fd_empty: "Пока подсказок нет. Заполни выше, что хочешь.", fd_edit: "Изменить профиль",
+      fd_invite: "Точнее для тебя: короткий профиль — по желанию, остаётся на телефоне.", fd_invite_go: "Заполнить", fd_hide: "Скрыть",
+      n_fs_over: "Твои иностранные права в Германии не действуют с {d}. Не садись за руль — иначе полиция возбудит дело за езду без прав. Поменяй права.",
+      n_fs_soon: "Твои иностранные права действуют здесь ещё {n} — до {d}. Сейчас подай на обмен в ведомство по правам (Führerscheinstelle).",
+      n_fs_ok: "Твои иностранные права действуют здесь до {d} — 6 месяцев с прописки. Подай на обмен вовремя.",
+      n_fs_ask: "Укажи в профиле, с какого дня ты прописан в Германии, — тогда увидишь, сколько ещё действуют твои права.",
+      n_ua_extra: " Украинские права с 18.08.2026 можно обменять без экзаменов.",
+      n_ua24: "Твои украинские права с § 24 действуют без перевода, сейчас до 04.03.2027 ({n}). Держи при себе вид на жительство и распечатку регламента ЕС 2022/1280. С 18.08.2026 их можно обменять без экзаменов.",
+      n_null: "Для тебя за рулём: 0,0 промилле и никакого каннабиса — {g}. На электросамокате тоже.",
+      n_null_u21: "тебе нет 21", n_null_b21: "до твоего 21-го дня рождения", n_null_pz: "испытательный срок, примерно до {d}",
+      n_pass_eu: "Гражданину ЕС: паспорт или удостоверение личности всегда с собой, показывать по требованию.",
+      n_pass: "Иностранцу: паспорт или вид на жительство всегда с собой, показывать по требованию.",
+      n_bau: "На стройке: документ всегда в оригинале с собой (штраф до 5 000 €). Таможне ты обязан отвечать на вопросы о работе — в отличие от полиции.",
+      days_1: "1 день", days_n: "{n} дн."
     }
   };
   function t(k, x) { var v = T[UI][k]; if (v == null) v = T.de[k]; if (v == null) v = k; return x == null ? v : v.replace("{x}", x); }
@@ -163,11 +205,11 @@
   }
 
   /* ---------- Views ---------- */
-  var views = ["jetzt", "fragen", "aufnahme", "danach", "wissen", "situation"], currentView = "jetzt";
+  var views = ["jetzt", "fragen", "aufnahme", "danach", "wissen", "situation", "profil"], currentView = "jetzt", backTo = "jetzt";
   function show(name) {
     currentView = name;
     views.forEach(function (v) { $("v-" + v).hidden = v !== name; });
-    var tab = name === "situation" ? "jetzt" : name;
+    var tab = name === "situation" || name === "profil" ? "jetzt" : name;
     [].forEach.call(document.querySelectorAll(".tabs a"), function (a) {
       if (a.getAttribute("data-tab") === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
@@ -177,7 +219,9 @@
   function route() {
     var h = (location.hash || "#jetzt").slice(1);
     if (h.indexOf("s/") === 0) { var s = findSituation(h.slice(2)); if (s) { renderSituation(s); show("situation"); return; } }
-    show(views.indexOf(h) > -1 && h !== "situation" ? h : "jetzt");
+    var v = views.indexOf(h) > -1 && h !== "situation" ? h : "jetzt";
+    if (v === "profil" && currentView !== "profil") { backTo = currentView === "situation" ? "jetzt" : currentView; fillProfileForm(); }
+    show(v);
   }
   window.addEventListener("hashchange", route);
 
@@ -213,8 +257,9 @@
     }).join("");
   }
   function situationHTML(s, compact) {
-    var note = L(s, "note");
+    var note = L(s, "note"), mine = profileNotes().filter(function (n) { return n.sits.indexOf(s.id) > -1; });
     return '<div class="s-head"><h' + (compact ? "3" : "1") + ">" + esc(L(s, "title")) + "</h" + (compact ? "3" : "1") + '><span class="pill ' + s.tone + '">' + esc(L(s, "toneLabel")) + "</span></div>" +
+      (mine.length ? '<div class="fd-box"><p class="block-t">' + esc(t("fd_h")) + "</p>" + mine.map(noteHTML).join("") + "</div>" : "") +
       '<div class="block"><p class="block-t say">' + esc(t("b_say")) + "</p>" + sayButtons(s.say) + "</div>" +
       '<div class="block"><p class="block-t do">' + esc(t("b_do")) + '</p><ul class="pts">' + L(s, "doo").map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" +
       '<div class="block"><p class="block-t dont">' + esc(t("b_dont")) + '</p><ul class="pts">' + L(s, "dont").map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" +
@@ -836,6 +881,93 @@
     try { var p = ev.prompt(); if (p && p.catch) p.catch(function () {}); } catch (x) {}
   });
 
+  /* ---------- Profil (freiwillig, nur auf dem Gerät) ----------
+     Aus wenigen Angaben entstehen Hinweise nach festen Regeln – dieselben Aussagen wie in den Karten, nur mit deinen Daten.
+     Nichts verlässt das Handy; „Profil löschen“ entfernt alles. */
+  var LS_PROF = "rb-profil-v1", LS_PROF_HIDE = "rb-profil-hinweis-v1", prof = {};
+  var UA24_END = new Date(2027, 2, 4); // Schutz nach § 24 derzeit bis 04.03.2027 – wie in der Karte k-ukrainefs
+  var pf = { by: "pf-by", nat: "pf-nat", status: "pf-status", fs: "pf-fs", fsdatum: "pf-fsdatum", seit: "pf-seit" };
+  function loadProfile() { try { prof = JSON.parse(lsGet(LS_PROF) || "{}") || {}; } catch (e) { prof = {}; } }
+  function hasProfile() { return Object.keys(prof).length > 0; }
+  function parseDay(v) { var p = String(v || "").split("-"); if (p.length !== 3) return null; var d = new Date(+p[0], +p[1] - 1, +p[2]); return isNaN(d.getTime()) ? null : d; }
+  function daysText(n) {
+    if (UI !== "ru") return n === 1 ? t("days_1") : t("days_n").replace("{n}", n);
+    var m10 = n % 10, m100 = n % 100;
+    return n + (m10 === 1 && m100 !== 11 ? " день" : m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14) ? " дня" : " дней");
+  }
+  // Jeder Hinweis: Stufe (red/amber/info), Text und die Situationen, in denen er oben erscheint.
+  function profileNotes() {
+    var p = prof, out = [], y = new Date().getFullYear(), fs = p.fs || "", ua24 = fs === "ua" && p.status === "p24";
+    if (fs === "dritt" || (fs === "ua" && !ua24)) { // 6 Monate ab Wohnsitz (§ 29 FeV)
+      var seit = parseDay(p.seit), extra = fs === "ua" ? t("n_ua_extra") : "", where = ["papiere", "verkehr"];
+      if (!seit) out.push({ lv: "info", tx: t("n_fs_ask"), sits: ["papiere"] });
+      else {
+        var end = addMonths(seit, 6), n = daysLeft(end);
+        if (n < 0) out.push({ lv: "red", tx: t("n_fs_over").replace("{d}", fmtDate(end)) + extra, sits: where });
+        else if (n <= 60) out.push({ lv: "amber", tx: t("n_fs_soon").replace("{n}", daysText(n)).replace("{d}", fmtDate(end)) + extra, sits: where });
+        else out.push({ lv: "info", tx: t("n_fs_ok").replace("{d}", fmtDate(end)) + extra, sits: where });
+      }
+    }
+    if (ua24) out.push({ lv: daysLeft(UA24_END) <= 90 ? "amber" : "info", tx: t("n_ua24").replace("{n}", leftText(daysLeft(UA24_END))), sits: ["papiere", "verkehr"] });
+    var by = parseInt(p.by, 10), g = ""; // 0,0 Promille unter 21 und in der Probezeit (§ 24c StVG)
+    if (by > 1900 && by <= y) { if (y - by < 21) g = t("n_null_u21"); else if (y - by === 21) g = t("n_null_b21"); }
+    if (!g && (fs === "de" || fs === "eu")) {
+      var fd = parseDay(p.fsdatum), pz = fd ? addMonths(fd, 24) : null;
+      if (pz && daysLeft(pz) >= 0) g = t("n_null_pz").replace("{d}", fmtDate(pz));
+    }
+    if (g) out.push({ lv: "amber", tx: t("n_null").replace("{g}", g), sits: ["test", "verkehr", "escooter", "unfall"] });
+    if (p.nat === "eu" || p.nat === "andere") out.push({ lv: "info", tx: t(p.nat === "eu" ? "n_pass_eu" : "n_pass"), sits: ["personalien", "verkehr", "kontrolleur", "zoll"] });
+    if (p.bau) out.push({ lv: "info", tx: t("n_bau"), sits: ["zoll", "personalien"] });
+    var rank = { red: 0, amber: 1, info: 2 };
+    return out.sort(function (a, b) { return rank[a.lv] - rank[b.lv]; });
+  }
+  function noteHTML(n) { return '<p class="fd fd-' + n.lv + '">' + esc(n.tx) + "</p>"; }
+  function renderFuerDich() {
+    // Startseite nur Dringendes (rot/gelb) – die Kacheln sollen im Stress oben bleiben. Alles andere steht in der passenden Situation.
+    var box = $("fuer-dich"), notes = profileNotes(), urgent = notes.filter(function (n) { return n.lv !== "info"; });
+    if (urgent.length) {
+      box.innerHTML = '<div class="fd-box"><div class="fd-head"><p class="block-t">' + esc(t("fd_h")) + '</p><a class="fd-edit" href="#profil">' + esc(t("fd_edit")) + "</a></div>" +
+        urgent.slice(0, 2).map(noteHTML).join("") + "</div>";
+    } else if (!hasProfile() && lsGet(LS_PROF_HIDE) !== "aus") {
+      box.innerHTML = '<div class="fd-invite"><p>' + esc(t("fd_invite")) + '</p><a class="btn" href="#profil">' + esc(t("fd_invite_go")) + "</a>" +
+        '<button class="fd-x" type="button" id="fd-hide" aria-label="' + esc(t("fd_hide")) + '">×</button></div>';
+    } else box.innerHTML = "";
+    $("prof-notes").innerHTML = notes.length ? notes.map(noteHTML).join("") : '<p class="hint">' + esc(t("fd_empty")) + "</p>";
+  }
+  $("fuer-dich").addEventListener("click", function (e) { if (e.target.id === "fd-hide") { lsSet(LS_PROF_HIDE, "aus"); renderFuerDich(); } });
+  function syncProfileFields() {
+    var nat = $("pf-nat").value, fs = $("pf-fs").value, ua24 = nat === "andere" && $("pf-status").value === "p24";
+    $("pf-status-f").hidden = nat !== "andere";
+    $("pf-fsdatum-f").hidden = !(fs === "de" || fs === "eu");
+    $("pf-seit-f").hidden = !(fs === "dritt" || (fs === "ua" && !ua24));
+  }
+  function fillProfileForm() {
+    Object.keys(pf).forEach(function (k) { $(pf[k]).value = prof[k] || ""; });
+    $("pf-bau").checked = !!prof.bau; syncProfileFields();
+  }
+  function saveProfile() {
+    syncProfileFields();
+    var o = {};
+    Object.keys(pf).forEach(function (k) { var el = $(pf[k]), v = String(el.value || "").trim(); if (v && !el.closest(".field").hidden) o[k] = v; });
+    if ($("pf-bau").checked) o.bau = true;
+    prof = o;
+    if (hasProfile()) lsSet(LS_PROF, JSON.stringify(o)); else { try { localStorage.removeItem(LS_PROF); } catch (e) {} }
+    renderFuerDich(); flash($("prof-msg"), t("prof_saved"), 2500);
+  }
+  var profT;
+  $("prof").addEventListener("input", function () { clearTimeout(profT); profT = setTimeout(saveProfile, 250); });
+  $("prof").addEventListener("change", function () { clearTimeout(profT); saveProfile(); });
+  $("prof").addEventListener("submit", function (e) { e.preventDefault(); });
+  var profDelArmed = false;
+  $("prof-del").addEventListener("click", function () {
+    var b = $("prof-del");
+    if (!profDelArmed) { profDelArmed = true; b.textContent = t("prof_del_sure"); setTimeout(function () { profDelArmed = false; b.textContent = t("prof_del"); }, 4000); return; }
+    profDelArmed = false; b.textContent = t("prof_del");
+    prof = {}; try { localStorage.removeItem(LS_PROF); } catch (e) {}
+    fillProfileForm(); renderFuerDich(); flash($("prof-msg"), t("prof_deleted"));
+  });
+  $("prof-back").addEventListener("click", function () { location.hash = "#" + backTo; });
+
   /* ---------- Sprache umschalten ---------- */
   var linksHTML = null;
   function applyUI() {
@@ -855,14 +987,14 @@
     if (u === UI || !T[u]) return;
     UI = u; lsSet(LS_UI, u);
     if (!lsGet(LS_LANG)) { lang = u === "ru" ? "ru-RU" : "de-DE"; syncSeg(); } // Spracheingabe folgt, solange nicht selbst gewählt
-    applyUI(); renderGrid(); renderCats(); renderWissen($("w-q").value); renderDeadlines(); renderLetters(); syncInstall(); renderRecs();
+    applyUI(); renderGrid(); renderFuerDich(); renderCats(); renderWissen($("w-q").value); renderDeadlines(); renderLetters(); syncInstall(); renderRecs();
     if (currentView === "situation") route();
     if ($("answers").innerHTML && $("ask-input").value.trim()) renderAnswers($("ask-input").value.trim());
   }
   [].forEach.call(document.querySelectorAll(".lang-b"), function (b) { b.addEventListener("click", function () { setUI(b.getAttribute("data-ui")); }); });
 
   /* ---------- Start ---------- */
-  applyUI(); buildCorpus(); renderGrid(); syncSeg(); loadProto(); renderDeadlines(); renderLetters(); renderCats(); renderWissen(""); syncInstall(); route(); loadRecs();
+  applyUI(); loadProfile(); fillProfileForm(); renderFuerDich(); buildCorpus(); renderGrid(); syncSeg(); loadProto(); renderDeadlines(); renderLetters(); renderCats(); renderWissen(""); syncInstall(); route(); loadRecs();
   if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
     var hadController = !!navigator.serviceWorker.controller;
     // Neue Version direkt nach dem Öffnen: einmal neu laden, damit geänderte Inhalte sofort gelten.
