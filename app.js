@@ -9,6 +9,8 @@
   // Browser in Telegram, WhatsApp, Instagram usw.: Kamera oft gesperrt, Speicher unsicher.
   var IS_INAPP = /; wv\)|Telegram|WhatsApp|Instagram|FBAN|FBAV|Line\//i.test(UA);
 
+  // „§ 81a“, „Abs. 1“ usw. nicht am Zeilenende trennen
+  function nb(s) { return String(s || "").replace(/(§§?|Abs\.|S\.|Nr\.|Art\.|Rn\.) (?=\d)/g, "$1\u00a0").replace(/PolG BW/g, "PolG\u00a0BW"); }
   function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
@@ -30,7 +32,7 @@
       jetzt_h: "Was passiert gerade?", jetzt_lead: "Tippe auf deine Situation. Du bekommst sofort, was du sagen und was du lassen solltest.",
       q_ask: "Frage stellen", q_proto: "Protokoll", back: "Zurück", close: "Schließen",
       b_say: "Sag", b_do: "Tu", b_dont: "Lass", tap: "Groß anzeigen",
-      act_film: "Video ohne Ton", act_consent: "Mit Einwilligung aufnehmen", act_proto: "Protokoll danach",
+      act_film: "Video ohne Ton", act_consent: "Mit Einwilligung aufnehmen", act_proto: "Protokoll danach", act_qh: "Antworten mit §",
       fragen_h: "Frage stellen",
       fragen_lead: "Tippe auf das Mikrofon und frag kurz, zum Beispiel „Darf ich filmen?“ oder «Можно ли снимать?». Das Mikrofon hört zu, bis du noch einmal tippst oder 5 Sekunden nichts sagst. Verarbeitet wird nur deine Frage.",
       seg_ask_aria: "Sprache der Spracheingabe", seg_de: "Deutsch", seg_ru: "Русский", mic_idle: "Tippen und fragen", mic_on: "Ich höre … tippen zum Stoppen",
@@ -45,7 +47,7 @@
       perm_android: "{w} ist blockiert. In Chrome: Menü ⋮ › Einstellungen › Website-Einstellungen › {s} – diese Seite erlauben.",
       perm_ios: "{w} ist blockiert. Einstellungen › Apps › Safari › {s} – auf „Fragen“ oder „Erlauben“ stellen.", perm_other: "{w} ist blockiert. In den Website-Einstellungen des Browsers erlauben.",
       w_mic: "Mikrofon", s_mic: "Mikrofon", w_cam: "Kamera", s_cam: "Kamera", w_cammic: "Kamera oder Mikrofon", s_cammic: "Kamera bzw. Mikrofon", w_geo: "Standort", s_geo: "Standort",
-      rec_h: "Aufnahme", rec_lead: "Video ohne Ton ist erlaubt, solange du nicht störst. Ton nur mit Einwilligung aller, die sprechen.",
+      rec_h: "Aufnahme", rec_lead: "Video ohne Ton ist erlaubt, solange du nicht störst. Ton nur mit Einwilligung aller, die sprechen. Am Steuer: erst Motor ganz aus, dann Handy in die Hand.",
       rec_silent: "Video ohne Ton starten", rec_consent: "Mit Ton – nur mit Einwilligung", consent_ask: "Frag laut und warte auf die Antwort:",
       consent_yes: "Alle sind einverstanden – mit Ton", consent_no: "Nicht einverstanden – Video ohne Ton", cancel: "Abbrechen",
       consent_tip: "Tipp: Lass dir die Einwilligung zu Beginn der Aufnahme noch einmal bestätigen.", rec_stop: "Aufnahme beenden",
@@ -75,6 +77,8 @@
       when_check: "Datum und Uhrzeit des Vorfalls – bitte prüfen, nicht die jetzige Zeit.", sr_none_p: "Diktieren gibt es in diesem Browser nicht. Tippe den Text ins Feld.",
       sr_net_p: "Diktieren braucht Internet. Tippe den Text ins Feld.", sr_blocked_p: "Diktieren ist in diesem Browser gesperrt. Tippe den Text ins Feld.",
       l_missing: "Vor dem Senden noch ausfüllen: {x}.", l_cyr: "Der Brief geht an deutsche Behörden: Ort und Name in lateinischen Buchstaben, die Schilderung auf Deutsch.",
+      qh_h: "Polizei sagt … – deine Antwort", qh_lead: "Antippen: Der Satz erscheint groß mit Paragraf. Läuft die Aufnahme, ist alles drauf, was gesagt wird.",
+      qh_top: "Wichtigste", v_musst: "Pflicht – mitmachen", v_musst_nicht: "Musst du nicht", v_darf_nicht: "Darf die Polizei nicht", v_kommt_drauf_an: "Kommt drauf an",
       dl_bc_over: "Frist vorbei – Aufnahmen sind wahrscheinlich gelöscht. Trotzdem schicken und Anwalt fragen.", act_notdienst: "Anwaltsnotdienst Stuttgart anrufen", alt_more: "Öffnen",
       copied: "Kopiert", copy_fail: "Kopieren ging nicht – bitte „Teilen“ nutzen", geo_na: "Standort ist hier nicht verfügbar", geo_fail: "Standort nicht gefunden. Draußen noch einmal versuchen.",
       fristen_h: "Fristen", briefe_h: "Briefe",
@@ -127,7 +131,7 @@
       jetzt_h: "Что происходит?", jetzt_lead: "Нажми на свою ситуацию — сразу увидишь, что сказать и чего не делать.",
       q_ask: "Задать вопрос", q_proto: "Протокол", back: "Назад", close: "Закрыть",
       b_say: "Скажи", b_do: "Делай", b_dont: "Не делай", tap: "Показать крупно",
-      act_film: "Видео без звука", act_consent: "Запись с согласия", act_proto: "Протокол после",
+      act_film: "Видео без звука", act_consent: "Запись с согласия", act_proto: "Протокол после", act_qh: "Ответы с §",
       fragen_h: "Задать вопрос",
       fragen_lead: "Нажми на микрофон и спроси коротко, например «Можно ли снимать?» или „Darf ich filmen?“. Микрофон слушает, пока не нажмёшь ещё раз или 5 секунд не будет слышно речи. Обрабатывается только твой вопрос.",
       seg_ask_aria: "Язык голосового ввода", seg_de: "По-немецки", seg_ru: "По-русски", mic_idle: "Нажми и спроси", mic_on: "Слушаю… нажми, чтобы остановить",
@@ -142,7 +146,7 @@
       perm_android: "Доступ к {w} заблокирован. В Chrome: меню ⋮ › Настройки › Настройки сайтов › {s} — разрешить для этого сайта.",
       perm_ios: "Доступ к {w} заблокирован. Настройки › Приложения › Safari › {s} — выбрать «Спрашивать» или «Разрешить».", perm_other: "Доступ к {w} заблокирован. Разреши его в настройках сайта в браузере.",
       w_mic: "микрофону", s_mic: "Микрофон", w_cam: "камере", s_cam: "Камера", w_cammic: "камере или микрофону", s_cammic: "Камера или Микрофон", w_geo: "местоположению", s_geo: "Геоданные",
-      rec_h: "Запись", rec_lead: "Видео без звука можно, пока ты не мешаешь. Звук — только с согласия всех, кто говорит.",
+      rec_h: "Запись", rec_lead: "Видео без звука можно, пока ты не мешаешь. Звук — только с согласия всех, кто говорит. За рулём: сначала полностью заглуши мотор, потом бери телефон.",
       rec_silent: "Начать видео без звука", rec_consent: "Со звуком — только с согласия", consent_ask: "Спроси вслух и дождись ответа:",
       consent_yes: "Все согласны — со звуком", consent_no: "Не согласны — видео без звука", cancel: "Отмена",
       consent_tip: "Совет: в начале записи попроси ещё раз подтвердить согласие.", rec_stop: "Остановить запись",
@@ -172,6 +176,8 @@
       when_check: "Дата и время случая — проверь, это не «сейчас».", sr_none_p: "В этом браузере нет диктовки. Напиши текст в поле.",
       sr_net_p: "Для диктовки нужен интернет. Напиши текст в поле.", sr_blocked_p: "Диктовка в этом браузере заблокирована. Напиши текст в поле.",
       l_missing: "Перед отправкой заполни: {x}.", l_cyr: "Письмо уйдёт в немецкие органы: место и имя латиницей, как в паспорте, описание — по-немецки (переключи «Диктовка по-немецки»).",
+      qh_h: "Полиция говорит … — твой ответ", qh_lead: "Нажми: фраза появится крупно с параграфом. Если идёт запись, всё сказанное попадёт на неё.",
+      qh_top: "Главное", v_musst: "Обязан — выполни", v_musst_nicht: "Не обязан", v_darf_nicht: "Полиции нельзя", v_kommt_drauf_an: "Зависит",
       dl_bc_over: "Срок прошёл — записи, скорее всего, удалены. Всё равно отправь и спроси адвоката.", act_notdienst: "Позвонить дежурному адвокату (Штутгарт)", alt_more: "Открыть",
       copied: "Скопировано", copy_fail: "Скопировать не удалось — нажми «Поделиться»", geo_na: "Местоположение здесь недоступно", geo_fail: "Место не найдено. Попробуй ещё раз на улице.",
       fristen_h: "Сроки", briefe_h: "Письма",
@@ -291,6 +297,7 @@
       if (a === "film") return '<a class="btn primary" href="#aufnahme" data-act="film">' + esc(t("act_film")) + "</a>";
       if (a === "consent") return '<a class="btn" href="#aufnahme" data-act="consent">' + esc(t("act_consent")) + "</a>";
       if (a === "protokoll") return '<a class="btn" href="#danach">' + esc(t("act_proto")) + "</a>";
+      if (a === "qh") return '<a class="btn" href="#aufnahme" data-act="qh">' + esc(t("act_qh")) + "</a>";
       if (a.indexOf("tel:") === 0) return '<a class="btn primary" href="' + esc(a) + '">' + esc(t("act_notdienst")) + "</a>";
       if (a.indexOf("situation:") === 0) { var sit = findSituation(a.slice(10)); return sit ? '<a class="btn" href="#s/' + sit.id + '">' + esc(L(sit, "title")) + "</a>" : ""; }
       return "";
@@ -342,8 +349,9 @@
   }
   function releaseAwake() { try { if (wakeLock) { var l = wakeLock; wakeLock = null; l.release(); } } catch (e) {} }
   function needAwake() { return !!(recState && recState.rec) || !$("big").hidden; }
-  function openBig(de, ru, from) {
-    $("big-de").textContent = de; $("big-ru").textContent = ru || ""; $("big").hidden = false; lastFocus = from; keepAwake();
+  function openBig(de, ru, from, law, why) {
+    $("big-de").textContent = nb(de); $("big-ru").textContent = nb(ru); $("big-law").textContent = nb(law); $("big-why").textContent = nb(why);
+    $("big").hidden = false; lastFocus = from; keepAwake();
     setInert(true); $("big").scrollTop = 0; $("big-close").focus();
     // Eigener Verlaufseintrag: Die Zurück-Taste von Android schließt das Großbild statt die Seite zu verlassen.
     try { history.pushState({ rbBig: 1 }, ""); } catch (e) {}
@@ -359,7 +367,12 @@
     var b = e.target.closest && e.target.closest(".say-b");
     if (b) openBig(b.getAttribute("data-de"), b.getAttribute("data-ru"), b);
     var a = e.target.closest && e.target.closest("[data-act]");
-    if (a) pendingAct = a.getAttribute("data-act");
+    if (a) {
+      pendingAct = a.getAttribute("data-act");
+      // Aus einer Situation zur Aufnahme: passende Antworten gleich oben
+      var sid = currentView === "situation" ? location.hash.slice(3) : "", cat = SIT_QH[sid];
+      if (cat) { qhCat = cat; renderQuick(); }
+    }
   });
 
   /* ---------- Matching ---------- */
@@ -717,8 +730,8 @@
     r.ended = ended; r.dur = Math.max(1, Math.round((ended - r.started) / 1000)); r.size = blob.size; r.blob = blob; r.status = "done";
     r.fresh = true; recordings.forEach(function (x) { x.fresh = false; });
     recordings.unshift(r); renderRecs();
-    var it = document.querySelector("#rec-list .rec-item");
-    if (it && currentView === "aufnahme") { try { it.scrollIntoView({ block: "center", behavior: "smooth" }); } catch (e) { it.scrollIntoView(); } }
+    var it = document.querySelector("#rec-list .rec-item [data-share]"); // der Knopf, den man jetzt braucht, mittig ins Bild
+    if (it && currentView === "aufnahme") { try { it.scrollIntoView({ block: "center" }); } catch (e) { it.scrollIntoView(); } }
     hashBlob(blob).then(function (h) { r.hash = h; }, function () { r.noHash = true; })
       .then(function () { renderRecs(); return saveFinal(r); });
   }
@@ -817,6 +830,7 @@
   window.addEventListener("hashchange", function () {
     if (location.hash === "#aufnahme" && pendingAct === "consent" && !recState) setRecUI("consent");
     if (location.hash === "#aufnahme" && pendingAct === "film" && !recState) startRecording(false, null);
+    if (location.hash === "#aufnahme" && pendingAct === "qh") setTimeout(function () { $("qh").scrollIntoView({ block: "start" }); }, 0);
     pendingAct = null;
   });
   document.addEventListener("visibilitychange", function () {
@@ -825,6 +839,32 @@
     if (recState && recState.rec && recState.rec.state === "recording") { try { recState.rec.requestData(); } catch (e) {} }
   });
   window.addEventListener("beforeunload", function (e) { if (recState && recState.rec) { e.preventDefault(); e.returnValue = ""; } });
+
+  /* ---------- Schnellhilfe: Polizei sagt → Antwort mit Paragraf ----------
+     Steht auf der Aufnahme-Seite unter dem Stopp-Knopf. Inhalte in data.js (quick), jede Aussage mit Paragraf und Quelle. */
+  var SIT_QH = { verkehr: "fahrer", papiere: "fahrer", test: "fahrer", auto: "fahrer", handysteuer: "fahrer", escooter: "fahrer", unfall: "fahrer",
+    personalien: "person", durchsuchung: "person", filmen: "aufnahme", handy: "aufnahme", festnahme: "druck", freund: "person" };
+  var qhCat = "top", VTONE = { musst: "must", musst_nicht: "right", darf_nicht: "no", kommt_drauf_an: "warn" };
+  function renderQuick() {
+    var Q = D.quick || [];
+    $("qh").hidden = !Q.length;
+    if (!Q.length) return;
+    var cats = [["top", t("qh_top")]].concat((D.quickGroups || []).map(function (g) { return [g[0], UI === "ru" && g[2] ? g[2] : g[1]]; }));
+    $("qh-cats").innerHTML = cats.map(function (c) { return '<button type="button" class="chip" data-qc="' + c[0] + '" aria-pressed="' + (qhCat === c[0]) + '">' + esc(c[1]) + "</button>"; }).join("");
+    var list = qhCat === "top" ? (D.quickTop || []).map(function (id) { return Q.filter(function (q) { return q.id === id; })[0]; }).filter(Boolean)
+      : Q.filter(function (q) { return q.g === qhCat; });
+    $("qh-list").innerHTML = list.map(function (q) {
+      return '<button type="button" class="qh-i" data-q="' + esc(q.id) + '"><span class="qh-cop">„' + esc(L(q, "cop")) + '“</span>' +
+        '<span class="pill ' + VTONE[q.v] + '">' + esc(t("v_" + q.v)) + '</span><span class="qh-say" lang="de">' + esc(nb(q.say)) + "</span>" +
+        (UI === "ru" && q.ru ? '<span class="say-ru" lang="ru">' + esc(nb(q.ru.say)) + "</span>" : "") + '<span class="law" lang="de">' + esc(nb(q.law)) + "</span></button>";
+    }).join("");
+  }
+  $("qh-cats").addEventListener("click", function (e) { var b = e.target.closest("[data-qc]"); if (!b) return; qhCat = b.getAttribute("data-qc"); renderQuick(); });
+  $("qh-list").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-q]"); if (!b) return;
+    var q = (D.quick || []).filter(function (x) { return x.id === b.getAttribute("data-q"); })[0]; if (!q) return;
+    openBig(q.say, UI === "ru" && q.ru ? q.ru.say : "", b, q.law, L(q, "why"));
+  });
 
   /* ---------- Protocol ---------- */
   var fields = ["datum", "zeit", "ort", "beamte", "ablauf", "zitate", "zeugen", "aufnahmen", "schaden", "name"];
@@ -1208,14 +1248,14 @@
     if (u === UI || !T[u]) return;
     UI = u; lsSet(LS_UI, u);
     if (!lsGet(LS_LANG)) { lang = u === "ru" ? "ru-RU" : "de-DE"; syncSeg(); } // Spracheingabe folgt, solange nicht selbst gewählt
-    applyUI(); renderGrid(); renderFuerDich(); renderCats(); renderWissen($("w-q").value); renderDeadlines(); renderLetters(); syncProtoHints(protoData()); syncInstall(); renderRecs();
+    applyUI(); renderGrid(); renderFuerDich(); renderCats(); renderWissen($("w-q").value); renderDeadlines(); renderLetters(); syncProtoHints(protoData()); syncInstall(); renderRecs(); renderQuick();
     if (currentView === "situation") route();
     if ($("answers").innerHTML && $("ask-input").value.trim()) renderAnswers($("ask-input").value.trim());
   }
   [].forEach.call(document.querySelectorAll(".lang-b"), function (b) { b.addEventListener("click", function () { setUI(b.getAttribute("data-ui")); }); });
 
   /* ---------- Start ---------- */
-  applyUI(); loadProfile(); fillProfileForm(); renderFuerDich(); buildCorpus(); renderGrid(); syncSeg(); loadProto(); renderDeadlines(); renderLetters(); renderCats(); renderWissen(""); syncInstall(); route(); loadRecs();
+  applyUI(); loadProfile(); fillProfileForm(); renderFuerDich(); buildCorpus(); renderGrid(); syncSeg(); loadProto(); renderDeadlines(); renderLetters(); renderCats(); renderWissen(""); renderQuick(); syncInstall(); route(); loadRecs();
   if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
     var hadController = !!navigator.serviceWorker.controller;
     // Neue Version direkt nach dem Öffnen: einmal neu laden, damit geänderte Inhalte sofort gelten.

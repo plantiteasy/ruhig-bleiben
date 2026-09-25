@@ -15,7 +15,7 @@ window.RB = {
         ["Einer Durchsuchung stimme ich nicht zu.", "На обыск не соглашаюсь."]
       ],
       doo: [
-        "Motor aus, Fenster runter, Hände sichtbar lassen – keine Pflicht, aber es entspannt die Lage.",
+        "Motor ganz aus – erst dann das Handy in die Hand nehmen, auch zum Filmen (§ 23 Abs. 1a, 1b StVO, Start-Stopp zählt nicht). Fenster runter, Hände sichtbar lassen.",
         "Führerschein und Fahrzeugschein im Original zeigen. Der digitale Fahrzeugschein in der i‑Kfz‑App zählt, ein Foto nicht.",
         "Personalien angeben. Aussteigen, wenn die Polizei es für die Kontrolle verlangt.",
         "Warndreieck, Verbandkasten und Warnweste holst du selbst heraus und zeigst sie. In den Kofferraum schauen darf die Polizei, ohne Verdacht aber nichts durchsuchen."
@@ -27,10 +27,10 @@ window.RB = {
       ],
       note: "Papiere vergessen: 10 € je Dokument. Aussteigen verweigern: 20 €. Haltezeichen ignorieren: 70 € und 1 Punkt.",
       law: "§ 36 Abs. 5 StVO · § 4 Abs. 2 FeV · § 13 Abs. 6 FZV · § 31b StVZO · § 111 OWiG",
-      actions: ["situation:papiere", "situation:test", "situation:auto", "film"],
+      actions: ["qh", "situation:papiere", "situation:test", "situation:auto", "film"],
       ru: {
         title: "Проверка на дороге", sub: "Машина, фургон, мотоцикл", toneLabel: "Обязательно",
-        doo: ["Заглуши мотор, опусти стекло, держи руки на виду. Это не обязанность, но так спокойнее.",
+        doo: ["Заглуши мотор полностью — только потом бери телефон в руку, в том числе чтобы снимать (§ 23 Abs. 1a, 1b StVO, старт-стоп не считается). Опусти стекло, держи руки на виду.",
           "Покажи права (Führerschein) и техпаспорт (Fahrzeugschein) в оригинале. Электронный техпаспорт в приложении i\u2011Kfz считается, фото — нет.",
           "Назови свои данные. Выйди из машины, если полиция требует этого для проверки.",
           "Знак аварийной остановки, аптечку и жилет достань сам и покажи. Заглянуть в багажник полиция может, но без подозрения ничего не обыскивает."],
@@ -61,7 +61,7 @@ window.RB = {
       ],
       note: "Fahren trotz mitgenommenem Führerschein ist eine eigene Straftat. Wer in einen anderen Aufenthaltstitel wechselt, hat mit dem ukrainischen Führerschein wieder nur 6 Monate.",
       law: "§ 4 FeV · § 29 FeV · § 21 StVG · §§ 94, 98, 111a StPO · EU-VO 2022/1280",
-      actions: ["protokoll"],
+      actions: ["qh", "protokoll"],
       ru: {
         title: "Права и документы", sub: "Забыл, иностранные, забрали", toneLabel: "Оригиналы",
         doo: ["Покажи права и техпаспорт в оригинале; электронный техпаспорт в приложении i\u2011Kfz считается. Забыл — 10 € за каждый документ, это не преступление. Дали бланк — покажи права в полицейском участке в указанный срок, иначе делом займётся прокуратура.",
@@ -85,7 +85,7 @@ window.RB = {
       ],
       doo: [
         "Freiwillig sind: Pusten, Urin-, Speichel- und Wischtest, der Pupillentest mit der Taschenlampe und Übungen wie Finger-Nase oder auf einer Linie gehen. Ablehnen ist kein Schuldeingeständnis. Die Polizei muss darauf nicht hinweisen.",
-        "Eine Blutprobe darf die Polizei nur bei konkretem Verdacht anordnen – dann auch ohne Richter. Die Drohung „dann eben Blut auf der Wache“ ist kein Grund, freiwillig zu testen.",
+        "Bei Verdacht auf Alkohol oder Drogen am Steuer darf die Polizei eine Blutprobe auch ohne Richter anordnen (§ 81a Abs. 2 StPO) – dann dulden, nicht wehren. Ohne solchen Verdacht gibt es keine Blutprobe. Die Drohung „dann eben Blut auf der Wache“ ist kein Grund, freiwillig zu testen.",
         "Grenzwerte Auto und E-Scooter: 0,5 Promille, THC 3,5 ng/ml. Ab 1,1 Promille oder mit Ausfallerscheinungen ist es eine Straftat. Unter 21 und in der Probezeit: kein Alkohol, kein Cannabis.",
         "Urintests zeigen Cannabis noch Tage nach dem Konsum.",
         "Medikamente wie Ritalin oder Cannabis auf Rezept: Rezept oder ärztliche Bescheinigung dabeihaben, vor Ort aber nichts erklären – erst bei der Blutprobe oder über den Anwalt."
@@ -97,11 +97,11 @@ window.RB = {
       ],
       note: "Erstverstoß ab 0,5 Promille oder 3,5 ng/ml THC: 500 €, 1 Monat Fahrverbot, 2 Punkte. Alkohol und THC zusammen: 1.000 €. Ist die Blutprobe negativ, wird das Verfahren eingestellt und du zahlst sie nicht.",
       law: "§ 81a StPO · §§ 24a, 24c StVG · § 316 StGB",
-      actions: ["protokoll"],
+      actions: ["qh", "protokoll"],
       ru: {
         title: "Тест на алкоголь или наркотики", sub: "Дуть, моча, мазок, кровь", toneLabel: "Добровольно",
         doo: ["Добровольно: дуть в трубку, тесты мочи, слюны и мазок, проверка зрачков фонариком и упражнения вроде «палец к носу» или «пройти по линии». Отказ — не признание вины. Полиция не обязана говорить, что это добровольно.",
-          "Кровь полиция может взять только при конкретном подозрении — тогда и без судьи. Угроза «тогда возьмём кровь в участке» — не причина соглашаться на тест.",
+          "При подозрении на алкоголь или наркотики за рулём полиция может назначить взятие крови и без судьи (§ 81a Abs. 2 StPO) — тогда терпи, не сопротивляйся. Без такого подозрения кровь не берут. Угроза «тогда возьмём кровь в участке» — не причина соглашаться на тест.",
           "Пределы для машины и электросамоката: 0,5 промилле, THC 3,5 нг/мл. С 1,1 промилле или при явных признаках опьянения — это преступление. До 21 года и на испытательном сроке: ни алкоголя, ни каннабиса.",
           "Тест мочи показывает каннабис ещё несколько дней после употребления.",
           "Лекарства вроде риталина или каннабис по рецепту: носи с собой рецепт или справку врача, но на месте ничего не объясняй — только при взятии крови или через адвоката."],
@@ -133,7 +133,7 @@ window.RB = {
       ],
       note: "Ein Fahrverbot gilt für alle Kraftfahrzeuge – auch für den E-Scooter.",
       law: "eKFV · §§ 24a, 24c StVG · § 316 StGB · OLG Hamm 1 ORs 70/24",
-      actions: ["situation:test", "protokoll"],
+      actions: ["qh", "situation:test", "protokoll"],
       ru: {
         title: "Электро\u00ADсамокат", sub: "Алкоголь, тротуар, вдвоём", toneLabel: "Как авто",
         doo: ["Назови свои данные. Права для электросамоката не нужны, но нужен действующий страховой номерной знак.",
@@ -165,7 +165,7 @@ window.RB = {
         "Keine Taschen selbst öffnen, nichts erklären, nichts unterschreiben."
       ],
       law: "§ 102 StPO · §§ 34, 35 PolG BW · § 42c WaffG · § 31b StVZO · § 107 StPO",
-      actions: ["film", "protokoll"],
+      actions: ["film", "qh", "protokoll"],
       ru: {
         title: "Обыск машины", sub: "Багажник, бардачок, сумки", toneLabel: "Возражай",
         doo: ["Скажи чётко: «Ich bin nicht einverstanden» — «Я не согласен». Молчание могут посчитать согласием.",
@@ -187,24 +187,24 @@ window.RB = {
       ],
       doo: [
         "Personalien und Papiere geben, zum Vorwurf schweigen – auch „ich habe nur aufs Navi geschaut“ ist eine Aussage.",
-        "Ohne Verdacht und Beschlagnahme darf die Polizei nicht in dein Handy schauen. Den PIN musst du nie nennen.",
-        "Den Finger auflegen lassen musst du nur bei einer rechtmäßigen Beschlagnahme oder Durchsuchungsanordnung (BGH 2025) – dann nicht wehren.",
+        "Ohne Verdacht und Beschlagnahme darf die Polizei nicht in dein Handy schauen. Den PIN musst du nicht nennen (Ausnahme: Ausländer ohne gültigen Pass bei der Identitätsklärung, § 48 Abs. 3a AufenthG).",
+        "Den Finger zwangsweise auflegen darf die Polizei jedenfalls bei einer richterlich angeordneten Durchsuchung, die auch nach Handys sucht (BGH 2 StR 232/24); andere Fälle sind offen. Nie wehren, aber nicht selbst entsperren.",
         "Bestreitest du den Vorwurf: nicht vor Ort diskutieren, Beifahrer und Zeugen notieren, später schriftlich über einen Anwalt."
       ],
       dont: [
-        "Das Handy nicht aus der Hand geben, nicht selbst durchblättern, keine Anrufliste zeigen.",
+        "Das Handy nicht freiwillig herausgeben, nicht selbst durchblättern, keine Anrufliste zeigen. Nimmt die Polizei es bei einer Beschlagnahme: loslassen und widersprechen.",
         "Nicht darüber diskutieren, ob du telefoniert hast."
       ],
       note: "Handy am Steuer: 100 € und 1 Punkt, mit Gefährdung oder Unfall mehr. Essen am Steuer ist nicht ausdrücklich verboten – ein Bußgeld droht aber, wenn du dabei unaufmerksam fährst.",
       law: "§ 23 Abs. 1a StVO · § 1 StVO · §§ 94, 98, 81b StPO · BGH 2 StR 232/24",
-      actions: ["protokoll"],
+      actions: ["qh", "protokoll"],
       ru: {
         title: "Телефон за рулём", sub: "Обвинение, показать, разблокировать", toneLabel: "Не разблокируй",
         doo: ["Дай свои данные и документы, об обвинении молчи. «Я только посмотрел в навигатор» — это тоже показания.",
-          "Без подозрения и изъятия полиция не может смотреть твой телефон. PIN называть не нужно никогда.",
-          "Приложить палец для разблокировки обязан только при законном изъятии или постановлении об обыске (BGH 2025) — тогда не сопротивляйся.",
+          "Без подозрения и изъятия полиция не может смотреть твой телефон. PIN называть не нужно (исключение: иностранец без действующего паспорта при установлении личности, § 48 Abs. 3a AufenthG).",
+          "Приложить твой палец силой полиция может как минимум при обыске по постановлению судьи, который касается и телефонов (BGH 2 StR 232/24); другие случаи не решены. Никогда не сопротивляйся, но сам не разблокируй.",
           "Если не согласен с обвинением: не спорь на месте, запиши пассажиров и свидетелей, потом письменно через адвоката."],
-        dont: ["Не выпускай телефон из рук, не листай его сам, не показывай список звонков.",
+        dont: ["Не отдавай телефон добровольно, не листай его сам, не показывай список звонков. Если полиция изымает его: отпусти и возрази.",
           "Не спорь о том, говорил ли ты по телефону."],
         note: "Телефон за рулём: 100 € и 1 балл, при опасности или ДТП больше. Есть за рулём прямо не запрещено, но штраф грозит, если при этом отвлекаешься."
       },
@@ -262,9 +262,9 @@ window.RB = {
         "Nicht weggehen, solange die Kontrolle läuft.",
         "Nicht beleidigen, keine Gesten."
       ],
-      note: "Weigerung bei den Personalien: Bußgeld bis 1.000 €. Ausweis dabei und nicht gezeigt: bis 3.000 €. Lässt sich die Identität nicht klären, darf die Polizei dich festhalten und zur Wache bringen.",
+      note: "Weigerung bei den Personalien: Bußgeld bis 1.000 €, wenn die Polizei zur Identitätsfeststellung befugt ist – im Zweifel angeben und später prüfen lassen. Ausweis dabei und nicht gezeigt: bis 3.000 €. Lässt sich die Identität nicht klären, darf die Polizei dich festhalten und zur Wache bringen.",
       law: "§ 111 OWiG · § 32 PAuswG · § 47a AufenthG · § 27 PolG BW · § 163b StPO",
-      actions: ["film", "protokoll"],
+      actions: ["film", "qh", "protokoll"],
       ru: {
         title: "Проверка документов", sub: "Паспорт и личные данные", toneLabel: "Обязательно",
         doo: ["Назови свои данные: имя, дату и место рождения, адрес, гражданство, семейное положение, профессию.",
@@ -273,7 +273,7 @@ window.RB = {
         dont: ["Ничего по делу — молчать твоё право.",
           "Не уходи, пока идёт проверка.",
           "Не оскорбляй, никаких жестов."],
-        note: "Отказ назвать данные: штраф до 1 000 €. Удостоверение с собой, но не показал: до 3 000 €. Если личность не установить, полиция может задержать и отвезти в участок."
+        note: "Отказ назвать данные: штраф до 1 000 €, если полиция вправе устанавливать личность, — в сомнении назови и потом проверь через адвоката. Удостоверение с собой, но не показал: до 3 000 €. Если личность не установить, полиция может задержать и отвезти в участок."
       },
       kw: ["~улиц", "пешком", "подошл", "подошел", "~парк", "~strasse", "zu fuss", "angesprochen", "зупин", "personalien", "ausweis", "~kontroll", "pass", "adress", "name angeb", "паспорт", "документ", "данные", "провер", "назвать имя", "называть имя", "имя"]
     },
@@ -289,20 +289,20 @@ window.RB = {
         "Widerspruch laut und ruhig sagen – das zählt später.",
         "Wohnung: grundsätzlich nur mit richterlichem Beschluss, sonst nur bei Gefahr im Verzug. Du darfst dabei sein.",
         "Verzeichnis und Bescheinigung gibt es nur auf Verlangen – also verlangen.",
-        "Durchsuchen darf dich nur eine Person deines Geschlechts oder ein Arzt – außer bei akuter Gefahr. Taschen nicht selbst ausleeren: dulden musst du, mithelfen nicht.",
+        "Nach Polizeirecht darf dich nur eine Person deines Geschlechts oder ein Arzt durchsuchen – außer bei akuter Gefahr. Bei der Durchsuchung eines Verdächtigen nach StPO fehlt diese Regel; verlangen darfst du es trotzdem. Taschen nicht selbst ausleeren: dulden musst du, mithelfen nicht.",
         "Stuttgart: In der Waffenverbotszone der Innenstadt darf freitags, samstags und vor Feiertagen von 18 bis 8 Uhr ohne Verdacht durchsucht werden."
       ],
       dont: [
         "Nicht festhalten, wegziehen oder schubsen: Widerstand bis 3 Jahre, tätlicher Angriff 3 Monate bis 5 Jahre."
       ],
-      law: "§§ 34–36 PolG BW · §§ 102, 105–107 StPO · Art. 13 GG · § 42c WaffG · §§ 113, 114 StGB",
-      actions: ["film", "protokoll"],
+      law: "§§ 34–36, § 27 Abs. 2 S. 4 PolG BW · §§ 102, 105–107 StPO · Art. 13 GG · § 42c WaffG · §§ 113, 114 StGB",
+      actions: ["film", "qh", "protokoll"],
       ru: {
         title: "Обыск", sub: "Человек, сумка, квартира", toneLabel: "Не соглашайся",
         doo: ["Возрази громко и спокойно — это важно потом.",
           "Квартира: в принципе только по постановлению судьи, иначе лишь при срочной опасности. Ты вправе присутствовать.",
           "Опись и справку дают только по требованию — так что требуй.",
-          "Обыскивать тебя может только человек твоего пола или врач, кроме случаев острой опасности. Не выворачивай карманы сам: терпеть обязан, помогать — нет.",
+          "По полицейскому праву обыскивать тебя может только человек твоего пола или врач, кроме случаев острой опасности. При обыске подозреваемого по StPO такого правила нет, но попросить можно. Не выворачивай карманы сам: терпеть обязан, помогать — нет.",
           "Штутгарт: в зоне запрета оружия в центре по пятницам, субботам и перед праздниками с 18 до 8 часов могут обыскать без подозрения."],
         dont: ["Не держись, не вырывайся, не толкайся: сопротивление — до 3 лет, нападение — от 3 месяцев до 5 лет."]
       },
@@ -389,17 +389,17 @@ window.RB = {
         "Vorher Biometrie sperren, dann ist der Code nötig. iPhone: Seitentaste und Lauter-Taste 2 Sekunden halten. Android: Ein/Aus-Taste gedrückt halten und „Sperrmodus“ tippen – falls er fehlt, unter Einstellungen › Sperrbildschirm einschalten."
       ],
       dont: [
-        "Den PIN nicht nennen – das musst du nicht.",
+        "Den PIN nicht nennen – das musst du nicht (Ausnahme: Ausländer ohne gültigen Pass, § 48 Abs. 3a AufenthG).",
         "Aber wissen: Den Finger dürfen sie mit Zwang auflegen (BGH 2025, bei richterlich angeordneter Durchsuchung)."
       ],
       law: "§§ 94, 98 StPO · § 38 PolG BW · BGH 2 StR 232/24",
-      actions: ["film", "protokoll"],
+      actions: ["film", "qh", "protokoll"],
       ru: {
         title: "Телефон и видео", sub: "Удалить, изъять, разблокировать", toneLabel: "Не удаляй",
         doo: ["Ничего не удаляй. Особого права приказать удалить у полиции нет.",
           "Если полиция забирает телефон как доказательство: не держи его, скажи, что возражаешь, потребуй справку. После возражения она должна в течение 3 дней обратиться в суд за подтверждением.",
           "Заранее отключи биометрию, тогда нужен код. iPhone: держи боковую кнопку и кнопку громкости 2 секунды. Android: держи кнопку питания и нажми «Блокировка» (Lockdown); если её нет — включи в настройках экрана блокировки."],
-        dont: ["Не называй PIN — ты не обязан.",
+        dont: ["Не называй PIN — ты не обязан (исключение: иностранец без действующего паспорта, § 48 Abs. 3a AufenthG).",
           "Но знай: палец могут приложить силой (BGH 2025, при обыске по постановлению судьи)."]
       },
       kw: ["!удали", "удалить запис", "удали видео", "~handy", "lösch", "video lösch", "beschlagnahm", "sicherstell", "pin", "code", "entsperr", "~finger", "face id", "handy mit", "nimmt mein handy", "handy weg",
@@ -445,7 +445,7 @@ window.RB = {
       ],
       doo: [
         "Ruhig bleiben, keinen Widerstand leisten.",
-        "Anwalt verlangen und Angehörige benachrichtigen lassen – das ist dein Recht. Der Dolmetscher ist kostenlos.",
+        "Anwalt verlangen und um Benachrichtigung der Angehörigen bitten – bei einer Festnahme wegen einer Straftat ist das dein Recht, außer es gefährdet die Ermittlungen erheblich. Der Dolmetscher ist kostenlos.",
         "Nach einer Festnahme musst du spätestens am Tag danach einem Richter vorgeführt werden. Nur zur Identitätsfeststellung nach StPO: höchstens 12 Stunden.",
         "Anwaltsnotdienst Stuttgart, rund um die Uhr: 0711 998 899 66."
       ],
@@ -454,11 +454,11 @@ window.RB = {
         "Nicht „nur kurz erklären“ – jede Erklärung ist eine Aussage."
       ],
       law: "Art. 104 GG · §§ 114b, 114c, 128, 163c StPO · § 187 GVG · § 33 PolG BW",
-      actions: ["tel:+4971199889966", "protokoll"],
+      actions: ["tel:+4971199889966", "qh", "protokoll"],
       ru: {
         title: "Задержание или участок", sub: "Тебя забирают", toneLabel: "Твои права",
         doo: ["Сохраняй спокойствие, не сопротивляйся.",
-          "Требуй адвоката и сообщения родным — это твоё право. Переводчик бесплатный.",
+          "Требуй адвоката и попроси сообщить родным — при задержании по уголовному делу это твоё право, если это серьёзно не мешает расследованию. Переводчик бесплатный.",
           "После задержания тебя должны доставить к судье не позднее следующего дня. Только для установления личности по StPO — максимум 12 часов.",
           "Дежурный адвокат в Штутгарте, круглосуточно: 0711 998 899 66."],
         dont: ["Ничего не подписывай, если не понимаешь.",
@@ -479,17 +479,17 @@ window.RB = {
         "Sofort sichern: an dich selbst oder in deine Cloud schicken."
       ],
       dont: [
-        "Keinen Ton ohne Einwilligung aufnehmen – auch nicht offen: nach § 201 StGB umstritten, das Handy kann beschlagnahmt werden.",
+        "Keinen Ton ohne Einwilligung: heimlich ist strafbar (BGH 2026), offen ohne Zuhörer riskant – das Handy kann beschlagnahmt werden.",
         "Keine Gesichter veröffentlichen und keine Daten von Beamten verbreiten."
       ],
-      law: "BVerfG 1 BvR 2501/13 · VG Berlin 1 K 334/23 · § 201 StGB · § 33 KUG · § 126a StGB",
-      actions: ["film", "consent"],
+      law: "BGH 3 StR 97/26 · BVerfG 1 BvR 2501/13 · VG Berlin 1 K 334/23 · § 201 StGB · § 33 KUG · § 126a StGB",
+      actions: ["film", "qh", "consent"],
       ru: {
         title: "Хочу снимать", sub: "Видео, звук, согласие", toneLabel: "Без звука",
         doo: ["Видео без звука можно, пока ты не мешаешь — держи дистанцию.",
           "Звук — только с согласия всех, кто говорит. В начале записи попроси ещё раз подтвердить согласие.",
           "Сразу сохрани: отправь себе или в своё облако."],
-        dont: ["Не записывай звук без согласия — даже открыто: по § 201 StGB это спорно, телефон могут изъять.",
+        dont: ["Не записывай звук без согласия: тайно — наказуемо (BGH 2026), открыто без свидетелей — рискованно, телефон могут изъять.",
           "Не публикуй лица и не распространяй данные полицейских."]
       },
       kw: ["знима", "film", "video", "kamera", "aufnahm", "aufnehm", "ton", "einwillig", "сним", "снимать", "съем", "видео", "камер", "запис", "звук", "разговор", "~соглас"]
@@ -506,27 +506,27 @@ window.RB = {
     {
       id: "k-ausweis", cat: "kontrolle", title: "Muss ich meinen Ausweis dabeihaben?", tone: "warn", toneLabel: "Kommt drauf an",
       text: "Deutsche müssen einen Ausweis besitzen, aber nicht mitführen. Ausländer müssen Pass oder Aufenthaltstitel auf Verlangen der Polizei vorzeigen – praktisch heißt das: immer dabeihaben. Im Asylverfahren oder mit Duldung: die Aufenthaltsgestattung oder Duldungsbescheinigung. Auf Baustellen gilt wegen Zollkontrollen eine Mitführungspflicht. Hast du den Ausweis dabei, musst du ihn zeigen.",
-      law: "§ 1, § 32 PAuswG · § 47a, § 98 AufenthG · § 2a SchwarzArbG",
+      law: "§ 1, § 32 PAuswG · § 47a, § 98 AufenthG · § 8 FreizügG/EU · § 2a SchwarzArbG",
       ru: { title: "Обязан ли я носить с собой документ?", toneLabel: "Зависит",
         text: "Немцы обязаны иметь удостоверение личности, но не обязаны носить его с собой. Иностранцы по требованию полиции должны показать паспорт или вид на жительство — на практике это значит: всегда с собой. При убежище или Duldung — Aufenthaltsgestattung или справку о Duldung. На стройке из-за проверок таможни документ обязателен. Если документ при тебе, его нужно показать." },
       kw: ["personalausweis", "ausweis dabei", "mitführ", "pass", "aufenthalt", "baustell", "ausweis vergessen", "pass vergessen", "ohne ausweis", "паспорт", "носить", "~с собой", "внж", "стройк", "~документ", "забыл паспорт", "паспорт дома", "без паспорт", "без документ", "аусвайс"]
     },
     {
       id: "k-fragen", cat: "kontrolle", title: "Muss ich Fragen beantworten?", tone: "right", toneLabel: "Nein",
-      text: "Zur Sache darfst du schweigen – als Beschuldigter und als Zeuge. Zur Polizei musst du als Zeuge nur, wenn die Staatsanwaltschaft die Vorladung angeordnet hat. Die Personalien musst du trotzdem angeben. Ein Protokoll musst du nicht unterschreiben – unterschreibe nichts, was du nicht verstehst.",
+      text: "Als Beschuldigter darfst du zur Sache immer schweigen. Als Zeuge musst du bei der Polizei nur aussagen, wenn die Staatsanwaltschaft die Ladung angeordnet hat. Ausnahme: Geht es um eine akute Gefahr für Leben oder Gesundheit, musst du Auskunft geben (§ 43 PolG BW). Die Personalien musst du immer angeben. Ein Protokoll musst du nicht unterschreiben – unterschreibe nichts, was du nicht verstehst.",
       say: [["Ich mache keine Angaben zur Sache. Ich möchte zuerst mit einem Anwalt sprechen.", "Я не даю показаний по делу. Сначала хочу поговорить с адвокатом."]],
-      law: "§§ 55, 136, 163 Abs. 3 StPO",
+      law: "§§ 55, 136, 163 Abs. 3 StPO · § 43 PolG BW",
       ru: { title: "Обязан ли я отвечать на вопросы?", toneLabel: "Нет",
-        text: "По делу можешь молчать — и как подозреваемый, и как свидетель. Идти в полицию свидетелем нужно, только если вызов назначила прокуратура. Личные данные всё равно нужно назвать. Подписывать протокол не обязан — не подписывай то, чего не понимаешь." },
+        text: "Как подозреваемый по делу можешь молчать всегда. Как свидетель в полиции давать показания обязан, только если вызов назначила прокуратура. Исключение: если речь об острой опасности для жизни или здоровья, отвечать нужно (§ 43 PolG BW). Личные данные называть нужно всегда. Подписывать протокол не обязан — не подписывай то, чего не понимаешь." },
       kw: ["~was sagen", "~etwas sagen", "~nichts sagen", "~was soll ich sag", "~что говор", "~что сказат", "~что мне говор", "unterschreib", "unterschrift", "подпис", "aussage verweig", "frag", "antwort", "schweig", "aussag", "~zeug", "вопрос", "отвеч", "молч", "показан", "~свидетел"]
     },
     {
       id: "k-grund", cat: "kontrolle", title: "Darf die Polizei ohne Grund kontrollieren?", tone: "can", toneLabel: "Teilweise",
-      text: "In BW in bestimmten Fällen ja: an „gefährlichen Orten“, bei Veranstaltungen, im öffentlichen Verkehr, an Kontrollstellen und in der Stuttgarter Waffenverbotszone. Menschen nach Hautfarbe oder Herkunft auszuwählen ist rechtswidrig. Nach dem Grund fragen darfst du immer.",
+      text: "In BW in bestimmten Fällen ja: an „gefährlichen Orten“, an Kontrollstellen, in der Stuttgarter Waffenverbotszone und auf Durchgangsstraßen wie Autobahnen gegen grenzüberschreitende Kriminalität. Im öffentlichen Verkehr und bei Veranstaltungen nur, wenn Tatsachen dort Straftaten erwarten lassen. Menschen nach Hautfarbe oder Herkunft auszuwählen ist rechtswidrig. Nach dem Grund fragen darfst du immer.",
       say: [["Aus welchem Grund werde ich kontrolliert?", "По какой причине меня проверяют?"]],
-      law: "§ 27 PolG BW · § 42c WaffG · OVG NRW 5 A 294/16",
+      law: "§ 27 Abs. 1 Nr. 3–7 PolG BW · § 42c WaffG · OVG NRW 5 A 294/16",
       ru: { title: "Может ли полиция проверять без причины?", toneLabel: "Частично",
-        text: "В BW в некоторых случаях да: в «опасных местах», на мероприятиях, в общественном транспорте, на контрольных пунктах и в зоне запрета оружия в Штутгарте. Выбирать людей по цвету кожи или происхождению незаконно. Спросить о причине можно всегда." },
+        text: "В BW в некоторых случаях да: в «опасных местах», на контрольных пунктах, в зоне запрета оружия в Штутгарте и на транзитных дорогах вроде автобанов — против трансграничной преступности. В общественном транспорте и на мероприятиях — только если факты указывают, что там готовятся преступления. Выбирать людей по цвету кожи или происхождению незаконно. Спросить о причине можно всегда." },
       kw: ["ohne grund", "grundlos", "anlass", "hautfarb", "herkunft", "racial", "без причин", "проверить без", "просто так", "без повод", "цвет кож", "расизм", "почему остановил", "потому что иностран", "иностранц", "внешност", "акцент", "auslaender", "nur auslaender"]
     },
     {
@@ -543,20 +543,20 @@ window.RB = {
     },
     {
       id: "k-name", cat: "kontrolle", title: "Wie erfahre ich Name und Nummer des Polizisten?", tone: "right", toneLabel: "Fragen",
-      text: "Eine Nummer tragen in BW nur geschlossene Einheiten der Bereitschaftspolizei. Nach Vorgabe des Innenministeriums zeigen Beamte auf Verlangen ihren Dienstausweis und nennen Name und Dienststelle – Ausnahmen gibt es. Notiere immer Kennzeichen und Uhrzeit.",
+      text: "Eine pseudonymisierte Nummer (ohne Namen) tragen in BW nur Beamte im Einsatz geschlossener Einheiten – Bereitschaftspolizei und Einsatzhundertschaften. Nach innerdienstlicher Vorgabe zeigen Beamte auf Verlangen ihren Dienstausweis und nennen Name und Dienststelle – Ausnahmen gibt es. Notiere immer Kennzeichen und Uhrzeit.",
       say: [["Bitte zeigen Sie mir Ihren Dienstausweis und nennen Sie mir Ihren Namen und Ihre Dienststelle.", "Покажите удостоверение и назовите имя и участок."]],
-      law: "§ 55 Abs. 5 LBG BW · Vorgabe IM BW zum Dienstausweis",
+      law: "§ 55 Abs. 5 LBG BW · LT-Drs. 17/4621",
       ru: { title: "Как узнать имя и номер полицейского?", toneLabel: "Спроси",
-        text: "Номер в BW носят только подразделения оперативной полиции (Bereitschaftspolizei). По указанию МВД земли полицейские по требованию показывают служебное удостоверение и называют имя и участок — бывают исключения. Всегда записывай номер машины и время." },
+        text: "Номер без имени в BW носят только полицейские в составе закрытых подразделений — Bereitschaftspolizei и Einsatzhundertschaften. По внутренним правилам полицейские по требованию показывают служебное удостоверение и называют имя и участок — бывают исключения. Всегда записывай номер машины и время." },
       kw: ["зовут", "dienstnummer", "dienstausweis", "name des polizist", "nummer", "kennzeich", "имя полицейск", "номер", "жетон", "значок", "удостоверен", "кто он"]
     },
     {
       id: "k-filmen", cat: "filmen", title: "Darf ich die Polizei filmen?", tone: "right", toneLabel: "Video: ja",
-      text: "Video ohne Ton im öffentlichen Raum: ja, wenn du nicht störst. Ton: umstritten – manche Gerichte sehen eine Straftat nach § 201 StGB, andere nicht, wenn Umstehende mithören können; der BGH hat nicht entschieden. Veröffentlichen nur mit unkenntlichen Gesichtern.",
+      text: "Video ohne Ton im öffentlichen Raum: ja, wenn du nicht störst. Ton: Der BGH hat 2026 entschieden, dass auch dienstliche Worte von Polizisten geschützt sind – heimlicher Ton ist strafbar. Offen angekündigter Ton ohne Einwilligung ist riskant: Bei Kontrollen ohne Zuhörer (nachts, am Straßenrand) wurde bestraft oder das Handy beschlagnahmt, auf belebten Plätzen freigesprochen. Sicher: Video ohne Ton, Ton nur mit Einwilligung. Nicht veröffentlichen – wenn doch, Gesichter unkenntlich und ohne Originalton der Beamten.",
       say: [["Ich filme ohne Ton zur Beweissicherung und behindere Sie nicht.", "Снимаю без звука для доказательств и вам не мешаю."]],
-      law: "BVerfG 1 BvR 2501/13 · VG Berlin 1 K 334/23 · § 201 StGB · § 33 KUG",
+      law: "BGH 3 StR 97/26 · OLG Düsseldorf 3 RVs 28/22 · OLG Zweibrücken 1 OLG 2 Ss 62/21 · BVerfG 1 BvR 2501/13 · VG Berlin 1 K 334/23 · § 201 StGB · § 33 KUG",
       ru: { title: "Можно ли снимать полицию?", toneLabel: "Видео — да",
-        text: "Видео без звука в общественном месте — да, если не мешаешь. Звук — спорно: одни суды видят в этом преступление по § 201 StGB, другие нет, если разговор слышат окружающие; Верховный суд (BGH) это не решил. Публиковать — только с неузнаваемыми лицами." },
+        text: "Видео без звука в общественном месте — да, если не мешаешь. Звук: Верховный суд (BGH) в 2026 году решил, что служебные слова полицейских тоже защищены — тайная запись звука наказуема. Открыто объявленная запись звука без согласия рискованна: при проверках без свидетелей (ночью, на обочине) наказывали или изымали телефон, на людных площадях оправдывали. Надёжно: видео без звука, звук — только с согласия. Не публикуй; если всё же — лица неузнаваемы и без голоса полицейских." },
       kw: ["знима", "film", "video", "kamera", "aufnahm", "aufnehm", "ton", "filmen erlaubt", "сним", "снимать", "съем", "видео", "камер", "запис", "звук", "разговор", "снимать полицию", "на телефон"]
     },
     {
@@ -587,10 +587,10 @@ window.RB = {
     },
     {
       id: "k-bodycam", cat: "danach", title: "Bodycam-Aufnahme sichern", tone: "warn", toneLabel: "4 Wochen",
-      text: "Bodycam-Aufnahmen werden spätestens nach 4 Wochen gelöscht, außer sie werden als Beweis gebraucht. Deshalb sofort schriftlich beim Polizeipräsidium Stuttgart die Sicherung beantragen – die Vorlage findest du unter „Danach“.",
+      text: "Oft wird gar nichts gespeichert: Ohne Gefahr für Leib oder Leben löscht die Bodycam nach spätestens 60 Sekunden. Gespeicherte Aufnahmen werden spätestens nach 4 Wochen gelöscht, außer sie werden als Beweis gebraucht. Frag vor Ort, ob gespeichert wurde. Deshalb sofort schriftlich beim Polizeipräsidium Stuttgart die Sicherung beantragen – die Vorlage findest du unter „Danach“.",
       law: "§ 44 Abs. 5–11, § 75 Abs. 5 PolG BW",
       ru: { title: "Сохранить запись нательной камеры", toneLabel: "4 недели",
-        text: "Записи нательных камер полиции удаляют не позже чем через 4 недели, если они не нужны как доказательство. Поэтому сразу письменно попроси полицейское управление Штутгарта сохранить запись — шаблон письма во вкладке «После»." },
+        text: "Часто ничего не сохраняется: без опасности для жизни и здоровья камера стирает запись не позже чем через 60 секунд. Сохранённые записи удаляют не позже чем через 4 недели, если они не нужны как доказательство. Спроси на месте, сохранили ли запись. Поэтому сразу письменно попроси полицейское управление Штутгарта сохранить запись — шаблон письма во вкладке «После»." },
       kw: ["bodycam", "körperkamera", "kamera der polizei", "sichern", "бодикам", "камера полиц", "нательн", "сохран"]
     },
     {
@@ -619,11 +619,11 @@ window.RB = {
     },
     {
       id: "k-vorladung", cat: "danach", title: "Vorladung von der Polizei", tone: "right", toneLabel: "Oft keine Pflicht",
-      text: "Als Beschuldigter musst du einer Vorladung der Polizei nicht folgen – sag ab oder lass deinen Anwalt absagen und Akteneinsicht beantragen. Als Zeuge musst du nur hin, wenn die Staatsanwaltschaft die Ladung angeordnet hat. Zu Staatsanwaltschaft oder Gericht musst du gehen, als Beschuldigter darfst du dort schweigen. Angehörige des Beschuldigten dürfen die Aussage verweigern.",
+      text: "Als Beschuldigter musst du einer Vorladung der Polizei nicht folgen – sag ab oder lass deinen Anwalt absagen und Akteneinsicht beantragen. Als Zeuge musst du nur hin, wenn die Staatsanwaltschaft die Ladung angeordnet hat. Zu Staatsanwaltschaft oder Gericht musst du gehen, als Beschuldigter darfst du dort schweigen. Angehörige des Beschuldigten dürfen die Aussage verweigern. Ausnahme in BW: Ist die Vorladung für Fotos und Fingerabdrücke oder zur Abwehr einer akuten Gefahr, kann die Polizei dich holen (§ 28 PolG BW).",
       say: [["Ich mache von meinem Schweigerecht Gebrauch. Mein Anwalt meldet sich bei Ihnen.", "Я пользуюсь правом не давать показаний. С вами свяжется мой адвокат."]],
       law: "§§ 52, 133, 136, 161a, 163, 163a StPO",
       ru: { title: "Вызов в полицию (Vorladung)", toneLabel: "Часто не обязан",
-        text: "Если тебя подозревают, по вызову полиции идти не обязан — откажись или поручи это адвокату и попроси ознакомиться с делом. Свидетелем идти нужно, только если вызов назначила прокуратура. В прокуратуру или суд являться обязан, но как подозреваемый там можешь молчать. Родственники подозреваемого могут отказаться от показаний." },
+        text: "Если тебя подозревают, по вызову полиции идти не обязан — откажись или поручи это адвокату и попроси ознакомиться с делом. Свидетелем идти нужно, только если вызов назначила прокуратура. В прокуратуру или суд являться обязан, но как подозреваемый там можешь молчать. Родственники подозреваемого могут отказаться от показаний. Исключение в BW: если вызывают для фото и отпечатков пальцев или чтобы предотвратить острую опасность, полиция может доставить тебя принудительно (§ 28 PolG BW)." },
       kw: ["vorladung", "vorgeladen", "ladung", "beschuldigter", "als zeuge", "vernehm", "повестк", "вызывают в полиц", "вызвали в полиц", "допрос", "свидетелем", "обвиняем", "подозреваем", "форладунг"]
     },
     {
@@ -785,8 +785,8 @@ window.RB = {
     bodycam: {
       title: "Bodycam-Aufnahmen sichern lassen",
       to: "stuttgart.pp@polizei.bwl.de",
-      hint: "Sofort schicken: Aufnahmen werden spätestens nach 4 Wochen gelöscht. Adresse gilt für das Polizeipräsidium Stuttgart – anderswo in BW an dein Präsidium; bei der Bundespolizei (Bahnhof, Zug) an die Bundespolizei.",
-      ru: { title: "Письмо: сохранить записи нательных камер", hint: "Отправь сразу: записи удаляют не позже чем через 4 недели. Письмо на немецком — не переводи его; сначала заполни выше место, имя и адрес. Адрес — полицейское управление Штутгарта; в другом месте BW — в своё управление, на федеральную полицию (вокзал, поезд) — в Bundespolizei." },
+      hint: "Sofort schicken: Gespeicherte Aufnahmen werden spätestens nach 4 Wochen gelöscht. Adresse gilt für das Polizeipräsidium Stuttgart – anderswo in BW an dein Präsidium; bei der Bundespolizei (Bahnhof, Zug) an die Bundespolizei.",
+      ru: { title: "Письмо: сохранить записи нательных камер", hint: "Отправь сразу: сохранённые записи удаляют не позже чем через 4 недели. Письмо на немецком — не переводи его; сначала заполни выше место, имя и адрес. Адрес — полицейское управление Штутгарта; в другом месте BW — в своё управление, на федеральную полицию (вокзал, поезд) — в Bundespolizei." },
       body: "Sehr geehrte Damen und Herren,\n\nam {datum} gegen {zeit} Uhr wurde ich in {ort} von Beamten Ihres Präsidiums kontrolliert ({beamte}).\n\nIch bitte Sie, alle Bodycam-Aufnahmen dieses Einsatzes zu sichern und nicht zu löschen, da ich sie als Beweismittel benötige (§ 44 Abs. 10, § 75 Abs. 5 PolG BW). Bitte bestätigen Sie mir die Sicherung schriftlich.\n\nMit freundlichen Grüßen\n{name}"
     },
     beschwerde: {

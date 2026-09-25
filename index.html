@@ -127,6 +127,13 @@
       <button class="btn stop big-btn" type="button" id="rec-stop" data-t="rec_stop">Aufnahme beenden</button>
       <p class="hint" data-t="rec_live_hint">Bildschirm anlassen und die App nicht wechseln – sonst stoppt das Handy die Kamera. Was bis dahin aufgenommen ist, bleibt gespeichert.</p>
     </div>
+    <!-- Schnellhilfe: Was die Polizei sagt → deine Antwort mit Paragraf. Läuft die Aufnahme, ist alles Gesagte darauf. -->
+    <section class="qh" id="qh" aria-labelledby="qh-h" hidden>
+      <h2 id="qh-h" data-t="qh_h">Polizei sagt … – deine Antwort</h2>
+      <p class="hint" data-t="qh_lead">Antippen: Der Satz erscheint groß mit Paragraf. Läuft die Aufnahme, ist alles drauf, was gesagt wird.</p>
+      <div class="chips" id="qh-cats" role="group" aria-label="Themen" data-t-aria="w_cats"></div>
+      <div class="qh-list" id="qh-list"></div>
+    </section>
     <p class="err" id="rec-err" hidden></p>
     <div class="note-box">
       <p data-t-html="rec_note"><strong>Wird jede Sekunde auf dem Gerät gespeichert,</strong> auch wenn die App abstürzt. Trotzdem nach dem Stopp „Sichern“ tippen und an dich selbst oder in deine Cloud schicken – falls das Handy abgenommen wird. Automatische Cloud-Sicherung fehlt noch.</p>
@@ -234,9 +241,12 @@
   <button class="btn big-close" type="button" id="big-close" data-t="close">Schließen</button>
   <p class="big-de" id="big-de" lang="de"></p>
   <p class="big-ru" id="big-ru" lang="ru"></p>
+  <p class="big-law" id="big-law" lang="de"></p>
+  <p class="big-why" id="big-why"></p>
 </div>
 
 <script src="data.js"></script>
+<script src="quick.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

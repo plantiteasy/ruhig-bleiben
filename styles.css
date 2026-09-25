@@ -106,7 +106,7 @@ input:focus-visible,textarea:focus-visible{border-color:var(--accent);box-shadow
 .step-label{font-size:13px;color:var(--muted)}
 .consent-de{font-size:26px;font-weight:650;line-height:1.25}
 .consent-ru{color:var(--muted)}
-.rec-frame{position:relative;justify-self:center;width:100%;border-radius:14px;overflow:hidden;background:#000;aspect-ratio:3/4;max-height:min(60vh,calc(100svh - var(--tabs-h) - 200px))}
+.rec-frame{position:relative;justify-self:center;width:100%;border-radius:14px;overflow:hidden;background:#000;aspect-ratio:3/4;max-height:min(42vh,calc(100svh - var(--tabs-h) - 200px))}
 /* Stopp-Knopf immer über der Tab-Leiste – auch auf kleinen Handys und quer */
 #rec-stop{position:sticky;bottom:calc(var(--tabs-h) + env(safe-area-inset-bottom,0px) + 8px);z-index:11}
 .rec-frame video{width:100%;height:100%;object-fit:cover;display:block}
@@ -156,7 +156,7 @@ input:focus-visible,textarea:focus-visible{border-color:var(--accent);box-shadow
   padding:calc(env(safe-area-inset-top,0px) + 72px) 22px calc(env(safe-area-inset-bottom,0px) + 32px)}
 .big-close{position:absolute;top:calc(env(safe-area-inset-top,0px) + 14px);right:16px;min-height:40px}
 .big-de{font-size:clamp(22px,min(8.5vw,9.5vh),54px);font-weight:700;line-height:1.18;margin-top:auto;hyphens:auto;-webkit-hyphens:auto;overflow-wrap:break-word}
-.big-ru{font-size:18px;color:var(--muted);margin-bottom:auto}
+.big-ru{font-size:18px;color:var(--muted);margin:0}
 #rec-start,#consent-step,#rec-live{display:grid;gap:14px}
 body{overscroll-behavior-y:contain}
 .center{text-align:center}
@@ -234,3 +234,16 @@ select:focus-visible{outline:none;border-color:var(--accent);box-shadow:0 0 0 3p
 .ans.alt details{display:grid;gap:10px}
 .w-sits{display:grid;gap:8px;margin-bottom:12px}
 .prof-link{justify-self:start}
+/* Schnellhilfe unter der Aufnahme */
+.qh{display:grid;gap:10px}
+.qh h2{margin:8px 0 0}
+.qh-list{display:grid;gap:10px}
+.qh-i{appearance:none;font:inherit;text-align:left;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:grid;gap:6px;cursor:pointer;min-width:0}
+.qh-i:active{filter:brightness(.95)}
+.qh-cop{font-size:14px;color:var(--muted);font-style:italic}
+.qh-i .say-ru{font-size:13.5px}
+.qh-say{font-size:16.5px;font-weight:650;line-height:1.35;overflow-wrap:anywhere}
+.big-law{font-family:var(--mono);font-size:15px;color:var(--ink);margin:0}
+.big-why{font-size:15px;color:var(--muted);margin:0}
+.big-law:empty{display:none}
+.big-why{margin-bottom:auto}
