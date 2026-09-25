@@ -175,3 +175,16 @@ body.rec-on{padding-bottom:calc(var(--tabs-h) + env(safe-area-inset-bottom,0px) 
 /* Einspaltige Raster dürfen nie breiter als der Bildschirm werden (lange Paragrafen, Adressen, Wörter) */
 .s-head,.block,.say-b,ul.pts,.s-actions,.answers,.ans,.rec-modes,.note-box,.rec-list,.rec-item,.proto,.field,.deadlines,.dl,.letter,.w-list,.w-card{grid-template-columns:minmax(0,1fr)}
 .law,.say-de,.say-ru,.w-card p{overflow-wrap:anywhere}
+/* Sprachumschalter DE/RU im Kopf: immer sichtbar, groß genug zum Tippen */
+.head-r{display:flex;align-items:center;gap:8px;flex:none}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.lang-b{appearance:none;font:inherit;font-size:13px;font-weight:650;letter-spacing:.02em;color:var(--muted);background:var(--surface);border:0;min-width:40px;min-height:38px;padding:0 10px;cursor:pointer}
+.lang-b[aria-pressed="true"]{background:var(--accent);color:var(--on-accent)}
+.lang-b:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.brand{min-width:0}
+.brand > div{min-width:0}
+/* Kopf: Name und Umschalter in einer Zeile, Hinweiszeile darunter über die ganze Breite */
+.app-head{flex-wrap:wrap;row-gap:4px}
+.app-head .meta{flex-basis:100%;order:3;margin:0}
+/* Lange Etiketten dürfen in der Kachel umbrechen statt überzustehen */
+.sit .pill{white-space:normal;max-width:100%;border-radius:10px}

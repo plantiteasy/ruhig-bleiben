@@ -16,10 +16,150 @@
   function isoDate(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
   function flash(el, text, ms) { el.textContent = text; clearTimeout(el._t); el._t = setTimeout(function () { el.textContent = ""; }, ms || 3500); }
   function mb(n) { var m = (n || 0) / 1048576; return (m < 10 ? m.toFixed(1).replace(".", ",") : String(Math.round(m))) + " MB"; }
+  /* ---------- Sprache der Oberfläche (DE/RU) ----------
+     Inhalte stehen in data.js deutsch, die russische Fassung jeweils in „ru“. Sätze zum Sagen bleiben immer deutsch
+     (groß), darunter russisch – gezeigt wird ja der Polizei. Paragrafen und Briefe an Behörden bleiben deutsch. */
+  var LS_UI = "rb-ui-v1";
+  var UI = lsGet(LS_UI) || (/^ru/i.test(navigator.language || "") ? "ru" : "de");
+  var T = {
+    de: {
+      meta: "Prototyp · Baden-Württemberg · Stand 25.09.2026 · keine Rechtsberatung", install: "Installieren", install_app: "App installieren",
+      tab_jetzt: "Jetzt", tab_fragen: "Fragen", tab_aufnahme: "Aufnahme", tab_danach: "Danach", tab_wissen: "Wissen", tabs_aria: "Bereiche",
+      jetzt_h: "Was passiert gerade?", jetzt_lead: "Tippe auf deine Situation. Du bekommst sofort, was du sagen und was du lassen solltest.",
+      q_ask: "Frage stellen", q_proto: "Protokoll", back: "Zurück", close: "Schließen",
+      b_say: "Sag", b_do: "Tu", b_dont: "Lass", tap: "Groß anzeigen",
+      act_film: "Video ohne Ton", act_consent: "Mit Einwilligung aufnehmen", act_proto: "Protokoll danach",
+      fragen_h: "Frage stellen",
+      fragen_lead: "Tippe auf das Mikrofon und frag kurz, zum Beispiel „Darf ich filmen?“ oder «Можно ли снимать?». Das Mikrofon hört zu, bis du noch einmal tippst oder 5 Sekunden nichts sagst. Verarbeitet wird nur deine Frage.",
+      seg_ask_aria: "Sprache der Spracheingabe", seg_de: "Deutsch", seg_ru: "Русский", mic_idle: "Tippen und fragen", mic_on: "Ich höre … tippen zum Stoppen",
+      fragen_hint: "Die Erkennung übernimmt dein Browser (Chrome über Google, Safari über Apple). Die App speichert deine Frage nicht.",
+      ask_label: "Frage eintippen", ask_ph: "Oder tippen: filmen, Ausweis, Test …", ask_go: "Suchen", ask_empty: "Gib zuerst eine Frage ein.",
+      alt: "Passt vielleicht auch:", speak: "Vorlesen", stop: "Stopp", speak_na: "Vorlesen nicht verfügbar", speak_say: "Sag",
+      no_card: "Dazu habe ich noch keine Karte. Versuch: filmen, Ausweis, Test, Handy, Durchsuchung, Anwalt – oder wähle unter „Jetzt“ deine Situation.",
+      sr_ios: "Spracheingabe ist gesperrt: Einstellungen › Allgemein › Tastatur › Diktierfunktion einschalten. Oder die Frage tippen.",
+      sr_blocked: "Spracheingabe ist in diesem Browser gesperrt. Tippe die Frage.", sr_net: "Spracheingabe braucht Internet. Tippe die Frage – die Antworten kommen auch offline.",
+      sr_nospeech: "Nichts gehört. Noch einmal tippen und kurz fragen.", sr_audio: "Kein Mikrofon gefunden.", sr_other: "Spracheingabe unterbrochen ({x}).",
+      sr_none: "Spracheingabe gibt es in diesem Browser nicht. Nutze Chrome (Android) oder Safari (iPhone) – oder tippe die Frage.", sr_start: "Spracheingabe konnte nicht starten.",
+      perm_android: "{w} ist blockiert. In Chrome: Menü ⋮ › Einstellungen › Website-Einstellungen › {s} – diese Seite erlauben.",
+      perm_ios: "{w} ist blockiert. Einstellungen › Apps › Safari › {s} – auf „Fragen“ oder „Erlauben“ stellen.", perm_other: "{w} ist blockiert. In den Website-Einstellungen des Browsers erlauben.",
+      w_mic: "Mikrofon", s_mic: "Mikrofon", w_cam: "Kamera", s_cam: "Kamera", w_cammic: "Kamera oder Mikrofon", s_cammic: "Kamera und Mikrofon", w_geo: "Standort", s_geo: "Standort",
+      rec_h: "Aufnahme", rec_lead: "Video ohne Ton ist erlaubt, solange du nicht störst. Ton nur mit Einwilligung aller, die sprechen.",
+      rec_silent: "Video ohne Ton starten", rec_consent: "Mit Ton – nur mit Einwilligung", consent_ask: "Frag laut und warte auf die Antwort:",
+      consent_yes: "Alle sind einverstanden – mit Ton", consent_no: "Nicht einverstanden – Video ohne Ton", cancel: "Abbrechen",
+      consent_tip: "Tipp: Lass dir die Einwilligung zu Beginn der Aufnahme noch einmal bestätigen.", rec_stop: "Aufnahme beenden",
+      rec_live_hint: "Bildschirm anlassen und die App nicht wechseln – sonst stoppt das Handy die Kamera. Was bis dahin aufgenommen ist, bleibt gespeichert.",
+      rec_note: "<strong>Wird jede Sekunde auf dem Gerät gespeichert,</strong> auch wenn die App abstürzt. Trotzdem nach dem Stopp „Sichern“ tippen und an dich selbst oder in deine Cloud schicken – falls das Handy abgenommen wird. Automatische Cloud-Sicherung fehlt noch.",
+      rec_running: "Aufnahme läuft", mode_audio: "Mit Ton (Einwilligung {x})", mode_silent: "Ohne Ton",
+      rec_nobrowser: "Aufnehmen geht in diesem Browser nicht. Nutze Chrome (Android) oder Safari (iPhone), die Seite muss über https laufen.",
+      rec_nocam: "Keine passende Kamera gefunden.", rec_busy: "Die Kamera ist belegt. Andere Kamera-Apps schließen und noch einmal tippen.", rec_camfail: "Kamera konnte nicht starten ({x}).",
+      rec_storage: "Speichern auf dem Gerät klappt nicht (Speicher voll oder privater Modus). Die Aufnahme läuft weiter – nach dem Stopp sofort „Sichern“.",
+      rec_nopersist: "Dieses Gerät speichert Aufnahmen nicht dauerhaft. Nach dem Stopp sofort „Sichern“.", rec_empty: "Die Aufnahme ist leer. Bitte noch einmal starten.",
+      recs_h: "Auf diesem Gerät", recs_one: "Aufnahme", recs_many: "Aufnahmen", recs_hint: "„Sichern“ schickt die Datei an dich selbst (Telegram, WhatsApp, Mail) oder in Google Drive.",
+      rec_recovered: "Wiederhergestellt – die Aufnahme wurde unterbrochen", hash_wait: "wird berechnet …", hash_na: "nicht berechnet (Datei zu groß)",
+      b_share: "Sichern", b_dl: "Laden", b_proto: "Ins Protokoll", b_del: "Löschen", b_del_sure: "Wirklich löschen?", b_taken: "Übernommen",
+      m_clock: " Uhr", m_ca: "ca. ", m_sec: " s", m_audio: "mit Ton, Einwilligung {x}", m_silent: "ohne Ton",
+      danach_h: "Danach", danach_lead: "Noch am selben Tag: Gedächtnisprotokoll. Diktieren geht mit dem Mikrofon neben jedem Feld.",
+      seg_dict_aria: "Sprache fürs Diktieren", dict_de: "Diktat Deutsch", dict_ru: "Диктовка по-русски", dict: "Diktieren", gps: "Standort einfügen", gps_wait: "Suche …",
+      f_datum: "Datum", f_zeit: "Uhrzeit", f_ort: "Ort", f_beamte: "Beamte und Fahrzeuge", f_ablauf: "Was ist passiert?", f_zitate: "Wörtliche Aussagen", f_zeugen: "Zeugen",
+      f_aufnahmen: "Aufnahmen", f_schaden: "Verletzungen und Schäden", f_name: "Dein Name und Anschrift (für Briefe)",
+      ph_ort: "Straße, Haltestelle, Richtung", ph_beamte: "Namen, Dienststelle, Kennzeichen, Aussehen", ph_ablauf: "Der Reihe nach, mit Uhrzeiten, so genau wie möglich",
+      ph_zitate: "Wer hat was genau gesagt?", ph_zeugen: "Name und Kontakt, nur mit Einverständnis", ph_aufnahmen: "Wird aus „Aufnahme“ übernommen: Uhrzeit, Dauer, Prüfsumme",
+      ph_schaden: "Was, wo, Arztbesuch, Fotos", ph_name: "Vorname Nachname, Straße, PLZ Ort",
+      p_copy: "Protokoll kopieren", share: "Teilen", p_file: "Als Datei", p_clear: "Neues Protokoll", p_clear_sure: "Wirklich leeren?", p_new: "Neues Protokoll angelegt",
+      copied: "Kopiert", copy_fail: "Kopieren ging nicht – bitte „Teilen“ nutzen", geo_na: "Standort ist hier nicht verfügbar", geo_fail: "Standort nicht gefunden. Draußen noch einmal versuchen.",
+      fristen_h: "Fristen", briefe_h: "Briefe",
+      dl_proto: "Gedächtnisprotokoll", dl_proto_d: "am selben Tag – {x}", dl_bc: "Bodycam-Sicherung beantragen", dl_bc_d: "sofort; gelöscht wird spätestens am {x}",
+      dl_bb: "Bürgerbeauftragte BW", dl_bb_d: "bis {x}, nicht parallel zu einem Straf- oder Gerichtsverfahren", dl_anwalt: "Anwalt", dl_anwalt_d: "vor jeder Beschwerde oder Anzeige sprechen",
+      left_over: "abgelaufen", left_today: "heute", left_1: "noch 1 Tag", left_n: "noch {x} Tage",
+      l_to: "An:", l_copy: "Kopieren", l_mail: "In Mail öffnen",
+      wissen_h: "Wissen", w_label: "Wissen durchsuchen", w_ph: "Suchen: Ausweis, filmen, Messer …", w_cats: "Themen", w_all: "Alle",
+      w_empty: "Nichts gefunden. Versuch: filmen, Ausweis, Test, Handy, Beschwerde.",
+      data_note: "Deine Daten bleiben auf dem Gerät: Protokoll und Aufnahmen gehen an keinen Server.",
+      disclaimer: "Allgemeine Information, keine Rechtsberatung. Geprüft anhand von Gesetzen und Gerichtsentscheidungen, noch nicht von einem Anwalt. Quellen: {links}",
+      i_done: "<strong>Installiert.</strong> Situationen und Wissen funktionieren auch ohne Internet.",
+      i_ios: "<strong>Auf den Home-Bildschirm:</strong> In Safari „Teilen“ und dann „Zum Home-Bildschirm“. Danach funktionieren Situationen und Wissen auch ohne Internet.",
+      i_android: "<strong>Als App installieren:</strong> In Chrome oben rechts ⋮ und dann „App installieren“ oder „Zum Startbildschirm hinzufügen“. Danach funktionieren Situationen und Wissen auch ohne Internet.",
+      i_other: "<strong>Als App aufs Handy:</strong> Android – in Chrome ⋮ und „App installieren“. iPhone – in Safari „Teilen“ und „Zum Home-Bildschirm“."
+    },
+    ru: {
+      meta: "Прототип · Баден-Вюртемберг · на 25.09.2026 · не юридическая консультация", install: "Установить", install_app: "Установить приложение",
+      tab_jetzt: "Сейчас", tab_fragen: "Вопрос", tab_aufnahme: "Запись", tab_danach: "После", tab_wissen: "Знания", tabs_aria: "Разделы",
+      jetzt_h: "Что происходит?", jetzt_lead: "Нажми на свою ситуацию — сразу увидишь, что сказать и чего не делать.",
+      q_ask: "Задать вопрос", q_proto: "Протокол", back: "Назад", close: "Закрыть",
+      b_say: "Скажи", b_do: "Делай", b_dont: "Не делай", tap: "Показать крупно",
+      act_film: "Видео без звука", act_consent: "Запись с согласия", act_proto: "Протокол после",
+      fragen_h: "Задать вопрос",
+      fragen_lead: "Нажми на микрофон и спроси коротко, например «Можно ли снимать?» или „Darf ich filmen?“. Микрофон слушает, пока не нажмёшь ещё раз или 5 секунд не будет слышно речи. Обрабатывается только твой вопрос.",
+      seg_ask_aria: "Язык голосового ввода", seg_de: "По-немецки", seg_ru: "По-русски", mic_idle: "Нажми и спроси", mic_on: "Слушаю… нажми, чтобы остановить",
+      fragen_hint: "Речь распознаёт браузер (Chrome через Google, Safari через Apple). Приложение не сохраняет твой вопрос.",
+      ask_label: "Ввести вопрос", ask_ph: "Или напиши: снимать, паспорт, тест …", ask_go: "Найти", ask_empty: "Сначала введи вопрос.",
+      alt: "Может подойти и это:", speak: "Прочитать вслух", stop: "Стоп", speak_na: "Озвучка недоступна", speak_say: "Скажи",
+      no_card: "Пока нет карточки на этот вопрос. Попробуй: снимать, паспорт, тест, телефон, обыск, адвокат — или выбери ситуацию на вкладке «Сейчас».",
+      sr_ios: "Голосовой ввод выключен: Настройки › Основные › Клавиатура › включить «Диктовку». Или напиши вопрос.",
+      sr_blocked: "Голосовой ввод в этом браузере заблокирован. Напиши вопрос.", sr_net: "Для голосового ввода нужен интернет. Напиши вопрос — ответы работают и без сети.",
+      sr_nospeech: "Ничего не услышал. Нажми ещё раз и спроси коротко.", sr_audio: "Микрофон не найден.", sr_other: "Голосовой ввод прервался ({x}).",
+      sr_none: "В этом браузере нет голосового ввода. Используй Chrome (Android) или Safari (iPhone) — или напиши вопрос.", sr_start: "Голосовой ввод не запустился.",
+      perm_android: "Доступ к {w} заблокирован. В Chrome: меню ⋮ › Настройки › Настройки сайтов › {s} — разрешить для этого сайта.",
+      perm_ios: "Доступ к {w} заблокирован. Настройки › Приложения › Safari › {s} — выбрать «Спрашивать» или «Разрешить».", perm_other: "Доступ к {w} заблокирован. Разреши его в настройках сайта в браузере.",
+      w_mic: "микрофону", s_mic: "Микрофон", w_cam: "камере", s_cam: "Камера", w_cammic: "камере или микрофону", s_cammic: "Камера и Микрофон", w_geo: "местоположению", s_geo: "Геоданные",
+      rec_h: "Запись", rec_lead: "Видео без звука можно, пока ты не мешаешь. Звук — только с согласия всех, кто говорит.",
+      rec_silent: "Начать видео без звука", rec_consent: "Со звуком — только с согласия", consent_ask: "Спроси вслух и дождись ответа:",
+      consent_yes: "Все согласны — со звуком", consent_no: "Не согласны — видео без звука", cancel: "Отмена",
+      consent_tip: "Совет: в начале записи попроси ещё раз подтвердить согласие.", rec_stop: "Остановить запись",
+      rec_live_hint: "Не выключай экран и не переключайся на другое приложение — иначе телефон остановит камеру. Всё, что уже записано, сохранится.",
+      rec_note: "<strong>Запись сохраняется на телефоне каждую секунду,</strong> даже если приложение упадёт. Всё равно после остановки нажми «Сохранить» и отправь себе или в своё облако — на случай, если телефон заберут. Автоматического облака пока нет.",
+      rec_running: "Идёт запись", mode_audio: "Со звуком (согласие {x})", mode_silent: "Без звука",
+      rec_nobrowser: "В этом браузере запись не работает. Используй Chrome (Android) или Safari (iPhone), сайт должен открываться по https.",
+      rec_nocam: "Подходящая камера не найдена.", rec_busy: "Камера занята. Закрой другие приложения с камерой и нажми ещё раз.", rec_camfail: "Камера не запустилась ({x}).",
+      rec_storage: "Сохранить на телефоне не получается (память заполнена или приватный режим). Запись продолжается — после остановки сразу нажми «Сохранить».",
+      rec_nopersist: "Этот телефон не хранит записи надолго. После остановки сразу нажми «Сохранить».", rec_empty: "Запись пустая. Начни ещё раз.",
+      recs_h: "На этом телефоне", recs_one: "запись", recs_few: "записи", recs_many: "записей", recs_hint: "«Сохранить» отправляет файл тебе же (Telegram, WhatsApp, почта) или в Google Drive.",
+      rec_recovered: "Восстановлено — запись была прервана", hash_wait: "считается …", hash_na: "не посчитана (файл слишком большой)",
+      b_share: "Сохранить", b_dl: "Скачать", b_proto: "В протокол", b_del: "Удалить", b_del_sure: "Точно удалить?", b_taken: "Добавлено",
+      m_clock: "", m_ca: "ок. ", m_sec: " с", m_audio: "со звуком, согласие {x}", m_silent: "без звука",
+      danach_h: "После", danach_lead: "В тот же день: протокол по памяти. Надиктовать можно кнопкой у каждого поля.",
+      seg_dict_aria: "Язык диктовки", dict_de: "Диктовка по-немецки", dict_ru: "Диктовка по-русски", dict: "Диктовать", gps: "Вставить место", gps_wait: "Ищу …",
+      f_datum: "Дата", f_zeit: "Время", f_ort: "Место", f_beamte: "Полицейские и машины", f_ablauf: "Что произошло?", f_zitate: "Точные слова", f_zeugen: "Свидетели",
+      f_aufnahmen: "Записи", f_schaden: "Травмы и ущерб", f_name: "Твоё имя и адрес (для писем)",
+      ph_ort: "Улица, остановка, направление", ph_beamte: "Имена, участок, номера машин, внешность", ph_ablauf: "По порядку, со временем, как можно точнее",
+      ph_zitate: "Кто что именно сказал?", ph_zeugen: "Имя и контакт, только с согласия", ph_aufnahmen: "Добавляется из «Записи»: время, длительность, контрольная сумма",
+      ph_schaden: "Что, где, врач, фото", ph_name: "Имя Фамилия, улица, индекс, город",
+      p_copy: "Копировать протокол", share: "Поделиться", p_file: "Файлом", p_clear: "Новый протокол", p_clear_sure: "Точно очистить?", p_new: "Новый протокол создан",
+      copied: "Скопировано", copy_fail: "Скопировать не удалось — нажми «Поделиться»", geo_na: "Местоположение здесь недоступно", geo_fail: "Место не найдено. Попробуй ещё раз на улице.",
+      fristen_h: "Сроки", briefe_h: "Письма",
+      dl_proto: "Протокол по памяти", dl_proto_d: "в тот же день — {x}", dl_bc: "Попросить сохранить записи камер", dl_bc_d: "сразу; удалят не позже {x}",
+      dl_bb: "Уполномоченная по делам граждан BW", dl_bb_d: "до {x}, не параллельно с уголовным делом или судом", dl_anwalt: "Адвокат", dl_anwalt_d: "поговорить до любой жалобы или заявления",
+      left_over: "срок истёк", left_today: "сегодня",
+      l_to: "Кому:", l_copy: "Копировать", l_mail: "Открыть в почте",
+      wissen_h: "Знания", w_label: "Поиск по знаниям", w_ph: "Поиск: паспорт, снимать, нож …", w_cats: "Темы", w_all: "Все",
+      w_empty: "Ничего не найдено. Попробуй: снимать, паспорт, тест, телефон, жалоба.",
+      data_note: "Твои данные остаются на телефоне: протокол и записи не уходят ни на какой сервер.",
+      disclaimer: "Общая информация, не юридическая консультация. Проверено по законам и решениям судов, адвокатом ещё не проверено. Источники: {links}",
+      i_done: "<strong>Установлено.</strong> Ситуации и знания работают и без интернета.",
+      i_ios: "<strong>На экран «Домой»:</strong> в Safari нажми «Поделиться», затем «На экран „Домой“». После этого ситуации и знания работают и без интернета.",
+      i_android: "<strong>Установить как приложение:</strong> в Chrome справа вверху ⋮, затем «Установить приложение» или «Добавить на главный экран». После этого ситуации и знания работают и без интернета.",
+      i_other: "<strong>Приложение на телефон:</strong> Android — в Chrome ⋮ и «Установить приложение». iPhone — в Safari «Поделиться» и «На экран „Домой“»."
+    }
+  };
+  function t(k, x) { var v = T[UI][k]; if (v == null) v = T.de[k]; if (v == null) v = k; return x == null ? v : v.replace("{x}", x); }
+  // Feld aus data.js in der gewählten Sprache; fehlt die Übersetzung, gilt Deutsch.
+  function L(o, f) { return UI === "ru" && o && o.ru && o.ru[f] != null ? o.ru[f] : o[f]; }
+  function leftText(n) {
+    if (n < 0) return t("left_over"); if (n === 0) return t("left_today");
+    if (UI !== "ru") return n === 1 ? t("left_1") : t("left_n", n);
+    var m10 = n % 10, m100 = n % 100;
+    return "осталось " + n + (m10 === 1 && m100 !== 11 ? " день" : m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14) ? " дня" : " дней");
+  }
+  function recCount(n) {
+    if (UI !== "ru") return n + " " + (n === 1 ? t("recs_one") : t("recs_many"));
+    var m10 = n % 10, m100 = n % 100;
+    return n + " " + (m10 === 1 && m100 !== 11 ? t("recs_one") : m10 >= 2 && m10 <= 4 && (m100 < 12 || m100 > 14) ? t("recs_few") : t("recs_many"));
+  }
+
+  // what: "mic", "cam", "cammic" oder "geo"
   function permHelp(what) {
-    if (IS_ANDROID) return what + " ist blockiert. In Chrome: Menü ⋮ › Einstellungen › Website-Einstellungen › " + what + " – diese Seite erlauben.";
-    if (IS_IOS) return what + " ist blockiert. Einstellungen › Apps › Safari › " + what + " – auf „Fragen“ oder „Erlauben“ stellen.";
-    return what + " ist blockiert. In den Website-Einstellungen des Browsers erlauben.";
+    var k = IS_ANDROID ? "perm_android" : IS_IOS ? "perm_ios" : "perm_other";
+    return t(k).replace("{w}", t("w_" + what)).replace("{s}", t("s_" + what));
   }
 
   /* ---------- Views ---------- */
@@ -45,13 +185,13 @@
   function findSituation(id) { for (var i = 0; i < D.situations.length; i++) if (D.situations[i].id === id) return D.situations[i]; return null; }
   function renderGrid() {
     var names = {}, last = null;
-    (D.groups || []).forEach(function (g) { names[g[0]] = g[1]; });
+    (D.groups || []).forEach(function (g) { names[g[0]] = UI === "ru" && g[2] ? g[2] : g[1]; });
     $("sit-grid").innerHTML = D.situations.map(function (s) {
       // Überschrift, sobald eine neue Gruppe beginnt – bei 15 Kacheln findet man so schneller die eigene Lage.
       var head = s.group && s.group !== last && names[s.group] ? '<h2 class="grid-h">' + esc(names[s.group]) + "</h2>" : "";
       last = s.group;
-      return head + '<button class="sit" type="button" data-id="' + s.id + '"><span class="sit-t">' + esc(s.title) + '</span><span class="sit-s">' + esc(s.sub) +
-        '</span><span class="pill ' + s.tone + '">' + esc(s.toneLabel) + "</span></button>";
+      return head + '<button class="sit" type="button" data-id="' + s.id + '"><span class="sit-t">' + esc(L(s, "title")) + '</span><span class="sit-s">' + esc(L(s, "sub")) +
+        '</span><span class="pill ' + s.tone + '">' + esc(L(s, "toneLabel")) + "</span></button>";
     }).join("");
     [].forEach.call(document.querySelectorAll(".sit"), function (b) {
       b.addEventListener("click", function () { location.hash = "#s/" + b.getAttribute("data-id"); });
@@ -60,24 +200,25 @@
   function sayButtons(list) {
     return (list || []).map(function (p) {
       return '<button class="say-b" type="button" data-de="' + esc(p[0]) + '" data-ru="' + esc(p[1] || "") + '"><span class="say-de">' + esc(p[0]) +
-        '</span><span class="say-ru">' + esc(p[1] || "") + '</span><span class="say-tap">Groß anzeigen</span></button>';
+        '</span><span class="say-ru">' + esc(p[1] || "") + '</span><span class="say-tap">' + esc(t("tap")) + "</span></button>";
     }).join("");
   }
   function actionButtons(actions) {
     return (actions || []).map(function (a) {
-      if (a === "film") return '<a class="btn primary" href="#aufnahme" data-act="film">Video ohne Ton</a>';
-      if (a === "consent") return '<a class="btn" href="#aufnahme" data-act="consent">Mit Einwilligung aufnehmen</a>';
-      if (a === "protokoll") return '<a class="btn" href="#danach">Protokoll danach</a>';
-      if (a.indexOf("situation:") === 0) { var t = findSituation(a.slice(10)); return t ? '<a class="btn" href="#s/' + t.id + '">' + esc(t.title) + "</a>" : ""; }
+      if (a === "film") return '<a class="btn primary" href="#aufnahme" data-act="film">' + esc(t("act_film")) + "</a>";
+      if (a === "consent") return '<a class="btn" href="#aufnahme" data-act="consent">' + esc(t("act_consent")) + "</a>";
+      if (a === "protokoll") return '<a class="btn" href="#danach">' + esc(t("act_proto")) + "</a>";
+      if (a.indexOf("situation:") === 0) { var sit = findSituation(a.slice(10)); return sit ? '<a class="btn" href="#s/' + sit.id + '">' + esc(L(sit, "title")) + "</a>" : ""; }
       return "";
     }).join("");
   }
   function situationHTML(s, compact) {
-    return '<div class="s-head"><h' + (compact ? "3" : "1") + ">" + esc(s.title) + "</h" + (compact ? "3" : "1") + '><span class="pill ' + s.tone + '">' + esc(s.toneLabel) + "</span></div>" +
-      '<div class="block"><p class="block-t say">Sag</p>' + sayButtons(s.say) + "</div>" +
-      '<div class="block"><p class="block-t do">Tu</p><ul class="pts">' + s.doo.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" +
-      '<div class="block"><p class="block-t dont">Lass</p><ul class="pts">' + s.dont.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" +
-      (s.note ? '<p class="note">' + esc(s.note) + "</p>" : "") +
+    var note = L(s, "note");
+    return '<div class="s-head"><h' + (compact ? "3" : "1") + ">" + esc(L(s, "title")) + "</h" + (compact ? "3" : "1") + '><span class="pill ' + s.tone + '">' + esc(L(s, "toneLabel")) + "</span></div>" +
+      '<div class="block"><p class="block-t say">' + esc(t("b_say")) + "</p>" + sayButtons(s.say) + "</div>" +
+      '<div class="block"><p class="block-t do">' + esc(t("b_do")) + '</p><ul class="pts">' + L(s, "doo").map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" +
+      '<div class="block"><p class="block-t dont">' + esc(t("b_dont")) + '</p><ul class="pts">' + L(s, "dont").map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" +
+      (note ? '<p class="note">' + esc(note) + "</p>" : "") +
       '<p class="law">' + esc(s.law) + "</p>" +
       '<div class="s-actions">' + actionButtons(s.actions) + "</div>";
   }
@@ -130,6 +271,7 @@
   }
   var corpus = [];
   function buildCorpus() {
+    // Titel nur deutsch: Russische Fragen laufen über die Suchwörter (russische Titel brachten im Test nur Fehltreffer).
     D.situations.forEach(function (s) { corpus.push({ kind: "s", item: s, kw: kwList(s.kw), title: norm(s.title + " " + s.sub) }); });
     D.cards.forEach(function (c) { corpus.push({ kind: "c", item: c, kw: kwList(c.kw), title: norm(c.title) }); });
   }
@@ -177,41 +319,40 @@
     }).filter(function (r) { return r.sc > 0; }).sort(function (a, b) { return b.sc - a.sc || b.best - a.best; }).slice(0, 3);
   }
   function cardHTML(c) {
-    return '<div class="w-head"><h3>' + esc(c.title) + '</h3><span class="pill ' + c.tone + '">' + esc(c.toneLabel) + "</span></div>" +
-      "<p>" + esc(c.text) + "</p>" + (c.say ? sayButtons(c.say) : "") + '<p class="law">' + esc(c.law) + "</p>";
+    return '<div class="w-head"><h3>' + esc(L(c, "title")) + '</h3><span class="pill ' + c.tone + '">' + esc(L(c, "toneLabel")) + "</span></div>" +
+      "<p>" + esc(L(c, "text")) + "</p>" + (c.say ? sayButtons(c.say) : "") + '<p class="law">' + esc(c.law) + "</p>";
   }
   function speakText(e) {
     var it = e.item;
-    if (e.kind === "s") return it.title + ". Sag: " + it.say[0][0] + " " + it.doo[0];
-    return it.title + " " + it.text;
+    if (e.kind === "s") return L(it, "title") + ". " + t("speak_say") + ": " + it.say[0][UI === "ru" ? 1 : 0] + " " + L(it, "doo")[0];
+    return L(it, "title") + ". " + L(it, "text");
   }
   function renderAnswers(q) {
     var res = match(q), box = $("answers");
     if (!res.length) {
-      box.innerHTML = /[а-яё]/i.test(q)
-        ? '<p class="err">Пока нет карточки на этот вопрос. Попробуй: снимать, паспорт, тест, телефон, обыск, адвокат – или выбери ситуацию на вкладке «Jetzt».</p>'
-        : '<p class="err">Dazu habe ich noch keine Karte. Versuch: filmen, Ausweis, Test, Handy, Durchsuchung, Anwalt – oder wähle unter „Jetzt“ deine Situation.</p>';
+      // Russisch gefragt oder russische Oberfläche: Hinweis auf Russisch
+      box.innerHTML = '<p class="err">' + esc(UI === "ru" || /[а-яё]/i.test(q) ? T.ru.no_card : T.de.no_card) + "</p>";
       return;
     }
     box.innerHTML = res.map(function (r, i) {
       var inner = r.e.kind === "s" ? situationHTML(r.e.item, true) : cardHTML(r.e.item);
-      return (i === 1 ? '<p class="alt-t">Passt vielleicht auch:</p>' : "") +
+      return (i === 1 ? '<p class="alt-t">' + esc(t("alt")) + "</p>" : "") +
         '<article class="ans' + (i === 0 ? " top" : "") + '" data-id="' + esc(r.e.item.id) + '">' + inner +
-        (i === 0 ? '<div class="ans-row"><button class="btn" type="button" id="speak">Vorlesen</button></div>' : "") + "</article>";
+        (i === 0 ? '<div class="ans-row"><button class="btn" type="button" id="speak">' + esc(t("speak")) + "</button></div>" : "") + "</article>";
     }).join("");
     var sp = $("speak");
     if (sp) sp.addEventListener("click", function () {
-      if (!("speechSynthesis" in window)) { sp.textContent = "Vorlesen nicht verfügbar"; return; }
-      if (speechSynthesis.speaking) { speechSynthesis.cancel(); sp.textContent = "Vorlesen"; return; }
-      var u = new SpeechSynthesisUtterance(speakText(res[0].e)); u.lang = "de-DE"; u.rate = 1;
-      u.onend = function () { sp.textContent = "Vorlesen"; };
-      speechSynthesis.speak(u); sp.textContent = "Stopp";
+      if (!("speechSynthesis" in window)) { sp.textContent = t("speak_na"); return; }
+      if (speechSynthesis.speaking) { speechSynthesis.cancel(); sp.textContent = t("speak"); return; }
+      var u = new SpeechSynthesisUtterance(speakText(res[0].e)); u.lang = UI === "ru" ? "ru-RU" : "de-DE"; u.rate = 1;
+      u.onend = function () { sp.textContent = t("speak"); };
+      speechSynthesis.speak(u); sp.textContent = t("stop");
     });
   }
 
   /* ---------- Speech recognition ---------- */
   var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  var lang = lsGet(LS_LANG) || "de-DE";
+  var lang = lsGet(LS_LANG) || (UI === "ru" ? "ru-RU" : "de-DE");
   function syncSeg() {
     [].forEach.call(document.querySelectorAll(".seg-b"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-lang") === lang ? "true" : "false"); });
   }
@@ -219,13 +360,13 @@
     b.addEventListener("click", function () { lang = b.getAttribute("data-lang"); lsSet(LS_LANG, lang); syncSeg(); });
   });
   function srError(code) {
-    if (code === "not-allowed") return permHelp("Mikrofon");
-    if (code === "service-not-allowed") return IS_IOS ? "Spracheingabe ist gesperrt: Einstellungen › Allgemein › Tastatur › Diktierfunktion einschalten. Oder die Frage tippen." : "Spracheingabe ist in diesem Browser gesperrt. Tippe die Frage.";
-    if (code === "network") return "Spracheingabe braucht Internet. Tippe die Frage – die Antworten kommen auch offline.";
-    if (code === "no-speech") return "Nichts gehört. Noch einmal tippen und kurz fragen.";
-    if (code === "audio-capture") return "Kein Mikrofon gefunden.";
+    if (code === "not-allowed") return permHelp("mic");
+    if (code === "service-not-allowed") return IS_IOS ? t("sr_ios") : t("sr_blocked");
+    if (code === "network") return t("sr_net");
+    if (code === "no-speech") return t("sr_nospeech");
+    if (code === "audio-capture") return t("sr_audio");
     if (code === "aborted") return "";
-    return "Spracheingabe unterbrochen (" + code + ").";
+    return t("sr_other", code);
   }
   /* Das Mikrofon hört zu, bis erneut getippt wird oder 5 Sekunden Stille sind. Android beendet die Erkennung
      bei jeder Pause selbst – dann wird sie sofort neu gestartet und der Text weiter gesammelt. */
@@ -239,7 +380,7 @@
     return a + " " + b;
   }
   function listen(onText, onEnd, onErr) {
-    if (!SR) { onErr("Spracheingabe gibt es in diesem Browser nicht. Nutze Chrome (Android) oder Safari (iPhone) – oder tippe die Frage."); return null; }
+    if (!SR) { onErr(t("sr_none")); return null; }
     var ctl = { stopped: false, done: false, text: "", err: "", lastSpeech: Date.now(), rec: null, timer: null };
     function finish() {
       if (ctl.done) return;
@@ -253,8 +394,8 @@
       r.onresult = function (ev) {
         var fin = "", interim = "";
         for (var i = 0; i < ev.results.length; i++) {
-          var t = ev.results[i][0].transcript;
-          if (ev.results[i].isFinal) fin = mergeText(fin, t); else interim += t;
+          var tr = ev.results[i][0].transcript;
+          if (ev.results[i].isFinal) fin = mergeText(fin, tr); else interim += tr;
         }
         seg = fin; ctl.lastSpeech = Date.now();
         onText(mergeText(ctl.text, seg), interim.trim());
@@ -279,7 +420,7 @@
       try { ctl.rec.stop(); } catch (e) { finish(); }
     };
     ctl.timer = setInterval(function () { if (Date.now() - ctl.lastSpeech >= SILENCE_MS) ctl.stop(); }, 250);
-    try { startOne(); } catch (e) { clearInterval(ctl.timer); onErr("Spracheingabe konnte nicht starten."); return null; }
+    try { startOne(); } catch (e) { clearInterval(ctl.timer); onErr(t("sr_start")); return null; }
     activeListen = ctl;
     return ctl;
   }
@@ -291,16 +432,16 @@
     err.hidden = true;
     var r = listen(function (fin, interim) { $("transcript").textContent = (fin + " " + interim).trim(); },
       function (fin) {
-        mic.setAttribute("aria-pressed", "false"); $("mic-label").textContent = "Tippen und fragen";
+        mic.setAttribute("aria-pressed", "false"); $("mic-label").textContent = t("mic_idle");
         var q = fin || $("transcript").textContent;
         if (q) { $("ask-input").value = q; renderAnswers(q); }
       },
-      function (msg) { err.textContent = msg; err.hidden = !msg; mic.setAttribute("aria-pressed", "false"); $("mic-label").textContent = "Tippen und fragen"; });
-    if (r) { mic.setAttribute("aria-pressed", "true"); $("mic-label").textContent = "Ich höre … tippen zum Stoppen"; $("transcript").textContent = ""; }
+      function (msg) { err.textContent = msg; err.hidden = !msg; mic.setAttribute("aria-pressed", "false"); $("mic-label").textContent = t("mic_idle"); });
+    if (r) { mic.setAttribute("aria-pressed", "true"); $("mic-label").textContent = t("mic_on"); $("transcript").textContent = ""; }
   });
   $("ask-form").addEventListener("submit", function (e) {
     e.preventDefault(); var q = $("ask-input").value.trim();
-    if (!q) { $("ask-err").textContent = "Gib zuerst eine Frage ein."; $("ask-err").hidden = false; return; }
+    if (!q) { $("ask-err").textContent = t("ask_empty"); $("ask-err").hidden = false; return; }
     $("ask-err").hidden = true; $("transcript").textContent = q; renderAnswers(q);
   });
   $("ask-input").addEventListener("input", function () { $("ask-err").hidden = true; });
@@ -329,11 +470,11 @@
   function tx(stores, mode, fn) {
     return db().then(function (d) {
       return new Promise(function (res, rej) {
-        var t = d.transaction(stores, mode), out, req = fn(t);
+        var trx = d.transaction(stores, mode), out, req = fn(trx);
         if (req) req.onsuccess = function () { out = req.result; };
-        t.oncomplete = function () { res(out); };
-        t.onerror = function () { rej(t.error); };
-        t.onabort = function () { rej(t.error); };
+        trx.oncomplete = function () { res(out); };
+        trx.onerror = function () { rej(trx.error); };
+        trx.onabort = function () { rej(trx.error); };
       });
     });
   }
@@ -350,7 +491,7 @@
   function storageFail() {
     if (!storageOK) return;
     storageOK = false;
-    recError("Speichern auf dem Gerät klappt nicht (Speicher voll oder privater Modus). Die Aufnahme läuft weiter – nach dem Stopp sofort „Sichern“.");
+    recError(t("rec_storage"));
   }
   function hashBlob(blob) {
     if (!window.crypto || !crypto.subtle || !blob.arrayBuffer) return Promise.reject(new Error("kein SHA-256"));
@@ -381,16 +522,16 @@
   }
   function camError(e, withAudio) {
     var n = e && e.name;
-    if (n === "NotAllowedError" || n === "SecurityError") return permHelp(withAudio ? "Kamera oder Mikrofon" : "Kamera");
-    if (n === "NotFoundError" || n === "OverconstrainedError") return "Keine passende Kamera gefunden.";
-    if (n === "NotReadableError" || n === "AbortError") return "Die Kamera ist belegt. Andere Kamera-Apps schließen und noch einmal tippen.";
-    return "Kamera konnte nicht starten (" + (n || "Fehler") + ").";
+    if (n === "NotAllowedError" || n === "SecurityError") return permHelp(withAudio ? "cammic" : "cam");
+    if (n === "NotFoundError" || n === "OverconstrainedError") return t("rec_nocam");
+    if (n === "NotReadableError" || n === "AbortError") return t("rec_busy");
+    return t("rec_camfail", n || "?");
   }
   function startRecording(withAudio, consentAt) {
     if (recState) return;
     recError("");
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) {
-      recError("Aufnehmen geht in diesem Browser nicht. Nutze Chrome (Android) oder Safari (iPhone), die Seite muss über https laufen."); setRecUI("start"); return;
+      recError(t("rec_nobrowser")); setRecUI("start"); return;
     }
     recState = { pending: true };
     navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: "environment" }, width: { ideal: 1280 }, height: { ideal: 720 } }, audio: !!withAudio })
@@ -414,17 +555,18 @@
         stream.getVideoTracks().forEach(function (t) { t.addEventListener("ended", stopRecording); });
         var v = $("preview"); v.srcObject = stream; v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () {});
         if (storageOK) putRec(r).catch(storageFail);
-        else recError("Dieses Gerät speichert Aufnahmen nicht dauerhaft. Nach dem Stopp sofort „Sichern“.");
+        else recError(t("rec_nopersist"));
         if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function () {});
-        $("rec-mode").textContent = withAudio ? "Mit Ton (Einwilligung " + fmtTime(consentAt) + ")" : "Ohne Ton";
+        $("rec-mode").textContent = recModeText(r);
         tick(); setRecUI("live"); keepAwake(); updateRecFloat();
       })
       .catch(function (e) { recState = null; setRecUI("start"); recError(camError(e, withAudio)); });
   }
+  function recModeText(r) { return r.withAudio ? t("mode_audio", fmtTime(r.consentAt)) : t("mode_silent"); }
   function tick() {
     if (!recState || !recState.r) return;
-    var s = Math.floor((Date.now() - recState.r.started.getTime()) / 1000), t = pad(Math.floor(s / 60)) + ":" + pad(s % 60);
-    $("rec-time").textContent = t; $("rec-float-time").textContent = t;
+    var s = Math.floor((Date.now() - recState.r.started.getTime()) / 1000), clock = pad(Math.floor(s / 60)) + ":" + pad(s % 60);
+    $("rec-time").textContent = clock; $("rec-float-time").textContent = clock;
   }
   function updateRecFloat() {
     var on = !!(recState && recState.rec);
@@ -442,7 +584,7 @@
     stream.getTracks().forEach(function (t) { t.stop(); }); $("preview").srcObject = null;
     if (!needAwake()) releaseAwake();
     updateRecFloat(); setRecUI("start");
-    if (!chunks.length) { recError("Die Aufnahme ist leer. Bitte noch einmal starten."); delRec(r.id).catch(function () {}); return; }
+    if (!chunks.length) { recError(t("rec_empty")); delRec(r.id).catch(function () {}); return; }
     var blob = new Blob(chunks, { type: r.type }), ended = new Date();
     r.ended = ended; r.dur = Math.max(1, Math.round((ended - r.started) / 1000)); r.size = blob.size; r.blob = blob; r.status = "done";
     recordings.unshift(r); renderRecs();
@@ -469,8 +611,8 @@
     }).catch(function () { storageOK = false; });
   }
   function recMeta(r) {
-    return fmtDate(r.started) + " · " + fmtTime(r.started) + " Uhr · " + (r.approx ? "ca. " : "") + r.dur + " s · " + mb(r.size) + " · " +
-      (r.withAudio ? "mit Ton, Einwilligung " + fmtTime(r.consentAt) : "ohne Ton");
+    return fmtDate(r.started) + " · " + fmtTime(r.started) + t("m_clock") + " · " + (r.approx ? t("m_ca") : "") + r.dur + t("m_sec") + " · " + mb(r.size) + " · " +
+      (r.withAudio ? t("m_audio", fmtTime(r.consentAt)) : t("m_silent"));
   }
   function recLine(r) {
     return fmtDate(r.started) + " " + fmtTime(r.started) + " Uhr, " + (r.approx ? "ca. " : "") + r.dur + " s, " +
@@ -481,19 +623,18 @@
     var box = $("rec-list");
     if (!recordings.length) { box.innerHTML = ""; return; }
     var total = 0; recordings.forEach(function (r) { total += r.size || 0; });
-    box.innerHTML = '<h2>Auf diesem Gerät</h2><p class="hint">' + recordings.length + (recordings.length === 1 ? " Aufnahme" : " Aufnahmen") + ", " + mb(total) +
-      ". „Sichern“ schickt die Datei an dich selbst (Telegram, WhatsApp, Mail) oder in Google Drive.</p>" +
+    box.innerHTML = "<h2>" + esc(t("recs_h")) + '</h2><p class="hint">' + esc(recCount(recordings.length)) + ", " + mb(total) + ". " + esc(t("recs_hint")) + "</p>" +
       recordings.map(function (r) {
         if (!r.url && r.blob) r.url = URL.createObjectURL(r.blob);
         return '<div class="rec-item" data-id="' + esc(r.id) + '">' +
-          (r.status === "recovered" ? '<p class="rec-flag">Wiederhergestellt – die Aufnahme wurde unterbrochen</p>' : "") +
+          (r.status === "recovered" ? '<p class="rec-flag">' + esc(t("rec_recovered")) + "</p>" : "") +
           '<video src="' + r.url + '" controls playsinline preload="metadata"></video>' +
           '<p class="rec-meta">' + esc(recMeta(r)) + "</p>" +
-          '<p class="hash">SHA-256: ' + (r.hash ? esc(r.hash) : r.noHash ? "nicht berechnet (Datei zu groß)" : "wird berechnet …") + "</p>" +
-          '<div class="actions"><button class="btn primary" type="button" data-share>Sichern</button>' +
-          '<button class="btn" type="button" data-dl>Laden</button>' +
-          '<button class="btn" type="button" data-proto>Ins Protokoll</button>' +
-          '<button class="btn ghost" type="button" data-del>Löschen</button></div></div>';
+          '<p class="hash">SHA-256: ' + (r.hash ? esc(r.hash) : esc(r.noHash ? t("hash_na") : t("hash_wait"))) + "</p>" +
+          '<div class="actions"><button class="btn primary" type="button" data-share>' + esc(t("b_share")) + "</button>" +
+          '<button class="btn" type="button" data-dl>' + esc(t("b_dl")) + "</button>" +
+          '<button class="btn" type="button" data-proto>' + esc(t("b_proto")) + "</button>" +
+          '<button class="btn ghost" type="button" data-del>' + esc(t("b_del")) + "</button></div></div>";
       }).join("");
   }
   function recById(id) { for (var i = 0; i < recordings.length; i++) if (recordings[i].id === id) return recordings[i]; return null; }
@@ -509,11 +650,11 @@
     } else if (b.hasAttribute("data-dl")) {
       downloadURL(r.url, r.name);
     } else if (b.hasAttribute("data-proto")) {
-      var f = $("p-aufnahmen"); f.value = (f.value ? f.value + "\n" : "") + recLine(r); saveProto(); b.textContent = "Übernommen";
+      var f = $("p-aufnahmen"); f.value = (f.value ? f.value + "\n" : "") + recLine(r); saveProto(); b.textContent = t("b_taken");
     } else if (b.hasAttribute("data-del")) {
       if (!b._armed) {
-        b._armed = true; b.textContent = "Wirklich löschen?"; b.classList.add("armed");
-        setTimeout(function () { b._armed = false; b.textContent = "Löschen"; b.classList.remove("armed"); }, 4000);
+        b._armed = true; b.textContent = t("b_del_sure"); b.classList.add("armed");
+        setTimeout(function () { b._armed = false; b.textContent = t("b_del"); b.classList.remove("armed"); }, 4000);
         return;
       }
       delRec(r.id).catch(function () {});
@@ -566,8 +707,8 @@
   }
   function copyText(text, msgEl) {
     try {
-      navigator.clipboard.writeText(text).then(function () { flash(msgEl, "Kopiert"); }, function () { flash(msgEl, "Kopieren ging nicht – bitte „Teilen“ nutzen"); });
-    } catch (e) { flash(msgEl, "Kopieren ging nicht – bitte „Teilen“ nutzen"); }
+      navigator.clipboard.writeText(text).then(function () { flash(msgEl, t("copied")); }, function () { flash(msgEl, t("copy_fail")); });
+    } catch (e) { flash(msgEl, t("copy_fail")); }
   }
   function shareText(title, text, msgEl) {
     if (navigator.share) navigator.share({ title: title, text: text }).catch(function () {}); else copyText(text, msgEl);
@@ -581,21 +722,21 @@
   var clearArmed = false;
   $("p-clear").addEventListener("click", function () {
     var b = $("p-clear");
-    if (!clearArmed) { clearArmed = true; b.textContent = "Wirklich leeren?"; setTimeout(function () { clearArmed = false; b.textContent = "Neues Protokoll"; }, 4000); return; }
-    clearArmed = false; b.textContent = "Neues Protokoll";
-    var keepName = $("p-name").value; lsSet(LS_PROTO, ""); loadProto(); $("p-name").value = keepName; saveProto(); flash($("p-msg"), "Neues Protokoll angelegt");
+    if (!clearArmed) { clearArmed = true; b.textContent = t("p_clear_sure"); setTimeout(function () { clearArmed = false; b.textContent = t("p_clear"); }, 4000); return; }
+    clearArmed = false; b.textContent = t("p_clear");
+    var keepName = $("p-name").value; lsSet(LS_PROTO, ""); loadProto(); $("p-name").value = keepName; saveProto(); flash($("p-msg"), t("p_new"));
   });
   $("p-gps").addEventListener("click", function () {
     var b = $("p-gps");
-    if (!navigator.geolocation) { flash($("p-msg"), "Standort ist hier nicht verfügbar"); return; }
-    b.textContent = "Suche …";
+    if (!navigator.geolocation) { flash($("p-msg"), t("geo_na")); return; }
+    b.textContent = t("gps_wait");
     navigator.geolocation.getCurrentPosition(function (pos) {
       var la = pos.coords.latitude.toFixed(5), lo = pos.coords.longitude.toFixed(5), f = $("p-ort");
       f.value = (f.value ? f.value + "\n" : "") + "Standort " + la + ", " + lo + " (±" + Math.round(pos.coords.accuracy) + " m) https://www.openstreetmap.org/?mlat=" + la + "&mlon=" + lo + "#map=18/" + la + "/" + lo;
-      b.textContent = "Standort einfügen"; saveProto();
+      b.textContent = t("gps"); saveProto();
     }, function (err) {
-      b.textContent = "Standort einfügen";
-      if (err && err.code === 1) flash($("p-msg"), permHelp("Standort"), 9000); else flash($("p-msg"), "Standort nicht gefunden. Draußen noch einmal versuchen.");
+      b.textContent = t("gps");
+      if (err && err.code === 1) flash($("p-msg"), permHelp("geo"), 9000); else flash($("p-msg"), t("geo_fail"));
     }, { enableHighAccuracy: true, timeout: 12000 });
   });
   [].forEach.call(document.querySelectorAll(".dict"), function (b) {
@@ -603,24 +744,23 @@
       if (activeListen) { stopListening(); return; }
       var f = $(b.getAttribute("data-for")), base = f.value;
       var r = listen(function (fin, interim) { f.value = (base ? base + " " : "") + (fin + " " + interim).trim(); },
-        function (fin) { b.setAttribute("aria-pressed", "false"); b.textContent = "Diktieren"; if (fin) f.value = (base ? base + " " : "") + fin.trim(); saveProto(); },
-        function (msg) { b.setAttribute("aria-pressed", "false"); b.textContent = "Diktieren"; if (msg) flash($("p-msg"), msg, 9000); });
-      if (r) { b.setAttribute("aria-pressed", "true"); b.textContent = "Stopp"; }
+        function (fin) { b.setAttribute("aria-pressed", "false"); b.textContent = t("dict"); if (fin) f.value = (base ? base + " " : "") + fin.trim(); saveProto(); },
+        function (msg) { b.setAttribute("aria-pressed", "false"); b.textContent = t("dict"); if (msg) flash($("p-msg"), msg, 9000); });
+      if (r) { b.setAttribute("aria-pressed", "true"); b.textContent = t("stop"); }
     });
   });
 
   /* ---------- Deadlines & letters ---------- */
   function addDays(d, n) { var x = new Date(d); x.setDate(x.getDate() + n); return x; }
   function addMonths(d, n) { var x = new Date(d); var day = x.getDate(); x.setDate(1); x.setMonth(x.getMonth() + n); var last = new Date(x.getFullYear(), x.getMonth() + 1, 0).getDate(); x.setDate(Math.min(day, last)); return x; }
-  function daysLeft(d) { var t = new Date(); t.setHours(0, 0, 0, 0); var x = new Date(d); x.setHours(0, 0, 0, 0); return Math.round((x - t) / 86400000); }
-  function leftText(n) { return n < 0 ? "abgelaufen" : n === 0 ? "heute" : "noch " + n + (n === 1 ? " Tag" : " Tage"); }
+  function daysLeft(d) { var today = new Date(); today.setHours(0, 0, 0, 0); var x = new Date(d); x.setHours(0, 0, 0, 0); return Math.round((x - today) / 86400000); }
   function renderDeadlines() {
     var d = protoDateObj(), bc = addDays(d, 28), bb = addMonths(d, 3);
     var items = [
-      ["Gedächtnisprotokoll", "am selben Tag – " + fmtDate(d)],
-      ["Bodycam-Sicherung beantragen", "sofort; gelöscht wird spätestens am " + fmtDate(bc) + " (" + leftText(daysLeft(bc)) + ")"],
-      ["Bürgerbeauftragte BW", "bis " + fmtDate(bb) + " (" + leftText(daysLeft(bb)) + "), nicht parallel zu einem Straf- oder Gerichtsverfahren"],
-      ["Anwalt", "vor jeder Beschwerde oder Anzeige sprechen"]
+      [t("dl_proto"), t("dl_proto_d", fmtDate(d))],
+      [t("dl_bc"), t("dl_bc_d", fmtDate(bc)) + " (" + leftText(daysLeft(bc)) + ")"],
+      [t("dl_bb"), t("dl_bb_d", fmtDate(bb) + " (" + leftText(daysLeft(bb)) + ")")],
+      [t("dl_anwalt"), t("dl_anwalt_d")]
     ];
     $("deadlines").innerHTML = items.map(function (x) { return '<li class="dl"><span class="dl-t">' + esc(x[0]) + '</span><span class="dl-d">' + esc(x[1]) + "</span></li>"; }).join("");
   }
@@ -631,14 +771,14 @@
     return body.replace(/\{(\w+)\}/g, function (m, k) { return map[k] != null ? map[k] : m; });
   }
   function renderLetters() {
-    var L = D.letters;
-    $("letters").innerHTML = Object.keys(L).map(function (k) {
-      var l = L[k], text = fillLetter(l.body), isMail = l.to.indexOf("@") > -1;
+    var letters = D.letters;
+    $("letters").innerHTML = Object.keys(letters).map(function (k) {
+      var l = letters[k], text = fillLetter(l.body), isMail = l.to.indexOf("@") > -1;
       var mail = isMail ? "mailto:" + l.to + "?subject=" + encodeURIComponent(l.title) + "&body=" + encodeURIComponent(text) : "";
-      return '<div class="letter"><h3>' + esc(l.title) + '</h3><p class="hint">' + esc(l.hint) + '</p><p>An: <span class="to">' + esc(l.to) + "</span></p>" +
-        "<pre>" + esc(text) + '</pre><div class="actions"><button class="btn primary" type="button" data-copy="' + k + '">Kopieren</button>' +
-        (isMail ? '<a class="btn" href="' + mail + '">In Mail öffnen</a>' : "") +
-        '<button class="btn" type="button" data-sharel="' + k + '">Teilen</button></div><p class="hint" data-msg="' + k + '" aria-live="polite"></p></div>';
+      return '<div class="letter"><h3>' + esc(L(l, "title")) + '</h3><p class="hint">' + esc(L(l, "hint")) + "</p><p>" + esc(t("l_to")) + ' <span class="to">' + esc(l.to) + "</span></p>" +
+        '<pre lang="de">' + esc(text) + '</pre><div class="actions"><button class="btn primary" type="button" data-copy="' + k + '">' + esc(t("l_copy")) + "</button>" +
+        (isMail ? '<a class="btn" href="' + mail + '">' + esc(t("l_mail")) + "</a>" : "") +
+        '<button class="btn" type="button" data-sharel="' + k + '">' + esc(t("share")) + '</button></div><p class="hint" data-msg="' + k + '" aria-live="polite"></p></div>';
     }).join("");
   }
   $("letters").addEventListener("click", function (e) {
@@ -654,9 +794,9 @@
   function renderCats() {
     var used = {};
     D.cards.forEach(function (c) { used[c.cat] = (used[c.cat] || 0) + 1; });
-    $("w-cats").innerHTML = '<button type="button" class="chip" data-cat="" aria-pressed="' + (wCat === "") + '">Alle</button>' +
+    $("w-cats").innerHTML = '<button type="button" class="chip" data-cat="" aria-pressed="' + (wCat === "") + '">' + esc(t("w_all")) + "</button>" +
       D.cats.filter(function (c) { return used[c[0]]; }).map(function (c) {
-        return '<button type="button" class="chip" data-cat="' + c[0] + '" aria-pressed="' + (wCat === c[0]) + '">' + esc(c[1]) + "</button>";
+        return '<button type="button" class="chip" data-cat="' + c[0] + '" aria-pressed="' + (wCat === c[0]) + '">' + esc(UI === "ru" && c[2] ? c[2] : c[1]) + "</button>";
       }).join("");
   }
   function renderWissen(q) {
@@ -664,7 +804,7 @@
     var list = D.cards.filter(function (c) {
       if (wCat && c.cat !== wCat) return false;
       if (!words.length) return true;
-      var hay = norm(c.title + " " + c.text + " " + c.kw.join(" "));
+      var hay = norm(c.title + " " + c.text + " " + c.kw.join(" ") + (c.ru ? " " + c.ru.title + " " + c.ru.text : ""));
       return words.every(function (w) { return hay.indexOf(w) > -1; });
     });
     $("w-list").innerHTML = list.map(function (c) { return '<article class="w-card" data-id="' + esc(c.id) + '">' + cardHTML(c) + "</article>"; }).join("");
@@ -685,10 +825,7 @@
   function isStandalone() { return (window.matchMedia && matchMedia("(display-mode: standalone)").matches) || navigator.standalone === true; }
   function syncInstall() {
     [].forEach.call(document.querySelectorAll("[data-install]"), function (b) { b.hidden = !installEv || isStandalone(); });
-    $("install-help").innerHTML = isStandalone() ? "<strong>Installiert.</strong> Situationen und Wissen funktionieren auch ohne Internet." :
-      IS_IOS ? "<strong>Auf den Home-Bildschirm:</strong> In Safari „Teilen“ und dann „Zum Home-Bildschirm“. Danach funktionieren Situationen und Wissen auch ohne Internet." :
-      IS_ANDROID ? "<strong>Als App installieren:</strong> In Chrome oben rechts ⋮ und dann „App installieren“ oder „Zum Startbildschirm hinzufügen“. Danach funktionieren Situationen und Wissen auch ohne Internet." :
-      "<strong>Als App aufs Handy:</strong> Android – in Chrome ⋮ und „App installieren“. iPhone – in Safari „Teilen“ und „Zum Home-Bildschirm“.";
+    $("install-help").innerHTML = t(isStandalone() ? "i_done" : IS_IOS ? "i_ios" : IS_ANDROID ? "i_android" : "i_other");
   }
   window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); installEv = e; syncInstall(); });
   window.addEventListener("appinstalled", function () { installEv = null; syncInstall(); });
@@ -699,8 +836,33 @@
     try { var p = ev.prompt(); if (p && p.catch) p.catch(function () {}); } catch (x) {}
   });
 
+  /* ---------- Sprache umschalten ---------- */
+  var linksHTML = null;
+  function applyUI() {
+    document.documentElement.lang = UI;
+    [].forEach.call(document.querySelectorAll("[data-t]"), function (el) { el.textContent = t(el.getAttribute("data-t")); });
+    [].forEach.call(document.querySelectorAll("[data-t-ph]"), function (el) { el.placeholder = t(el.getAttribute("data-t-ph")); });
+    [].forEach.call(document.querySelectorAll("[data-t-aria]"), function (el) { el.setAttribute("aria-label", t(el.getAttribute("data-t-aria"))); });
+    var disc = document.querySelector('[data-t-html="disclaimer"]'); // Quellen-Links bleiben, nur der Text davor wechselt
+    if (disc) { if (linksHTML === null) linksHTML = disc.innerHTML.slice(disc.innerHTML.indexOf("<a ")); disc.innerHTML = t("disclaimer").replace("{links}", linksHTML); }
+    [].forEach.call(document.querySelectorAll('[data-t-html="rec_note"]'), function (el) { el.innerHTML = t("rec_note"); });
+    [].forEach.call(document.querySelectorAll(".lang-b"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-ui") === UI ? "true" : "false"); });
+    $("mic-label").textContent = activeListen ? t("mic_on") : t("mic_idle");
+    [].forEach.call(document.querySelectorAll(".dict"), function (b) { b.textContent = b.getAttribute("aria-pressed") === "true" ? t("stop") : t("dict"); });
+    if (recState && recState.r) $("rec-mode").textContent = recModeText(recState.r);
+  }
+  function setUI(u) {
+    if (u === UI || !T[u]) return;
+    UI = u; lsSet(LS_UI, u);
+    if (!lsGet(LS_LANG)) { lang = u === "ru" ? "ru-RU" : "de-DE"; syncSeg(); } // Spracheingabe folgt, solange nicht selbst gewählt
+    applyUI(); renderGrid(); renderCats(); renderWissen($("w-q").value); renderDeadlines(); renderLetters(); syncInstall(); renderRecs();
+    if (currentView === "situation") route();
+    if ($("answers").innerHTML && $("ask-input").value.trim()) renderAnswers($("ask-input").value.trim());
+  }
+  [].forEach.call(document.querySelectorAll(".lang-b"), function (b) { b.addEventListener("click", function () { setUI(b.getAttribute("data-ui")); }); });
+
   /* ---------- Start ---------- */
-  buildCorpus(); renderGrid(); syncSeg(); loadProto(); renderDeadlines(); renderLetters(); renderCats(); renderWissen(""); syncInstall(); route(); loadRecs();
+  applyUI(); buildCorpus(); renderGrid(); syncSeg(); loadProto(); renderDeadlines(); renderLetters(); renderCats(); renderWissen(""); syncInstall(); route(); loadRecs();
   if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
     var hadController = !!navigator.serviceWorker.controller;
     // Neue Version direkt nach dem Öffnen: einmal neu laden, damit geänderte Inhalte sofort gelten.
