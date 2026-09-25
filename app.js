@@ -44,8 +44,13 @@
   /* ---------- Situations ---------- */
   function findSituation(id) { for (var i = 0; i < D.situations.length; i++) if (D.situations[i].id === id) return D.situations[i]; return null; }
   function renderGrid() {
+    var names = {}, last = null;
+    (D.groups || []).forEach(function (g) { names[g[0]] = g[1]; });
     $("sit-grid").innerHTML = D.situations.map(function (s) {
-      return '<button class="sit" type="button" data-id="' + s.id + '"><span class="sit-t">' + esc(s.title) + '</span><span class="sit-s">' + esc(s.sub) +
+      // Überschrift, sobald eine neue Gruppe beginnt – bei 15 Kacheln findet man so schneller die eigene Lage.
+      var head = s.group && s.group !== last && names[s.group] ? '<h2 class="grid-h">' + esc(names[s.group]) + "</h2>" : "";
+      last = s.group;
+      return head + '<button class="sit" type="button" data-id="' + s.id + '"><span class="sit-t">' + esc(s.title) + '</span><span class="sit-s">' + esc(s.sub) +
         '</span><span class="pill ' + s.tone + '">' + esc(s.toneLabel) + "</span></button>";
     }).join("");
     [].forEach.call(document.querySelectorAll(".sit"), function (b) {
@@ -112,25 +117,64 @@
 
   /* ---------- Matching ---------- */
   function norm(s) {
-    return String(s || "").toLowerCase().replace(/ё/g, "е").replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss")
+    return String(s || "").toLowerCase().replace(/\u00ad/g, "").replace(/ё/g, "е").replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss")
       .replace(/[^a-z0-9а-я ]+/g, " ").replace(/\s+/g, " ").trim();
+  }
+  // „~“ vor dem Suchwort: allgemein, zählt 1 Punkt (z. B. „за рул“ passt zu vielen Fragen).
+  // „!“ davor: kurz, aber eindeutig, zählt 4 Punkte (z. B. „zoll“, „дтп“).
+  function kwList(list) {
+    return list.map(function (k) {
+      var c = k.charAt(0), mark = c === "~" || c === "!";
+      return { k: norm(mark ? k.slice(1) : k), weak: c === "~", strong: c === "!" };
+    });
   }
   var corpus = [];
   function buildCorpus() {
-    D.situations.forEach(function (s) { corpus.push({ kind: "s", item: s, kw: s.kw.map(norm), title: norm(s.title + " " + s.sub) }); });
-    D.cards.forEach(function (c) { corpus.push({ kind: "c", item: c, kw: c.kw.map(norm), title: norm(c.title) }); });
+    D.situations.forEach(function (s) { corpus.push({ kind: "s", item: s, kw: kwList(s.kw), title: norm(s.title + " " + s.sub) }); });
+    D.cards.forEach(function (c) { corpus.push({ kind: "c", item: c, kw: kwList(c.kw), title: norm(c.title) }); });
   }
+  // Ein Wort der Frage passt, wenn es mit dem Suchwort beginnt (2). Ab 5 Buchstaben darf die Endung abweichen (1):
+  // „пописать“ findet „пописал“, „травы“ findet „траву“.
+  function wordHit(k, words) {
+    var best = 0;
+    for (var i = 0; i < words.length && best < 2; i++) {
+      var w = words[i];
+      if (w.indexOf(k) === 0) best = 2;
+      else if (k.length >= 5 && w.length >= 4 && k.indexOf(w) !== 0) { // „kontrolle“ ist nicht „kontrolleur“
+        var n = 0; while (n < k.length && k.charAt(n) === w.charAt(n)) n++;
+        if (n >= Math.max(4, k.length - 2)) best = 1;
+      }
+    }
+    return best;
+  }
+  // Mehrwort-Suchwörter passen am Stück (2) oder in beliebiger Reihenfolge (1): „адвокат телефон“ findet „телефон адвокат“.
+  function kwHit(k, nq, words) {
+    if (nq.indexOf(" " + k) > -1) return 2;
+    var parts = k.split(" "), q = parts.length > 1 ? 1 : 2;
+    for (var i = 0; i < parts.length; i++) {
+      if (parts[i].length <= 2) { if (words.indexOf(parts[i]) < 0) return 0; continue; }
+      var h = wordHit(parts[i], words); if (!h) return 0; if (h < q) q = h;
+    }
+    return q;
+  }
+  var STOP = ["darf", "muss", "kann", "mich", "mein", "meine", "polizei", "wird", "werden", "eine", "einen", "nicht", "habe", "haben", "wurde", "wurden",
+    "werde", "bekomm", "bekommen", "sagen", "zeigen", "machen", "frage", "welche", "warum", "wieso", "jetzt", "heute", "gestern", "immer", "schon", "bitte",
+    "можно", "меня", "если", "нужно", "надо", "полиция", "полицию", "полиции", "чтобы", "могут", "может", "должен", "сейчас", "почему"];
   function match(q) {
     var nq = " " + norm(q) + " ";
     if (nq.trim().length < 2) return [];
-    var stop = ["darf", "muss", "kann", "mich", "mein", "meine", "polizei", "wird", "werden", "eine", "einen", "nicht", "можно", "меня", "если", "нужно", "надо", "полиция", "полицию", "полиции"];
-    var words = nq.trim().split(" ").filter(function (w) { return w.length > 3 && stop.indexOf(w) < 0; }).map(function (w) { return w.length > 6 ? w.slice(0, w.length - 2) : w; });
+    var all = nq.trim().split(" ");
+    var words = all.filter(function (w) { return w.length > 3 && STOP.indexOf(w) < 0; }).map(function (w) { return w.length > 6 ? w.slice(0, w.length - 2) : w; });
     return corpus.map(function (e) {
-      var sc = 0;
-      e.kw.forEach(function (k) { if (k && nq.indexOf(" " + k) > -1) sc += k.length >= 6 ? 3 : 2; });
+      var sc = 0, best = 0;
+      e.kw.forEach(function (x) {
+        var h = x.k ? kwHit(x.k, nq, all) : 0; if (!h) return;
+        var pts = x.weak ? 1 : x.strong ? 4 : x.k.length < 6 ? 2 : x.k.length < 10 ? 3 : 4;
+        sc += h === 2 || x.weak ? pts : pts - 1; if (x.k.length > best) best = x.k.length;
+      });
       words.forEach(function (w) { if (e.title.indexOf(w) > -1) sc += 1; });
-      return { e: e, sc: sc };
-    }).filter(function (r) { return r.sc > 0; }).sort(function (a, b) { return b.sc - a.sc; }).slice(0, 3);
+      return { e: e, sc: sc, best: best };
+    }).filter(function (r) { return r.sc > 0; }).sort(function (a, b) { return b.sc - a.sc || b.best - a.best; }).slice(0, 3);
   }
   function cardHTML(c) {
     return '<div class="w-head"><h3>' + esc(c.title) + '</h3><span class="pill ' + c.tone + '">' + esc(c.toneLabel) + "</span></div>" +
@@ -143,7 +187,12 @@
   }
   function renderAnswers(q) {
     var res = match(q), box = $("answers");
-    if (!res.length) { box.innerHTML = '<p class="err">Dazu habe ich noch keine Karte. Versuch: filmen, Ausweis, Test, Handy, Durchsuchung, Anwalt.</p>'; return; }
+    if (!res.length) {
+      box.innerHTML = /[а-яё]/i.test(q)
+        ? '<p class="err">Пока нет карточки на этот вопрос. Попробуй: снимать, паспорт, тест, телефон, обыск, адвокат – или выбери ситуацию на вкладке «Jetzt».</p>'
+        : '<p class="err">Dazu habe ich noch keine Karte. Versuch: filmen, Ausweis, Test, Handy, Durchsuchung, Anwalt – oder wähle unter „Jetzt“ deine Situation.</p>';
+      return;
+    }
     box.innerHTML = res.map(function (r, i) {
       var inner = r.e.kind === "s" ? situationHTML(r.e.item, true) : cardHTML(r.e.item);
       return (i === 1 ? '<p class="alt-t">Passt vielleicht auch:</p>' : "") +
