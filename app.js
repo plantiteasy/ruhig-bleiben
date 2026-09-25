@@ -24,7 +24,7 @@
      Inhalte stehen in data.js deutsch, die russische Fassung jeweils in „ru“. Sätze zum Sagen bleiben immer deutsch
      (groß), darunter russisch – gezeigt wird ja der Polizei. Paragrafen und Briefe an Behörden bleiben deutsch. */
   var LS_UI = "rb-ui-v1";
-  var UI = lsGet(LS_UI) || (/^ru/i.test(navigator.language || "") ? "ru" : "de");
+  var UI = lsGet(LS_UI) || (/^(ru|uk|be|kk)/i.test(navigator.language || "") ? "ru" : "de");
   var T = {
     de: {
       meta: "Prototyp · Baden-Württemberg · Stand 25.09.2026 · keine Rechtsberatung", install: "Installieren", install_app: "App installieren",
@@ -37,9 +37,15 @@
       k_ptt: "Stichwort sagen", k_ptt_on: "Ich höre … Stichwort sagen", k_nomatch: "Nicht gefunden: „{x}“. Tippe auf einen Knopf.",
       k_mic_busy: "Bei einer Aufnahme mit Ton ist das Mikrofon belegt. Tippe auf einen Knopf.", k_all: "Alle 64 Antworten",
       k_rec: "Video starten", k_stop: "Stopp", k_norec: "Keine Aufnahme", k_rec_wait: "Kamera startet …", k_rec_silent: "Video ohne Ton", k_rec_audio: "Video mit Ton",
-      k_saved: "Aufnahme gespeichert.", k_sichern: "Jetzt sichern", k_big: "Groß zeigen", k_more: "Mehr sagen und warum",
+      k_saved: "Aufnahme gespeichert.", k_sichern: "Jetzt sichern", k_big: "Zeigen", k_more: "Mehr und warum",
       k_test_warn: "Testmodus: nur mit Freunden, die Polizei spielen und einverstanden sind. Der Ton geht zur Erkennung an Google. Nicht bei echter Polizei benutzen.",
       k_listen: "Mithören starten (Test)", k_listen_on: "Mithören stoppen", k_live: "Hört mit (Test):", k_log_share: "Log teilen", k_test_off: "Testmodus aus", k_log_none: "kein Treffer",
+      k_start_filme: "Ich filme eine Kontrolle (Freund, Fremde)", k_menu: "Menü", k_stop_sure: "Wirklich stoppen?", big_speak: "Vorlesen (Deutsch)",
+      einr_card: "In 30 Sekunden einrichten: Kamera erlauben, auf den Startbildschirm, üben →", einr_h: "In 30 Sekunden bereit", einr_lead: "Einmal jetzt in Ruhe – dann reicht im Ernstfall ein Tipp.",
+      einr_1: "Sprache der App", einr_2: "Meistens bin ich", einr_3: "Kamera und Mikrofon erlauben", einr_3h: "Sonst fragt das Handy erst, wenn der Polizist schon da ist.",
+      einr_cam: "Jetzt erlauben", einr_cam_ok: "✓ Erlaubt", einr_4: "Auf den Startbildschirm", einr_4h: "Danach: lange auf das App-Symbol drücken → „Kontrolle“ startet sofort das Video.",
+      einr_5: "Einmal üben", einr_try: "Kontrolle-Bildschirm ansehen (ohne Aufnahme)", einr_test: "Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google)",
+      einr_6: "Optional: Profil", einr_prof: "Führerschein, Aufenthalt – für passende Hinweise", einr_done: "Fertig",
       fragen_h: "Frage stellen",
       fragen_lead: "Tippe auf das Mikrofon und frag kurz, zum Beispiel „Darf ich filmen?“ oder «Можно ли снимать?». Die Antwort erscheint als Text, sobald du fertig gesprochen hast. Danach hört das Mikrofon noch 5 Sekunden zu, falls du etwas ergänzen willst. Verarbeitet wird nur deine Frage.",
       seg_ask_aria: "Sprache der Spracheingabe", seg_de: "Deutsch", seg_ru: "Русский", mic_idle: "Tippen und fragen", mic_on: "Ich höre … tippen zum Stoppen",
@@ -143,9 +149,15 @@
       k_ptt: "Сказать слово", k_ptt_on: "Слушаю… скажи слово", k_nomatch: "Не найдено: «{x}». Нажми на кнопку.",
       k_mic_busy: "Во время записи со звуком микрофон занят. Нажми на кнопку.", k_all: "Все 64 ответа",
       k_rec: "Начать видео", k_stop: "Стоп", k_norec: "Запись не идёт", k_rec_wait: "Камера включается…", k_rec_silent: "Видео без звука", k_rec_audio: "Видео со звуком",
-      k_saved: "Запись сохранена.", k_sichern: "Сохранить копию", k_big: "Показать крупно", k_more: "Полный ответ и почему",
+      k_saved: "Запись сохранена.", k_sichern: "Сохранить копию", k_big: "Показать полицейскому", k_more: "Подробнее и почему",
       k_test_warn: "Тестовый режим: только с друзьями, которые играют полицию и согласны. Звук для распознавания уходит в Google. Не использовать с настоящей полицией.",
       k_listen: "Начать прослушивание (тест)", k_listen_on: "Остановить прослушивание", k_live: "Слушает (тест):", k_log_share: "Поделиться логом", k_test_off: "Выключить тест", k_log_none: "нет совпадения",
+      k_start_filme: "Я снимаю проверку (друга, чужих)", k_menu: "Меню", k_stop_sure: "Точно остановить?", big_speak: "Прочитать вслух по-немецки",
+      einr_card: "Настроить за 30 секунд: камера, значок на экране, пробный запуск →", einr_h: "Готово за 30 секунд", einr_lead: "Один раз сейчас спокойно — тогда в нужный момент хватит одного нажатия.",
+      einr_1: "Язык приложения", einr_2: "Чаще всего я", einr_3: "Разрешить камеру и микрофон", einr_3h: "Иначе телефон спросит, когда полицейский уже рядом.",
+      einr_cam: "Разрешить сейчас", einr_cam_ok: "✓ Разрешено", einr_4: "Значок на главный экран", einr_4h: "Потом: долго нажми на значок приложения → «Kontrolle» сразу включает видео.",
+      einr_5: "Один раз попробовать", einr_try: "Посмотреть экран проверки (без записи)", einr_test: "Потренироваться с другом: включить тест прослушивания (звук уходит в Google)",
+      einr_6: "По желанию: профиль", einr_prof: "Права, вид на жительство — для точных подсказок", einr_done: "Готово",
       fragen_h: "Задать вопрос",
       fragen_lead: "Нажми на микрофон и спроси коротко, например «Можно ли снимать?» или „Darf ich filmen?“. Ответ появится текстом, как только договоришь. Потом микрофон ещё 5 секунд слушает, если захочешь что-то добавить. Обрабатывается только твой вопрос.",
       seg_ask_aria: "Язык голосового ввода", seg_de: "По-немецки", seg_ru: "По-русски", mic_idle: "Нажми и спроси", mic_on: "Слушаю… нажми, чтобы остановить",
@@ -262,13 +274,14 @@
   }
 
   /* ---------- Views ---------- */
-  var views = ["jetzt", "fragen", "aufnahme", "danach", "wissen", "situation", "profil", "kontrolle"], currentView = "jetzt";
+  var views = ["jetzt", "fragen", "aufnahme", "danach", "wissen", "situation", "profil", "kontrolle", "einrichten"], currentView = "jetzt";
   var lastTab = "jetzt";
   function show(name) {
     if (name !== currentView) { stopListening(); if (name !== "fragen") stopSpeaking(); }
     currentView = name;
     views.forEach(function (v) { $("v-" + v).hidden = v !== name; });
-    var tab = name === "situation" || name === "profil" ? lastTab : name === "kontrolle" ? "jetzt" : name; lastTab = tab;
+    var tab = name === "situation" || name === "profil" ? lastTab : name === "kontrolle" || name === "einrichten" ? "jetzt" : name; lastTab = tab;
+    document.body.classList.toggle("k-mode", name === "kontrolle"); // Vollbild: ohne Kopf und Tabs, Fußleiste mit Stichwort und Menü
     [].forEach.call(document.querySelectorAll(".tabs a"), function (a) {
       if (a.getAttribute("data-tab") === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
@@ -281,6 +294,7 @@
     var v = views.indexOf(h) > -1 && h !== "situation" ? h : "jetzt";
     if (v === "danach") refreshProtoNow();
     if (v === "kontrolle" && !(history.state && history.state.rbK)) hideK(); // neu geöffnet: Knöpfe, nicht die alte Antwort
+    if (v === "einrichten") renderEinrichten();
     show(v);
   }
   window.addEventListener("hashchange", route);
@@ -364,8 +378,11 @@
   }
   function releaseAwake() { try { if (wakeLock) { var l = wakeLock; wakeLock = null; l.release(); } } catch (e) {} }
   function needAwake() { return !!(recState && recState.rec) || !$("big").hidden; }
-  function openBig(de, ru, from, law, why) {
+  // opts.intro: „Ich spreche wenig Deutsch. Bitte lesen Sie:“ – für das Zeigen an den Beamten.
+  function openBig(de, ru, from, law, why, opts) {
     $("big-de").textContent = nb(de); $("big-ru").textContent = nb(ru); $("big-law").textContent = nb(law); $("big-why").textContent = nb(why);
+    $("big-intro").hidden = !(opts && opts.intro); bigSpeakText = de; bigSpeakUI(false);
+    $("big-speak").hidden = !("speechSynthesis" in window);
     $("big").hidden = false; lastFocus = from; keepAwake();
     setInert(true); $("big").scrollTop = 0; $("big-close").focus();
     // Eigener Verlaufseintrag: Die Zurück-Taste von Android schließt das Großbild statt die Seite zu verlassen.
@@ -373,7 +390,19 @@
   }
   // Hinter dem Großbild ist nichts antippbar oder per Tab erreichbar.
   function setInert(on) { ["main", "rec-float"].forEach(function (id) { var el = $(id); if (el) el.inert = on; }); [].forEach.call(document.querySelectorAll(".app-head,.tabs"), function (el) { el.inert = on; }); }
-  function hideBig() { $("big").hidden = true; setInert(false); if (!needAwake()) releaseAwake(); if (lastFocus) { try { lastFocus.focus({ preventScroll: true }); } catch (e) {} } }
+  var bigSpeakText = "";
+  function bigSpeakUI(on) { $("big-speak").textContent = on ? t("stop") : t("big_speak"); $("big-speak").setAttribute("aria-pressed", on ? "true" : "false"); }
+  $("big-speak").addEventListener("click", function () {
+    if ($("big-speak").getAttribute("aria-pressed") === "true") { stopSpeaking(); bigSpeakUI(false); return; }
+    try {
+      stopSpeaking();
+      var u = new SpeechSynthesisUtterance(($("big-intro").hidden ? "" : $("big-intro").textContent + " ") + bigSpeakText.replace(/§§?/g, "Paragraf"));
+      u.lang = "de-DE"; u.rate = 0.9;
+      u.onend = u.onerror = function () { bigSpeakUI(false); };
+      speechSynthesis.speak(u); bigSpeakUI(true);
+    } catch (e) { bigSpeakUI(false); }
+  });
+  function hideBig() { stopSpeaking(); $("big").hidden = true; setInert(false); if (!needAwake()) releaseAwake(); if (lastFocus) { try { lastFocus.focus({ preventScroll: true }); } catch (e) {} } }
   function closeBig() { if ($("big").hidden) return; if (history.state && history.state.rbBig) history.back(); else hideBig(); }
   window.addEventListener("popstate", function () { if (!$("big").hidden) hideBig(); });
   $("big-close").addEventListener("click", closeBig);
@@ -871,7 +900,8 @@
     if (location.hash === "#aufnahme" && pendingAct === "consent" && !recState) setRecUI("consent");
     if (location.hash === "#aufnahme" && pendingAct === "film" && !recState) startRecording(false, null);
     if (location.hash === "#aufnahme" && pendingAct === "qh") setTimeout(function () { $("qh").scrollIntoView({ block: "start" }); }, 0);
-    if (location.hash === "#kontrolle" && pendingAct === "kontrolle" && !recState) startRecording(false, null);
+    if (location.hash === "#kontrolle" && pendingAct === "kontrolle-filme") { kRole = "filme"; lsSet(LS_KROLE, kRole); hideK(); renderKontrolle(); }
+    if (location.hash === "#kontrolle" && (pendingAct === "kontrolle" || pendingAct === "kontrolle-filme") && !recState) startRecording(false, null);
     pendingAct = null;
   });
   document.addEventListener("visibilitychange", function () {
@@ -920,30 +950,43 @@
     if (on && !clock) { var sec = Math.floor((Date.now() - recState.r.started.getTime()) / 1000); clock = pad(Math.floor(sec / 60)) + ":" + pad(sec % 60); }
     $("k-dot").hidden = !on; $("k-thumb").hidden = !on;
     $("k-bar").classList.toggle("on", on);
-    var b = $("k-rec"); b.textContent = on ? t("k_stop") : t("k_rec"); b.className = "btn k-recbtn " + (on ? "stop" : "primary"); b.disabled = wait;
+    var b = $("k-rec");
+    if (!(on && kStopArmed)) { b.textContent = on ? t("k_stop") : t("k_rec"); b.className = "btn k-recbtn " + (on ? "stop" : "primary"); }
+    b.disabled = wait;
     if (on) $("k-status").textContent = (recState.r.withAudio ? t("k_rec_audio") : t("k_rec_silent")) + " · " + clock;
     else if (wait) $("k-status").textContent = t("k_rec_wait");
     else $("k-status").innerHTML = kSaved ? esc(t("k_saved")) + ' <button type="button" class="k-save" id="k-save">' + esc(t("k_sichern")) + "</button>" : esc(t("k_norec"));
   }
-  function renderKontrolle() {
-    if (!K) { $("k-start").hidden = true; return; }
-    $("k-role").innerHTML = K.roles.map(function (r) {
+  function roleSeg() {
+    return K.roles.map(function (r) {
       return '<button type="button" class="seg-b" data-kr="' + r[0] + '" aria-pressed="' + (kRole === r[0]) + '">' + esc(UI === "ru" ? r[2] : r[1]) + "</button>";
     }).join("");
+  }
+  function renderKontrolle() {
+    if (!K) { $("k-start").hidden = true; $("k-start-filme").hidden = true; return; }
+    $("k-role").innerHTML = roleSeg(); $("einr-role").innerHTML = roleSeg();
+    // Russische Oberfläche: darunter klein das deutsche Stichwort – das hört man vom Beamten.
     $("k-grid").innerHTML = (K.buttons[kRole] || []).map(function (b) {
       var q = qById(b[0]); if (!q) return "";
-      return '<button type="button" class="k-b" data-k="' + b[0] + '"><span class="k-b-t">' + esc(UI === "ru" ? b[2] : b[1]) + '</span><span class="k-b-v ' + VTONE[q.v] + '">' + esc(t("v_" + q.v)) + "</span></button>";
+      return '<button type="button" class="k-b" data-k="' + b[0] + '" aria-pressed="' + (kCur === b[0]) + '"><span class="k-b-t">' + esc(UI === "ru" ? b[2] : b[1]) + "</span>" +
+        (UI === "ru" ? '<span class="k-b-de" lang="de" translate="no">' + esc(b[1]) + "</span>" : "") +
+        '<span class="k-b-v ' + VTONE[q.v] + '">' + esc(t("v_" + q.v)) + "</span></button>";
     }).join("");
+    var h = K.hinweis && K.hinweis[kRole];
+    $("k-hint").hidden = !h;
+    if (h) $("k-hint").innerHTML = esc(UI === "ru" ? h.ru : h.de) + ' <a href="tel:' + esc(h.tel) + '">' + esc(h.telText) + "</a>";
     $("k-test").hidden = lsGet(LS_KTEST) !== "1";
     $("k-listen").textContent = kListen ? t("k_listen_on") : t("k_listen");
     syncKBar();
     if (kCur) showK(kCur, true);
   }
+  // Antwort oben, die Knöpfe bleiben darunter: die nächste Frage ist wieder nur ein Tipp.
   function showK(id, noPush) {
     var q = qById(id), k = (K && K.kurz[id]) || {}; if (!q) return;
     var ru = UI === "ru", dann = ru ? k.dann_ru : k.dann;
     kCur = id;
-    $("k-cop").textContent = "„" + L(q, "cop") + "“";
+    $("k-cop").textContent = "„" + q.cop + "“";
+    $("k-cop-ru").textContent = ru && q.ru && q.ru.cop ? "„" + q.ru.cop + "“" : ""; $("k-cop-ru").hidden = !ru;
     $("k-v").className = "pill " + VTONE[q.v]; $("k-v").textContent = t("v_" + q.v);
     $("k-say").textContent = nb(k.de || q.say);
     $("k-say-ru").textContent = ru ? nb(k.ru || (q.ru && q.ru.say) || "") : ""; $("k-say-ru").hidden = !ru;
@@ -951,30 +994,49 @@
     $("k-dann").textContent = dann || ""; $("k-dann").hidden = !dann;
     $("k-full").textContent = nb(q.say); $("k-full-ru").textContent = ru && q.ru ? nb(q.ru.say) : ""; $("k-full-ru").hidden = !ru;
     $("k-why").textContent = nb(L(q, "why")); $("k-lawfull").textContent = nb(q.law);
-    if (!noPush) $("k-more").open = false;
-    $("k-pick").hidden = true; $("k-ans").hidden = false;
-    // Eigener Verlaufseintrag: Die Zurück-Taste führt zu den Knöpfen, nicht aus der Kontrolle heraus.
-    // Ist schon eine Antwort offen (z. B. beim Mithören), ersetzt die neue sie – Zurück führt immer mit einem Schritt zu den Knöpfen.
+    if (!noPush) { $("k-more").hidden = true; $("k-more-b").setAttribute("aria-expanded", "false"); }
+    $("k-ans").hidden = false; $("v-kontrolle").classList.add("ans-on");
+    [].forEach.call(document.querySelectorAll("#k-grid .k-b"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-k") === id ? "true" : "false"); });
+    // Eigener Verlaufseintrag: Die Zurück-Taste schließt die Antwort, nicht die Kontrolle.
+    // Ist schon eine Antwort offen, ersetzt die neue sie – Zurück führt immer mit einem Schritt zu den Knöpfen.
     if (!noPush) { try { if (history.state && history.state.rbK) history.replaceState({ rbK: 1, d: depth }, ""); else history.pushState({ rbK: 1, d: depth }, ""); } catch (e) {} window.scrollTo(0, 0); }
   }
-  function hideK() { kCur = null; $("k-ans").hidden = true; $("k-pick").hidden = false; }
+  function hideK() {
+    kCur = null; $("k-ans").hidden = true; $("v-kontrolle").classList.remove("ans-on");
+    [].forEach.call(document.querySelectorAll("#k-grid .k-b"), function (b) { b.setAttribute("aria-pressed", "false"); });
+  }
   window.addEventListener("popstate", function () { if (!(history.state && history.state.rbK) && !$("k-ans").hidden) hideK(); });
-  $("k-back").addEventListener("click", function () { if (history.state && history.state.rbK) history.back(); else hideK(); });
+  $("k-close").addEventListener("click", function () { if (history.state && history.state.rbK) history.back(); else hideK(); });
+  $("k-more-b").addEventListener("click", function () {
+    var open = $("k-more").hidden; $("k-more").hidden = !open; $("k-more-b").setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  // Zeigen: nur der deutsche Satz und der Paragraf für den Beamten; bei russischer Oberfläche mit „Ich spreche wenig Deutsch“.
   $("k-big").addEventListener("click", function () {
     var q = qById(kCur), k = (K && K.kurz[kCur]) || {}; if (!q) return;
-    openBig(k.de || q.say, UI === "ru" ? k.ru || (q.ru && q.ru.say) || "" : "", $("k-big"), k.law || q.law, (UI === "ru" ? k.dann_ru : k.dann) || "");
+    openBig(k.de || q.say, "", $("k-big"), k.law || q.law, "", { intro: UI !== "de" });
   });
   $("k-grid").addEventListener("click", function (e) { var b = e.target.closest("[data-k]"); if (b) showK(b.getAttribute("data-k")); });
-  $("k-role").addEventListener("click", function (e) {
-    var b = e.target.closest("[data-kr]"); if (!b) return;
-    kRole = b.getAttribute("data-kr"); lsSet(LS_KROLE, kRole); renderKontrolle();
+  [$("k-role"), $("einr-role")].forEach(function (el) {
+    el.addEventListener("click", function (e) {
+      var b = e.target.closest("[data-kr]"); if (!b) return;
+      kRole = b.getAttribute("data-kr"); lsSet(LS_KROLE, kRole); hideK(); renderKontrolle();
+    });
   });
   $("k-status").addEventListener("click", function (e) {
     if (!e.target.closest("#k-save")) return;
     var b = document.querySelector("#rec-list .rec-item [data-share]");
     if (b) b.click(); else location.hash = "#aufnahme";
   });
-  $("k-rec").addEventListener("click", function () { if (recState && recState.rec) stopRecording(); else if (!recState) startRecording(false, null); });
+  // Stopp nur mit Bestätigung: ein versehentlicher Tipp soll die Aufnahme nicht beenden.
+  var kStopArmed = 0, kStopT = null;
+  $("k-rec").addEventListener("click", function () {
+    var b = $("k-rec");
+    clearTimeout(kStopT); // alter Zeitgeber darf eine neue Bestätigung nicht zurücksetzen
+    if (recState && recState.rec) {
+      if (!kStopArmed) { kStopArmed = Date.now(); b.textContent = t("k_stop_sure"); b.classList.add("armed"); kStopT = setTimeout(function () { kStopArmed = 0; syncKBar(); }, 3000); return; }
+      kStopArmed = 0; stopRecording();
+    } else if (!recState) startRecording(false, null);
+  });
 
   /* Stichwort-Abgleich: Wortanfänge zählen, ein Leerzeichen am Stichwort-Ende verlangt das ganze Wort.
      Punkte = Länge der gefundenen Stichwörter; es gewinnt der Knopf mit den meisten, ab 3 („моч“). */
@@ -1061,6 +1123,34 @@
     shareText("Mithör-Test", lines.join("\n") || "-", $("k-listen-msg"));
   });
   $("k-test-off").addEventListener("click", function () { kListenStop(); try { localStorage.removeItem(LS_KTEST); } catch (e) {} $("k-test").hidden = true; });
+
+  /* ---------- Einrichten (30 Sekunden, einmal in Ruhe) ----------
+     Kamera-Erlaubnis vorher holen: Sonst erscheint die Browser-Frage erst, wenn der Polizist am Fenster steht. */
+  var LS_SETUP = "rb-einrichten-v1";
+  function renderEinrichten() {
+    $("einr-role").innerHTML = K ? roleSeg() : "";
+    $("einr-test").checked = lsGet(LS_KTEST) === "1";
+    $("einr-inst").innerHTML = $("install-help").innerHTML;
+    try {
+      if (navigator.permissions && navigator.permissions.query) navigator.permissions.query({ name: "camera" }).then(function (st) {
+        if (st.state === "granted") { $("einr-cam-msg").textContent = t("einr_cam_ok"); $("einr-cam-msg").className = "einr-msg ok"; }
+      }).catch(function () {});
+    } catch (e) {}
+  }
+  $("einr-cam").addEventListener("click", function () {
+    var m = $("einr-cam-msg");
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { m.textContent = t("rec_nobrowser"); return; }
+    navigator.mediaDevices.getUserMedia({ video: true, audio: true }).then(function (st) {
+      st.getTracks().forEach(function (tr) { tr.stop(); });
+      m.textContent = t("einr_cam_ok"); m.className = "einr-msg ok";
+    }).catch(function () { m.textContent = permHelp("cammic"); m.className = "einr-msg err"; });
+  });
+  $("einr-test").addEventListener("change", function () {
+    if ($("einr-test").checked) lsSet(LS_KTEST, "1"); else try { localStorage.removeItem(LS_KTEST); } catch (e) {}
+    renderKontrolle();
+  });
+  $("einr-done").addEventListener("click", function () { lsSet(LS_SETUP, isoDate(new Date())); renderFuerDich(); location.hash = "#jetzt"; });
+  $("einr-back").addEventListener("click", goBack);
 
   /* ---------- Protocol ---------- */
   var fields = ["datum", "zeit", "ort", "beamte", "ablauf", "zitate", "zeugen", "aufnahmen", "schaden", "name"];
@@ -1379,6 +1469,7 @@
     // Höchstens ein Hinweis, damit die Kacheln auf kleinen Handys sichtbar bleiben.
     var box = $("fuer-dich"), notes = profileNotes(), urgent = notes.filter(function (n) { return n.home; });
     if (urgent.length) box.innerHTML = fdBox(urgent.slice(0, 1));
+    else if (!lsGet(LS_SETUP)) box.innerHTML = '<a class="einr-card" href="#einrichten">' + esc(t("einr_card")) + "</a>";
     else if (hasProfile()) box.innerHTML = '<p class="fd-line"><a class="fd-edit" href="#profil">' + esc(t("prof_open")) + "</a></p>";
     else if (lsGet(LS_PROF_HIDE) !== "aus") {
       box.innerHTML = '<div class="fd-invite"><a href="#profil">' + esc(t("fd_invite")) + "</a>" +

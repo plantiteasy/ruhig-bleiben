@@ -36,6 +36,7 @@
   <section class="view" id="v-jetzt" aria-labelledby="h-jetzt">
     <h1 id="h-jetzt" data-t="jetzt_h">Was passiert gerade?</h1>
     <a class="k-start" href="#kontrolle" id="k-start" data-act="kontrolle"><span class="k-start-t" data-t="k_start">Ich werde kontrolliert</span><span class="k-start-s" data-t="k_start_s">Video ohne Ton startet · Antworten mit § auf einem Bildschirm</span></a>
+    <a class="k-start2" href="#kontrolle" id="k-start-filme" data-act="kontrolle-filme" data-t="k_start_filme">Ich filme eine Kontrolle (Freund, Fremde)</a>
     <p class="lead" data-t="jetzt_lead">Tippe auf deine Situation. Du bekommst sofort, was du sagen und was du lassen solltest.</p>
     <div id="fuer-dich"></div>
     <div class="sit-grid" id="sit-grid"></div>
@@ -56,12 +57,24 @@
     </div>
     <p class="err" id="k-err" hidden></p>
     <p class="k-live" id="k-live" hidden><span class="rec-dot" aria-hidden="true"></span><span id="k-live-t"></span><button class="btn k-live-stop" type="button" id="k-live-stop" data-t="stop">Stopp</button></p>
+    <div class="k-ans" id="k-ans" hidden>
+      <button class="k-close" type="button" id="k-close" aria-label="Schließen" data-t-aria="close">×</button>
+      <p class="k-cop" id="k-cop" lang="de" translate="no"></p>
+      <p class="k-cop-ru" id="k-cop-ru" lang="ru"></p>
+      <span class="pill" id="k-v"></span>
+      <p class="k-say" id="k-say" lang="de" translate="no"></p>
+      <p class="say-ru" id="k-say-ru" lang="ru"></p>
+      <p class="law k-law" id="k-law" lang="de" translate="no"></p>
+      <p class="k-dann" id="k-dann"></p>
+      <div class="k-actions"><button class="btn primary" type="button" id="k-big" data-t="k_big">Zeigen</button><button class="btn" type="button" id="k-more-b" aria-expanded="false" data-t="k_more">Mehr und warum</button></div>
+      <div class="k-more" id="k-more" hidden>
+        <p class="k-full" id="k-full" lang="de" translate="no"></p><p class="say-ru" id="k-full-ru" lang="ru"></p><p class="k-why" id="k-why"></p><p class="law" id="k-lawfull" lang="de" translate="no"></p></div>
+    </div>
     <div class="k-pick" id="k-pick">
       <div class="seg k-role" id="k-role" role="group" aria-label="Ich bin" data-t-aria="k_role_aria"></div>
       <h1 id="k-h" class="k-h" data-t="k_h">Was sagt der Polizist?</h1>
       <div class="k-grid" id="k-grid"></div>
-      <button class="btn k-ptt" type="button" id="k-ptt" aria-pressed="false"><span class="mic-dot" aria-hidden="true"></span><span id="k-ptt-l" data-t="k_ptt">Stichwort sagen</span></button>
-      <p class="transcript k-heard" id="k-heard" aria-live="polite"></p>
+      <p class="k-hint" id="k-hint" hidden></p>
       <a class="k-all" href="#aufnahme" data-act="qh" data-t="k_all">Alle 64 Antworten</a>
       <div class="k-test" id="k-test" hidden>
         <p class="k-test-w" data-t="k_test_warn">Testmodus: nur mit Freunden, die Polizei spielen und einverstanden sind. Der Ton geht zur Erkennung an Google. Nicht bei echter Polizei benutzen.</p>
@@ -71,17 +84,37 @@
         <div class="k-actions"><button class="btn" type="button" id="k-log-share" data-t="k_log_share">Log teilen</button><button class="btn ghost" type="button" id="k-test-off" data-t="k_test_off">Testmodus aus</button></div>
       </div>
     </div>
-    <div class="k-ans" id="k-ans" hidden>
-      <p class="k-cop" id="k-cop"></p>
-      <span class="pill" id="k-v"></span>
-      <p class="k-say" id="k-say" lang="de" translate="no"></p>
-      <p class="say-ru" id="k-say-ru" lang="ru"></p>
-      <p class="law k-law" id="k-law" lang="de" translate="no"></p>
-      <p class="k-dann" id="k-dann"></p>
-      <div class="k-actions"><button class="btn" type="button" id="k-back" data-t="back">Zurück</button><button class="btn primary" type="button" id="k-big" data-t="k_big">Groß zeigen</button></div>
-      <details class="k-more" id="k-more"><summary data-t="k_more">Mehr sagen und warum</summary>
-        <p class="k-full" id="k-full" lang="de" translate="no"></p><p class="say-ru" id="k-full-ru" lang="ru"></p><p class="k-why" id="k-why"></p><p class="law" id="k-lawfull" lang="de" translate="no"></p></details>
+    <div class="k-foot" id="k-foot">
+      <p class="k-heard" id="k-heard" aria-live="polite"></p>
+      <div class="k-foot-row">
+        <button class="btn k-ptt" type="button" id="k-ptt" aria-pressed="false"><span class="mic-dot" aria-hidden="true"></span><span id="k-ptt-l" data-t="k_ptt">Stichwort sagen</span></button>
+        <a class="btn k-menu" href="#jetzt" id="k-menu" data-t="k_menu">Menü</a>
+      </div>
     </div>
+  </section>
+
+  <!-- Einrichten: einmal in Ruhe, damit im Ernstfall ein Tipp reicht -->
+  <section class="view" id="v-einrichten" hidden aria-labelledby="h-einr">
+    <button class="back" type="button" id="einr-back" data-t="back">Zurück</button>
+    <h1 id="h-einr" data-t="einr_h">In 30 Sekunden bereit</h1>
+    <p class="lead" data-t="einr_lead">Einmal jetzt in Ruhe – dann reicht im Ernstfall ein Tipp.</p>
+    <ol class="einr">
+      <li><p class="einr-t" data-t="einr_1">Sprache der App</p>
+        <div class="seg" role="group" id="einr-lang"><button type="button" class="seg-b lang-b" data-ui="de" lang="de">Deutsch</button><button type="button" class="seg-b lang-b" data-ui="ru" lang="ru">Русский</button></div></li>
+      <li><p class="einr-t" data-t="einr_2">Meistens bin ich</p><div class="seg k-role" role="group" id="einr-role"></div></li>
+      <li><p class="einr-t" data-t="einr_3">Kamera und Mikrofon erlauben</p>
+        <p class="hint" data-t="einr_3h">Sonst fragt das Handy erst, wenn der Polizist schon da ist.</p>
+        <button class="btn primary" type="button" id="einr-cam" data-t="einr_cam">Jetzt erlauben</button><p class="einr-msg" id="einr-cam-msg" aria-live="polite"></p></li>
+      <li><p class="einr-t" data-t="einr_4">Auf den Startbildschirm</p>
+        <button class="btn primary" type="button" data-install data-t="install_app" hidden>App installieren</button>
+        <p class="hint" id="einr-inst"></p>
+        <p class="hint" data-t="einr_4h">Danach: lange auf das App-Symbol drücken → „Kontrolle“ startet sofort das Video.</p></li>
+      <li><p class="einr-t" data-t="einr_5">Einmal üben</p>
+        <a class="btn" href="#kontrolle" id="einr-try" data-t="einr_try">Kontrolle-Bildschirm ansehen (ohne Aufnahme)</a>
+        <label class="check"><input type="checkbox" id="einr-test"> <span data-t="einr_test">Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google)</span></label></li>
+      <li><p class="einr-t" data-t="einr_6">Optional: Profil</p><a class="btn ghost" href="#profil" data-t="einr_prof">Führerschein, Aufenthalt – für passende Hinweise</a></li>
+    </ol>
+    <button class="btn primary big-btn" type="button" id="einr-done" data-t="einr_done">Fertig</button>
   </section>
 
   <!-- Situation -->
@@ -279,10 +312,12 @@
 <div class="bigscreen" id="big" hidden role="dialog" aria-modal="true" aria-labelledby="big-de">
   <p class="big-rec" id="big-rec" hidden><span class="rec-dot" aria-hidden="true"></span><span id="big-rec-t">REC</span></p>
   <button class="btn big-close" type="button" id="big-close" data-t="close">Schließen</button>
+  <p class="big-intro" id="big-intro" lang="de" translate="no" hidden>Ich spreche wenig Deutsch. Bitte lesen Sie:</p>
   <p class="big-de" id="big-de" lang="de" translate="no"></p>
   <p class="big-ru" id="big-ru" lang="ru"></p>
   <p class="big-law" id="big-law" lang="de" translate="no"></p>
   <p class="big-why" id="big-why"></p>
+  <button class="btn big-speak" type="button" id="big-speak" data-t="big_speak" hidden>Vorlesen (Deutsch)</button>
 </div>
 
 <script src="data.js"></script>

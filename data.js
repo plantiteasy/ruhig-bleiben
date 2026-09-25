@@ -15,28 +15,28 @@ window.RB = {
         ["Einer Durchsuchung stimme ich nicht zu.", "На обыск не соглашаюсь."]
       ],
       doo: [
-        "Motor ganz aus – erst dann das Handy in die Hand nehmen, auch zum Filmen (§ 23 Abs. 1a, 1b StVO, Start-Stopp zählt nicht). Fenster runter, Hände sichtbar lassen.",
+        "Motor ganz aus – erst dann das Handy in die Hand nehmen, auch zum Filmen (§ 23 Abs. 1a, 1b StVO, Start-Stopp zählt nicht). Fenster runter, Hände sichtbar lassen. Heißt es „Handy weg, Hände ans Lenkrad“: befolgen – Handy in die Halterung, es filmt offen weiter.",
         "Führerschein und Fahrzeugschein im Original zeigen. Der digitale Fahrzeugschein in der i‑Kfz‑App zählt, ein Foto nicht.",
         "Personalien angeben. Aussteigen, wenn die Polizei es für die Kontrolle verlangt.",
-        "Warndreieck, Verbandkasten und Warnweste holst du selbst heraus und zeigst sie. In den Kofferraum schauen darf die Polizei, ohne Verdacht aber nichts durchsuchen."
+        "Warndreieck, Verbandkasten und Warnweste holst du selbst heraus und zeigst sie – das erlaubt keine Durchsuchung. Durchsuchen darf die Polizei das Auto nur mit Grundlage, etwa bei Verdacht, an einer Kontrollstelle oder an einem gefährlichen Ort."
       ],
       dont: [
         "Keine Angaben zu Fahrziel, Alkohol, Drogen oder Medikamenten – auch nicht „nur ein Bier“.",
         "Keine freiwilligen Tests: Pusten, Urin, Wischtest, Pupillentest mit der Taschenlampe, Übungen wie Finger-Nase.",
-        "Nicht wegfahren, die Tür nicht verriegeln, nichts unterschreiben, was du nicht verstehst."
+        "Nicht wegfahren, die Tür nicht verriegeln. Nichts unterschreiben – dazu bist du nicht verpflichtet."
       ],
       note: "Papiere vergessen: 10 € je Dokument. Aussteigen verweigern: 20 €. Haltezeichen ignorieren: 70 € und 1 Punkt.",
       law: "§ 36 Abs. 5 StVO · § 4 Abs. 2 FeV · § 13 Abs. 6 FZV · § 31b StVZO · § 111 OWiG",
       actions: ["qh", "situation:papiere", "situation:test", "situation:auto", "film"],
       ru: {
         title: "Проверка на дороге", sub: "Машина, фургон, мотоцикл", toneLabel: "Обязательно",
-        doo: ["Заглуши мотор полностью — только потом бери телефон в руку, в том числе чтобы снимать (§ 23 Abs. 1a, 1b StVO, старт-стоп не считается). Опусти стекло, держи руки на виду.",
+        doo: ["Заглуши мотор полностью — только потом бери телефон в руку, в том числе чтобы снимать (§ 23 Abs. 1a, 1b StVO, старт-стоп не считается). Опусти стекло, держи руки на виду. Велят убрать телефон и положить руки на руль — выполняй: телефон в держатель, он открыто продолжит снимать.",
           "Покажи права (Führerschein) и техпаспорт (Fahrzeugschein) в оригинале. Электронный техпаспорт в приложении i\u2011Kfz считается, фото — нет.",
           "Назови свои данные. Выйди из машины, если полиция требует этого для проверки.",
-          "Знак аварийной остановки, аптечку и жилет достань сам и покажи. Заглянуть в багажник полиция может, но без подозрения ничего не обыскивает."],
+          "Знак аварийной остановки, аптечку и жилет достань сам и покажи — это не даёт права на обыск. Обыскивать машину полиция может только при наличии основания, например при подозрении, на контрольном пункте или в «опасном месте»."],
         dont: ["Не говори, куда едешь, и ничего про алкоголь, наркотики или лекарства — даже «всего одно пиво».",
           "Не соглашайся на добровольные тесты: дуть в трубку, моча, мазок, проверка зрачков фонариком, упражнения вроде «палец к носу».",
-          "Не уезжай, не запирай двери, не подписывай то, чего не понимаешь."],
+          "Не уезжай, не запирай двери. Ничего не подписывай — подписывать ты не обязан."],
         note: "Забыл документы: 10 € за каждый. Отказ выйти из машины: 20 €. Не остановился по требованию: 70 € и 1 балл."
       },
       kw: ["зупин", "blaulicht", "мигалк", "anhaltesignal", "bitte folgen", "~verkehrskontroll", "~angehalten", "~anhalten", "fahrzeugschein", "aussteig", "warndreieck", "verbandkasten", "warnweste", "~auto", "~fahr", "wohin", "fahrziel", "woher",
@@ -77,7 +77,7 @@ window.RB = {
         "без прав", "~права действ", "электронн", "в приложени", "фото прав", "копия прав", "~права"]
     },
     {
-      id: "test", group: "auto", title: "Alkohol- oder Drogen\u00ADtest", sub: "Pusten, Urin, Wischtest, Blut", tone: "right", toneLabel: "Freiwillig",
+      id: "test", group: "auto", title: "Alkohol- oder Drogen\u00ADtest", sub: "Pusten, Urin, Wischtest, Blut", tone: "warn", toneLabel: "Kommt drauf an",
       say: [
         ["Einem freiwilligen Test stimme ich nicht zu.", "На добровольный тест не соглашаюсь."],
         ["Zu meinem Konsum und zur Sache mache ich keine Angaben.", "Об употреблении и по делу ничего не скажу."],
@@ -99,7 +99,7 @@ window.RB = {
       law: "§ 81a StPO · §§ 24a, 24c StVG · § 316 StGB",
       actions: ["qh", "protokoll"],
       ru: {
-        title: "Тест на алкоголь или наркотики", sub: "Дуть, моча, мазок, кровь", toneLabel: "Добровольно",
+        title: "Тест на алкоголь или наркотики", sub: "Дуть, моча, мазок, кровь", toneLabel: "Зависит",
         doo: ["Добровольно: дуть в трубку, тесты мочи, слюны и мазок, проверка зрачков фонариком и упражнения вроде «палец к носу» или «пройти по линии». Отказ — не признание вины. Полиция не обязана говорить, что это добровольно.",
           "При подозрении на алкоголь или наркотики за рулём полиция может назначить взятие крови и без судьи (§ 81a Abs. 2 StPO) — тогда терпи, не сопротивляйся. Без такого подозрения кровь не берут. Угроза «тогда возьмём кровь в участке» — не причина соглашаться на тест.",
           "Пределы для машины и электросамоката: 0,5 промилле, THC 3,5 нг/мл. С 1,1 промилле или при явных признаках опьянения — это преступление. До 21 года и на испытательном сроке: ни алкоголя, ни каннабиса.",
@@ -156,7 +156,7 @@ window.RB = {
       ],
       doo: [
         "Deutlich sagen: „Ich bin nicht einverstanden.“ Schweigen kann als Zustimmung gewertet werden.",
-        "Warndreieck, Verbandkasten und Warnweste selbst herausholen und zeigen. Hineinschauen darf die Polizei, ohne Verdacht aber nichts durchsuchen.",
+        "Warndreieck, Verbandkasten und Warnweste selbst herausholen und zeigen – das erlaubt der Polizei keine Durchsuchung des Autos.",
         "Durchsuchen darf sie bei konkretem Verdacht, zum Beispiel Cannabisgeruch, mit Beschluss, in der Stuttgarter Waffenverbotszone oder an bestimmten Orten nach dem Polizeigesetz. Dann dulden, aber nicht mithelfen.",
         "Zeugen ansprechen, Namen und Kennzeichen notieren, danach Gedächtnisprotokoll schreiben."
       ],
@@ -169,7 +169,7 @@ window.RB = {
       ru: {
         title: "Обыск машины", sub: "Багажник, бардачок, сумки", toneLabel: "Возражай",
         doo: ["Скажи чётко: «Ich bin nicht einverstanden» — «Я не согласен». Молчание могут посчитать согласием.",
-          "Знак аварийной остановки, аптечку и жилет достань сам и покажи. Заглянуть полиция может, но без подозрения ничего не обыскивает.",
+          "Знак аварийной остановки, аптечку и жилет достань сам и покажи — это не даёт полиции права обыскивать машину.",
           "Обыскивать можно при конкретном подозрении, например запахе каннабиса, по постановлению, в зоне запрета оружия в Штутгарте или в отдельных местах по закону о полиции. Тогда терпи, но не помогай.",
           "Обратись к свидетелям, запиши имена и номера машин, потом напиши протокол по памяти."],
         dont: ["Ничего не держи, не придерживай дверь, никого не отталкивай — это сопротивление.",
@@ -227,7 +227,7 @@ window.RB = {
       dont: [
         "Nicht weggehen oder wegfahren, bevor alles aufgenommen ist – auch nicht kurz zum Einkaufen. Unfallflucht ist eine Straftat, oft ist danach der Führerschein weg.",
         "Keine Schuld zugeben und nichts unterschreiben, was du nicht verstehst – auch nicht unter Schock.",
-        "Keine Angaben zu Alkohol, Drogen oder Medikamenten. Tests sind auch nach einem Unfall freiwillig."
+        "Keine Angaben zu Alkohol, Drogen oder Medikamenten. Pusten und andere Tests sind auch nach einem Unfall freiwillig – eine angeordnete Blutprobe musst du dulden."
       ],
       note: "Bei reinem Blechschaden musst du die Polizei nicht rufen; will die Gegenseite sie holen, warte. Bei kleinem Parkschaden kann eine freiwillige Meldung binnen 24 Stunden die Strafe mildern oder ganz ersparen.",
       law: "§ 34 StVO · § 142 StGB · § 323c StGB · § 136 StPO",
@@ -240,7 +240,7 @@ window.RB = {
           "Сфотографируй место, повреждения и номера, запиши свидетелей. Европротокол (Europäischer Unfallbericht) заполняй только правдиво."],
         dont: ["Не уходи и не уезжай, пока всё не записано, даже ненадолго в магазин. Бегство с места ДТП — преступление, часто после него отбирают права.",
           "Не признавай вину и не подписывай то, чего не понимаешь, даже в шоке.",
-          "Ничего об алкоголе, наркотиках или лекарствах. Тесты и после ДТП добровольные."],
+          "Ничего об алкоголе, наркотиках или лекарствах. Алкотест (дуть в трубку) и другие тесты добровольны даже после ДТП — назначенное взятие крови ты обязан терпеть."],
         note: "Если только помята машина, полицию вызывать не обязательно; если другая сторона хочет её вызвать — жди. При мелком ущербе на парковке добровольное сообщение в течение 24 часов может смягчить наказание или избавить от него."
       },
       kw: ["unfall", "unfallflucht", "fahrerflucht", "unfallort", "zusammenstoss", "zusammengestossen", "aufgefahren", "parkschaden", "blechschaden", "angefahren", "gerammt", "unfallbericht",
@@ -445,12 +445,12 @@ window.RB = {
       ],
       doo: [
         "Ruhig bleiben, keinen Widerstand leisten.",
-        "Anwalt verlangen und um Benachrichtigung der Angehörigen bitten – bei einer Festnahme wegen einer Straftat ist das dein Recht, außer es gefährdet die Ermittlungen erheblich. Der Dolmetscher ist kostenlos.",
+        "Anwalt verlangen – das darfst du jederzeit. Um Benachrichtigung der Angehörigen bitten – bei einer Festnahme wegen einer Straftat ist das dein Recht, außer es gefährdet die Ermittlungen erheblich. Der Dolmetscher ist kostenlos.",
         "Nach einer Festnahme musst du spätestens am Tag danach einem Richter vorgeführt werden. Nur zur Identitätsfeststellung nach StPO: höchstens 12 Stunden.",
         "Anwaltsnotdienst Stuttgart, rund um die Uhr: 0711 998 899 66."
       ],
       dont: [
-        "Nichts unterschreiben, was du nicht verstehst.",
+        "Nichts unterschreiben – eine Pflicht dazu gibt es nicht.",
         "Nicht „nur kurz erklären“ – jede Erklärung ist eine Aussage."
       ],
       law: "Art. 104 GG · §§ 114b, 114c, 128, 163c StPO · § 187 GVG · § 33 PolG BW",
@@ -458,10 +458,10 @@ window.RB = {
       ru: {
         title: "Задержание или участок", sub: "Тебя забирают", toneLabel: "Твои права",
         doo: ["Сохраняй спокойствие, не сопротивляйся.",
-          "Требуй адвоката и попроси сообщить родным — при задержании по уголовному делу это твоё право, если это серьёзно не мешает расследованию. Переводчик бесплатный.",
+          "Требуй адвоката — это можно в любой момент. Попроси сообщить родным — при задержании по уголовному делу это твоё право, кроме случаев, когда это серьёзно угрожает расследованию. Переводчик бесплатный.",
           "После задержания тебя должны доставить к судье не позднее следующего дня. Только для установления личности по StPO — максимум 12 часов.",
           "Дежурный адвокат в Штутгарте, круглосуточно: 0711 998 899 66."],
-        dont: ["Ничего не подписывай, если не понимаешь.",
+        dont: ["Ничего не подписывай — обязанности подписывать нет.",
           "Не «объясняй коротко» — любое объяснение считается показаниями."]
       },
       kw: ["mitkomm", "auf die wache", "aufs revier", "festnahm", "festgenommen", "verhaft", "wache", "revier", "anwalt", "~dolmetsch", "zelle", "mitgenommen werden", "zur wache",
@@ -505,40 +505,40 @@ window.RB = {
   cards: [
     {
       id: "k-ausweis", cat: "kontrolle", title: "Muss ich meinen Ausweis dabeihaben?", tone: "warn", toneLabel: "Kommt drauf an",
-      text: "Deutsche müssen einen Ausweis besitzen, aber nicht mitführen. Ausländer müssen Pass oder Aufenthaltstitel auf Verlangen der Polizei vorzeigen – praktisch heißt das: immer dabeihaben. Im Asylverfahren oder mit Duldung: die Aufenthaltsgestattung oder Duldungsbescheinigung. Auf Baustellen gilt wegen Zollkontrollen eine Mitführungspflicht. Hast du den Ausweis dabei, musst du ihn zeigen.",
+      text: "Deutsche müssen einen Ausweis besitzen, aber nicht mitführen. Ausländer müssen Pass oder Aufenthaltstitel auf Verlangen der Polizei vorzeigen – praktisch heißt das: immer dabeihaben. Im Asylverfahren oder mit Duldung: die Aufenthaltsgestattung oder Duldungsbescheinigung. Auf Baustellen gilt wegen Zollkontrollen eine Mitführungspflicht. Hast du den Ausweis dabei, musst du ihn zeigen, wenn die Polizei deine Identität feststellen darf – das ist oft der Fall. Im Zweifel zeigen.",
       law: "§ 1, § 32 PAuswG · § 47a, § 98 AufenthG · § 8 FreizügG/EU · § 2a SchwarzArbG",
       ru: { title: "Обязан ли я носить с собой документ?", toneLabel: "Зависит",
-        text: "Немцы обязаны иметь удостоверение личности, но не обязаны носить его с собой. Иностранцы по требованию полиции должны показать паспорт или вид на жительство — на практике это значит: всегда с собой. При убежище или Duldung — Aufenthaltsgestattung или справку о Duldung. На стройке из-за проверок таможни документ обязателен. Если документ при тебе, его нужно показать." },
+        text: "Немцы обязаны иметь удостоверение личности, но не обязаны носить его с собой. Иностранцы по требованию полиции должны показать паспорт или вид на жительство — на практике это значит: всегда с собой. При убежище или Duldung — Aufenthaltsgestattung или справку о Duldung. На стройке из-за проверок таможни документ обязателен. Если документ при тебе, его нужно показать, когда полиция вправе установить твою личность, — так бывает часто. В сомнении покажи." },
       kw: ["personalausweis", "ausweis dabei", "mitführ", "pass", "aufenthalt", "baustell", "ausweis vergessen", "pass vergessen", "ohne ausweis", "паспорт", "носить", "~с собой", "внж", "стройк", "~документ", "забыл паспорт", "паспорт дома", "без паспорт", "без документ", "аусвайс"]
     },
     {
       id: "k-fragen", cat: "kontrolle", title: "Muss ich Fragen beantworten?", tone: "right", toneLabel: "Nein",
-      text: "Als Beschuldigter darfst du zur Sache immer schweigen. Als Zeuge musst du bei der Polizei nur aussagen, wenn die Staatsanwaltschaft die Ladung angeordnet hat. Ausnahme: Geht es um eine akute Gefahr für Leben oder Gesundheit, musst du Auskunft geben (§ 43 PolG BW). Die Personalien musst du immer angeben. Ein Protokoll musst du nicht unterschreiben – unterschreibe nichts, was du nicht verstehst.",
+      text: "Als Beschuldigter darfst du zur Sache immer schweigen. Als Zeuge musst du bei der Polizei nur aussagen, wenn die Staatsanwaltschaft die Ladung angeordnet hat. Ausnahme: akute Gefahr für Leben oder Gesundheit (§ 43 PolG BW). Die Personalien musst du angeben, wenn die Polizei sie rechtmäßig verlangt – das ist oft der Fall. Im Zweifel: nach der Rechtsgrundlage fragen und angeben, notfalls unter Widerspruch. Unterschreibe nichts: Eine Unterschrift kann als Zustimmung oder Geständnis gelesen werden.",
       say: [["Ich mache keine Angaben zur Sache. Ich möchte zuerst mit einem Anwalt sprechen.", "Я не даю показаний по делу. Сначала хочу поговорить с адвокатом."]],
       law: "§§ 55, 136, 163 Abs. 3 StPO · § 43 PolG BW",
       ru: { title: "Обязан ли я отвечать на вопросы?", toneLabel: "Нет",
-        text: "Как подозреваемый по делу можешь молчать всегда. Как свидетель в полиции давать показания обязан, только если вызов назначила прокуратура. Исключение: если речь об острой опасности для жизни или здоровья, отвечать нужно (§ 43 PolG BW). Личные данные называть нужно всегда. Подписывать протокол не обязан — не подписывай то, чего не понимаешь." },
+        text: "Как подозреваемый по делу можешь молчать всегда. Как свидетель в полиции давать показания обязан, только если вызов назначила прокуратура. Исключение: острая опасность для жизни или здоровья (§ 43 PolG BW). Личные данные нужно назвать, если полиция законно их требует, — так бывает часто. В сомнении: спроси об основании и назови их, при необходимости с возражением. Ничего не подписывай: подпись могут счесть согласием или признанием." },
       kw: ["~was sagen", "~etwas sagen", "~nichts sagen", "~was soll ich sag", "~что говор", "~что сказат", "~что мне говор", "unterschreib", "unterschrift", "подпис", "aussage verweig", "frag", "antwort", "schweig", "aussag", "~zeug", "вопрос", "отвеч", "молч", "показан", "~свидетел"]
     },
     {
       id: "k-grund", cat: "kontrolle", title: "Darf die Polizei ohne Grund kontrollieren?", tone: "can", toneLabel: "Teilweise",
-      text: "In BW in bestimmten Fällen ja: an „gefährlichen Orten“, an Kontrollstellen, in der Stuttgarter Waffenverbotszone und auf Durchgangsstraßen wie Autobahnen gegen grenzüberschreitende Kriminalität. Im öffentlichen Verkehr und bei Veranstaltungen nur, wenn Tatsachen dort Straftaten erwarten lassen. Menschen nach Hautfarbe oder Herkunft auszuwählen ist rechtswidrig. Nach dem Grund fragen darfst du immer.",
+      text: "Den Fahrer darf die Polizei zur Verkehrskontrolle auch ohne Verdacht anhalten, die Bundespolizei in Zügen und an Bahnhöfen der DB ebenfalls. Sonst in BW in bestimmten Fällen: an „gefährlichen Orten“, an Kontrollstellen, in der Stuttgarter Waffenverbotszone, bei der Schleierfahndung (Durchgangsstraßen, Flughäfen, Bahnhöfe mit Auslandsverbindung), in Bus und Bahn oder bei Veranstaltungen, wenn dort Straftaten zu erwarten sind. Auswahl nach Hautfarbe oder Herkunft ist rechtswidrig. Nach dem Grund fragen darfst du immer – die Personalien trotzdem angeben.",
       say: [["Aus welchem Grund werde ich kontrolliert?", "По какой причине меня проверяют?"]],
-      law: "§ 27 Abs. 1 Nr. 3–7 PolG BW · § 42c WaffG · OVG NRW 5 A 294/16",
+      law: "§ 36 Abs. 5 StVO · § 27 Abs. 1 Nr. 2–7 PolG BW · § 22 Abs. 1a, 2 BPolG · § 42c WaffG · OVG NRW 5 A 294/16",
       ru: { title: "Может ли полиция проверять без причины?", toneLabel: "Частично",
-        text: "В BW в некоторых случаях да: в «опасных местах», на контрольных пунктах, в зоне запрета оружия в Штутгарте и на транзитных дорогах вроде автобанов — против трансграничной преступности. В общественном транспорте и на мероприятиях — только если факты указывают, что там готовятся преступления. Выбирать людей по цвету кожи или происхождению незаконно. Спросить о причине можно всегда." },
+        text: "Водителя для дорожной проверки полиция может остановить и без подозрения, федеральная полиция в поездах и на вокзалах DB — тоже. В остальном в BW — в некоторых случаях: в «опасных местах», на контрольных пунктах, в зоне запрета оружия в Штутгарте, при проверках на транзитных путях (Schleierfahndung: трассы, аэропорты, вокзалы с зарубежными поездами), в транспорте или на мероприятиях, если там ожидаются преступления. Выбор по цвету кожи или происхождению незаконен. Спросить о причине можно всегда — данные всё равно назови." },
       kw: ["ohne grund", "grundlos", "anlass", "hautfarb", "herkunft", "racial", "без причин", "проверить без", "просто так", "без повод", "цвет кож", "расизм", "почему остановил", "потому что иностран", "иностранц", "внешност", "акцент", "auslaender", "nur auslaender"]
     },
     {
-      id: "k-paragraf", cat: "kontrolle", title: "Muss der Polizist Grund oder Paragrafen nennen?", tone: "right", toneLabel: "Grund: ja",
-      text: "Den Paragrafen nicht. Bei einer strafrechtlichen Kontrolle muss er sagen, welche Straftat dir vorgeworfen wird. Bei einer polizeirechtlichen Kontrolle kannst du eine schriftliche Bestätigung der Maßnahme verlangen – dann muss sie begründet werden.",
+      id: "k-paragraf", cat: "kontrolle", title: "Muss der Polizist Grund oder Paragrafen nennen?", tone: "warn", toneLabel: "Kommt drauf an",
+      text: "Den Paragrafen nicht. Wirst du einer Straftat verdächtigt, muss er gleich zu Beginn sagen, welche Tat dir vorgeworfen wird – außer der Anlass ist offensichtlich oder der Zweck würde gefährdet. Bei der allgemeinen Verkehrskontrolle des Fahrers und bei einer Kontrolle nach § 27 PolG BW muss er den Grund nicht sofort nennen. Dort kannst du bei berechtigtem Interesse unverzüglich eine schriftliche Bestätigung verlangen – dann muss sie begründet werden.",
       say: [
-        ["Welche Straftat wird mir vorgeworfen?", "В каком преступлении меня подозревают?"],
+        ["Werde ich einer Straftat verdächtigt? Dann nennen Sie mir bitte die Tat.", "Меня подозревают в преступлении? Тогда назовите, пожалуйста, в каком."],
         ["Ich bitte um eine schriftliche Bestätigung dieser Maßnahme.", "Прошу письменное подтверждение этой меры."]
       ],
-      law: "§§ 163a Abs. 4, 163b StPO · OLG Hamm 2 ORs 5/25 · § 37 Abs. 2, § 39 LVwVfG",
-      ru: { title: "Должен ли полицейский назвать причину или статью?", toneLabel: "Причину — да",
-        text: "Статью — нет. При уголовной проверке он должен сказать, в каком преступлении тебя подозревают. При полицейской проверке можно потребовать письменное подтверждение меры — тогда её должны обосновать." },
+      law: "§§ 163a Abs. 4, 163b StPO · OLG Hamm 2 ORs 5/25 · § 36 Abs. 5 StVO · § 27 PolG BW · § 37 Abs. 2, § 39 LVwVfG",
+      ru: { title: "Должен ли полицейский назвать причину или статью?", toneLabel: "Зависит",
+        text: "Статью — нет. Если тебя подозревают в преступлении, он должен сразу сказать, в каком, — кроме случаев, когда повод очевиден или это сорвало бы цель проверки. При общей дорожной проверке водителя и при проверке по § 27 PolG BW причину сразу называть не обязаны. Там при обоснованном интересе можно без промедления потребовать письменное подтверждение — тогда его должны обосновать." },
       kw: ["paragraf", "paragraph", "rechtsgrundlag", "vorwurf", "vorgeworfen", "straftat", "sagt nicht warum", "grund nicht", "параграф", "стать", "основан", "подозрева", "в чем", "причин", "не говорит", "не объясня", "не называ"]
     },
     {
@@ -643,12 +643,12 @@ window.RB = {
       kw: ["wie lange", "festhalt", "stunden", "gewahrsam", "сколько времени", "сколько час", "сколько держ", "сколько могут", "держать", "часов", "~задерж"]
     },
     {
-      id: "k-ed", cat: "festnahme", title: "Fotos und Fingerabdrücke", tone: "warn", toneLabel: "Dulden",
-      text: "Als Beschuldigter musst du Fotos und Fingerabdrücke dulden, notfalls mit Zwang; nur zur Identitätsfeststellung, wenn es anders nicht geht. Sag, dass du nicht einverstanden bist, und lass dir die Rechtsgrundlage schriftlich geben – aber wehr dich nicht: Widerstand ist eine Straftat und kann dem Aufenthalt schaden. Gegen die Speicherung kannst du Widerspruch einlegen und später die Löschung beantragen.",
+      id: "k-ed", cat: "festnahme", title: "Fotos und Fingerabdrücke", tone: "warn", toneLabel: "Kommt drauf an",
+      text: "Als Beschuldigter musst du Fotos und Fingerabdrücke dulden, notfalls mit Zwang. Als Zeuge oder unbeteiligter Mitfahrer nicht gegen deinen Willen – außer deine Identität lässt sich anders nicht klären. Frag deshalb, ob du Beschuldigter oder Zeuge bist. Sag, dass du nicht einverstanden bist, und lass dir die Rechtsgrundlage schriftlich geben – aber wehr dich nicht: Widerstand ist eine Straftat und kann dem Aufenthalt schaden. Gegen die Speicherung kannst du Widerspruch einlegen und später die Löschung beantragen.",
       say: [["Ich bin nicht einverstanden, leiste aber keinen Widerstand. Auf welcher Rechtsgrundlage? Bitte schriftlich.", "Я не согласен, но сопротивляться не буду. На каком основании? Прошу письменно."]],
       law: "§§ 81b, 163b StPO · §§ 41, 91, 92 PolG BW · § 113 StGB · § 54 AufenthG",
-      ru: { title: "Фото и отпечатки пальцев", toneLabel: "Терпеть",
-        text: "Если тебя подозревают, фото и отпечатки придётся терпеть, при необходимости их снимут силой; только для установления личности — если иначе нельзя. Скажи, что не согласен, и попроси письменно основание — но не сопротивляйся: сопротивление — преступление и может навредить виду на жительство. Против хранения данных можно подать возражение, а позже потребовать удаления." },
+      ru: { title: "Фото и отпечатки пальцев", toneLabel: "Зависит",
+        text: "Если тебя подозревают, фото и отпечатки придётся терпеть, при необходимости их снимут силой. Если ты свидетель или непричастный пассажир — не против твоей воли, кроме случая, когда личность иначе не установить. Поэтому спроси, подозреваемый ты или свидетель. Скажи, что не согласен, и попроси письменно основание — но не сопротивляйся: сопротивление — преступление и может навредить виду на жительство. Против хранения данных можно подать возражение, а позже потребовать удаления." },
       kw: ["fingerabdr", "fotos", "foto machen", "erkennungsdienst", "ed behandlung", "отпечатки пальцев", "снять отпечатки", "сфотографир", "фотографир", "дактилоскоп"]
     },
     {
@@ -764,11 +764,11 @@ window.RB = {
     },
     {
       id: "k-dolmetscher", cat: "fremd", title: "Ich verstehe kein Deutsch", tone: "right", toneLabel: "Kostenlos",
-      text: "Wirst du als Beschuldigter befragt, steht dir ein Dolmetscher zu – kostenlos, auch bei der Polizei. Sag das sofort und äußere dich bis dahin nicht zur Sache. Unterschreibe nichts, was du nicht verstehst. Bei einer einfachen Kontrolle gibt es keinen Anspruch auf einen Dolmetscher; deine Personalien musst du trotzdem angeben. Wichtige Schreiben wie Haftbefehl, Strafbefehl oder Urteil bekommst du in der Regel übersetzt.",
+      text: "Wirst du als Beschuldigter befragt, steht dir ein Dolmetscher zu – kostenlos, auch bei der Polizei. Sag das sofort und äußere dich bis dahin nicht zur Sache. Unterschreibe nichts – eine Pflicht dazu gibt es nicht. Bei einer einfachen Kontrolle gibt es keinen Anspruch auf einen Dolmetscher; deine Personalien musst du trotzdem angeben. Wichtige Schreiben wie Haftbefehl, Strafbefehl oder Urteil bekommst du in der Regel übersetzt.",
       say: [["Ich verstehe nicht genug Deutsch. Ich verlange einen Dolmetscher für Russisch. Bis dahin sage ich nichts zur Sache.", "Я недостаточно понимаю по-немецки. Требую переводчика с русского. До этого по делу ничего не скажу."]],
       law: "§ 187 GVG · § 163a Abs. 5 StPO · § 114b StPO · § 111 OWiG",
       ru: { title: "Я не понимаю по-немецки", toneLabel: "Бесплатно",
-        text: "Если тебя допрашивают как подозреваемого, тебе положен переводчик — бесплатно, и в полиции тоже. Скажи об этом сразу и до этого ничего не говори по делу. Не подписывай то, чего не понимаешь. При обычной проверке права на переводчика нет — данные о себе назвать всё равно нужно. Важные документы — ордер на арест, Strafbefehl, приговор — обычно переводят письменно." },
+        text: "Если тебя допрашивают как подозреваемого, тебе положен переводчик — бесплатно, и в полиции тоже. Скажи об этом сразу и до этого ничего не говори по делу. Ничего не подписывай — обязанности подписывать нет. При обычной проверке права на переводчика нет — данные о себе назвать всё равно нужно. Важные документы — ордер на арест, Strafbefehl, приговор — обычно переводят письменно." },
       kw: ["перекладач", "dolmetsch", "uebersetz", "kein deutsch", "verstehe nicht", "sprache", "russisch", "переводчик", "перевод", "не понимаю", "по немецки", "не говорю по", "язык", "на русском"]
     },
     {

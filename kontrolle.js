@@ -8,7 +8,9 @@
    Noch nicht anwaltlich geprüft. */
 window.RB = window.RB || {};
 window.RB.kontrolle = {
-  roles: [["fahrer", "Fahrer", "Водитель"], ["beifahrer", "Beifahrer", "Пассажир"], ["fuss", "Zu Fuß", "Пешком"]],
+  roles: [["fahrer", "Fahrer", "Водитель"], ["beifahrer", "Beifahrer", "Пассажир"], ["fuss", "Zu Fuß", "Пешком"], ["filme", "Ich filme", "Снимаю"]],
+  // Hinweis unter den Knöpfen einer Rolle (z. B. wenn ein Freund mitgenommen wird)
+  hinweis: { filme: { de: "Frag: „Wohin bringen Sie ihn?“ Anwaltsnotdienst:", ru: "Спроси: „Wohin bringen Sie ihn?“ Дежурный адвокат:", tel: "+4971199889966", telText: "0711 998 899 66" } },
   buttons: {
     fahrer: [
       ["fahrer-papiere", "Papiere", "Документы", ["führerschein", "fahrzeugschein", "fahrzeugpapiere", "papiere", "zulassung", "ausweis", "personalausweis", "права ", "документ", "техпаспорт"]],
@@ -45,6 +47,18 @@ window.RB.kontrolle = {
       ["person-platzverweis", "Platzverweis, weggehen", "Уйти с места", ["platzverweis", "verlassen", "gehen sie weg", "gehen sie weiter", "hauen sie ab", "verschwinden sie", "weitergehen", "уходите", "покиньте"]],
       ["person-wache", "Mitkommen auf die Wache", "В участок", ["wache", "revier", "mitkommen", "kommen mit", "kommen sie mit", "dienststelle", "präsidium", "участок", "отдел", "пройдёмте", "поедете с нами"]],
       ["person-fotos-fingerabdruecke", "Fotos, Fingerabdrücke", "Фото, отпечатки", ["fotos von ihnen", "foto von ihnen", "fingerabdr", "erkennungsdienst", "сфотографир", "отпечат"]]
+    ],
+    filme: [
+      ["aufnahme-filmen-stoppen", "Filmen aufhören", "Прекратить съёмку", ["filmen", "sie filmen", "aufnehm", "aufnahme", "ihre kamera", "kamera aus", "handy runter", "handy weg", "smartphone weg", "fotografier", "keine fotos", "снимать", "съёмк", "запись ", "прекратите сним", "опустите телефон"]],
+      ["aufnahme-201-strafbar", "„Ton ist strafbar“", "«Звук — преступление»", ["ton ", "tonaufnahm", "201", "strafbar", "звук", "уголовн"]],
+      ["aufnahme-bildrecht-kug", "„Recht am eigenen Bild“", "«Право на изображение»", ["eigenen bild", "bildrecht", "persönlichkeitsrecht", "изображени", "собственное изображени"]],
+      ["aufnahme-ausweis-wegen-filmen", "Ausweis wegen Filmen", "Документы за съёмку", ["ausweis", "ihren ausweis", "zeigen sie mir", "personalausweis", "personalien", "ausweisen", "документ", "паспорт", "посвідч"]],
+      ["aufnahme-platzverweis-filmer", "Platzverweis, weggehen", "Уйти с места", ["platzverweis", "gehen sie weg", "gehen sie weiter", "verlassen", "behindern", "weitergehen", "уходите", "покиньте", "мешаете"]],
+      ["aufnahme-loeschen", "Video löschen", "Удалить видео", ["lösch", "löschen sie", "удал", "стер"]],
+      ["aufnahme-zeuge-video-herausgeben", "„Sie sind Zeuge, Handy her“", "«Вы свидетель, дайте телефон»", ["zeuge", "video her", "свидетел", "свідок"]],
+      ["aufnahme-handy-herausgeben", "Handy beschlagnahmt", "Телефон изымают", ["handy", "beschlagnahm", "geben sie mir", "телефон", "изым"]],
+      ["aufnahme-pin-entsperren", "PIN, entsperren", "PIN, разблокировать", ["pin ", "entsperr", "code ", "разблок", "пароль", "пин "]],
+      ["person-zeuge-aussage", "Aussagen als Zeuge", "Показания свидетеля", ["aussagen", "aussage", "gesehen", "показани", "дать показани", "видели", "что вы видели"]]
     ]
   },
   // Nur für „Stichwort sagen“ und Mithören: Einträge ohne eigenen Knopf (volle Antwort aus quick.js)
@@ -52,9 +66,21 @@ window.RB.kontrolle = {
     fahrer: [["fahrer-warnausruestung", ["warndreieck", "verbandkasten", "verbandskasten", "warnweste", "аптечк", "аварийный знак", "жилет"]],
       ["fahrer-handy-weg-haende", ["hände", "lenkrad", "hände ans lenkrad", "handy weg", "smartphone weg", "legen sie das handy", "руки", "руль"]], ["aufnahme-loeschen", ["lösch", "удал", "стер", "видал"]], ["druck-freiwillig-mitkommen", ["freiwillig mit", "freiwillig auf die wache", "freiwillig zur wache", "добровольно"]], ["aufnahme-nehmen-sie-auf", ["sie das auf", "das etwa auf", "etwa auf", "nehmen sie auf", "nehmen sie uns auf", "filmen sie etwa", "filmen sie uns", "zeichnen sie auf", "вы снимаете", "вы записываете"]], ["aufnahme-livestream", ["livestream", "live stream", "streamen", "трансляц", "стрим"]]],
     beifahrer: [["druck-unterschreiben", ["unterschreib", "unterschrift", "подпис", "подпиш"]], ["aufnahme-loeschen", ["lösch", "удал", "стер", "видал"]], ["druck-freiwillig-mitkommen", ["freiwillig mit", "freiwillig auf die wache", "freiwillig zur wache", "добровольно"]], ["aufnahme-nehmen-sie-auf", ["sie das auf", "das etwa auf", "etwa auf", "nehmen sie auf", "nehmen sie uns auf", "filmen sie etwa", "filmen sie uns", "zeichnen sie auf", "вы снимаете", "вы записываете"]], ["aufnahme-livestream", ["livestream", "live stream", "streamen", "трансляц", "стрим"]]],
-    fuss: [["aufnahme-loeschen", ["lösch", "удал", "стер", "видал"]], ["druck-freiwillig-mitkommen", ["freiwillig mit", "freiwillig auf die wache", "freiwillig zur wache", "добровольно"]], ["aufnahme-nehmen-sie-auf", ["sie das auf", "das etwa auf", "etwa auf", "nehmen sie auf", "nehmen sie uns auf", "filmen sie etwa", "filmen sie uns", "zeichnen sie auf", "вы снимаете", "вы записываете"]], ["aufnahme-livestream", ["livestream", "live stream", "streamen", "трансляц", "стрим"]]]
+    fuss: [["aufnahme-loeschen", ["lösch", "удал", "стер", "видал"]], ["druck-freiwillig-mitkommen", ["freiwillig mit", "freiwillig auf die wache", "freiwillig zur wache", "добровольно"]], ["aufnahme-nehmen-sie-auf", ["sie das auf", "das etwa auf", "etwa auf", "nehmen sie auf", "nehmen sie uns auf", "filmen sie etwa", "filmen sie uns", "zeichnen sie auf", "вы снимаете", "вы записываете"]], ["aufnahme-livestream", ["livestream", "live stream", "streamen", "трансляц", "стрим"]]],
+    filme: [["aufnahme-loeschen", ["lösch", "удал", "стер", "видал"]], ["druck-freiwillig-mitkommen", ["freiwillig mit", "freiwillig auf die wache", "freiwillig zur wache", "добровольно"]], ["aufnahme-nehmen-sie-auf", ["sie das auf", "das etwa auf", "etwa auf", "nehmen sie auf", "nehmen sie uns auf", "filmen sie etwa", "filmen sie uns", "zeichnen sie auf", "вы снимаете", "вы записываете"]], ["aufnahme-livestream", ["livestream", "live stream", "streamen", "трансляц", "стрим"]], ["person-weggehen", ["stehen bleiben", "bleiben sie hier", "hier stehen", "стойте", "не уходите"]]]
   },
   kurz: {
+    "aufnahme-201-strafbar": { de: "Dann schalte ich den Ton ab und filme nur Bild.", ru: "Тогда выключаю звук и снимаю только изображение.", law: "§ 201 Abs. 1 Nr. 1 StGB" },
+    "aufnahme-bildrecht-kug": { de: "§ 22 KUG verbietet nur das Verbreiten, nicht das Filmen. Ich veröffentliche nichts.", ru: "§ 22 KUG запрещает только распространять, а не снимать. Ничего не публикую.", law: "§§ 22, 33 KUG" },
+    "aufnahme-ausweis-wegen-filmen": { de: "Nennen Sie mir bitte den Grund. Meine Personalien nenne ich trotzdem.", ru: "Назовите, пожалуйста, основание. Свои данные я всё равно назову.", law: "§ 27 Abs. 1 Nr. 1 PolG BW · § 111 OWiG" },
+    "aufnahme-platzverweis-filmer": { de: "Ich gehe sofort. Ich filme außerhalb des Bereichs weiter.", ru: "Сразу ухожу. Продолжу снимать за пределами зоны.", law: "§ 30 Abs. 1 PolG BW",
+      dann: "Immer sofort befolgen – prüfen lassen kannst du ihn später.", dann_ru: "Выполнять всегда сразу — обжаловать можно потом." },
+    "aufnahme-zeuge-video-herausgeben": { de: "Eine Kopie des Videos gebe ich gern. Das Handy nicht freiwillig – einer Beschlagnahme widerspreche ich ohne Widerstand.", ru: "Копию видео дам охотно. Телефон добровольно не отдаю — против изъятия возражаю без сопротивления.", law: "§§ 94, 95, 98 Abs. 2 StPO" },
+    "aufnahme-handy-herausgeben": { de: "Freiwillig gebe ich es nicht heraus. Ich widerspreche der Beschlagnahme, Widerstand leiste ich nicht.", ru: "Добровольно не отдаю. Возражаю против изъятия, сопротивления не оказываю.", law: "§§ 94, 98 Abs. 2 StPO",
+      dann: "Nimmt er es: loslassen, nicht festhalten.", dann_ru: "Если забирает: отпустить, не удерживать." },
+    "aufnahme-pin-entsperren": { de: "Den PIN nenne ich nicht und entsperre nicht. Widerstand leiste ich nicht.", ru: "PIN не называю и не разблокирую. Сопротивления не оказываю.", law: "§ 136 Abs. 1 S. 2 StPO",
+      dann: "Ausnahme: Ausländer ohne gültigen Pass (§ 48 Abs. 3a AufenthG).", dann_ru: "Исключение: иностранец без действующего паспорта (§ 48 Abs. 3a AufenthG)." },
+    "person-zeuge-aussage": { de: "Meine Personalien gebe ich an. Bei der Polizei sage ich nur auf Ladung im Auftrag der Staatsanwaltschaft aus.", ru: "Свои данные назову. В полиции даю показания только по вызову по поручению прокуратуры.", law: "§ 163 Abs. 3 S. 1 StPO" },
     "aufnahme-loeschen": { de: "Ich lösche nichts. Einer Beschlagnahme widerspreche ich, Widerstand leiste ich nicht.", ru: "Ничего не удаляю. Против изъятия возражаю, сопротивления не оказываю.", law: "§§ 94, 98 Abs. 1 StPO",
       dann: "Beschlagnahmt er das Handy: loslassen, nicht festhalten.", dann_ru: "Если изымает телефон: отпустить, не удерживать." },
     "druck-freiwillig-mitkommen": { de: "Ist das eine Anordnung? Freiwillig komme ich nicht mit. Einer Anordnung folge ich ohne Widerstand.", ru: "Это распоряжение? Добровольно не пойду. Распоряжению подчинюсь без сопротивления.", law: "Art. 104 Abs. 1 GG" },
@@ -82,7 +108,7 @@ window.RB.kontrolle = {
       dann: "Besteht er darauf: Personalien unter Widerspruch angeben, mitgeführten Ausweis zeigen.", dann_ru: "Если настаивает: назвать данные с возражением, показать документ, если он с собой." },
     "druck-zeuge-beifahrer": { de: "Hier sind meine Personalien. Bei der Polizei sage ich nur auf Ladung im Auftrag der Staatsanwaltschaft aus.", ru: "Вот мои данные. В полиции даю показания только по вызову по поручению прокуратуры.", law: "§ 163 Abs. 3 S. 1 StPO" },
     "person-grund": { de: "Werde ich einer Straftat verdächtigt? Dann nennen Sie mir bitte die Tat.", ru: "Меня подозревают в преступлении? Тогда назовите, в каком.", law: "§ 163b Abs. 1 · § 163a Abs. 4 S. 1 StPO",
-      dann: "Nach § 27 PolG BW muss er den Grund nicht sofort nennen. Später eine schriftliche Bestätigung verlangen.", dann_ru: "По § 27 PolG BW причину сразу называть не обязаны. Потом можно потребовать письменное подтверждение." },
+      dann: "Nach § 27 PolG BW muss er den Grund nicht sofort nennen. Personalien trotzdem angeben und gleich eine schriftliche Bestätigung verlangen.", dann_ru: "По § 27 PolG BW причину сразу называть не обязаны. Данные всё равно назови и сразу потребуй письменное подтверждение." },
     "person-taschen-durchsuchen": { de: "Ich stimme der Durchsuchung nicht zu und leiste keinen Widerstand. Auf welcher Grundlage?", ru: "Не согласен на обыск и не сопротивляюсь. На каком основании?", law: "§ 34 PolG BW · § 102 StPO",
       dann: "Durchsucht er trotzdem: dulden, nicht wehren.", dann_ru: "Если всё равно обыскивает: терпеть, не сопротивляться." },
     "person-handy": { de: "Ich gebe das Handy nicht freiwillig heraus und widerspreche der Beschlagnahme. Meinen PIN nenne ich nicht.", ru: "Телефон добровольно не отдаю и возражаю против изъятия. PIN не называю.", law: "§ 98 Abs. 2 · § 136 Abs. 1 S. 2 StPO",
