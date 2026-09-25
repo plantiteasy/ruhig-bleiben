@@ -195,20 +195,22 @@ window.RB.quick = [
   "v": "musst_nicht",
   "cop": "Sie hatten das Handy in der Hand. Zeigen Sie mal her und entsperren Sie es.",
   "say": "Zum Vorwurf sage ich nichts. Mein Handy entsperre ich nicht, den Code nenne ich nicht – § 136 Abs. 1 S. 2 StPO. Ich leiste keinen Widerstand.",
-  "law": "§ 23 Abs. 1a StVO · § 136 Abs. 1 S. 2 StPO · § 46 Abs. 1 OWiG · § 94 Abs. 2, § 98 Abs. 2 StPO · § 81b Abs. 1 StPO · BGH 2 StR 232/24",
-  "why": "Handy am Steuer ist eine Ordnungswidrigkeit (§ 23 Abs. 1a StVO, 100 €, 1 Punkt). Zeigen, Entsperren oder PIN nennen ist aktive Mitwirkung, dazu bist du nie verpflichtet. Die Polizei kann das Gerät als Beweismittel beschlagnahmen (§ 94 Abs. 2, § 98 StPO i.V.m. § 46 OWiG), muss aber verhältnismäßig bleiben. Den Finger zwangsweise auflegen erlaubt der BGH jedenfalls bei richterlich angeordneter Durchsuchung.",
+  "law": "§ 23 Abs. 1a StVO · § 136 Abs. 1 S. 2 StPO · § 46 Abs. 1 OWiG · § 94 Abs. 2, § 98 Abs. 2 StPO · § 81b Abs. 1 StPO · § 48 Abs. 3a, § 71 Abs. 4 AufenthG · BGH 2 StR 232/24",
+  "why": "Handy am Steuer ist eine Ordnungswidrigkeit (§ 23 Abs. 1a StVO, 100 €, 1 Punkt). Zeigen, Entsperren oder PIN nennen ist aktive Mitwirkung, dazu bist du nie verpflichtet. Ausnahme: Besitzt du als Ausländer überhaupt keinen gültigen Pass, Passersatz oder sonstigen geeigneten Identitätsnachweis, darf dein Handy ausgelesen werden, wenn das zur Klärung von Identität, Staatsangehörigkeit und Rückführungsmöglichkeit erforderlich ist, und du musst die Zugangsdaten dafür zur Verfügung stellen (§ 48 Abs. 3a AufenthG; zuständig ist auch die Landespolizei, § 71 Abs. 4; für EU-Bürger gilt das grundsätzlich nicht, § 1 Abs. 2 Nr. 1 AufenthG). Die Polizei kann das Gerät als Beweismittel beschlagnahmen (§ 94 Abs. 2, § 98 StPO i.V.m. § 46 OWiG), muss aber verhältnismäßig bleiben. Den Finger zwangsweise auflegen erlaubt der BGH jedenfalls bei richterlich angeordneter Durchsuchung.",
   "src": [
    "https://www.gesetze-im-internet.de/stvo_2013/__23.html",
    "https://www.gesetze-im-internet.de/stpo/__94.html",
    "https://www.gesetze-im-internet.de/stpo/__98.html",
    "https://www.gesetze-im-internet.de/stpo/__81b.html",
    "https://www.gesetze-im-internet.de/owig_1968/__46.html",
+   "https://www.gesetze-im-internet.de/aufenthg_2004/__48.html",
+   "https://www.gesetze-im-internet.de/aufenthg_2004/__71.html",
    "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Strafsenate/2_StS/2024/2_StR_232-24A.pdf?__blob=publicationFile&v=1"
   ],
   "ru": {
    "cop": "У вас в руке был телефон. Покажите и разблокируйте его.",
    "say": "По обвинению ничего не скажу. Телефон не разблокирую и код не назову — § 136 Abs. 1 S. 2 StPO. Сопротивляться не буду.",
-   "why": "Телефон за рулём — административное нарушение (§ 23 Abs. 1a StVO, 100 €, 1 балл). Показать, разблокировать или назвать PIN — активное участие, это ты никогда не обязан. Полиция может изъять телефон как доказательство (§ 94 Abs. 2, § 98 StPO вместе с § 46 OWiG), но должна соблюдать соразмерность. Прикладывать твой палец силой BGH разрешил во всяком случае при обыске по решению судьи."
+   "why": "Телефон за рулём — административное нарушение (§ 23 Abs. 1a StVO, 100 €, 1 балл). Показать, разблокировать или назвать PIN — активное участие, это ты никогда не обязан. Исключение: если у тебя как у иностранца вообще нет действующего паспорта, Passersatz или иного подходящего удостоверения личности, данные с твоего телефона могут считать, когда это нужно для установления личности, гражданства и возможности возврата в другую страну, и ты обязан предоставить для этого данные доступа (§ 48 Abs. 3a AufenthG; земельная полиция на это тоже уполномочена, § 71 Abs. 4; к гражданам ЕС это в принципе не относится, § 1 Abs. 2 Nr. 1 AufenthG). Полиция может изъять телефон как доказательство (§ 94 Abs. 2, § 98 StPO вместе с § 46 OWiG), но должна соблюдать соразмерность. Прикладывать твой палец силой BGH разрешил во всяком случае при обыске по решению судьи."
   }
  },
  {
@@ -660,8 +662,8 @@ window.RB.quick = [
   "v": "kommt_drauf_an",
   "cop": "Ihr Handy nehmen wir mit – entsperren Sie es bitte.",
   "say": "Ich gebe das Handy nicht freiwillig heraus und widerspreche der Beschlagnahme – § 98 Abs. 2 StPO. Bitte eine Bescheinigung. Meinen PIN nenne ich nicht.",
-  "law": "§§ 94, 98 Abs. 1, 2 StPO · § 38 Abs. 1, 3 PolG BW · § 136 Abs. 1 S. 2 StPO · § 81b Abs. 1 StPO · § 48 Abs. 3a AufenthG · § 113 StGB · BGH 2 StR 232/24",
-  "why": "Ein Handy darf als Beweismittel beschlagnahmt werden, wenn es für ein Verfahren Bedeutung haben kann (§ 94 StPO). Anordnen darf das das Gericht, bei Gefahr im Verzug auch die Polizei (§ 98 Abs. 1 StPO). Nach Polizeirecht ist das u. a. zum Schutz gegen eine unmittelbar bevorstehende oder bereits eingetretene Störung möglich, mit Angabe von Grund und Rechtsbehelf und einer Bescheinigung auf Verlangen (§ 38 Abs. 1, 3 PolG BW). Widersprichst du ausdrücklich, soll die Polizei binnen 3 Tagen die gerichtliche Bestätigung beantragen; du kannst jederzeit selbst das Gericht anrufen (§ 98 Abs. 2 StPO). Einen PIN musst du nicht nennen, denn die Selbstbelastungsfreiheit schützt vor aktiver Mitwirkung (§ 136 Abs. 1 S. 2 StPO; BGH 2 StR 232/24, Rn. 32). Recht hat der Beamte beim Finger: Als Beschuldigter musst du das Auflegen dulden, jedenfalls bei einer richterlich angeordneten Durchsuchung, die auch nach Handys sucht, wenn es verhältnismäßig ist (BGH 2 StR 232/24).",
+  "law": "§§ 94, 98 Abs. 1, 2 StPO · § 38 Abs. 1, 3 PolG BW · § 136 Abs. 1 S. 2 StPO · § 81b Abs. 1 StPO · § 48 Abs. 3, 3a, § 71 Abs. 4 AufenthG · § 113 StGB · BGH 2 StR 232/24",
+  "why": "Ein Handy darf als Beweismittel beschlagnahmt werden, wenn es für ein Verfahren Bedeutung haben kann (§ 94 StPO). Anordnen darf das das Gericht, bei Gefahr im Verzug auch die Polizei (§ 98 Abs. 1 StPO). Nach Polizeirecht ist das u. a. zum Schutz gegen eine unmittelbar bevorstehende oder bereits eingetretene Störung möglich, mit Angabe von Grund und Rechtsbehelf und einer Bescheinigung auf Verlangen (§ 38 Abs. 1, 3 PolG BW). Widersprichst du ausdrücklich, soll die Polizei binnen 3 Tagen die gerichtliche Bestätigung beantragen; du kannst jederzeit selbst das Gericht anrufen (§ 98 Abs. 2 StPO). Einen PIN musst du nicht nennen, denn die Selbstbelastungsfreiheit schützt vor aktiver Mitwirkung (§ 136 Abs. 1 S. 2 StPO; BGH 2 StR 232/24, Rn. 32). Ausnahme: Besitzt du als Ausländer überhaupt keinen gültigen Pass, Passersatz oder sonstigen geeigneten Identitätsnachweis, musst du das Handy auf Verlangen aushändigen; ist das Auslesen zur Klärung von Identität, Staatsangehörigkeit und Rückführungsmöglichkeit erforderlich, musst du auch die Zugangsdaten zur Verfügung stellen (§ 48 Abs. 3 S. 1, Abs. 3a AufenthG; zuständig ist auch die Landespolizei, § 71 Abs. 4; für EU-Bürger gilt das grundsätzlich nicht, § 1 Abs. 2 Nr. 1 AufenthG). Recht hat der Beamte beim Finger: Als Beschuldigter musst du das Auflegen dulden, jedenfalls bei einer richterlich angeordneten Durchsuchung, die auch nach Handys sucht, wenn es verhältnismäßig ist (BGH 2 StR 232/24).",
   "src": [
    "https://www.gesetze-im-internet.de/stpo/__94.html",
    "https://www.gesetze-im-internet.de/stpo/__98.html",
@@ -669,6 +671,7 @@ window.RB.quick = [
    "https://www.gesetze-im-internet.de/stpo/__81b.html",
    "https://www.landesrecht-bw.de/bsbw/document/jlr-NNLBW00007D29",
    "https://www.gesetze-im-internet.de/aufenthg_2004/__48.html",
+   "https://www.gesetze-im-internet.de/aufenthg_2004/__71.html",
    "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Strafsenate/2_StS/2024/2_StR_232-24A.pdf?__blob=publicationFile&v=1",
    "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2025/07/rk20250709_1bvr097525.html",
    "https://www.landesrecht.rlp.de/bsrp/document/NJRE001511713"
@@ -676,7 +679,7 @@ window.RB.quick = [
   "ru": {
    "cop": "Ваш телефон мы забираем — разблокируйте его, пожалуйста.",
    "say": "Телефон добровольно не отдаю и возражаю против изъятия — § 98 Abs. 2 StPO. Прошу справку. PIN я не называю.",
-   "why": "Телефон могут изъять как доказательство, если он может иметь значение для дела (§ 94 StPO). Распорядиться может суд, а при угрозе промедления и полиция (§ 98 Abs. 1 StPO). По закону о полиции это возможно, в частности, против непосредственно грозящего или уже наступившего нарушения, с указанием причины и способа обжалования и справкой по требованию (§ 38 Abs. 1, 3 PolG BW). Если ты явно возразил, полиция должна в течение 3 дней запросить подтверждение суда; ты и сам можешь в любой момент обратиться в суд (§ 98 Abs. 2 StPO). PIN называть не обязан: защита от самообвинения охватывает активное содействие (§ 136 Abs. 1 S. 2 StPO; BGH 2 StR 232/24, Rn. 32). С пальцем полицейский прав: обвиняемый должен терпеть, что его палец приложат, как минимум при обыске по решению судьи, который направлен и на поиск телефонов, если это соразмерно (BGH 2 StR 232/24)."
+   "why": "Телефон могут изъять как доказательство, если он может иметь значение для дела (§ 94 StPO). Распорядиться может суд, а при угрозе промедления и полиция (§ 98 Abs. 1 StPO). По закону о полиции это возможно, в частности, против непосредственно грозящего или уже наступившего нарушения, с указанием причины и способа обжалования и справкой по требованию (§ 38 Abs. 1, 3 PolG BW). Если ты явно возразил, полиция должна в течение 3 дней запросить подтверждение суда; ты и сам можешь в любой момент обратиться в суд (§ 98 Abs. 2 StPO). PIN называть не обязан: защита от самообвинения охватывает активное содействие (§ 136 Abs. 1 S. 2 StPO; BGH 2 StR 232/24, Rn. 32). Исключение: если у тебя как у иностранца вообще нет действующего паспорта, Passersatz или иного подходящего удостоверения личности, ты обязан по требованию отдать телефон; если данные с него нужно считать для установления личности, гражданства и возможности возврата в другую страну, ты обязан также предоставить данные доступа (§ 48 Abs. 3 S. 1, Abs. 3a AufenthG; земельная полиция на это тоже уполномочена, § 71 Abs. 4; к гражданам ЕС это в принципе не относится, § 1 Abs. 2 Nr. 1 AufenthG). С пальцем полицейский прав: обвиняемый должен терпеть, что его палец приложат, как минимум при обыске по решению судьи, который направлен и на поиск телефонов, если это соразмерно (BGH 2 StR 232/24)."
   }
  },
  {
@@ -853,18 +856,20 @@ window.RB.quick = [
   "v": "musst_nicht",
   "cop": "Entsperren Sie das Handy und sagen Sie uns den PIN.",
   "say": "Den PIN nenne ich nicht und entsperre nicht – an meiner Überführung muss ich nicht mitwirken (§ 136 Abs. 1 S. 2 StPO). Widerstand leiste ich nicht.",
-  "law": "§ 136 Abs. 1 S. 2, § 163a Abs. 4 S. 2 StPO · § 81b Abs. 1, §§ 94 ff., 102, 105 Abs. 1 StPO · BGH 2 StR 232/24",
-  "why": "Keine Vorschrift verpflichtet dich, einen Code zu nennen. Die Selbstbelastungsfreiheit schützt vor aktiver Mitwirkung, aber nicht davor, Maßnahmen dulden zu müssen (BGH 2 StR 232/24 Rn. 32). Deshalb darf die Polizei deinen Finger zwangsweise auf den Sensor legen, nach dem BGH jedenfalls bei einer richterlich angeordneten Durchsuchung, die auch dem Auffinden von Handys dient. Rechtsgrundlage ist § 81b Abs. 1 i. V. m. §§ 94 ff. StPO (Rn. 35, mit Verweis u. a. auf LG Ravensburg 2 Qs 9/23 jug. und AG Baden-Baden 9 Gs 982/19). Dann nicht wehren.",
+  "law": "§ 136 Abs. 1 S. 2, § 163a Abs. 4 S. 2 StPO · § 81b Abs. 1, §§ 94 ff., 102, 105 Abs. 1 StPO · § 48 Abs. 3a, § 71 Abs. 4 AufenthG · BGH 2 StR 232/24",
+  "why": "Keine Vorschrift verpflichtet dich, einen Code zu nennen. Ausnahme: Besitzt du als Ausländer überhaupt keinen gültigen Pass, Passersatz oder sonstigen geeigneten Identitätsnachweis, darf dein Handy ausgelesen werden, wenn das zur Klärung von Identität, Staatsangehörigkeit und Rückführungsmöglichkeit erforderlich ist, und du musst die Zugangsdaten dafür zur Verfügung stellen (§ 48 Abs. 3a AufenthG; zuständig ist auch die Landespolizei, § 71 Abs. 4; für EU-Bürger gilt das grundsätzlich nicht, § 1 Abs. 2 Nr. 1 AufenthG). Die Selbstbelastungsfreiheit schützt vor aktiver Mitwirkung, aber nicht davor, Maßnahmen dulden zu müssen (BGH 2 StR 232/24 Rn. 32). Deshalb darf die Polizei deinen Finger zwangsweise auf den Sensor legen, nach dem BGH jedenfalls bei einer richterlich angeordneten Durchsuchung, die auch dem Auffinden von Handys dient. Rechtsgrundlage ist § 81b Abs. 1 i. V. m. §§ 94 ff. StPO (Rn. 35, mit Verweis u. a. auf LG Ravensburg 2 Qs 9/23 jug. und AG Baden-Baden 9 Gs 982/19). Dann nicht wehren.",
   "src": [
    "https://www.gesetze-im-internet.de/stpo/__136.html",
    "https://www.gesetze-im-internet.de/stpo/__163a.html",
    "https://www.gesetze-im-internet.de/stpo/__81b.html",
+   "https://www.gesetze-im-internet.de/aufenthg_2004/__48.html",
+   "https://www.gesetze-im-internet.de/aufenthg_2004/__71.html",
    "https://testphase.rechtsinformationen.bund.de/v1/case-law/KORE711342025.html"
   ],
   "ru": {
    "cop": "Разблокируйте телефон и скажите нам PIN-код.",
    "say": "PIN я не назову и разблокировать не буду — помогать себя изобличать я не обязан (§ 136 Abs. 1 S. 2 StPO). Сопротивления не оказываю.",
-   "why": "Никакая норма не обязывает называть код. Свобода от самообвинения защищает от активного участия, но не от обязанности терпеть меры (BGH 2 StR 232/24, п. 32). Поэтому полиция может силой приложить твой палец к сенсору, по BGH во всяком случае при обыске по постановлению судьи, который направлен и на поиск телефонов. Правовое основание — § 81b Abs. 1 вместе с §§ 94 ff. StPO (п. 35, со ссылкой в том числе на LG Ravensburg 2 Qs 9/23 jug. и AG Baden-Baden 9 Gs 982/19). В этом случае не сопротивляйся."
+   "why": "Никакая норма не обязывает называть код. Исключение: если у тебя как у иностранца вообще нет действующего паспорта, Passersatz или иного подходящего удостоверения личности, данные с твоего телефона могут считать, когда это нужно для установления личности, гражданства и возможности возврата в другую страну, и ты обязан предоставить для этого данные доступа (§ 48 Abs. 3a AufenthG; земельная полиция на это тоже уполномочена, § 71 Abs. 4; к гражданам ЕС это в принципе не относится, § 1 Abs. 2 Nr. 1 AufenthG). Свобода от самообвинения защищает от активного участия, но не от обязанности терпеть меры (BGH 2 StR 232/24, п. 32). Поэтому полиция может силой приложить твой палец к сенсору, по BGH во всяком случае при обыске по постановлению судьи, который направлен и на поиск телефонов. Правовое основание — § 81b Abs. 1 вместе с §§ 94 ff. StPO (п. 35, со ссылкой в том числе на LG Ravensburg 2 Qs 9/23 jug. и AG Baden-Baden 9 Gs 982/19). В этом случае не сопротивляйся."
   }
  },
  {
@@ -916,7 +921,7 @@ window.RB.quick = [
   "cop": "Ich schalte jetzt meine Bodycam ein.",
   "say": "In Ordnung. Ich beantrage, die Aufnahme als Beweis aufzubewahren und nicht zu löschen (§ 44 Abs. 10 S. 2, § 75 Abs. 5 PolG BW).",
   "law": "§ 44 Abs. 5, 8, 10, 11 PolG BW · § 75 Abs. 5 S. 3 PolG BW · § 2 Abs. 2 PolG BW · LG Hanau 1 Qs 23/22 · LG Hanau 5 KLs 3350 Js 16251/22",
-  "why": "Die Bodycam darf zur Abwehr einer Gefahr eingesetzt werden (§ 44 Abs. 5 PolG BW). Verhindern darfst du das nicht, widersprechen schon. Länger als 60 Sekunden gespeichert wird nur bei Gefahr für Leib oder Leben (Abs. 8), sonst wird automatisch gelöscht (Abs. 11). Was gespeichert ist, wird spätestens nach vier Wochen gelöscht, außer es wird u. a. „zur Behebung einer bestehenden Beweisnot“ gebraucht (Abs. 10 S. 2). Statt zu löschen, muss die Polizei die Verarbeitung einschränken, wenn eine Löschung deine schutzwürdigen Interessen beeinträchtigen würde oder die Daten für Beweiszwecke gebraucht werden (§ 75 Abs. 5 S. 3 Nr. 1, 2). Die Bodycam macht deine eigene Tonaufnahme nicht sicher legal: Das LG Hanau hob deshalb zwar eine Beschlagnahme auf (1 Qs 23/22), verurteilte im selben Fall später aber doch (5 KLs 3350 Js 16251/22).",
+  "why": "Die Bodycam darf zur Abwehr einer Gefahr eingesetzt werden (§ 44 Abs. 5 PolG BW). Verhindern darfst du das nicht, widersprechen schon. Länger als 60 Sekunden gespeichert wird nur bei Gefahr für Leib oder Leben (Abs. 8), sonst wird automatisch gelöscht (Abs. 11). Was gespeichert ist, wird spätestens nach vier Wochen gelöscht, außer es wird u. a. „zur Behebung einer bestehenden Beweisnot“ gebraucht (Abs. 10 S. 2). Statt zu löschen, muss die Polizei die Verarbeitung einschränken, wenn eine Löschung deine schutzwürdigen Interessen beeinträchtigen würde oder die Daten für Beweiszwecke gebraucht werden (§ 75 Abs. 5 S. 3 Nr. 1, 2; dein Recht darauf: § 92 Abs. 3). Später kannst du kostenlos Auskunft verlangen, was über dich gespeichert ist (§ 91 PolG BW). Die Bodycam macht deine eigene Tonaufnahme nicht sicher legal: Das LG Hanau hob deshalb zwar eine Beschlagnahme auf (1 Qs 23/22), verurteilte im selben Fall später aber doch (5 KLs 3350 Js 16251/22).",
   "src": [
    "https://www.landesrecht-bw.de/perma?d=jlr-NNLBW00007D29NN00000000058",
    "https://www.landesrecht-bw.de/perma?j=PolG_BW_!_75",
@@ -937,7 +942,7 @@ window.RB.quick = [
   "cop": "Wir filmen selbst mit der Bodycam, Sie müssen nicht filmen.",
   "say": "Ihre Bodycam löscht ohne Gefahr für Leib oder Leben nach 60 Sekunden. Ich filme nur Bild ohne Ton, behindere nicht und veröffentliche nichts.",
   "law": "§ 44 Abs. 8, 10, 11 PolG BW · BVerwG 6 C 12.11 · BVerfG 1 BvR 2501/13 · § 201 Abs. 1 Nr. 1 StGB",
-  "why": "Eine Regel „nur eine Kamera“ gibt es nicht. Das Filmen darf die Polizei nur bei konkreten Anhaltspunkten für eine rechtswidrige Veröffentlichung verbieten (BVerwG 6 C 12.11 Rn. 34 f.; BVerfG 1 BvR 2501/13 Rn. 14). Die Bodycam gehört der Polizei: Ihre Aufnahme wird nach 60 Sekunden automatisch gelöscht, außer Tatsachen sprechen für eine Gefahr für Leib oder Leben (§ 44 Abs. 8, 11 PolG BW); was gespeichert bleibt, spätestens nach vier Wochen (Abs. 10). Dass sie eingeschaltet wird, kannst du nicht verlangen, und an die Aufnahme kommst du in der Regel nur über die Akteneinsicht eines Anwalts. Deine eigene Aufnahme ist deshalb oft der einzige Beweis. Ton nimmst du trotzdem nur mit Einwilligung auf (§ 201 Abs. 1 Nr. 1 StGB).",
+  "why": "Eine Regel „nur eine Kamera“ gibt es nicht. Das Filmen darf die Polizei nur bei einer konkreten Gefahr verbieten, etwa konkreten Anhaltspunkten für eine rechtswidrige Veröffentlichung (BVerwG 6 C 12.11 Rn. 34 f.; BVerfG 1 BvR 2501/13 Rn. 14). Die Bodycam gehört der Polizei: Ihre Aufnahme wird nach 60 Sekunden automatisch gelöscht, außer Tatsachen sprechen für eine Gefahr für Leib oder Leben (§ 44 Abs. 8, 11 PolG BW); was gespeichert bleibt, spätestens nach vier Wochen, außer es wird etwa zur Strafverfolgung oder als Beweis gebraucht (Abs. 10). Dass sie eingeschaltet wird, kannst du nicht verlangen, und an die Aufnahme kommst du in der Regel nur über Akteneinsicht im Strafverfahren (§ 147 Abs. 4, § 406e StPO), am einfachsten über einen Anwalt. Deine eigene Aufnahme ist deshalb oft der einzige Beweis. Ton nimmst du trotzdem nur mit Einwilligung auf (§ 201 Abs. 1 Nr. 1 StGB).",
   "src": [
    "https://www.landesrecht-bw.de/perma?d=jlr-NNLBW00007D29NN00000000058",
    "https://www.bverwg.de/de/280312U6C12.11.0",
