@@ -1,4 +1,4 @@
-/* Schnellhilfe „Polizei sagt → deine Antwort mit Paragraf“ (Stand 25.09.2026, Baden-Württemberg).
+/* Schnellhilfe „Polizei sagt → deine Antwort mit Paragraf“ (Stand 26.09.2026, Baden-Württemberg).
    Jede Antwort gegen den Gesetzestext geprüft (gesetze-im-internet.de, landesrecht-bw.de) und von einem zweiten Prüfer gegengelesen;
    „src“ = Primärquellen. Noch nicht anwaltlich geprüft. */
 window.RB.quickGroups = [["fahrer", "Fahrer", "Водитель"], ["person", "Beifahrer, Personenkontrolle", "Пассажир, проверка документов"], ["aufnahme", "Filmen und Handy", "Съёмка и телефон"], ["druck", "Druck und Fragen", "Давление и вопросы"]];
@@ -383,7 +383,7 @@ window.RB.quick = [
   "g": "person",
   "v": "kommt_drauf_an",
   "cop": "Vom Beifahrer brauche ich auch den Ausweis.",
-  "say": "Ich bin nur Beifahrer. Auf welcher Rechtsgrundlage – § 27 PolG BW oder § 163b StPO? Wenn Sie darauf bestehen, nenne ich meine Personalien unter Widerspruch.",
+  "say": "Ich fahre nur mit. Auf welcher Rechtsgrundlage – § 27 PolG BW oder § 163b StPO? Wenn Sie darauf bestehen, nenne ich meine Personalien unter Widerspruch.",
   "law": "§ 27 Abs. 1, 2 PolG BW · § 43 Abs. 1 S. 2 PolG BW · § 163b Abs. 1, 2 StPO · § 46 Abs. 1 OWiG · § 111 OWiG · § 1 Abs. 1 S. 2 PAuswG · § 4 Abs. 2 S. 2 FeV · § 48a Abs. 5 Nr. 2 FeV · § 13 Abs. 6 FZV",
   "why": "Führerschein und Fahrzeugschein zeigen muss nur, wer fährt (§ 4 Abs. 2 S. 2 FeV, § 13 Abs. 6 FZV). Ausnahme: Die Begleitperson beim Begleiteten Fahren ab 17 muss ihren Führerschein mitführen und aushändigen (§ 48a Abs. 5 Nr. 2 FeV). Für die Identität eines Beifahrers braucht die Polizei eine eigene Grundlage: § 27 Abs. 1 PolG BW (z. B. konkrete Gefahr, Kontrollstelle, Durchgangsstraßen zur Bekämpfung grenzüberschreitender Kriminalität), § 43 Abs. 1 S. 2 PolG BW (Befragung als möglicher Auskunftsgeber) oder § 163b StPO (als Verdächtiger oder Zeuge, über § 46 Abs. 1 OWiG auch bei Ordnungswidrigkeiten). Liegt eine davon vor, was oft der Fall ist, hat der Beamte recht: Personalien angeben und einen mitgeführten Ausweis zeigen. Ohne rechtmäßiges Verlangen darf eine Weigerung nicht nach § 111 OWiG geahndet werden (BVerfG 1 BvR 1564/92, Rn. 32, 38).",
   "src": [

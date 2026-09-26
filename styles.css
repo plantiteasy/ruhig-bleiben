@@ -348,3 +348,10 @@ body.k-mode main{padding-top:calc(env(safe-area-inset-top,0px) + 8px)}
 .vorb-quick{margin:4px 0 18px}
 .vorb-h2{margin-top:6px}
 .danach-recs{display:block;margin:0 0 16px;text-align:center}
+.tr-url{font-family:var(--mono);font-size:14px;text-align:center;margin:-4px 0 10px;color:var(--muted);word-break:break-all;user-select:all}
+.rec-tr-link{display:block;margin:18px 0 6px;text-align:center}
+/* Persona-Audit 26.09.2026: „Zeigen“ lag nach vielen Antworten unter der Fußleiste (Fehltipp startete das Mikrofon) */
+.k-ans .k-actions{position:sticky;bottom:calc(env(safe-area-inset-bottom,0px) + 90px);z-index:6;background:var(--surface);padding-top:8px;margin-bottom:-4px}
+@media (max-width:380px){.k.ans-on .k-say{font-size:clamp(18px,5.4vw,24px)}.k.ans-on .k-b{min-height:40px;padding:4px 8px}}
+.k-thumb{cursor:zoom-in}.k-thumb.big{position:fixed;top:8px;left:8px;width:min(62vw,280px);height:auto;z-index:30;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.4);cursor:zoom-out}
+#fuer-dich .fd{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}

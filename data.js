@@ -1,6 +1,6 @@
 /* Inhalte des Prototyps. Stand und Quellen: Recherche_2026-09-24.md (Projektordner). */
 window.RB = {
-  stand: "25.09.2026",
+  stand: "26.09.2026",
   region: "Baden-Württemberg",
 
   groups: [["auto", "Auto, Scooter, Unfall", "Машина, самокат, ДТП"], ["weg", "Unterwegs und bei der Arbeit", "На улице и на работе"], ["handy", "Handy, Zeugen, Festnahme", "Телефон, свидетели, задержание"]],

@@ -28,7 +28,7 @@
     </div>
     <button class="btn inst" type="button" data-install data-t="install" hidden>Installieren</button>
   </div>
-  <p class="meta" data-t="meta">Prototyp · Baden-Württemberg · Stand 25.09.2026 · keine Rechtsberatung</p>
+  <p class="meta" data-t="meta">Prototyp · Baden-Württemberg · Stand 26.09.2026 · keine Rechtsberatung</p>
 </header>
 
 <main id="main">
@@ -109,13 +109,13 @@
         <button class="btn primary" type="button" data-install data-t="install_app" hidden>App installieren</button>
         <p class="hint" id="einr-inst"></p>
         <p class="hint" data-t="einr_4h">Danach: lange auf das App-Symbol drücken → „Kontrolle“ startet sofort das Video.</p></li>
-      <li><p class="einr-t" data-t="einr_5">Einmal üben</p>
-        <a class="btn" href="#kontrolle" id="einr-try" data-t="einr_try">Kontrolle-Bildschirm ansehen (ohne Aufnahme)</a>
-        <label class="check"><input type="checkbox" id="einr-test"> <span data-t="einr_test">Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google)</span></label></li>
       <li><p class="einr-t" data-t="einr_tr">Tresor: Kopie außerhalb des Handys</p>
         <p class="hint" data-t="einr_tr_h">Während du filmst, geht jede Sekunde verschlüsselt ins Netz.</p>
         <div class="einr-tr" id="einr-tr"></div></li>
       <li><p class="einr-t" data-t="einr_6">Optional: Profil</p><a class="btn ghost" href="#profil" data-t="einr_prof">Führerschein, Aufenthalt – für passende Hinweise</a></li>
+      <li><p class="einr-t" data-t="einr_5">Einmal üben</p>
+        <a class="btn" href="#kontrolle" id="einr-try" data-t="einr_try">Kontrolle-Bildschirm ansehen (ohne Aufnahme)</a>
+        <label class="check"><input type="checkbox" id="einr-test"> <span data-t="einr_test">Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google)</span></label></li>
     </ol>
     <button class="btn primary big-btn" type="button" id="einr-done" data-t="einr_done">Fertig</button>
   </section>
@@ -185,7 +185,6 @@
         <button class="btn big-btn" type="button" id="rec-consent" data-t="rec_consent">Mit Ton – nur mit Einwilligung</button>
       </div>
       <a class="einr-card tr-card" href="#einrichten" id="rec-tr-on" data-einr="tr" data-t="rec_tr_on" hidden>Tresor ist aus – deine Videos liegen nur auf diesem Handy. Einschalten →</a>
-      <a class="btn ghost" href="#tresor" id="rec-tr-link" data-t="rec_tr_link" hidden>Video aus dem Tresor holen</a>
     </div>
     <div id="consent-step" hidden>
       <p class="step-label" data-t="consent_ask">Frag laut und warte auf die Antwort:</p>
@@ -218,7 +217,10 @@
     <div class="note-box">
       <p data-t-html="rec_note"><strong>Wird jede Sekunde auf dem Gerät gespeichert,</strong> auch wenn die App abstürzt. Trotzdem nach dem Stopp „Sichern“ tippen und an dich selbst oder in deine Cloud schicken – falls das Handy abgenommen wird. Automatische Cloud-Sicherung fehlt noch.</p>
     </div>
-    <div id="rec-list" class="rec-list"></div>
+    <div id="rec-mine">
+      <a class="btn ghost rec-tr-link" href="#tresor" id="rec-tr-link" data-t="rec_tr_link" hidden>Video aus dem Tresor holen (mit Code)</a>
+      <div id="rec-list" class="rec-list"></div>
+    </div>
   </section>
 
   <!-- Danach -->
@@ -239,7 +241,7 @@
   <section class="view" id="v-danach" hidden aria-labelledby="h-danach">
     <h1 id="h-danach" data-t="danach_h">Danach</h1>
     <p class="lead" data-t="danach_lead">Noch am selben Tag: Gedächtnisprotokoll. Diktieren geht mit dem Mikrofon neben jedem Feld.</p>
-    <a class="btn danach-recs" href="#aufnahme" data-scroll="rec-list" id="danach-recs" data-t="danach_recs">Meine Videos und Tresor →</a>
+    <a class="btn danach-recs" href="#aufnahme" data-scroll="rec-mine" id="danach-recs" data-t="danach_recs">Meine Videos und Tresor →</a>
     <div class="seg" role="group" aria-label="Sprache fürs Diktieren" data-t-aria="seg_dict_aria">
       <button type="button" class="seg-b" data-lang="de-DE" aria-pressed="true" data-t="dict_de">Diktat Deutsch</button>
       <button type="button" class="seg-b" data-lang="ru-RU" aria-pressed="false" data-t="dict_ru">Диктовка по-русски</button>
@@ -278,7 +280,7 @@
       </div>
       <div class="field">
         <label for="p-aufnahmen" data-t="f_aufnahmen">Aufnahmen</label>
-        <textarea id="p-aufnahmen" name="aufnahmen" rows="2" placeholder="Unter „Aufnahme“ bei der Aufnahme „Ins Protokoll“ tippen" data-t-ph="ph_aufnahmen"></textarea>
+        <textarea id="p-aufnahmen" name="aufnahmen" rows="2" placeholder="Oben „Meine Videos und Tresor“, dann beim Video „Ins Protokoll“" data-t-ph="ph_aufnahmen"></textarea>
       </div>
       <div class="field">
         <div class="lab-row"><label for="p-schaden" data-t="f_schaden">Verletzungen und Schäden</label><button type="button" class="tool dict" data-for="p-schaden" data-t-aria="dict">Diktieren</button></div>

@@ -15,8 +15,14 @@
 
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function lsSet(k, v) { try { if (v == null) localStorage.removeItem(k); else localStorage.setItem(k, v); } catch (e) {} }
-  (function () { var m = /[?&]tresor=([^&#]+)/.exec(location.search); if (m) lsSet(LS_URL, decodeURIComponent(m[1]) === "0" ? null : decodeURIComponent(m[1])); })();
-  function baseUrl() { return (lsGet(LS_URL) || DEFAULT_URL).replace(/\/+$/, ""); }
+  // Andere Server-Adresse (?tresor=…) nur, wenn die App selbst lokal läuft (Tests mit wrangler dev). Auf der echten Seite
+  // wird eine gespeicherte Umleitung gelöscht: Ein fremder Link darf die Uploads nicht heimlich woandershin schicken (Anwalts-Mappe W-09).
+  var DEV = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+  (function () {
+    if (!DEV) { if (lsGet(LS_URL)) lsSet(LS_URL, null); return; }
+    var m = /[?&]tresor=([^&#]+)/.exec(location.search); if (m) lsSet(LS_URL, decodeURIComponent(m[1]) === "0" ? null : decodeURIComponent(m[1]));
+  })();
+  function baseUrl() { return ((DEV && lsGet(LS_URL)) || DEFAULT_URL).replace(/\/+$/, ""); }
   function ok() { return !!(baseUrl() && window.crypto && crypto.subtle && window.fetch); }
 
   function newCode() {

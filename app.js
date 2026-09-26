@@ -27,7 +27,7 @@
   var UI = lsGet(LS_UI) || (/^(ru|uk|be|kk)/i.test(navigator.language || "") ? "ru" : "de");
   var T = {
     de: {
-      meta: "Prototyp · Baden-Württemberg · Stand 25.09.2026 · keine Rechtsberatung", install: "Installieren", install_app: "App installieren",
+      meta: "Prototyp · Baden-Württemberg · Stand 26.09.2026 · keine Rechtsberatung", install: "Installieren", install_app: "App installieren",
       tab_jetzt: "Jetzt", tab_fragen: "Fragen", tab_aufnahme: "Aufnahme", tab_danach: "Danach", tab_wissen: "Wissen", tab_vorb: "Vorbereiten", vorb_h: "Vorbereiten", vorb_lead: "In Ruhe, bevor etwas passiert: Frage stellen, Rechte nachlesen, App einrichten.", vorb_einr: "Einrichten", danach_recs: "Meine Videos und Tresor →", tabs_aria: "Bereiche",
       jetzt_h: "Was passiert gerade?", jetzt_lead: "Tippe auf deine Situation. Du bekommst sofort, was du sagen und was du lassen solltest.",
       q_ask: "Frage stellen", q_proto: "Protokoll", back: "Zurück", close: "Schließen",
@@ -35,25 +35,25 @@
       act_film: "Video ohne Ton", act_consent: "Mit Einwilligung aufnehmen", act_proto: "Protokoll danach", act_qh: "Antworten mit §",
       k_start: "Ich werde kontrolliert", k_start_s: "Video ohne Ton startet · Antworten mit § auf einem Bildschirm", k_h: "Was sagt der Polizist?", k_role_aria: "Ich bin",
       k_ptt: "Stichwort sagen", k_ptt_on: "Ich höre … Stichwort sagen", k_nomatch: "Nicht gefunden: „{x}“. Tippe auf einen Knopf.",
-      k_mic_busy: "Bei einer Aufnahme mit Ton ist das Mikrofon belegt. Tippe auf einen Knopf.", k_all: "Alle 65 Antworten",
+      k_mic_busy: "Bei einer Aufnahme mit Ton ist das Mikrofon belegt. Tippe auf einen Knopf.", k_all: "Alle Antworten",
       k_rec: "Video starten", k_stop: "Stopp", k_norec: "Keine Aufnahme", k_rec_wait: "Kamera startet …", k_rec_silent: "Video ohne Ton", k_rec_audio: "Video mit Ton",
-      k_saved: "Aufnahme gespeichert.", k_sichern: "Jetzt sichern", k_big: "Zeigen", k_more: "Mehr und warum",
-      k_test_warn: "Testmodus: nur mit Freunden, die Polizei spielen und einverstanden sind. Der Ton geht zur Erkennung an Google. Nicht bei echter Polizei benutzen.",
+      k_saved: "Aufnahme gespeichert.", k_sichern: "Jetzt sichern", k_sichern_again: "Nochmal sichern", k_shared: "geteilt {x} ✓", k_big: "Zeigen", k_more: "Mehr und warum",
+      k_test_warn: "Testmodus: nur mit Freunden, die Polizei spielen und einverstanden sind. Der Ton geht zur Erkennung an Google (Android) bzw. Apple (iPhone). Nicht bei echter Polizei benutzen.",
       k_listen: "Mithören starten (Test)", k_listen_on: "Mithören stoppen", k_live: "Hört mit (Test):", k_log_share: "Log teilen", k_test_off: "Testmodus aus", k_log_none: "kein Treffer",
       k_start_filme: "Ich filme eine Kontrolle (Freund, Fremde)", k_menu: "Menü", k_stop_sure: "Wirklich stoppen?", big_speak: "Vorlesen (Deutsch)",
       einr_card: "In 30 Sekunden einrichten: Kamera erlauben, Tresor für deine Videos, auf den Startbildschirm →", einr_h: "In 30 Sekunden bereit", einr_lead: "Einmal jetzt in Ruhe – dann reicht im Ernstfall ein Tipp.",
       einr_1: "Sprache der App", einr_2: "Meistens bin ich", einr_3: "Kamera und Mikrofon erlauben", einr_3h: "Sonst fragt das Handy erst, wenn der Polizist schon da ist.",
       einr_cam: "Jetzt erlauben", einr_cam_ok: "✓ Erlaubt", einr_4: "Auf den Startbildschirm", einr_4h: "Danach: lange auf das App-Symbol drücken → „Kontrolle“ startet sofort das Video.",
-      einr_5: "Einmal üben", einr_try: "Kontrolle-Bildschirm ansehen (ohne Aufnahme)", einr_test: "Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google)",
+      einr_5: "Einmal üben", einr_try: "Kontrolle-Bildschirm ansehen (ohne Aufnahme)", einr_test: "Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google bzw. Apple)",
       einr_6: "Optional: Profil", einr_prof: "Führerschein, Aufenthalt – für passende Hinweise", einr_done: "Fertig",
       einr_tr: "Tresor: Kopie außerhalb des Handys", einr_tr_h: "Während du filmst, geht jede Sekunde verschlüsselt ins Netz. Nimmt jemand das Handy weg oder löscht darauf, bleibt die Kopie 30 Tage. Ohne deinen Code kommt niemand ran – auch wir nicht.",
-      einr_tr_on: "Tresor einschalten", einr_tr_data: "Braucht mobiles Internet, etwa 9 MB pro Minute Video.", einr_tr_code: "Dein Code. Aufschreiben oder einer Vertrauensperson schicken – auf dem Handy nützt er dir nichts, wenn es weg ist:",
-      einr_tr_share: "Code an Vertrauensperson senden", einr_tr_pick: "Video mit Code holen", einr_tr_off: "Tresor ausschalten", einr_tr_sure: "Sicher? Tippe nochmal – ohne Code kommt niemand mehr an alte Videos",
-      tr_share_text: "Mein Tresor-Code für „Ruhig bleiben“: {x}\nWird mir das Handy abgenommen, holst du damit meine Videos (30 Tage):", tr_copied: "Code kopiert",
+      einr_tr_on: "Tresor einschalten", einr_tr_data: "Braucht mobiles Internet, etwa 9 MB pro Minute Video.", einr_tr_code: "Dein Code. Code und Adresse aufschreiben oder einer Vertrauensperson schicken – abholen geht auf jedem Handy unter der Adresse darunter. In den Tresor kommen nur Videos, die du ab jetzt filmst:",
+      einr_tr_share: "Code an Vertrauensperson senden", einr_tr_pick: "Video mit Code holen", einr_tr_off: "Tresor ausschalten", einr_tr_sure: "Sicher? Nochmal tippen: Der Code wird auf diesem Handy gelöscht. Alte Videos bleiben bis zu 30 Tage im Tresor – abholen kann sie, wer den Code hat.",
+      tr_share_text: "Mein Tresor-Code für „Ruhig bleiben“: {x}\nWird mir das Handy abgenommen, holst du damit die Videos, die ich ab jetzt filme (30 Tage):", tr_copied: "Code kopiert",
       tr_h: "Video aus dem Tresor holen", tr_lead: "Geht auf jedem Handy, auch wenn deins weg ist – du brauchst nur den Code. Videos bleiben 30 Tage, danach löscht der Server sie.",
-      tr_code: "Code (16 Zeichen)", tr_find: "Videos suchen", tr_bad: "Der Code hat 16 Zeichen, zum Beispiel 7K2M-QX4P-9RTD-WF3N.", tr_none: "Keine Videos zu diesem Code. Nach 30 Tagen sind sie gelöscht.",
+      tr_code: "Code (16 Zeichen)", tr_find: "Videos suchen", tr_bad: "Der Code hat 16 Zeichen, zum Beispiel 7K2M-QX4P-9RTD-WF3N.", tr_none: "Keine Videos zu diesem Code. Im Tresor sind nur Videos, die nach dem Einschalten gefilmt wurden; nach 30 Tagen sind sie gelöscht.",
       tr_err: "Tresor nicht erreichbar. Internet prüfen und nochmal tippen.", tr_loading: "Suche …", tr_get: "Video holen", tr_getting: "Lade Teil {x}", tr_ready: "Fertig. Speichern oder teilen – der Tresor löscht nach 30 Tagen.",
-      tr_skipped: "Teile ließen sich nicht entschlüsseln und fehlen: {x}", tr_na: "Tresor ist in dieser Version noch nicht verfügbar.", rec_tr_link: "Video aus dem Tresor holen", rec_tr_on: "Tresor ist aus – deine Videos liegen nur auf diesem Handy. Einschalten →", rec_saved_tr: "Tresor einschalten: dann geht die Kopie schon beim Filmen raus →",
+      tr_skipped: "Teile ließen sich nicht entschlüsseln und fehlen: {x}", tr_na: "Tresor ist in dieser Version noch nicht verfügbar.", rec_tr_link: "Video aus dem Tresor holen (mit Code)", rec_tr_on: "Tresor ist aus – neue Videos landen nur auf diesem Handy. Einschalten →", rec_saved_tr: "Tresor einschalten: dann geht die Kopie schon beim Filmen raus →",
       k_tr_ok: "Tresor {x}", k_tr_lag: "Tresor: kein Netz, gesichert bis {x}", k_tr_done: "alles im Tresor", k_tr_wait: "Tresor verbindet …",
       fragen_h: "Frage stellen",
       fragen_lead: "Tippe auf das Mikrofon und frag kurz, zum Beispiel „Darf ich filmen?“ oder «Можно ли снимать?». Die Antwort erscheint als Text, sobald du fertig gesprochen hast. Danach hört das Mikrofon noch 5 Sekunden zu, falls du etwas ergänzen willst. Verarbeitet wird nur deine Frage.",
@@ -74,13 +74,13 @@
       consent_yes: "Alle sind einverstanden – mit Ton", consent_no: "Nicht einverstanden – Video ohne Ton", cancel: "Abbrechen",
       consent_tip: "Tipp: Lass dir die Einwilligung zu Beginn der Aufnahme noch einmal bestätigen.", rec_stop: "Aufnahme beenden",
       rec_live_hint: "Bildschirm anlassen und die App nicht wechseln – sonst stoppt das Handy die Kamera. Was bis dahin aufgenommen ist, bleibt gespeichert.",
-      rec_note: "<strong>Wird jede Sekunde auf dem Gerät gespeichert,</strong> auch wenn die App abstürzt. Trotzdem nach dem Stopp „Sichern“ tippen und an dich selbst oder in deine Cloud schicken – falls das Handy abgenommen wird. Automatisch schon beim Filmen: mit dem Tresor (unter „Einrichten“).",
+      rec_note: "<strong>Wird jede Sekunde auf dem Gerät gespeichert,</strong> auch wenn die App abstürzt. Trotzdem nach dem Stopp „Sichern“ tippen und an dich selbst oder in deine Cloud schicken – falls das Handy abgenommen wird. Automatisch schon beim Filmen: mit dem Tresor (Vorbereiten → „Einrichten“).",
       rec_running: "Aufnahme läuft", mode_audio: "Mit Ton (Einwilligung {x})", mode_silent: "Ohne Ton",
       rec_nobrowser: "Aufnehmen geht in diesem Browser nicht. Nutze Chrome (Android) oder Safari (iPhone), die Seite muss über https laufen.",
       rec_nocam: "Keine passende Kamera gefunden.", rec_busy: "Die Kamera ist belegt. Andere Kamera-Apps schließen und noch einmal tippen.", rec_camfail: "Kamera konnte nicht starten ({x}).",
       rec_storage: "Speichern auf dem Gerät klappt nicht (Speicher voll oder privater Modus). Die Aufnahme läuft weiter – nach dem Stopp sofort „Sichern“.",
       rec_nopersist: "Dieses Gerät speichert Aufnahmen nicht dauerhaft. Nach dem Stopp sofort „Sichern“.", rec_empty: "Die Aufnahme ist leer. Bitte noch einmal starten.",
-      recs_h: "Auf diesem Gerät", recs_one: "Aufnahme", recs_many: "Aufnahmen", recs_hint: "„Sichern“ schickt die Originaldatei an dich selbst: in Telegram „Als Datei senden“, in WhatsApp als „Dokument“ – sonst wird das Video verkleinert. Oder in Google Drive.",
+      recs_h: "Auf diesem Gerät", when_time: "Uhrzeit prüfen – sie steht noch auf der jetzigen Zeit, nicht auf der des Vorfalls.", gps_now: "Das ist dein jetziger Standort – nur richtig, wenn du noch am Ort der Kontrolle bist.", recs_none: "Auf diesem Handy sind noch keine Videos. Handy weg? Oben „Video aus dem Tresor holen“.", rec_saved_trok: "Auf dem Handy und im Tresor gesichert (30 Tage). Zur Sicherheit zusätzlich „Sichern“.", recs_one: "Aufnahme", recs_many: "Aufnahmen", recs_hint: "„Sichern“ schickt die Originaldatei an dich selbst: in Telegram „Als Datei senden“, in WhatsApp als „Dokument“ – sonst wird das Video verkleinert. Oder in Google Drive.",
       rec_saved: "Gespeichert auf diesem Handy. Jetzt „Sichern“ tippen – falls das Handy abgenommen wird.", rec_share_big: "Zu groß zum direkten Teilen (über 50 MB). Die Datei liegt jetzt unter „Downloads“ – dort antippen › Teilen › Google Drive oder Telegram (als Datei).",
       rec_cut: "Aufnahme gestoppt – das Handy hat die Kamera beendet ({x} Uhr). Das Video bis dahin ist gespeichert.", rec_try_silent: "Oder ohne Ton filmen: „Video ohne Ton starten“ tippen.",
       perm_inapp: "Du bist im Browser von Telegram, WhatsApp o. Ä. Hier sind Kamera und Mikrofon oft gesperrt und Aufnahmen gehen leicht verloren. Öffne die Seite in Chrome: Menü ⋮ › „Im Browser öffnen“.",
@@ -92,10 +92,10 @@
       f_datum: "Datum", f_zeit: "Uhrzeit", f_ort: "Ort", f_beamte: "Beamte und Fahrzeuge", f_ablauf: "Was ist passiert?", f_zitate: "Wörtliche Aussagen", f_zeugen: "Zeugen",
       f_aufnahmen: "Aufnahmen", f_schaden: "Verletzungen und Schäden", f_name: "Dein Name und Anschrift (für Briefe)",
       ph_ort: "Straße, Haltestelle, Richtung", ph_beamte: "Namen, Dienststelle, Kennzeichen, Aussehen", ph_ablauf: "Der Reihe nach, mit Uhrzeiten, so genau wie möglich",
-      ph_zitate: "Wer hat was genau gesagt?", ph_zeugen: "Name und Kontakt, nur mit Einverständnis", ph_aufnahmen: "Unter „Aufnahme“ bei der Aufnahme „Ins Protokoll“ tippen",
+      ph_zitate: "Wer hat was genau gesagt?", ph_zeugen: "Name und Kontakt, nur mit Einverständnis", ph_aufnahmen: "Oben „Meine Videos und Tresor“, dann beim Video „Ins Protokoll“",
       ph_schaden: "Was, wo, Arztbesuch, Fotos", ph_name: "Vorname Nachname, Straße, PLZ Ort",
       p_copy: "Protokoll kopieren", share: "Teilen", p_file: "Als Datei", p_clear: "Protokoll löschen", p_clear_sure: "Wirklich löschen?", p_new: "Protokoll gelöscht.", p_undo: "Rückgängig", p_restored: "Protokoll wiederhergestellt",
-      p_backup: "Nur auf diesem Handy gespeichert – ein iPhone löscht es nach einigen Tagen ohne Nutzung. Jetzt „Als Datei“ oder „Teilen“ an dich selbst.",
+      p_backup: "Nur auf diesem Handy gespeichert – ist das Handy weg oder wird der Browser-Speicher geleert, ist es verloren (ein iPhone löscht es sogar nach einigen Tagen ohne Nutzung). Jetzt „Als Datei“ oder „Teilen“ an dich selbst.",
       when_check: "Datum und Uhrzeit des Vorfalls – bitte prüfen, nicht die jetzige Zeit.", sr_none_p: "Diktieren gibt es in diesem Browser nicht. Tippe den Text ins Feld.",
       sr_net_p: "Diktieren braucht Internet. Tippe den Text ins Feld.", sr_blocked_p: "Diktieren ist in diesem Browser gesperrt. Tippe den Text ins Feld.",
       l_missing: "Vor dem Senden noch ausfüllen: {x}.", l_cyr: "Der Brief geht an deutsche Behörden: Ort und Name in lateinischen Buchstaben, die Schilderung auf Deutsch.",
@@ -110,7 +110,7 @@
       l_to: "An:", l_copy: "Kopieren", l_mail: "In Mail öffnen",
       wissen_h: "Wissen", w_label: "Wissen durchsuchen", w_ph: "Suchen: pusten, Ausweis, filmen …", w_cats: "Themen", w_all: "Alle",
       w_empty: "Nichts gefunden. Versuch: pusten, Ausweis, filmen, Handy, Beschwerde.", w_sits: "Situationen",
-      data_note: "Deine Daten bleiben auf dem Gerät: Protokoll und Aufnahmen gehen an keinen Server.",
+      data_note: "Protokoll, Profil und Aufnahmen bleiben auf dem Gerät. Ausnahmen: Ist der Tresor an, geht jede Aufnahme verschlüsselt an unseren Server (Cloudflare, EU; lesbar nur mit deinem Code). Diktieren und Fragen per Mikrofon verarbeitet dein Browser über Google (Android) oder Apple (iPhone).",
       disclaimer: "Allgemeine Information, keine Rechtsberatung. Geprüft anhand von Gesetzen und Gerichtsentscheidungen, noch nicht von einem Anwalt. Quellen: {links}",
       i_done: "<strong>Installiert.</strong> Situationen und Wissen funktionieren auch ohne Internet.",
       i_ios: "<strong>Auf den Home-Bildschirm:</strong> In Safari „Teilen“ und dann „Zum Home-Bildschirm“. Danach funktionieren Situationen und Wissen auch ohne Internet.",
@@ -148,7 +148,7 @@
       days_1: "1 Tag", days_n: "{n} Tage"
     },
     ru: {
-      meta: "Прототип · Баден-Вюртемберг · на 25.09.2026 · не юридическая консультация", install: "Установить", install_app: "Установить приложение",
+      meta: "Прототип · Баден-Вюртемберг · на 26.09.2026 · не юридическая консультация", install: "Установить", install_app: "Установить приложение",
       tab_jetzt: "Сейчас", tab_fragen: "Вопрос", tab_aufnahme: "Запись", tab_danach: "После", tab_wissen: "Знания", tab_vorb: "Подготовка", vorb_h: "Подготовка", vorb_lead: "Спокойно, заранее: задать вопрос, прочитать о правах, настроить приложение.", vorb_einr: "Настроить", danach_recs: "Мои видео и сейф →", tabs_aria: "Разделы",
       jetzt_h: "Что происходит?", jetzt_lead: "Нажми на свою ситуацию — сразу увидишь, что сказать и чего не делать.",
       q_ask: "Задать вопрос", q_proto: "Протокол", back: "Назад", close: "Закрыть",
@@ -156,25 +156,25 @@
       act_film: "Видео без звука", act_consent: "Запись с согласия", act_proto: "Протокол после", act_qh: "Ответы с §",
       k_start: "Меня проверяет полиция", k_start_s: "Запускается видео без звука · ответы с § на одном экране", k_h: "Что говорит полицейский?", k_role_aria: "Я",
       k_ptt: "Сказать слово", k_ptt_on: "Слушаю… скажи слово", k_nomatch: "Не найдено: «{x}». Нажми на кнопку.",
-      k_mic_busy: "Во время записи со звуком микрофон занят. Нажми на кнопку.", k_all: "Все 65 ответа",
+      k_mic_busy: "Во время записи со звуком микрофон занят. Нажми на кнопку.", k_all: "Все ответы",
       k_rec: "Начать видео", k_stop: "Стоп", k_norec: "Запись не идёт", k_rec_wait: "Камера включается…", k_rec_silent: "Видео без звука", k_rec_audio: "Видео со звуком",
-      k_saved: "Запись сохранена.", k_sichern: "Сохранить копию", k_big: "Показать полицейскому", k_more: "Подробнее и почему",
-      k_test_warn: "Тестовый режим: только с друзьями, которые играют полицию и согласны. Звук для распознавания уходит в Google. Не использовать с настоящей полицией.",
+      k_saved: "Запись сохранена.", k_sichern: "Сохранить копию", k_sichern_again: "Сохранить ещё раз", k_shared: "отправлено {x} ✓", k_big: "Показать полицейскому", k_more: "Подробнее и почему",
+      k_test_warn: "Тестовый режим: только с друзьями, которые играют полицию и согласны. Звук для распознавания уходит в Google (Android) или Apple (iPhone). Не использовать с настоящей полицией.",
       k_listen: "Начать прослушивание (тест)", k_listen_on: "Остановить прослушивание", k_live: "Слушает (тест):", k_log_share: "Поделиться логом", k_test_off: "Выключить тест", k_log_none: "нет совпадения",
       k_start_filme: "Я снимаю проверку (друга, чужих)", k_menu: "Меню", k_stop_sure: "Точно остановить?", big_speak: "Прочитать вслух по-немецки",
-      einr_card: "Настроить за 30 секунд: камера, сейф для видео, значок на экране →", einr_h: "Готово за 30 секунд", einr_lead: "Один раз сейчас спокойно — тогда в нужный момент хватит одного нажатия.",
+      einr_card: "Настроить за 30 секунд: камера, сейф для видео, значок на экране →", einr_h: "Настройка за 30 секунд", einr_lead: "Один раз сейчас спокойно — тогда в нужный момент хватит одного нажатия.",
       einr_1: "Язык приложения", einr_2: "Чаще всего я", einr_3: "Разрешить камеру и микрофон", einr_3h: "Иначе телефон спросит, когда полицейский уже рядом.",
       einr_cam: "Разрешить сейчас", einr_cam_ok: "✓ Разрешено", einr_4: "Значок на главный экран", einr_4h: "Потом: долго нажми на значок приложения → «Kontrolle» сразу включает видео.",
-      einr_5: "Один раз попробовать", einr_try: "Посмотреть экран проверки (без записи)", einr_test: "Потренироваться с другом: включить тест прослушивания (звук уходит в Google)",
+      einr_5: "Один раз попробовать", einr_try: "Посмотреть экран проверки (без записи)", einr_test: "Потренироваться с другом: включить тест прослушивания (звук уходит в Google или Apple)",
       einr_6: "По желанию: профиль", einr_prof: "Права, вид на жительство — для точных подсказок", einr_done: "Готово",
-      einr_tr: "Сейф: копия вне телефона", einr_tr_h: "Пока ты снимаешь, каждая секунда зашифрованной уходит в интернет. Если телефон отберут или на нём удалят видео, копия хранится 30 дней. Без твоего кода её не откроет никто — даже мы.",
-      einr_tr_on: "Включить сейф", einr_tr_data: "Нужен мобильный интернет, около 9 МБ на минуту видео.", einr_tr_code: "Твой код. Запиши его или отправь доверенному человеку — в телефоне он не поможет, если телефон заберут:",
-      einr_tr_share: "Отправить код доверенному человеку", einr_tr_pick: "Забрать видео по коду", einr_tr_off: "Выключить сейф", einr_tr_sure: "Точно? Нажми ещё раз — без кода к старым видео уже никто не попадёт",
-      tr_share_text: "Мой код сейфа в «Ruhig bleiben»: {x}\nЕсли у меня отберут телефон, по нему ты заберёшь мои видео (30 дней):", tr_copied: "Код скопирован",
+      einr_tr: "Сейф: копия вне телефона", einr_tr_h: "Пока ты снимаешь, каждая секунда видео в зашифрованном виде уходит в интернет. Если телефон отберут или на нём удалят видео, копия хранится 30 дней. Без твоего кода её не откроет никто — даже мы.",
+      einr_tr_on: "Включить сейф", einr_tr_data: "Нужен мобильный интернет, около 9 МБ на минуту видео.", einr_tr_code: "Твой код. Запиши код и адрес или отправь доверенному человеку — забрать видео можно с любого телефона по адресу ниже. В сейф попадают только видео, снятые после включения:",
+      einr_tr_share: "Отправить код доверенному человеку", einr_tr_pick: "Забрать видео по коду", einr_tr_off: "Выключить сейф", einr_tr_sure: "Точно? Нажми ещё раз: код удалится с этого телефона. Старые видео остаются в сейфе до 30 дней — забрать их может тот, у кого есть код.",
+      tr_share_text: "Мой код сейфа в «Ruhig bleiben»: {x}\nЕсли у меня отберут телефон, по нему ты заберёшь видео, которые я сниму с этого момента (30 дней):", tr_copied: "Код скопирован",
       tr_h: "Забрать видео из сейфа", tr_lead: "Работает на любом телефоне, даже если твой забрали, — нужен только код. Видео хранятся 30 дней, потом сервер их удаляет.",
-      tr_code: "Код (16 знаков)", tr_find: "Найти видео", tr_bad: "В коде 16 знаков, например 7K2M-QX4P-9RTD-WF3N.", tr_none: "По этому коду видео нет. Через 30 дней они удаляются.",
+      tr_code: "Код (16 знаков)", tr_find: "Найти видео", tr_bad: "В коде 16 знаков, например 7K2M-QX4P-9RTD-WF3N.", tr_none: "По этому коду видео нет. В сейфе только видео, снятые после его включения; через 30 дней они удаляются.",
       tr_err: "Сейф недоступен. Проверь интернет и нажми ещё раз.", tr_loading: "Ищу …", tr_get: "Забрать видео", tr_getting: "Загружаю часть {x}", tr_ready: "Готово. Сохрани или отправь — через 30 дней сейф удалит видео.",
-      tr_skipped: "Не удалось расшифровать части, их нет в видео: {x}", tr_na: "Сейф в этой версии пока недоступен.", rec_tr_link: "Забрать видео из сейфа", rec_tr_on: "Сейф выключен — видео лежат только на этом телефоне. Включить →", rec_saved_tr: "Включи сейф: тогда копия уходит ещё во время съёмки →",
+      tr_skipped: "Не удалось расшифровать части, их нет в видео: {x}", tr_na: "Сейф в этой версии пока недоступен.", rec_tr_link: "Забрать видео из сейфа (по коду)", rec_tr_on: "Сейф выключен — новые видео останутся только на этом телефоне. Включить →", rec_saved_tr: "Включи сейф: тогда копия уходит ещё во время съёмки →",
       k_tr_ok: "Сейф {x}", k_tr_lag: "Сейф: нет сети, сохранено до {x}", k_tr_done: "всё в сейфе", k_tr_wait: "Сейф подключается …",
       fragen_h: "Задать вопрос",
       fragen_lead: "Нажми на микрофон и спроси коротко, например «Можно ли снимать?» или „Darf ich filmen?“. Ответ появится текстом, как только договоришь. Потом микрофон ещё 5 секунд слушает, если захочешь что-то добавить. Обрабатывается только твой вопрос.",
@@ -195,13 +195,13 @@
       consent_yes: "Все согласны — со звуком", consent_no: "Не согласны — видео без звука", cancel: "Отмена",
       consent_tip: "Совет: в начале записи попроси ещё раз подтвердить согласие.", rec_stop: "Остановить запись",
       rec_live_hint: "Не выключай экран и не переключайся на другое приложение — иначе телефон остановит камеру. Всё, что уже записано, сохранится.",
-      rec_note: "<strong>Запись сохраняется на телефоне каждую секунду,</strong> даже если приложение упадёт. Всё равно после остановки нажми «Сохранить копию» и отправь себе или в своё облако — на случай, если телефон заберут. Автоматически, уже во время съёмки, это делает сейф (в «Настройке»).",
+      rec_note: "<strong>Запись сохраняется на телефоне каждую секунду,</strong> даже если приложение упадёт. Всё равно после остановки нажми «Сохранить копию» и отправь себе или в своё облако — на случай, если телефон заберут. Автоматически, уже во время съёмки, это делает сейф (Подготовка → «Настроить»).",
       rec_running: "Идёт запись", mode_audio: "Со звуком (согласие {x})", mode_silent: "Без звука",
       rec_nobrowser: "В этом браузере запись не работает. Используй Chrome (Android) или Safari (iPhone), сайт должен открываться по https.",
       rec_nocam: "Подходящая камера не найдена.", rec_busy: "Камера занята. Закрой другие приложения с камерой и нажми ещё раз.", rec_camfail: "Камера не запустилась ({x}).",
       rec_storage: "Сохранить на телефоне не получается (память заполнена или приватный режим). Запись продолжается — после остановки сразу нажми «Сохранить копию».",
       rec_nopersist: "Этот телефон не хранит записи надолго. После остановки сразу нажми «Сохранить копию».", rec_empty: "Запись пустая. Начни ещё раз.",
-      recs_h: "На этом телефоне", recs_one: "запись", recs_few: "записи", recs_many: "записей", recs_hint: "«Сохранить копию» отправляет оригинальный файл: в Telegram — «Отправить как файл», в WhatsApp — как «Документ», иначе видео сожмётся. Или в Google Drive.",
+      recs_h: "На этом телефоне", when_time: "Проверь время — там всё ещё текущее время, а не время случая.", gps_now: "Это твоё место сейчас — верно, только если ты ещё там, где была проверка.", recs_none: "На этом телефоне пока нет видео. Телефон забрали? Выше — «Забрать видео из сейфа».", rec_saved_trok: "Сохранено на телефоне и в сейфе (30 дней). Для надёжности нажми ещё «Сохранить копию».", recs_one: "запись", recs_few: "записи", recs_many: "записей", recs_hint: "«Сохранить копию» отправляет оригинальный файл: в Telegram — «Отправить как файл», в WhatsApp — как «Документ», иначе видео сожмётся. Или в Google Drive.",
       rec_saved: "Сохранено на этом телефоне. Теперь нажми «Сохранить копию» — на случай, если телефон заберут.", rec_share_big: "Файл слишком большой для прямой отправки (больше 50 МБ). Он сохранён в «Загрузки» — открой его там › Поделиться › Google Drive или Telegram (как файл).",
       rec_cut: "Запись остановлена — телефон отключил камеру ({x}). Видео до этого момента сохранено.", rec_try_silent: "Или снимай без звука: нажми «Начать видео без звука».",
       perm_inapp: "Ты во встроенном браузере Telegram, WhatsApp или другого мессенджера. Здесь камера и микрофон часто заблокированы, а записи легко потерять. Открой страницу в Chrome: меню ⋮ › «Открыть в браузере».",
@@ -213,10 +213,10 @@
       f_datum: "Дата", f_zeit: "Время", f_ort: "Место", f_beamte: "Полицейские и машины", f_ablauf: "Что произошло?", f_zitate: "Точные слова", f_zeugen: "Свидетели",
       f_aufnahmen: "Записи", f_schaden: "Травмы и ущерб", f_name: "Твоё имя и адрес (для писем)",
       ph_ort: "Улица, остановка, направление", ph_beamte: "Имена, участок, номера машин, внешность", ph_ablauf: "По порядку, со временем, как можно точнее",
-      ph_zitate: "Кто что именно сказал?", ph_zeugen: "Имя и контакт, только с согласия", ph_aufnahmen: "В «Записи» нажми «В протокол» у нужной записи",
+      ph_zitate: "Кто что именно сказал?", ph_zeugen: "Имя и контакт, только с согласия", ph_aufnahmen: "Вверху «Мои видео и сейф», затем у видео «В протокол»",
       ph_schaden: "Что, где, врач, фото", ph_name: "Имя Фамилия, улица, индекс, город",
       p_copy: "Копировать протокол", share: "Поделиться", p_file: "Файлом", p_clear: "Удалить протокол", p_clear_sure: "Точно удалить?", p_new: "Протокол удалён.", p_undo: "Отменить", p_restored: "Протокол восстановлен",
-      p_backup: "Хранится только на этом телефоне — iPhone удаляет такие данные через несколько дней без использования. Сейчас нажми «Файлом» или «Поделиться» себе.",
+      p_backup: "Хранится только на этом телефоне — если телефон пропадёт или очистится память браузера, протокол потеряется (iPhone удаляет такие данные уже через несколько дней без использования). Сейчас нажми «Файлом» или «Поделиться» себе.",
       when_check: "Дата и время случая — проверь, это не «сейчас».", sr_none_p: "В этом браузере нет диктовки. Напиши текст в поле.",
       sr_net_p: "Для диктовки нужен интернет. Напиши текст в поле.", sr_blocked_p: "Диктовка в этом браузере заблокирована. Напиши текст в поле.",
       l_missing: "Перед отправкой заполни: {x}.", l_cyr: "Письмо уйдёт в немецкие органы: место и имя латиницей, как в паспорте, описание — по-немецки (переключи «Диктовка по-немецки»).",
@@ -231,7 +231,7 @@
       l_to: "Кому:", l_copy: "Копировать", l_mail: "Открыть в почте",
       wissen_h: "Знания", w_label: "Поиск по знаниям", w_ph: "Поиск: дуть, паспорт, снимать …", w_cats: "Темы", w_all: "Все",
       w_empty: "Ничего не найдено. Попробуй: дуть, паспорт, снимать, телефон, жалоба.", w_sits: "Ситуации",
-      data_note: "Твои данные остаются на телефоне: протокол и записи не уходят ни на какой сервер.",
+      data_note: "Протокол, профиль и записи остаются на телефоне. Исключения: если сейф включён, каждая запись в зашифрованном виде уходит на наш сервер (Cloudflare, ЕС; прочитать можно только с твоим кодом). Диктовку и вопросы голосом браузер обрабатывает через Google (Android) или Apple (iPhone).",
       disclaimer: "Общая информация, не юридическая консультация. Проверено по законам и решениям судов, адвокатом ещё не проверено. Источники: {links}",
       i_done: "<strong>Установлено.</strong> Ситуации и знания работают и без интернета.",
       i_ios: "<strong>На экран «Домой»:</strong> в Safari нажми «Поделиться», затем «На экран „Домой“». После этого ситуации и знания работают и без интернета.",
@@ -299,7 +299,7 @@
     currentView = name;
     views.forEach(function (v) { $("v-" + v).hidden = v !== name; });
     var TAB = { jetzt: "jetzt", kontrolle: "jetzt", einrichten: "jetzt", danach: "danach", tresor: "danach", wissen: "wissen", fragen: "wissen", profil: "wissen" };
-    var tab = name === "situation" ? lastTab : name === "aufnahme" ? (lastTab === "danach" ? "danach" : "jetzt") : TAB[name] || "jetzt"; lastTab = tab;
+    var tab = name === "situation" ? lastTab : name === "aufnahme" ? (lastTab === "danach" ? "danach" : "jetzt") : name === "einrichten" ? (lastTab === "wissen" ? "wissen" : "jetzt") : TAB[name] || "jetzt"; lastTab = tab;
     document.body.classList.toggle("k-mode", name === "kontrolle"); // Vollbild: ohne Kopf und Tabs, Fußleiste mit Stichwort und Menü
     [].forEach.call(document.querySelectorAll(".tabs a"), function (a) {
       if (a.getAttribute("data-tab") === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
@@ -442,7 +442,7 @@
     if (a) {
       pendingAct = a.getAttribute("data-act");
       // Aus einer Situation zur Aufnahme: passende Antworten gleich oben
-      var sid = currentView === "situation" ? location.hash.slice(3) : "", cat = SIT_QH[sid];
+      var sid = currentView === "situation" ? location.hash.slice(3) : "", cat = currentView === "kontrolle" ? ({ filme: "aufnahme", fahrer: "fahrer", beifahrer: "person", fuss: "person" })[kRole] : SIT_QH[sid];
       if (cat) { qhCat = cat; renderQuick(); }
     }
   });
@@ -792,7 +792,7 @@
         trState = null; tv = trOn() ? TR.begin({ started: started, type: r.type, withAudio: !!withAudio, consentAt: consentAt }, function (st) { trState = st; trShow(); syncKBar(); }) : null;
         if (tv) r.tresor = tv.rec;
         trShow();
-        recState = { rec: rec, r: r, timer: setInterval(tick, 500) };
+        recState = { rec: rec, r: r, timer: setInterval(tick, 500), fromK: currentView === "kontrolle" };
         stream.getVideoTracks().forEach(function (tr) { tr.addEventListener("ended", function () { r.cut = true; stopRecording(); }); });
         [$("preview"), $("k-thumb")].forEach(function (v) { v.srcObject = stream; v.muted = true; var p = v.play(); if (p && p.catch) p.catch(function () {}); });
         if (storageOK) putRec(r).catch(storageFail);
@@ -812,6 +812,7 @@
   function updateRecFloat() {
     var on = !!(recState && recState.rec);
     $("rec-float").hidden = !on || currentView === "aufnahme" || currentView === "kontrolle";
+    $("rec-float").setAttribute("href", on && recState.fromK ? "#kontrolle" : "#aufnahme");
     $("big-rec").hidden = !on; syncKBar();
     document.body.classList.toggle("rec-on", on);
   }
@@ -867,7 +868,7 @@
   }
   function renderRecs() {
     var box = $("rec-list");
-    if (!recordings.length) { box.innerHTML = ""; return; }
+    if (!recordings.length) { box.innerHTML = "<h2>" + esc(t("recs_h")) + '</h2><p class="hint">' + esc(t("recs_none")) + "</p>"; return; }
     var total = 0; recordings.forEach(function (r) { total += r.size || 0; });
     box.innerHTML = "<h2>" + esc(t("recs_h")) + '</h2><p class="hint">' + esc(recCount(recordings.length)) + ", " + mb(total) + ". " + esc(t("recs_hint")) + "</p>" +
       recordings.map(function (r) {
@@ -877,7 +878,7 @@
           '<video src="' + r.url + '" controls playsinline preload="metadata"></video>' +
           '<p class="rec-meta">' + esc(recMeta(r)) + "</p>" +
           '<p class="hash">SHA-256: ' + (r.hash ? esc(r.hash) : esc(r.noHash ? t("hash_na") : t("hash_wait"))) + "</p>" +
-          (r.fresh ? '<p class="rec-fresh">' + esc(t("rec_saved")) + (trAvail() && !trOn() ? ' <a href="#einrichten" data-einr="tr">' + esc(t("rec_saved_tr")) + "</a>" : "") + "</p>" : "") +
+          (r.fresh ? '<p class="rec-fresh">' + esc(t(trOn() && trState && trState.done ? "rec_saved_trok" : "rec_saved")) + (trAvail() && !trOn() ? ' <a href="#einrichten" data-einr="tr">' + esc(t("rec_saved_tr")) + "</a>" : "") + "</p>" : "") +
           '<div class="actions"><button class="btn primary" type="button" data-share>' + esc(t("b_share")) + "</button>" +
           '<button class="btn" type="button" data-dl>' + esc(t("b_dl")) + "</button>" +
           '<button class="btn" type="button" data-proto>' + esc(t(inProto(r) ? "b_taken" : "b_proto")) + "</button>" +
@@ -892,7 +893,10 @@
     var f = $("p-aufnahmen"); f.value = (f.value ? f.value + "\n" : "") + recLine(r); saveProto(); b.textContent = t("b_taken");
   }
   var SHARE_MAX = 50 * 1048576; // Chrome teilt größere Dateien nicht (Web Share)
-  function recFallback(r, item) { downloadURL(r.url, r.name); item.querySelector(".rec-msg").textContent = t("rec_share_big"); }
+  function recFallback(r, item) {
+    downloadURL(r.url, r.name); item.querySelector(".rec-msg").textContent = t("rec_share_big");
+    if (currentView === "kontrolle") { var ke = $("k-err"); ke.textContent = t("rec_share_big"); ke.hidden = false; }
+  }
   function recById(id) { for (var i = 0; i < recordings.length; i++) if (recordings[i].id === id) return recordings[i]; return null; }
   function downloadURL(url, name) { var a = document.createElement("a"); a.href = url; a.download = name; document.body.appendChild(a); a.click(); a.remove(); }
   $("rec-list").addEventListener("click", function (e) {
@@ -903,7 +907,7 @@
       r.fresh = false; var fr = item.querySelector(".rec-fresh"); if (fr) fr.remove();
       if ((r.size || 0) > SHARE_MAX) { recFallback(r, item); return; }
       var file = new File([r.blob], r.name, { type: r.type });
-      if (navigator.canShare && navigator.canShare({ files: [file] })) navigator.share({ files: [file], title: r.name, text: r.hash ? "SHA-256: " + r.hash : r.name }).catch(function (e) { if (!e || e.name !== "AbortError") recFallback(r, item); });
+      if (navigator.canShare && navigator.canShare({ files: [file] })) navigator.share({ files: [file], title: r.name, text: r.hash ? "SHA-256: " + r.hash : r.name }).then(function () { r.sharedAt = new Date(); syncKBar(); }).catch(function (e) { if (!e || e.name !== "AbortError") recFallback(r, item); });
       else downloadURL(r.url, r.name);
     } else if (b.hasAttribute("data-dl")) {
       downloadURL(r.url, r.name);
@@ -926,14 +930,22 @@
   $("consent-yes").addEventListener("click", function () { startRecording(true, new Date()); });
   $("consent-no").addEventListener("click", function () { startRecording(false, null); });
   $("consent-cancel").addEventListener("click", function () { setRecUI("start"); });
-  $("rec-stop").addEventListener("click", stopRecording);
+  // Stopp mit Bestätigung wie im Kontrolle-Bildschirm: ein versehentlicher Tipp beendet die Aufnahme nicht.
+  var recStopArmed = 0;
+  $("rec-stop").addEventListener("click", function () {
+    var b = $("rec-stop");
+    if (!recStopArmed || Date.now() - recStopArmed < 400) { if (recStopArmed) return; recStopArmed = Date.now(); b.textContent = t("k_stop_sure"); b.classList.add("armed");
+      setTimeout(function () { recStopArmed = 0; b.textContent = t("rec_stop"); b.classList.remove("armed"); }, 3000); return; }
+    recStopArmed = 0; b.textContent = t("rec_stop"); b.classList.remove("armed"); stopRecording();
+  });
   $("consent-de").textContent = D.consent.de; $("consent-ru").textContent = D.consent.ru;
   if (IS_INAPP) recError(t("perm_inapp")); // gleich sagen, nicht erst nach dem ersten Fehlversuch
   window.addEventListener("hashchange", function () {
     if (location.hash === "#aufnahme" && pendingAct === "consent" && !recState) setRecUI("consent");
     if (location.hash === "#aufnahme" && pendingAct === "film" && !recState) startRecording(false, null);
     if (location.hash === "#aufnahme" && pendingAct === "qh") setTimeout(function () { $("qh").scrollIntoView({ block: "start" }); }, 0);
-    if (location.hash === "#kontrolle" && pendingAct === "kontrolle-filme") { kRole = "filme"; lsSet(LS_KROLE, kRole); hideK(); renderKontrolle(); }
+    if (location.hash === "#kontrolle" && pendingAct === "kontrolle-filme") { kRole = "filme"; hideK(); renderKontrolle(); }
+    if (location.hash === "#kontrolle" && pendingAct === "kontrolle" && kRole === "filme") { kRole = ownRole(); hideK(); renderKontrolle(); }
     if (location.hash === "#kontrolle" && (pendingAct === "kontrolle" || pendingAct === "kontrolle-filme") && !recState) startRecording(false, null);
     pendingAct = null;
   });
@@ -974,7 +986,9 @@
      Ein Bildschirm für die ganze Kontrolle: oben die Aufnahme, darunter je Rolle 10 Knöpfe in der Reihenfolge einer
      typischen Kontrolle. Ein Tipp zeigt einen kurzen Satz groß, das Ja/Nein und den Paragrafen – ohne Scrollen, die Aufnahme bleibt sichtbar.
      Inhalte: kontrolle.js (Kurzfassung, Stichwörter) → quick.js (volle, geprüfte Antwort). */
-  var K = D.kontrolle || null, LS_KROLE = "rb-k-rolle-v1", LS_KTEST = "rb-test-mithoeren", kRole = lsGet(LS_KROLE) || "fahrer", kCur = null, kSaved = false;
+  // Eigene Rolle (Fahrer, Beifahrer, zu Fuß). „Ich filme“ wird nie gespeichert: sonst öffnet die nächste eigene Kontrolle die Filmer-Knöpfe.
+  function ownRole() { var r = lsGet(LS_KROLE); return r && r !== "filme" && D.kontrolle && D.kontrolle.buttons[r] ? r : "fahrer"; }
+  var K = D.kontrolle || null, LS_KROLE = "rb-k-rolle-v1", LS_KTEST = "rb-test-mithoeren", kRole = ownRole(), kCur = null, kSaved = false;
   if (K && !K.buttons[kRole]) kRole = "fahrer";
   function qById(id) { var Q = D.quick || []; for (var i = 0; i < Q.length; i++) if (Q[i].id === id) return Q[i]; return null; }
   function syncKBar(clock) {
@@ -988,7 +1002,11 @@
     b.disabled = wait;
     if (on) $("k-status").textContent = (recState.r.withAudio ? t("k_rec_audio") : t("k_rec_silent")) + " · " + clock + (trState ? " · " + trText() : "");
     else if (wait) $("k-status").textContent = t("k_rec_wait");
-    else $("k-status").innerHTML = kSaved ? esc(t("k_saved")) + (trState ? " · " + esc(trText()) : "") + ' <button type="button" class="k-save" id="k-save">' + esc(t("k_sichern")) + "</button>" : esc(t("k_norec"));
+    else {
+      var last = recordings[0], shared = kSaved && last && last.sharedAt;
+      $("k-status").innerHTML = kSaved ? esc(t("k_saved")) + (trState ? " · " + esc(trText()) : "") + (shared ? " · " + esc(t("k_shared", fmtTime(last.sharedAt))) : "") +
+        ' <button type="button" class="k-save" id="k-save">' + esc(t(shared ? "k_sichern_again" : "k_sichern")) + "</button>" : esc(t("k_norec"));
+    }
   }
   function roleSeg() {
     return K.roles.map(function (r) {
@@ -1049,10 +1067,11 @@
     openBig(k.de || q.say, "", $("k-big"), k.law || q.law, "", { intro: UI !== "de" });
   });
   $("k-grid").addEventListener("click", function (e) { var b = e.target.closest("[data-k]"); if (b) showK(b.getAttribute("data-k")); });
+  $("k-thumb").addEventListener("click", function () { this.classList.toggle("big"); });
   [$("k-role"), $("einr-role")].forEach(function (el) {
     el.addEventListener("click", function (e) {
       var b = e.target.closest("[data-kr]"); if (!b) return;
-      kRole = b.getAttribute("data-kr"); lsSet(LS_KROLE, kRole); hideK(); renderKontrolle();
+      kRole = b.getAttribute("data-kr"); if (kRole !== "filme") lsSet(LS_KROLE, kRole); hideK(); renderKontrolle();
     });
   });
   $("k-status").addEventListener("click", function (e) {
@@ -1061,14 +1080,14 @@
     if (b) b.click(); else location.hash = "#aufnahme";
   });
   // Stopp nur mit Bestätigung: ein versehentlicher Tipp soll die Aufnahme nicht beenden.
-  var kStopArmed = 0, kStopT = null;
+  var kStopArmed = 0, kStopT = null, kStoppedAt = 0;
   $("k-rec").addEventListener("click", function () {
     var b = $("k-rec");
     clearTimeout(kStopT); // alter Zeitgeber darf eine neue Bestätigung nicht zurücksetzen
     if (recState && recState.rec) {
       if (!kStopArmed) { kStopArmed = Date.now(); b.textContent = t("k_stop_sure"); b.classList.add("armed"); kStopT = setTimeout(function () { kStopArmed = 0; syncKBar(); }, 3000); return; }
-      kStopArmed = 0; stopRecording();
-    } else if (!recState) startRecording(false, null);
+      kStopArmed = 0; kStoppedAt = Date.now(); stopRecording();
+    } else if (!recState && Date.now() - kStoppedAt > 1500) { $("k-err").hidden = true; startRecording(false, null); }
   });
 
   /* Stichwort-Abgleich: Wortanfänge zählen, ein Leerzeichen am Stichwort-Ende verlangt das ganze Wort.
@@ -1184,7 +1203,11 @@
     if ($("einr-test").checked) lsSet(LS_KTEST, "1"); else try { localStorage.removeItem(LS_KTEST); } catch (e) {}
     renderKontrolle();
   });
-  $("einr-done").addEventListener("click", function () { lsSet(LS_SETUP, isoDate(new Date())); renderFuerDich(); location.hash = "#jetzt"; });
+  $("einr-done").addEventListener("click", function () { lsSet(LS_SETUP, isoDate(new Date())); renderFuerDich(); location.hash = lastTab === "wissen" ? "#wissen" : "#jetzt"; });
+  // „Einmal üben“ → Kontrolle → „Menü“ führt zurück in die Einrichtung, nicht auf die Startseite
+  var kFromEinr = false;
+  $("einr-try").addEventListener("click", function () { kFromEinr = true; });
+  $("k-menu").addEventListener("click", function (e) { if (kFromEinr) { e.preventDefault(); kFromEinr = false; location.hash = "#einrichten"; } });
   $("einr-back").addEventListener("click", goBack);
 
   /* ---------- Tresor (tresor.js): verschlüsselte Kopie der laufenden Aufnahme außerhalb des Handys ----------
@@ -1219,6 +1242,7 @@
     box.innerHTML = !code
       ? '<button class="btn primary" type="button" data-tr="on">' + esc(t("einr_tr_on")) + '</button><p class="hint">' + esc(t("einr_tr_data")) + "</p>"
       : '<p class="hint">' + esc(t("einr_tr_code")) + '</p><p class="tr-code" lang="de" translate="no" id="tr-mycode">' + esc(code) + "</p>" +
+        '<p class="tr-url" lang="de" translate="no" id="tr-myurl">' + esc(location.host + location.pathname + "#tresor") + "</p>" +
         '<div class="actions"><button class="btn primary" type="button" data-tr="share">' + esc(t("einr_tr_share")) + "</button>" +
         '<a class="btn" href="#tresor">' + esc(t("einr_tr_pick")) + '</a><button class="btn ghost" type="button" data-tr="off">' + esc(t("einr_tr_off")) + "</button></div>" +
         '<p class="hint">' + esc(t("einr_tr_data")) + '</p><p class="einr-msg" id="einr-tr-msg" aria-live="polite"></p>';
@@ -1297,10 +1321,12 @@
   var protoZeitOk = false, protoFilledAt = 0;
   function syncProtoHints(o) {
     var d = $("p-datum").value;
-    $("p-when-msg").textContent = d && d > isoDate(new Date()) ? t("d_future") : protoZeitOk ? "" : t("when_check");
+    $("p-when-msg").textContent = d && d > isoDate(new Date()) ? t("d_future") : protoZeitOk ? "" : d && d !== isoDate(new Date()) ? t("when_time") : t("when_check");
     $("p-backup").hidden = !(o && o.ablauf && o.ablauf.trim()) || lsGet(LS_PROTO_SAVED) === "1";
   }
-  ["p-datum", "p-zeit"].forEach(function (id) { $(id).addEventListener("change", function () { protoZeitOk = true; saveProto(); }); });
+  // Nur die Uhrzeit bestätigt die Vorfallzeit – wer nur das Datum ändert, hat oft noch die jetzige Uhrzeit drin (Persona-Audit 26.09.2026).
+  $("p-zeit").addEventListener("change", function () { protoZeitOk = true; saveProto(); });
+  $("p-datum").addEventListener("change", function () { protoFilledAt = 0; saveProto(); });
   function loadProto() {
     var raw = lsGet(LS_PROTO), o = null;
     try { o = raw ? JSON.parse(raw) : null; } catch (e) { o = null; }
@@ -1373,8 +1399,9 @@
     b.textContent = t("gps_wait"); b.disabled = true;
     navigator.geolocation.getCurrentPosition(function (pos) {
       var la = pos.coords.latitude.toFixed(5), lo = pos.coords.longitude.toFixed(5), f = $("p-ort");
-      f.value = (f.value ? f.value + "\n" : "") + "Standort " + la + ", " + lo + " (±" + Math.round(pos.coords.accuracy) + " m) https://www.openstreetmap.org/?mlat=" + la + "&mlon=" + lo + "#map=18/" + la + "/" + lo;
-      b.textContent = t("gps"); b.disabled = false; saveProto();
+      var nw = new Date();
+      f.value = (f.value ? f.value + "\n" : "") + "Standort (ermittelt " + fmtDate(nw) + " " + fmtTime(nw) + ") " + la + ", " + lo + " (±" + Math.round(pos.coords.accuracy) + " m) https://www.openstreetmap.org/?mlat=" + la + "&mlon=" + lo + "#map=18/" + la + "/" + lo;
+      b.textContent = t("gps"); b.disabled = false; saveProto(); fieldMsg(b, t("gps_now"));
     }, function (err) {
       b.textContent = t("gps"); b.disabled = false;
       fieldMsg(b, err && err.code === 1 ? permHelp("geo") : t("geo_fail"));
@@ -1470,7 +1497,7 @@
       var hits = score(q);
       sits = hits.filter(function (r) { return r.e.kind === "s"; }).slice(0, 3).map(function (r) { return r.e.item; });
       list = hits.filter(function (r) { return r.e.kind === "c"; }).map(function (r) { return r.e.item; });
-      if (!list.length && !sits.length) {
+      if (!list.length) {
         var words = nq.split(" ").map(function (w) { return w.length > 6 ? w.slice(0, w.length - 2) : w; });
         list = D.cards.filter(function (c) {
           var hay = norm(c.title + " " + c.text + " " + c.kw.join(" ") + (c.ru ? " " + c.ru.title + " " + c.ru.text : "")).split(" ");
@@ -1592,7 +1619,7 @@
       if (pz && daysLeft(pz) >= 0) g.push(t("n_null_pz").replace("{d}", fmtDate(pz)));
     }
     if (g.length) out.push({ lv: "amber", tx: t("n_null").replace("{g}", g.join(t("n_and"))), sits: ["test", "verkehr", "escooter", "unfall"] });
-    var passK = p.nat === "eu" ? "n_pass_eu" : p.nat === "andere" ? (p.status === "asyl" ? "n_pass_asyl" : "n_pass") : "";
+    var passK = p.nat === "eu" ? "n_pass_eu" : p.nat === "andere" || (!p.nat && p.status) ? (p.status === "asyl" ? "n_pass_asyl" : "n_pass") : "";
     if (passK) out.push({ lv: "info", tx: t(passK), sits: ["personalien", "verkehr", "zoll"] });
     if (p.bau) out.push({ lv: "info", tx: t("n_bau"), sits: ["zoll", "personalien"] });
     var rank = { red: 0, amber: 1, info: 2 };
@@ -1614,7 +1641,7 @@
   }
   $("fuer-dich").addEventListener("click", function (e) { if (e.target.id === "fd-hide") { lsSet(LS_PROF_HIDE, "aus"); renderFuerDich(); } });
   function syncProfileFields() {
-    var nat = $("pf-nat").value, fs = $("pf-fs").value, ua24 = nat === "andere" && $("pf-status").value === "p24";
+    var nat = $("pf-nat").value, fs = $("pf-fs").value, ua24 = fs === "ua" && nat !== "de" && nat !== "eu" && $("pf-status").value === "p24";
     $("pf-status-f").hidden = !(nat === "andere" || (fs === "ua" && nat !== "de" && nat !== "eu"));
     $("pf-fsdatum-f").hidden = !(fs === "de" || fs === "eu");
     $("pf-seit-f").hidden = !(fs === "dritt" || (fs === "ua" && !ua24));
