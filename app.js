@@ -80,7 +80,7 @@
       rec_nocam: "Keine passende Kamera gefunden.", rec_busy: "Die Kamera ist belegt. Andere Kamera-Apps schließen und noch einmal tippen.", rec_camfail: "Kamera konnte nicht starten ({x}).",
       rec_storage: "Speichern auf dem Gerät klappt nicht (Speicher voll oder privater Modus). Die Aufnahme läuft weiter – nach dem Stopp sofort „Sichern“.",
       rec_nopersist: "Dieses Gerät speichert Aufnahmen nicht dauerhaft. Nach dem Stopp sofort „Sichern“.", rec_empty: "Die Aufnahme ist leer. Bitte noch einmal starten.",
-      recs_h: "Auf diesem Gerät", when_time: "Uhrzeit prüfen – sie steht noch auf der jetzigen Zeit, nicht auf der des Vorfalls.", gps_now: "Das ist dein jetziger Standort – nur richtig, wenn du noch am Ort der Kontrolle bist.", recs_none: "Auf diesem Handy sind noch keine Videos. Handy weg? Oben „Video aus dem Tresor holen“.", rec_saved_trok: "Auf dem Handy und im Tresor gesichert (30 Tage). Zur Sicherheit zusätzlich „Sichern“.", recs_one: "Aufnahme", recs_many: "Aufnahmen", recs_hint: "„Sichern“ schickt die Originaldatei an dich selbst: in Telegram „Als Datei senden“, in WhatsApp als „Dokument“ – sonst wird das Video verkleinert. Oder in Google Drive.",
+      recs_h: "Auf diesem Gerät", gps_old: "Der Vorfall war nicht heute – dein jetziger Standort ist wahrscheinlich nicht der Ort der Kontrolle. Trotzdem einfügen? Nochmal tippen.", gps_anyway: "Trotzdem einfügen", rec_in_tr: "Auch im Tresor ✓", tr_old_not_in: "Dein letztes Video ist noch nicht im Tresor (nur Videos ab jetzt). Schick es mit „Sichern“ an dich selbst.", when_time: "Uhrzeit prüfen – sie steht noch auf der jetzigen Zeit, nicht auf der des Vorfalls.", gps_now: "Das ist dein jetziger Standort – nur richtig, wenn du noch am Ort der Kontrolle bist.", recs_none: "Auf diesem Handy sind noch keine Videos. Handy weg? Oben „Video aus dem Tresor holen“.", rec_saved_trok: "Auf dem Handy und im Tresor gesichert (30 Tage). Zur Sicherheit zusätzlich „Sichern“.", recs_one: "Aufnahme", recs_many: "Aufnahmen", recs_hint: "„Sichern“ schickt die Originaldatei an dich selbst: in Telegram „Als Datei senden“, in WhatsApp als „Dokument“ – sonst wird das Video verkleinert. Oder in Google Drive.",
       rec_saved: "Gespeichert auf diesem Handy. Jetzt „Sichern“ tippen – falls das Handy abgenommen wird.", rec_share_big: "Zu groß zum direkten Teilen (über 50 MB). Die Datei liegt jetzt unter „Downloads“ – dort antippen › Teilen › Google Drive oder Telegram (als Datei).",
       rec_cut: "Aufnahme gestoppt – das Handy hat die Kamera beendet ({x} Uhr). Das Video bis dahin ist gespeichert.", rec_try_silent: "Oder ohne Ton filmen: „Video ohne Ton starten“ tippen.",
       perm_inapp: "Du bist im Browser von Telegram, WhatsApp o. Ä. Hier sind Kamera und Mikrofon oft gesperrt und Aufnahmen gehen leicht verloren. Öffne die Seite in Chrome: Menü ⋮ › „Im Browser öffnen“.",
@@ -201,7 +201,7 @@
       rec_nocam: "Подходящая камера не найдена.", rec_busy: "Камера занята. Закрой другие приложения с камерой и нажми ещё раз.", rec_camfail: "Камера не запустилась ({x}).",
       rec_storage: "Сохранить на телефоне не получается (память заполнена или приватный режим). Запись продолжается — после остановки сразу нажми «Сохранить копию».",
       rec_nopersist: "Этот телефон не хранит записи надолго. После остановки сразу нажми «Сохранить копию».", rec_empty: "Запись пустая. Начни ещё раз.",
-      recs_h: "На этом телефоне", when_time: "Проверь время — там всё ещё текущее время, а не время случая.", gps_now: "Это твоё место сейчас — верно, только если ты ещё там, где была проверка.", recs_none: "На этом телефоне пока нет видео. Телефон забрали? Выше — «Забрать видео из сейфа».", rec_saved_trok: "Сохранено на телефоне и в сейфе (30 дней). Для надёжности нажми ещё «Сохранить копию».", recs_one: "запись", recs_few: "записи", recs_many: "записей", recs_hint: "«Сохранить копию» отправляет оригинальный файл: в Telegram — «Отправить как файл», в WhatsApp — как «Документ», иначе видео сожмётся. Или в Google Drive.",
+      recs_h: "На этом телефоне", gps_old: "Случай был не сегодня — твоё место сейчас, скорее всего, не место проверки. Всё равно вставить? Нажми ещё раз.", gps_anyway: "Всё равно вставить", rec_in_tr: "Есть и в сейфе ✓", tr_old_not_in: "Последнего видео в сейфе нет (там только видео с этого момента). Отправь его себе через «Сохранить копию».", when_time: "Проверь время — там всё ещё текущее время, а не время случая.", gps_now: "Это твоё место сейчас — верно, только если ты ещё там, где была проверка.", recs_none: "На этом телефоне пока нет видео. Телефон забрали? Выше — «Забрать видео из сейфа».", rec_saved_trok: "Сохранено на телефоне и в сейфе (30 дней). Для надёжности нажми ещё «Сохранить копию».", recs_one: "запись", recs_few: "записи", recs_many: "записей", recs_hint: "«Сохранить копию» отправляет оригинальный файл: в Telegram — «Отправить как файл», в WhatsApp — как «Документ», иначе видео сожмётся. Или в Google Drive.",
       rec_saved: "Сохранено на этом телефоне. Теперь нажми «Сохранить копию» — на случай, если телефон заберут.", rec_share_big: "Файл слишком большой для прямой отправки (больше 50 МБ). Он сохранён в «Загрузки» — открой его там › Поделиться › Google Drive или Telegram (как файл).",
       rec_cut: "Запись остановлена — телефон отключил камеру ({x}). Видео до этого момента сохранено.", rec_try_silent: "Или снимай без звука: нажми «Начать видео без звука».",
       perm_inapp: "Ты во встроенном браузере Telegram, WhatsApp или другого мессенджера. Здесь камера и микрофон часто заблокированы, а записи легко потерять. Открой страницу в Chrome: меню ⋮ › «Открыть в браузере».",
@@ -431,7 +431,13 @@
     } catch (e) { bigSpeakUI(false); }
   });
   function hideBig() { stopSpeaking(); $("big").hidden = true; setInert(false); if (!needAwake()) releaseAwake(); if (lastFocus) { try { lastFocus.focus({ preventScroll: true }); } catch (e) {} } }
-  function closeBig() { if ($("big").hidden) return; if (history.state && history.state.rbBig) history.back(); else hideBig(); }
+  var bigFromK = false;
+  function closeBig(e) {
+    if ($("big").hidden) return;
+    var both = bigFromK && e && e.type === "click" && history.state && history.state.rbBig; bigFromK = false;
+    if (both) { history.go(-2); return; } // Großbild und Antwort zu – die Knöpfe stehen oben
+    if (history.state && history.state.rbBig) history.back(); else hideBig();
+  }
   window.addEventListener("popstate", function () { if (!$("big").hidden) hideBig(); });
   $("big-close").addEventListener("click", closeBig);
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeBig(); });
@@ -789,7 +795,7 @@
         rec.onstop = function () { if (tv) tv.end(); finishRecording(r, chunks, stream); };
         try { rec.start(1000); } catch (e) { stream.getTracks().forEach(function (t) { t.stop(); }); throw e; }
         r.type = baseType(rec.mimeType || mime); r.name = fileName(r);
-        trState = null; tv = trOn() ? TR.begin({ started: started, type: r.type, withAudio: !!withAudio, consentAt: consentAt }, function (st) { trState = st; trShow(); syncKBar(); }) : null;
+        trState = null; tv = trOn() ? TR.begin({ started: started, type: r.type, withAudio: !!withAudio, consentAt: consentAt }, function (st) { trState = st; trShow(); syncKBar(); if (st.done && !r.trDone) { r.trDone = true; if (r.status === "done" && storageOK) putRec(r).catch(function () {}); renderRecs(); } }) : null;
         if (tv) r.tresor = tv.rec;
         trShow();
         recState = { rec: rec, r: r, timer: setInterval(tick, 500), fromK: currentView === "kontrolle" };
@@ -824,7 +830,7 @@
   }
   function finishRecording(r, chunks, stream) {
     if (recState && recState.r === r) { clearInterval(recState.timer); recState = null; }
-    stream.getTracks().forEach(function (t) { t.stop(); }); $("preview").srcObject = null; $("k-thumb").srcObject = null; kSaved = true;
+    stream.getTracks().forEach(function (t) { t.stop(); }); $("preview").srcObject = null; $("k-thumb").srcObject = null; $("k-thumb").classList.remove("big"); kSaved = true;
     if (!needAwake()) releaseAwake();
     updateRecFloat(); setRecUI("start");
     if (r.cut) { recError(t("rec_cut", fmtTime(new Date()))); try { if (navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch (e) {} }
@@ -878,7 +884,8 @@
           '<video src="' + r.url + '" controls playsinline preload="metadata"></video>' +
           '<p class="rec-meta">' + esc(recMeta(r)) + "</p>" +
           '<p class="hash">SHA-256: ' + (r.hash ? esc(r.hash) : esc(r.noHash ? t("hash_na") : t("hash_wait"))) + "</p>" +
-          (r.fresh ? '<p class="rec-fresh">' + esc(t(trOn() && trState && trState.done ? "rec_saved_trok" : "rec_saved")) + (trAvail() && !trOn() ? ' <a href="#einrichten" data-einr="tr">' + esc(t("rec_saved_tr")) + "</a>" : "") + "</p>" : "") +
+          (r.trDone && !r.fresh ? '<p class="rec-tr-ok">' + esc(t("rec_in_tr")) + "</p>" : "") +
+          (r.fresh ? '<p class="rec-fresh">' + esc(t(r.trDone ? "rec_saved_trok" : "rec_saved")) + (trAvail() && !trOn() ? ' <a href="#einrichten" data-einr="tr">' + esc(t("rec_saved_tr")) + "</a>" : "") + "</p>" : "") +
           '<div class="actions"><button class="btn primary" type="button" data-share>' + esc(t("b_share")) + "</button>" +
           '<button class="btn" type="button" data-dl>' + esc(t("b_dl")) + "</button>" +
           '<button class="btn" type="button" data-proto>' + esc(t(inProto(r) ? "b_taken" : "b_proto")) + "</button>" +
@@ -998,24 +1005,26 @@
     $("k-dot").hidden = !on; $("k-thumb").hidden = !on;
     $("k-bar").classList.toggle("on", on);
     var b = $("k-rec");
-    if (!(on && kStopArmed)) { b.textContent = on ? t("k_stop") : t("k_rec"); b.className = "btn k-recbtn " + (on ? "stop" : "primary"); }
+    if (!(on && kStopArmed)) { b.textContent = on ? t("k_stop") : t("k_rec"); b.className = "btn k-recbtn " + (on ? "stop" : kSaved ? "" : "primary"); }
+    $("k-bar").classList.toggle("armed", !!(on && kStopArmed));
     b.disabled = wait;
     if (on) $("k-status").textContent = (recState.r.withAudio ? t("k_rec_audio") : t("k_rec_silent")) + " · " + clock + (trState ? " · " + trText() : "");
     else if (wait) $("k-status").textContent = t("k_rec_wait");
     else {
       var last = recordings[0], shared = kSaved && last && last.sharedAt;
       $("k-status").innerHTML = kSaved ? esc(t("k_saved")) + (trState ? " · " + esc(trText()) : "") + (shared ? " · " + esc(t("k_shared", fmtTime(last.sharedAt))) : "") +
-        ' <button type="button" class="k-save" id="k-save">' + esc(t(shared ? "k_sichern_again" : "k_sichern")) + "</button>" : esc(t("k_norec"));
+        ' <button type="button" class="btn primary k-save2" id="k-save">' + esc(t(shared ? "k_sichern_again" : "k_sichern")) + "</button>" : esc(t("k_norec"));
     }
   }
-  function roleSeg() {
-    return K.roles.map(function (r) {
-      return '<button type="button" class="seg-b" data-kr="' + r[0] + '" aria-pressed="' + (kRole === r[0]) + '">' + esc(UI === "ru" ? r[2] : r[1]) + "</button>";
+  function roleSeg(sel, own) {
+    sel = sel || kRole;
+    return K.roles.filter(function (r) { return !own || r[0] !== "filme"; }).map(function (r) {
+      return '<button type="button" class="seg-b" data-kr="' + r[0] + '" aria-pressed="' + (sel === r[0]) + '">' + esc(UI === "ru" ? r[2] : r[1]) + "</button>";
     }).join("");
   }
   function renderKontrolle() {
     if (!K) { $("k-start").hidden = true; $("k-start-filme").hidden = true; return; }
-    $("k-role").innerHTML = roleSeg(); $("einr-role").innerHTML = roleSeg();
+    $("k-role").innerHTML = roleSeg(); $("einr-role").innerHTML = roleSeg(ownRole(), true);
     // Russische Oberfläche: darunter klein das deutsche Stichwort – das hört man vom Beamten.
     $("k-grid").innerHTML = (K.buttons[kRole] || []).map(function (b) {
       var q = qById(b[0]); if (!q) return "";
@@ -1046,6 +1055,7 @@
     $("k-full").textContent = nb(q.say); $("k-full-ru").textContent = ru && q.ru ? nb(q.ru.say) : ""; $("k-full-ru").hidden = !ru;
     $("k-why").textContent = nb(L(q, "why")); $("k-lawfull").textContent = nb(q.law);
     if (!noPush) { $("k-more").hidden = true; $("k-more-b").setAttribute("aria-expanded", "false"); }
+    $("k-thumb").classList.remove("big");
     $("k-ans").hidden = false; $("v-kontrolle").classList.add("ans-on");
     [].forEach.call(document.querySelectorAll("#k-grid .k-b"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-k") === id ? "true" : "false"); });
     // Eigener Verlaufseintrag: Die Zurück-Taste schließt die Antwort, nicht die Kontrolle.
@@ -1064,7 +1074,7 @@
   // Zeigen: nur der deutsche Satz und der Paragraf für den Beamten; bei russischer Oberfläche mit „Ich spreche wenig Deutsch“.
   $("k-big").addEventListener("click", function () {
     var q = qById(kCur), k = (K && K.kurz[kCur]) || {}; if (!q) return;
-    openBig(k.de || q.say, "", $("k-big"), k.law || q.law, "", { intro: UI !== "de" });
+    openBig(k.de || q.say, "", $("k-big"), k.law || q.law, "", { intro: UI !== "de" }); bigFromK = true;
   });
   $("k-grid").addEventListener("click", function (e) { var b = e.target.closest("[data-k]"); if (b) showK(b.getAttribute("data-k")); });
   $("k-thumb").addEventListener("click", function () { this.classList.toggle("big"); });
@@ -1085,7 +1095,7 @@
     var b = $("k-rec");
     clearTimeout(kStopT); // alter Zeitgeber darf eine neue Bestätigung nicht zurücksetzen
     if (recState && recState.rec) {
-      if (!kStopArmed) { kStopArmed = Date.now(); b.textContent = t("k_stop_sure"); b.classList.add("armed"); kStopT = setTimeout(function () { kStopArmed = 0; syncKBar(); }, 3000); return; }
+      if (!kStopArmed) { kStopArmed = Date.now(); $("k-thumb").classList.remove("big"); b.textContent = t("k_stop_sure"); b.classList.add("armed"); $("k-bar").classList.add("armed"); kStopT = setTimeout(function () { kStopArmed = 0; syncKBar(); }, 3000); return; }
       kStopArmed = 0; kStoppedAt = Date.now(); stopRecording();
     } else if (!recState && Date.now() - kStoppedAt > 1500) { $("k-err").hidden = true; startRecording(false, null); }
   });
@@ -1182,7 +1192,7 @@
      Kamera-Erlaubnis vorher holen: Sonst erscheint die Browser-Frage erst, wenn der Polizist am Fenster steht. */
   var LS_SETUP = "rb-einrichten-v1";
   function renderEinrichten() {
-    $("einr-role").innerHTML = K ? roleSeg() : ""; renderEinrTr();
+    $("einr-role").innerHTML = K ? roleSeg(ownRole(), true) : ""; renderEinrTr();
     $("einr-test").checked = lsGet(LS_KTEST) === "1";
     $("einr-inst").innerHTML = $("install-help").innerHTML;
     try {
@@ -1206,7 +1216,7 @@
   $("einr-done").addEventListener("click", function () { lsSet(LS_SETUP, isoDate(new Date())); renderFuerDich(); location.hash = lastTab === "wissen" ? "#wissen" : "#jetzt"; });
   // „Einmal üben“ → Kontrolle → „Menü“ führt zurück in die Einrichtung, nicht auf die Startseite
   var kFromEinr = false;
-  $("einr-try").addEventListener("click", function () { kFromEinr = true; });
+  $("einr-try").addEventListener("click", function () { kFromEinr = true; if (kRole === "filme") { kRole = ownRole(); hideK(); renderKontrolle(); } });
   $("k-menu").addEventListener("click", function (e) { if (kFromEinr) { e.preventDefault(); kFromEinr = false; location.hash = "#einrichten"; } });
   $("einr-back").addEventListener("click", goBack);
 
@@ -1251,7 +1261,7 @@
   $("einr-tr").addEventListener("click", function (e) {
     var b = e.target.closest("[data-tr]"); if (!b || !TR) return;
     var a = b.getAttribute("data-tr");
-    if (a === "on") { TR.setCode(TR.newCode()); renderEinrTr(); return; }
+    if (a === "on") { TR.setCode(TR.newCode()); renderEinrTr(); renderRecs(); if (recordings.length && !recordings[0].trDone) $("einr-tr-msg").textContent = t("tr_old_not_in"); return; }
     if (a === "share") {
       var text = t("tr_share_text", TR.getCode()) + " " + trLink();
       if (navigator.share) navigator.share({ title: t("einr_tr"), text: text }).catch(function () {});
@@ -1271,7 +1281,7 @@
   }
   function trName(r) {
     var d = new Date(r.meta.started), ext = /webm/.test(r.meta.type) ? "webm" : "mp4";
-    return "tresor_" + isoDate(d) + "_" + pad(d.getHours()) + "-" + pad(d.getMinutes()) + "-" + pad(d.getSeconds()) + (r.meta.withAudio ? "_mit-ton" : "_ohne-ton") + "." + ext;
+    return "kontrolle_" + isoDate(d) + "_" + pad(d.getHours()) + "-" + pad(d.getMinutes()) + "-" + pad(d.getSeconds()) + (r.meta.withAudio ? "_mit-ton" : "_ohne-ton") + "." + ext;
   }
   function findTresor() {
     var msg = $("tr-msg"), list = $("tr-list"), code = TR && TR.norm($("tr-code").value);
@@ -1322,7 +1332,7 @@
   function syncProtoHints(o) {
     var d = $("p-datum").value;
     $("p-when-msg").textContent = d && d > isoDate(new Date()) ? t("d_future") : protoZeitOk ? "" : d && d !== isoDate(new Date()) ? t("when_time") : t("when_check");
-    $("p-backup").hidden = !(o && o.ablauf && o.ablauf.trim()) || lsGet(LS_PROTO_SAVED) === "1";
+    $("p-backup").hidden = !(o && o.ablauf && o.ablauf.trim()) || lsGet(LS_PROTO_SAVED) === protoStamp();
   }
   // Nur die Uhrzeit bestätigt die Vorfallzeit – wer nur das Datum ändert, hat oft noch die jetzige Uhrzeit drin (Persona-Audit 26.09.2026).
   $("p-zeit").addEventListener("change", function () { protoZeitOk = true; saveProto(); });
@@ -1369,7 +1379,8 @@
   }
   $("p-copy").addEventListener("click", function () { copyText(protoText(), $("p-msg")); });
   $("p-share").addEventListener("click", function () { shareText("Gedächtnisprotokoll", protoText(), $("p-msg")); protoSaved(); });
-  function protoSaved() { lsSet(LS_PROTO_SAVED, "1"); $("p-backup").hidden = true; }
+  function protoStamp() { return protoText().replace(/^.*(Erstellt am|Создано).*$/m, ""); }
+  function protoSaved() { lsSet(LS_PROTO_SAVED, protoStamp()); $("p-backup").hidden = true; }
   $("p-file").addEventListener("click", function () {
     var blob = new Blob([protoText()], { type: "text/plain;charset=utf-8" });
     downloadURL(URL.createObjectURL(blob), "gedaechtnisprotokoll_" + ($("p-datum").value || isoDate(new Date())) + ".txt");
@@ -1391,11 +1402,17 @@
   });
   // Meldungen direkt unter dem Feld, dessen Knopf getippt wurde – nicht irgendwo unten auf der Seite.
   function fieldMsg(btn, text) { var m = btn.closest(".field").querySelector(".field-msg"); if (m) m.textContent = text || ""; }
+  $("p-ort").addEventListener("input", function () { if (!/Standort \(ermittelt /.test(this.value)) fieldMsg($("p-gps"), ""); });
   $("p-gps").addEventListener("click", function () {
     var b = $("p-gps");
     if (b.disabled) return;
     fieldMsg(b, "");
     if (!navigator.geolocation) { fieldMsg(b, t("geo_na")); return; }
+    if ($("p-datum").value && $("p-datum").value !== isoDate(new Date()) && !b._ok) {
+      b._ok = true; fieldMsg(b, t("gps_old")); b.textContent = t("gps_anyway");
+      setTimeout(function () { b._ok = false; if (!b.disabled) b.textContent = t("gps"); }, 6000); return;
+    }
+    b._ok = false;
     b.textContent = t("gps_wait"); b.disabled = true;
     navigator.geolocation.getCurrentPosition(function (pos) {
       var la = pos.coords.latitude.toFixed(5), lo = pos.coords.longitude.toFixed(5), f = $("p-ort");
