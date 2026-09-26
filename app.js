@@ -1066,7 +1066,8 @@
   });
 
   /* Stichwort-Abgleich: Wortanfänge zählen, ein Leerzeichen am Stichwort-Ende verlangt das ganze Wort.
-     Punkte = Länge der gefundenen Stichwörter; es gewinnt der Knopf mit den meisten, ab 3 („моч“). */
+     Punkte = Länge der gefundenen Stichwörter; es gewinnt der Knopf mit den meisten, ab 3 („моч“).
+     Trifft ein Ausschluss-Stamm („nicht“-Liste des Knopfs), scheidet der Knopf aus. */
   function kScore(n, stems) {
     var sc = 0;
     stems.forEach(function (st) { var w = norm(st); if (w && n.indexOf(" " + w + (/ $/.test(st) ? " " : "")) > -1) sc += w.length; });
@@ -1077,8 +1078,9 @@
     var n = " " + norm(text) + " ", best = null, bs = 2, seen = {};
     (all ? K.roles.map(function (r) { return r[0]; }) : [kRole]).forEach(function (role) {
       (K.buttons[role] || []).concat((K.extra && K.extra[role]) || []).forEach(function (b) {
-        var id = b[0], stems = b[3] || b[1];
+        var id = b[0], stems = b[3] || b[1], no = b[3] ? b[4] : b[2];
         if (seen[id]) return; seen[id] = 1;
+        if (no && kScore(n, no)) return; // Ausschluss: Verneinung oder anderer Sinn („Sie dürfen gern filmen“)
         var sc = kScore(n, stems); if (sc > bs) { bs = sc; best = id; }
       });
     });
