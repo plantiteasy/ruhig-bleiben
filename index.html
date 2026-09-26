@@ -152,6 +152,7 @@
 
   <!-- Fragen -->
   <section class="view" id="v-fragen" hidden aria-labelledby="h-fragen">
+    <button class="back" type="button" id="fragen-back" data-t="back">Zurück</button>
     <h1 id="h-fragen" data-t="fragen_h">Frage stellen</h1>
     <p class="lead" data-t="fragen_lead">Tippe auf das Mikrofon und frag kurz, zum Beispiel „Darf ich filmen?“ oder «Можно ли снимать?». Die Antwort erscheint als Text, sobald du fertig gesprochen hast. Danach hört das Mikrofon noch 5 Sekunden zu, falls du etwas ergänzen willst. Verarbeitet wird nur deine Frage.</p>
     <div class="seg" role="group" aria-label="Sprache der Spracheingabe" data-t-aria="seg_ask_aria">
@@ -175,6 +176,7 @@
 
   <!-- Aufnahme -->
   <section class="view" id="v-aufnahme" hidden aria-labelledby="h-aufnahme">
+    <button class="back" type="button" id="rec-back" data-t="back">Zurück</button>
     <h1 id="h-aufnahme" data-t="rec_h">Aufnahme</h1>
     <div id="rec-start">
       <p class="lead" data-t="rec_lead">Video ohne Ton ist erlaubt, solange du nicht störst. Ton nur mit Einwilligung aller, die sprechen.</p>
@@ -237,6 +239,7 @@
   <section class="view" id="v-danach" hidden aria-labelledby="h-danach">
     <h1 id="h-danach" data-t="danach_h">Danach</h1>
     <p class="lead" data-t="danach_lead">Noch am selben Tag: Gedächtnisprotokoll. Diktieren geht mit dem Mikrofon neben jedem Feld.</p>
+    <a class="btn danach-recs" href="#aufnahme" data-scroll="rec-list" id="danach-recs" data-t="danach_recs">Meine Videos und Tresor →</a>
     <div class="seg" role="group" aria-label="Sprache fürs Diktieren" data-t-aria="seg_dict_aria">
       <button type="button" class="seg-b" data-lang="de-DE" aria-pressed="true" data-t="dict_de">Diktat Deutsch</button>
       <button type="button" class="seg-b" data-lang="ru-RU" aria-pressed="false" data-t="dict_ru">Диктовка по-русски</button>
@@ -303,11 +306,17 @@
 
   <!-- Wissen -->
   <section class="view" id="v-wissen" hidden aria-labelledby="h-wissen">
-    <h1 id="h-wissen" data-t="wissen_h">Wissen</h1>
+    <h1 id="h-wissen" data-t="vorb_h">Vorbereiten</h1>
+    <p class="lead" data-t="vorb_lead">In Ruhe, bevor etwas passiert: Frage stellen, Rechte nachlesen, App einrichten.</p>
+    <div class="quick vorb-quick">
+      <a class="btn primary" href="#fragen" id="vorb-ask" data-t="q_ask">Frage stellen</a>
+      <a class="btn" href="#einrichten" data-t="vorb_einr">Einrichten</a>
+      <a class="btn prof-link" href="#profil" data-t="prof_open">Mein Profil</a>
+    </div>
+    <h2 class="vorb-h2" data-t="wissen_h">Wissen</h2>
     <label for="w-q" class="sr" data-t="w_label">Wissen durchsuchen</label>
     <input id="w-q" type="search" placeholder="Suchen: Ausweis, filmen, Messer …" data-t-ph="w_ph" autocomplete="off">
     <div class="chips" id="w-cats" role="group" aria-label="Themen" data-t-aria="w_cats"></div>
-    <a class="btn prof-link" href="#profil" data-t="prof_open">Mein Profil</a>
     <div id="w-list" class="w-list"></div>
     <p class="err" id="w-empty" hidden data-t="w_empty">Nichts gefunden. Versuch: pusten, Ausweis, filmen, Handy, Beschwerde.</p>
     <div class="note-box">
@@ -323,10 +332,8 @@
 
 <nav class="tabs" aria-label="Bereiche" data-t-aria="tabs_aria">
   <a href="#jetzt" data-tab="jetzt" data-t="tab_jetzt">Jetzt</a>
-  <a href="#fragen" data-tab="fragen" data-t="tab_fragen">Fragen</a>
-  <a href="#aufnahme" data-tab="aufnahme" data-t="tab_aufnahme">Aufnahme</a>
   <a href="#danach" data-tab="danach" data-t="tab_danach">Danach</a>
-  <a href="#wissen" data-tab="wissen" data-t="tab_wissen">Wissen</a>
+  <a href="#wissen" data-tab="wissen" data-t="tab_vorb">Vorbereiten</a>
 </nav>
 
 <div class="bigscreen" id="big" hidden role="dialog" aria-modal="true" aria-labelledby="big-de">

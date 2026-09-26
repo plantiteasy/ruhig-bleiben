@@ -28,7 +28,7 @@
   var T = {
     de: {
       meta: "Prototyp · Baden-Württemberg · Stand 25.09.2026 · keine Rechtsberatung", install: "Installieren", install_app: "App installieren",
-      tab_jetzt: "Jetzt", tab_fragen: "Fragen", tab_aufnahme: "Aufnahme", tab_danach: "Danach", tab_wissen: "Wissen", tabs_aria: "Bereiche",
+      tab_jetzt: "Jetzt", tab_fragen: "Fragen", tab_aufnahme: "Aufnahme", tab_danach: "Danach", tab_wissen: "Wissen", tab_vorb: "Vorbereiten", vorb_h: "Vorbereiten", vorb_lead: "In Ruhe, bevor etwas passiert: Frage stellen, Rechte nachlesen, App einrichten.", vorb_einr: "Einrichten", danach_recs: "Meine Videos und Tresor →", tabs_aria: "Bereiche",
       jetzt_h: "Was passiert gerade?", jetzt_lead: "Tippe auf deine Situation. Du bekommst sofort, was du sagen und was du lassen solltest.",
       q_ask: "Frage stellen", q_proto: "Protokoll", back: "Zurück", close: "Schließen",
       b_say: "Sag", b_do: "Tu", b_dont: "Lass", tap: "Groß anzeigen",
@@ -149,7 +149,7 @@
     },
     ru: {
       meta: "Прототип · Баден-Вюртемберг · на 25.09.2026 · не юридическая консультация", install: "Установить", install_app: "Установить приложение",
-      tab_jetzt: "Сейчас", tab_fragen: "Вопрос", tab_aufnahme: "Запись", tab_danach: "После", tab_wissen: "Знания", tabs_aria: "Разделы",
+      tab_jetzt: "Сейчас", tab_fragen: "Вопрос", tab_aufnahme: "Запись", tab_danach: "После", tab_wissen: "Знания", tab_vorb: "Подготовка", vorb_h: "Подготовка", vorb_lead: "Спокойно, заранее: задать вопрос, прочитать о правах, настроить приложение.", vorb_einr: "Настроить", danach_recs: "Мои видео и сейф →", tabs_aria: "Разделы",
       jetzt_h: "Что происходит?", jetzt_lead: "Нажми на свою ситуацию — сразу увидишь, что сказать и чего не делать.",
       q_ask: "Задать вопрос", q_proto: "Протокол", back: "Назад", close: "Закрыть",
       b_say: "Скажи", b_do: "Делай", b_dont: "Не делай", tap: "Показать крупно",
@@ -298,7 +298,8 @@
     if (name !== currentView) { stopListening(); if (name !== "fragen") stopSpeaking(); }
     currentView = name;
     views.forEach(function (v) { $("v-" + v).hidden = v !== name; });
-    var tab = name === "situation" || name === "profil" ? lastTab : name === "kontrolle" || name === "einrichten" ? "jetzt" : name === "tresor" ? "aufnahme" : name; lastTab = tab;
+    var TAB = { jetzt: "jetzt", kontrolle: "jetzt", einrichten: "jetzt", danach: "danach", tresor: "danach", wissen: "wissen", fragen: "wissen", profil: "wissen" };
+    var tab = name === "situation" ? lastTab : name === "aufnahme" ? (lastTab === "danach" ? "danach" : "jetzt") : TAB[name] || "jetzt"; lastTab = tab;
     document.body.classList.toggle("k-mode", name === "kontrolle"); // Vollbild: ohne Kopf und Tabs, Fußleiste mit Stichwort und Menü
     [].forEach.call(document.querySelectorAll(".tabs a"), function (a) {
       if (a.getAttribute("data-tab") === tab) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
@@ -317,9 +318,12 @@
     if (v === "aufnahme") renderTrCard();
     show(v);
     if (v === "einrichten") focusEinrTr();
+    if (pendingScroll) { var ps = $(pendingScroll); pendingScroll = null; if (ps) ps.scrollIntoView({ block: "start" }); }
     if (v === "tresor") openTresor();
   }
   window.addEventListener("hashchange", route);
+  var pendingScroll = null;
+  document.addEventListener("click", function (e) { var a = e.target.closest && e.target.closest("[data-scroll]"); if (a) pendingScroll = a.getAttribute("data-scroll"); }, true);
 
   /* ---------- Situations ---------- */
   function findSituation(id) { for (var i = 0; i < D.situations.length; i++) if (D.situations[i].id === id) return D.situations[i]; return null; }
@@ -386,6 +390,8 @@
   window.addEventListener("scroll", function () { scrollPos[depth] = window.scrollY; }, { passive: true });
   function goBack() { if (depth > 0) history.back(); else { replacing = true; location.replace("#jetzt"); } }
   $("sit-back").addEventListener("click", goBack);
+  $("fragen-back").addEventListener("click", goBack);
+  $("rec-back").addEventListener("click", goBack);
 
   /* ---------- Big phrase screen ---------- */
   var lastFocus = null, wakeLock = null;

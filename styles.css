@@ -143,12 +143,11 @@ input:focus-visible,textarea:focus-visible{border-color:var(--accent);box-shadow
 .w-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:grid;gap:10px}
 .w-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 10px;align-items:flex-start}
 
-.tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;display:grid;grid-template-columns:repeat(5,1fr);
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:10;display:grid;grid-template-columns:repeat(3,1fr);
   background:color-mix(in srgb,var(--surface) 94%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);
   border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
-.tabs a{height:var(--tabs-h);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--muted);text-decoration:none}
+.tabs a{height:var(--tabs-h);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:600;color:var(--muted);text-decoration:none}
 .tabs a[aria-current="page"]{color:var(--accent)}
-.tabs a[data-tab="aufnahme"]{color:var(--stop)}
 .tabs a[aria-current="page"]{box-shadow:inset 0 3px 0 currentColor;font-weight:750}
 
 /* Großbild: lange Sätze und Querformat – scrollbar statt abgeschnitten, Text bleibt unter „Schließen“ */
@@ -344,3 +343,8 @@ body.k-mode main{padding-top:calc(env(safe-area-inset-top,0px) + 8px)}
 .rec-tr{font-size:14px;font-weight:600;color:var(--right);margin:0}
 #tr-code{font-family:var(--mono);font-size:20px;letter-spacing:.05em;text-transform:uppercase}
 .einr-tr{display:grid;gap:8px}
+
+/* Paket E: Vorbereiten-Kopf, Weg zu den Videos in „Danach“ */
+.vorb-quick{margin:4px 0 18px}
+.vorb-h2{margin-top:6px}
+.danach-recs{display:block;margin:0 0 16px;text-align:center}
