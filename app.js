@@ -80,7 +80,7 @@
       rec_nocam: "Keine passende Kamera gefunden.", rec_busy: "Die Kamera ist belegt. Andere Kamera-Apps schließen und noch einmal tippen.", rec_camfail: "Kamera konnte nicht starten ({x}).",
       rec_storage: "Speichern auf dem Gerät klappt nicht (Speicher voll oder privater Modus). Die Aufnahme läuft weiter – nach dem Stopp sofort „Sichern“.",
       rec_nopersist: "Dieses Gerät speichert Aufnahmen nicht dauerhaft. Nach dem Stopp sofort „Sichern“.", rec_empty: "Die Aufnahme ist leer. Bitte noch einmal starten.",
-      recs_h: "Auf diesem Gerät", k_tr_srv: "Tresor-Server gestört – gesichert bis {x}", rec_tr_miss: "Nicht vollständig im Tresor – nur auf diesem Handy. Mit „Sichern“ an dich selbst schicken.", k_nohear: "Nichts verstanden – tippe unten auf den passenden Knopf.", sr_net_k: "Spracheingabe braucht Internet. Tippe auf einen Knopf – die Antworten gehen auch offline.", sr_blocked_k: "Spracheingabe ist blockiert. Tippe auf einen Knopf.", sr_none_k: "Dieser Browser hat keine Spracheingabe. Tippe auf einen Knopf.", gps_old: "Der Vorfall war nicht heute – dein jetziger Standort ist wahrscheinlich nicht der Ort der Kontrolle. Trotzdem einfügen? Nochmal tippen.", gps_anyway: "Trotzdem einfügen", rec_in_tr: "Auch im Tresor ✓", tr_old_not_in: "Dein letztes Video ist noch nicht im Tresor (nur Videos ab jetzt). Schick es mit „Sichern“ an dich selbst.", when_time: "Uhrzeit prüfen – sie steht noch auf der jetzigen Zeit, nicht auf der des Vorfalls.", gps_now: "Das ist dein jetziger Standort – nur richtig, wenn du noch am Ort der Kontrolle bist.", recs_none: "Auf diesem Handy sind noch keine Videos. Handy weg? Oben „Video aus dem Tresor holen“.", rec_saved_trok: "Auf dem Handy und im Tresor gesichert (30 Tage). Zur Sicherheit zusätzlich „Sichern“.", recs_one: "Aufnahme", recs_many: "Aufnahmen", recs_hint: "„Sichern“ schickt die Originaldatei an dich selbst: in Telegram „Als Datei senden“, in WhatsApp als „Dokument“ – sonst wird das Video verkleinert. Oder in Google Drive.",
+      recs_h: "Auf diesem Gerät", k_tr_srv: "Tresor-Server gestört – gesichert bis {x}", rec_tr_miss: "Nicht vollständig im Tresor – nur auf diesem Handy. Mit „Sichern“ an dich selbst schicken.", k_nohear: "Nichts verstanden – tippe unten auf den passenden Knopf.", sr_net_k: "Spracheingabe braucht Internet. Tippe auf einen Knopf – die Antworten gehen auch offline.", sr_blocked_k: "Spracheingabe ist blockiert. Tippe auf einen Knopf.", sr_none_k: "Dieser Browser hat keine Spracheingabe. Tippe auf einen Knopf.", sr_ios_k: "Spracheingabe ist gesperrt (Einstellungen › Allgemein › Tastatur › Diktierfunktion). Tippe jetzt auf einen Knopf.", gps_old: "Der Vorfall war nicht heute – dein jetziger Standort ist wahrscheinlich nicht der Ort der Kontrolle. Trotzdem einfügen? Nochmal tippen.", gps_anyway: "Trotzdem einfügen", rec_in_tr: "Auch im Tresor ✓", tr_old_not_in: "Dein letztes Video ist noch nicht im Tresor (nur Videos ab jetzt). Schick es mit „Sichern“ an dich selbst.", when_time: "Uhrzeit prüfen – sie steht noch auf der jetzigen Zeit, nicht auf der des Vorfalls.", gps_now: "Das ist dein jetziger Standort – nur richtig, wenn du noch am Ort der Kontrolle bist.", recs_none: "Auf diesem Handy sind noch keine Videos. Handy weg? Oben „Video aus dem Tresor holen“.", rec_saved_trok: "Auf dem Handy und im Tresor gesichert (30 Tage). Zur Sicherheit zusätzlich „Sichern“.", recs_one: "Aufnahme", recs_many: "Aufnahmen", recs_hint: "„Sichern“ schickt die Originaldatei an dich selbst: in Telegram „Als Datei senden“, in WhatsApp als „Dokument“ – sonst wird das Video verkleinert. Oder in Google Drive.",
       rec_saved: "Gespeichert auf diesem Handy. Jetzt „Sichern“ tippen – falls das Handy abgenommen wird.", rec_share_big: "Zu groß zum direkten Teilen (über 50 MB). Die Datei liegt jetzt unter „Downloads“ – dort antippen › Teilen › Google Drive oder Telegram (als Datei).",
       rec_cut: "Aufnahme gestoppt – das Handy hat die Kamera beendet ({x} Uhr). Das Video bis dahin ist gespeichert.", rec_try_silent: "Oder ohne Ton filmen: „Video ohne Ton starten“ tippen.",
       perm_inapp: "Du bist im Browser von Telegram, WhatsApp o. Ä. Hier sind Kamera und Mikrofon oft gesperrt und Aufnahmen gehen leicht verloren. Öffne die Seite in Chrome: Menü ⋮ › „Im Browser öffnen“.",
@@ -201,7 +201,7 @@
       rec_nocam: "Подходящая камера не найдена.", rec_busy: "Камера занята. Закрой другие приложения с камерой и нажми ещё раз.", rec_camfail: "Камера не запустилась ({x}).",
       rec_storage: "Сохранить на телефоне не получается (память заполнена или приватный режим). Запись продолжается — после остановки сразу нажми «Сохранить копию».",
       rec_nopersist: "Этот телефон не хранит записи надолго. После остановки сразу нажми «Сохранить копию».", rec_empty: "Запись пустая. Начни ещё раз.",
-      recs_h: "На этом телефоне", k_tr_srv: "Сбой сервера сейфа — сохранено до {x}", rec_tr_miss: "В сейфе не полностью — только на этом телефоне. Отправь себе через «Сохранить копию».", k_nohear: "Ничего не распознано — нажми нужную кнопку ниже.", sr_net_k: "Для голоса нужен интернет. Нажми на кнопку — ответы работают и без сети.", sr_blocked_k: "Голосовой ввод заблокирован. Нажми на кнопку.", sr_none_k: "В этом браузере нет голосового ввода. Нажми на кнопку.", gps_old: "Случай был не сегодня — твоё место сейчас, скорее всего, не место проверки. Всё равно вставить? Нажми ещё раз.", gps_anyway: "Всё равно вставить", rec_in_tr: "Есть и в сейфе ✓", tr_old_not_in: "Последнего видео в сейфе нет (там только видео с этого момента). Отправь его себе через «Сохранить копию».", when_time: "Проверь время — там всё ещё текущее время, а не время случая.", gps_now: "Это твоё место сейчас — верно, только если ты ещё там, где была проверка.", recs_none: "На этом телефоне пока нет видео. Телефон забрали? Выше — «Забрать видео из сейфа».", rec_saved_trok: "Сохранено на телефоне и в сейфе (30 дней). Для надёжности нажми ещё «Сохранить копию».", recs_one: "запись", recs_few: "записи", recs_many: "записей", recs_hint: "«Сохранить копию» отправляет оригинальный файл: в Telegram — «Отправить как файл», в WhatsApp — как «Документ», иначе видео сожмётся. Или в Google Drive.",
+      recs_h: "На этом телефоне", k_tr_srv: "Сбой сервера сейфа — сохранено до {x}", rec_tr_miss: "В сейфе не полностью — только на этом телефоне. Отправь себе через «Сохранить копию».", k_nohear: "Ничего не распознано — нажми нужную кнопку ниже.", sr_net_k: "Для голоса нужен интернет. Нажми на кнопку — ответы работают и без сети.", sr_blocked_k: "Голосовой ввод заблокирован. Нажми на кнопку.", sr_none_k: "В этом браузере нет голосового ввода. Нажми на кнопку.", sr_ios_k: "Голосовой ввод выключен (Настройки › Основные › Клавиатура › «Диктовка»). Сейчас нажми на кнопку.", gps_old: "Случай был не сегодня — твоё место сейчас, скорее всего, не место проверки. Всё равно вставить? Нажми ещё раз.", gps_anyway: "Всё равно вставить", rec_in_tr: "Есть и в сейфе ✓", tr_old_not_in: "Последнего видео в сейфе нет (там только видео с этого момента). Отправь его себе через «Сохранить копию».", when_time: "Проверь время — там всё ещё текущее время, а не время случая.", gps_now: "Это твоё место сейчас — верно, только если ты ещё там, где была проверка.", recs_none: "На этом телефоне пока нет видео. Телефон забрали? Выше — «Забрать видео из сейфа».", rec_saved_trok: "Сохранено на телефоне и в сейфе (30 дней). Для надёжности нажми ещё «Сохранить копию».", recs_one: "запись", recs_few: "записи", recs_many: "записей", recs_hint: "«Сохранить копию» отправляет оригинальный файл: в Telegram — «Отправить как файл», в WhatsApp — как «Документ», иначе видео сожмётся. Или в Google Drive.",
       rec_saved: "Сохранено на этом телефоне. Теперь нажми «Сохранить копию» — на случай, если телефон заберут.", rec_share_big: "Файл слишком большой для прямой отправки (больше 50 МБ). Он сохранён в «Загрузки» — открой его там › Поделиться › Google Drive или Telegram (как файл).",
       rec_cut: "Запись остановлена — телефон отключил камеру ({x}). Видео до этого момента сохранено.", rec_try_silent: "Или снимай без звука: нажми «Начать видео без звука».",
       perm_inapp: "Ты во встроенном браузере Telegram, WhatsApp или другого мессенджера. Здесь камера и микрофон часто заблокированы, а записи легко потерять. Открой страницу в Chrome: меню ⋮ › «Открыть в браузере».",
@@ -585,7 +585,7 @@
   function srError(code, ctx) {
     var p = ctx === "proto" ? "_p" : ctx === "k" ? "_k" : "";
     if (code === "not-allowed") return permHelp("mic");
-    if (code === "service-not-allowed") return IS_IOS ? t("sr_ios") : t("sr_blocked" + p);
+    if (code === "service-not-allowed") return IS_IOS ? t(ctx === "k" ? "sr_ios_k" : "sr_ios") : t("sr_blocked" + p);
     if (code === "network") return t("sr_net" + p);
     if (code === "no-speech") return t(ctx === "k" ? "k_nohear" : "sr_nospeech");
     if (code === "audio-capture") return t("sr_audio");
@@ -783,14 +783,15 @@
         var mime = pickMime(withAudio), opts = { videoBitsPerSecond: trOn() ? 1200000 : 2500000, videoKeyFrameIntervalDuration: 1000 }, rec, seq = 0, chunks = [], tv = null;
         if (mime) opts.mimeType = mime;
         try { rec = new MediaRecorder(stream, opts); } catch (e) { rec = new MediaRecorder(stream); }
-        var started = new Date();
+        var started = new Date(), lastAt = started.getTime();
         var r = { id: "r" + started.getTime(), started: started, ended: null, dur: 0, withAudio: !!withAudio, consentAt: consentAt || null,
           type: "", name: "", hash: "", size: 0, status: "recording" };
         rec.ondataavailable = function (ev) {
           if (!ev.data || !ev.data.size) return;
           chunks.push(ev.data); r.size += ev.data.size;
           if (storageOK) putChunk(r.id, seq++, ev.data).catch(storageFail);
-          if (tv) tv.push(ev.data); // dasselbe Stück zusätzlich in den Tresor – die Aufnahme läuft dabei weiter
+          var now = Date.now(), sec = Math.max(0, (now - lastAt) / 1000); lastAt = now; // echte Sekunden: im Hintergrund kommen Stücke gebündelt
+          if (tv) tv.push(ev.data, sec); // dasselbe Stück zusätzlich in den Tresor – die Aufnahme läuft dabei weiter
         };
         rec.onstop = function () { if (tv) tv.end(); finishRecording(r, chunks, stream); };
         try { rec.start(1000); } catch (e) { stream.getTracks().forEach(function (t) { t.stop(); }); throw e; }
@@ -1010,7 +1011,9 @@
     if (!(on && kStopArmed)) { b.textContent = on ? t("k_stop") : t("k_rec"); b.className = "btn k-recbtn " + (on ? "stop" : kSaved ? "" : "primary"); }
     $("k-bar").classList.toggle("armed", !!(on && kStopArmed));
     b.disabled = wait;
-    if (on) $("k-status").textContent = (recState.r.withAudio ? t("k_rec_audio") : t("k_rec_silent")) + " · " + clock + (trState ? " · " + trText() : "");
+    if (on) { var ks = $("k-status"), tail = clock + (trState ? " · " + trText() : "");
+      ks.textContent = (recState.r.withAudio ? t("k_rec_audio") : t("k_rec_silent")) + " · " + tail;
+      if (ks.offsetHeight > parseFloat(getComputedStyle(ks).fontSize) * 2.8) ks.textContent = (recState.r.withAudio ? "🎤 " : "") + tail; } // große Schrift: Kurzform (roter Punkt steht daneben) statt 4–5 Zeilen
     else if (wait) $("k-status").textContent = t("k_rec_wait");
     else {
       var last = recordings[0], shared = kSaved && last && last.sharedAt;
@@ -1237,7 +1240,7 @@
     var li = $("einr-tr").parentNode; if (li.hidden) return;
     li.scrollIntoView({ block: "start" }); li.classList.add("einr-hl"); setTimeout(function () { li.classList.remove("einr-hl"); }, 2500);
   }
-  function mmss(sec) { return pad(Math.floor(sec / 60)) + ":" + pad(sec % 60); }
+  function mmss(sec) { sec = Math.floor(sec); return pad(Math.floor(sec / 60)) + ":" + pad(sec % 60); }
   function trText() {
     var st = trState; if (!st) return "";
     if (st.done) return t("k_tr_done");
