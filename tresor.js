@@ -68,8 +68,16 @@
     var b = new Uint8Array(buf);
     return crypto.subtle.decrypt({ name: "AES-GCM", iv: b.slice(0, 12), additionalData: enc.encode(rec + "/" + idx6(i)) }, k.key, b.slice(12));
   }
+  // fetch mit Zeitlimit: Eine Anfrage ohne Antwort (Funkloch, Tunnel) darf den Tresor nicht auf Dauer anhalten.
+  function tfetch(url, opts, ms) {
+    if (typeof AbortController === "undefined") return fetch(url, opts);
+    var ac = new AbortController(), to = setTimeout(function () { ac.abort(); }, ms);
+    opts.signal = ac.signal;
+    return fetch(url, opts).then(function (r) { clearTimeout(to); return r; }, function (e) { clearTimeout(to); throw e; });
+  }
   function put(k, rec, i, body) {
-    return fetch(baseUrl() + "/v1/" + k.vault + "/" + rec + "/" + idx6(i), { method: "PUT", body: body, headers: { "Content-Type": "application/octet-stream" }, cache: "no-store" })
+    var size = (body && body.byteLength) || 0;
+    return tfetch(baseUrl() + "/v1/" + k.vault + "/" + rec + "/" + idx6(i), { method: "PUT", body: body, headers: { "Content-Type": "application/octet-stream" }, cache: "no-store" }, 15000 + size / 1048576 * 10000)
       .then(function (res) { return res.status; });
   }
 
@@ -125,7 +133,7 @@
     pump();
     return {
       rec: s.rec,
-      push: function (blob, seconds) { if (!blob || !blob.size) return; s.queue.push({ data: blob, n: seconds == null ? 1 : seconds }); s.secRecorded += seconds == null ? 1 : seconds; changed(); pump(); },
+      push: function (blob, seconds) { if (!blob || !blob.size) return; s.queue.push({ data: blob, n: seconds == null ? 1 : seconds }); s.secRecorded += seconds == null ? 1 : seconds; changed(); if (!s.fails) pump(); },
       end: function () { s.ended = true; changed(); pump(); },
       state: state,
       stop: function () { clearTimeout(s.timer); window.removeEventListener("online", onOnline); }
@@ -135,7 +143,7 @@
   /* Abholen: alle Aufnahmen eines Codes auflisten, Manifest entschlüsseln. */
   function list(code) {
     return keys(code).then(function (k) {
-      return fetch(baseUrl() + "/v1/" + k.vault + "/list", { cache: "no-store" }).then(function (res) {
+      return tfetch(baseUrl() + "/v1/" + k.vault + "/list", { cache: "no-store" }, 30000).then(function (res) {
         if (!res.ok) throw new Error("http " + res.status);
         return res.json();
       }).then(function (j) {
@@ -157,7 +165,7 @@
     });
   }
   function get(k, rec, i) {
-    return fetch(baseUrl() + "/v1/" + k.vault + "/" + rec + "/" + idx6(i), { cache: "no-store" }).then(function (res) {
+    return tfetch(baseUrl() + "/v1/" + k.vault + "/" + rec + "/" + idx6(i), { cache: "no-store" }, 30000).then(function (res) {
       if (!res.ok) throw new Error("http " + res.status);
       return res.arrayBuffer();
     });
