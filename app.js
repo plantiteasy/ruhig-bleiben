@@ -41,7 +41,7 @@
       k_test_warn: "Testmodus: nur mit Freunden, die Polizei spielen und einverstanden sind. Der Ton geht zur Erkennung an Google. Nicht bei echter Polizei benutzen.",
       k_listen: "Mithören starten (Test)", k_listen_on: "Mithören stoppen", k_live: "Hört mit (Test):", k_log_share: "Log teilen", k_test_off: "Testmodus aus", k_log_none: "kein Treffer",
       k_start_filme: "Ich filme eine Kontrolle (Freund, Fremde)", k_menu: "Menü", k_stop_sure: "Wirklich stoppen?", big_speak: "Vorlesen (Deutsch)",
-      einr_card: "In 30 Sekunden einrichten: Kamera erlauben, auf den Startbildschirm, üben →", einr_h: "In 30 Sekunden bereit", einr_lead: "Einmal jetzt in Ruhe – dann reicht im Ernstfall ein Tipp.",
+      einr_card: "In 30 Sekunden einrichten: Kamera erlauben, Tresor für deine Videos, auf den Startbildschirm →", einr_h: "In 30 Sekunden bereit", einr_lead: "Einmal jetzt in Ruhe – dann reicht im Ernstfall ein Tipp.",
       einr_1: "Sprache der App", einr_2: "Meistens bin ich", einr_3: "Kamera und Mikrofon erlauben", einr_3h: "Sonst fragt das Handy erst, wenn der Polizist schon da ist.",
       einr_cam: "Jetzt erlauben", einr_cam_ok: "✓ Erlaubt", einr_4: "Auf den Startbildschirm", einr_4h: "Danach: lange auf das App-Symbol drücken → „Kontrolle“ startet sofort das Video.",
       einr_5: "Einmal üben", einr_try: "Kontrolle-Bildschirm ansehen (ohne Aufnahme)", einr_test: "Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google)",
@@ -53,7 +53,7 @@
       tr_h: "Video aus dem Tresor holen", tr_lead: "Geht auf jedem Handy, auch wenn deins weg ist – du brauchst nur den Code. Videos bleiben 30 Tage, danach löscht der Server sie.",
       tr_code: "Code (16 Zeichen)", tr_find: "Videos suchen", tr_bad: "Der Code hat 16 Zeichen, zum Beispiel 7K2M-QX4P-9RTD-WF3N.", tr_none: "Keine Videos zu diesem Code. Nach 30 Tagen sind sie gelöscht.",
       tr_err: "Tresor nicht erreichbar. Internet prüfen und nochmal tippen.", tr_loading: "Suche …", tr_get: "Video holen", tr_getting: "Lade Teil {x}", tr_ready: "Fertig. Speichern oder teilen – der Tresor löscht nach 30 Tagen.",
-      tr_skipped: "Teile ließen sich nicht entschlüsseln und fehlen: {x}", tr_na: "Tresor ist in dieser Version noch nicht verfügbar.", rec_tr_link: "Video aus dem Tresor holen",
+      tr_skipped: "Teile ließen sich nicht entschlüsseln und fehlen: {x}", tr_na: "Tresor ist in dieser Version noch nicht verfügbar.", rec_tr_link: "Video aus dem Tresor holen", rec_tr_on: "Tresor ist aus – deine Videos liegen nur auf diesem Handy. Einschalten →", rec_saved_tr: "Tresor einschalten: dann geht die Kopie schon beim Filmen raus →",
       k_tr_ok: "Tresor {x}", k_tr_lag: "Tresor: kein Netz, gesichert bis {x}", k_tr_done: "alles im Tresor", k_tr_wait: "Tresor verbindet …",
       fragen_h: "Frage stellen",
       fragen_lead: "Tippe auf das Mikrofon und frag kurz, zum Beispiel „Darf ich filmen?“ oder «Можно ли снимать?». Die Antwort erscheint als Text, sobald du fertig gesprochen hast. Danach hört das Mikrofon noch 5 Sekunden zu, falls du etwas ergänzen willst. Verarbeitet wird nur deine Frage.",
@@ -74,7 +74,7 @@
       consent_yes: "Alle sind einverstanden – mit Ton", consent_no: "Nicht einverstanden – Video ohne Ton", cancel: "Abbrechen",
       consent_tip: "Tipp: Lass dir die Einwilligung zu Beginn der Aufnahme noch einmal bestätigen.", rec_stop: "Aufnahme beenden",
       rec_live_hint: "Bildschirm anlassen und die App nicht wechseln – sonst stoppt das Handy die Kamera. Was bis dahin aufgenommen ist, bleibt gespeichert.",
-      rec_note: "<strong>Wird jede Sekunde auf dem Gerät gespeichert,</strong> auch wenn die App abstürzt. Trotzdem nach dem Stopp „Sichern“ tippen und an dich selbst oder in deine Cloud schicken – falls das Handy abgenommen wird. Automatische Cloud-Sicherung fehlt noch.",
+      rec_note: "<strong>Wird jede Sekunde auf dem Gerät gespeichert,</strong> auch wenn die App abstürzt. Trotzdem nach dem Stopp „Sichern“ tippen und an dich selbst oder in deine Cloud schicken – falls das Handy abgenommen wird. Automatisch schon beim Filmen: mit dem Tresor (unter „Einrichten“).",
       rec_running: "Aufnahme läuft", mode_audio: "Mit Ton (Einwilligung {x})", mode_silent: "Ohne Ton",
       rec_nobrowser: "Aufnehmen geht in diesem Browser nicht. Nutze Chrome (Android) oder Safari (iPhone), die Seite muss über https laufen.",
       rec_nocam: "Keine passende Kamera gefunden.", rec_busy: "Die Kamera ist belegt. Andere Kamera-Apps schließen und noch einmal tippen.", rec_camfail: "Kamera konnte nicht starten ({x}).",
@@ -162,7 +162,7 @@
       k_test_warn: "Тестовый режим: только с друзьями, которые играют полицию и согласны. Звук для распознавания уходит в Google. Не использовать с настоящей полицией.",
       k_listen: "Начать прослушивание (тест)", k_listen_on: "Остановить прослушивание", k_live: "Слушает (тест):", k_log_share: "Поделиться логом", k_test_off: "Выключить тест", k_log_none: "нет совпадения",
       k_start_filme: "Я снимаю проверку (друга, чужих)", k_menu: "Меню", k_stop_sure: "Точно остановить?", big_speak: "Прочитать вслух по-немецки",
-      einr_card: "Настроить за 30 секунд: камера, значок на экране, пробный запуск →", einr_h: "Готово за 30 секунд", einr_lead: "Один раз сейчас спокойно — тогда в нужный момент хватит одного нажатия.",
+      einr_card: "Настроить за 30 секунд: камера, сейф для видео, значок на экране →", einr_h: "Готово за 30 секунд", einr_lead: "Один раз сейчас спокойно — тогда в нужный момент хватит одного нажатия.",
       einr_1: "Язык приложения", einr_2: "Чаще всего я", einr_3: "Разрешить камеру и микрофон", einr_3h: "Иначе телефон спросит, когда полицейский уже рядом.",
       einr_cam: "Разрешить сейчас", einr_cam_ok: "✓ Разрешено", einr_4: "Значок на главный экран", einr_4h: "Потом: долго нажми на значок приложения → «Kontrolle» сразу включает видео.",
       einr_5: "Один раз попробовать", einr_try: "Посмотреть экран проверки (без записи)", einr_test: "Потренироваться с другом: включить тест прослушивания (звук уходит в Google)",
@@ -174,7 +174,7 @@
       tr_h: "Забрать видео из сейфа", tr_lead: "Работает на любом телефоне, даже если твой забрали, — нужен только код. Видео хранятся 30 дней, потом сервер их удаляет.",
       tr_code: "Код (16 знаков)", tr_find: "Найти видео", tr_bad: "В коде 16 знаков, например 7K2M-QX4P-9RTD-WF3N.", tr_none: "По этому коду видео нет. Через 30 дней они удаляются.",
       tr_err: "Сейф недоступен. Проверь интернет и нажми ещё раз.", tr_loading: "Ищу …", tr_get: "Забрать видео", tr_getting: "Загружаю часть {x}", tr_ready: "Готово. Сохрани или отправь — через 30 дней сейф удалит видео.",
-      tr_skipped: "Не удалось расшифровать части, их нет в видео: {x}", tr_na: "Сейф в этой версии пока недоступен.", rec_tr_link: "Забрать видео из сейфа",
+      tr_skipped: "Не удалось расшифровать части, их нет в видео: {x}", tr_na: "Сейф в этой версии пока недоступен.", rec_tr_link: "Забрать видео из сейфа", rec_tr_on: "Сейф выключен — видео лежат только на этом телефоне. Включить →", rec_saved_tr: "Включи сейф: тогда копия уходит ещё во время съёмки →",
       k_tr_ok: "Сейф {x}", k_tr_lag: "Сейф: нет сети, сохранено до {x}", k_tr_done: "всё в сейфе", k_tr_wait: "Сейф подключается …",
       fragen_h: "Задать вопрос",
       fragen_lead: "Нажми на микрофон и спроси коротко, например «Можно ли снимать?» или „Darf ich filmen?“. Ответ появится текстом, как только договоришь. Потом микрофон ещё 5 секунд слушает, если захочешь что-то добавить. Обрабатывается только твой вопрос.",
@@ -195,18 +195,18 @@
       consent_yes: "Все согласны — со звуком", consent_no: "Не согласны — видео без звука", cancel: "Отмена",
       consent_tip: "Совет: в начале записи попроси ещё раз подтвердить согласие.", rec_stop: "Остановить запись",
       rec_live_hint: "Не выключай экран и не переключайся на другое приложение — иначе телефон остановит камеру. Всё, что уже записано, сохранится.",
-      rec_note: "<strong>Запись сохраняется на телефоне каждую секунду,</strong> даже если приложение упадёт. Всё равно после остановки нажми «Отправить себе» и отправь себе или в своё облако — на случай, если телефон заберут. Автоматического облака пока нет.",
+      rec_note: "<strong>Запись сохраняется на телефоне каждую секунду,</strong> даже если приложение упадёт. Всё равно после остановки нажми «Сохранить копию» и отправь себе или в своё облако — на случай, если телефон заберут. Автоматически, уже во время съёмки, это делает сейф (в «Настройке»).",
       rec_running: "Идёт запись", mode_audio: "Со звуком (согласие {x})", mode_silent: "Без звука",
       rec_nobrowser: "В этом браузере запись не работает. Используй Chrome (Android) или Safari (iPhone), сайт должен открываться по https.",
       rec_nocam: "Подходящая камера не найдена.", rec_busy: "Камера занята. Закрой другие приложения с камерой и нажми ещё раз.", rec_camfail: "Камера не запустилась ({x}).",
-      rec_storage: "Сохранить на телефоне не получается (память заполнена или приватный режим). Запись продолжается — после остановки сразу нажми «Отправить себе».",
-      rec_nopersist: "Этот телефон не хранит записи надолго. После остановки сразу нажми «Отправить себе».", rec_empty: "Запись пустая. Начни ещё раз.",
-      recs_h: "На этом телефоне", recs_one: "запись", recs_few: "записи", recs_many: "записей", recs_hint: "«Отправить себе» отправляет оригинальный файл: в Telegram — «Отправить как файл», в WhatsApp — как «Документ», иначе видео сожмётся. Или в Google Drive.",
-      rec_saved: "Сохранено на этом телефоне. Теперь нажми «Отправить себе» — на случай, если телефон заберут.", rec_share_big: "Файл слишком большой для прямой отправки (больше 50 МБ). Он сохранён в «Загрузки» — открой его там › Поделиться › Google Drive или Telegram (как файл).",
+      rec_storage: "Сохранить на телефоне не получается (память заполнена или приватный режим). Запись продолжается — после остановки сразу нажми «Сохранить копию».",
+      rec_nopersist: "Этот телефон не хранит записи надолго. После остановки сразу нажми «Сохранить копию».", rec_empty: "Запись пустая. Начни ещё раз.",
+      recs_h: "На этом телефоне", recs_one: "запись", recs_few: "записи", recs_many: "записей", recs_hint: "«Сохранить копию» отправляет оригинальный файл: в Telegram — «Отправить как файл», в WhatsApp — как «Документ», иначе видео сожмётся. Или в Google Drive.",
+      rec_saved: "Сохранено на этом телефоне. Теперь нажми «Сохранить копию» — на случай, если телефон заберут.", rec_share_big: "Файл слишком большой для прямой отправки (больше 50 МБ). Он сохранён в «Загрузки» — открой его там › Поделиться › Google Drive или Telegram (как файл).",
       rec_cut: "Запись остановлена — телефон отключил камеру ({x}). Видео до этого момента сохранено.", rec_try_silent: "Или снимай без звука: нажми «Начать видео без звука».",
       perm_inapp: "Ты во встроенном браузере Telegram, WhatsApp или другого мессенджера. Здесь камера и микрофон часто заблокированы, а записи легко потерять. Открой страницу в Chrome: меню ⋮ › «Открыть в браузере».",
       rec_recovered: "Восстановлено — запись была прервана", hash_wait: "считается …", hash_na: "не посчитана (файл слишком большой)",
-      b_share: "Отправить себе", b_dl: "Скачать", b_proto: "В протокол", b_del: "Удалить", b_del_sure: "Точно удалить?", b_taken: "Добавлено",
+      b_share: "Сохранить копию", b_dl: "Скачать", b_proto: "В протокол", b_del: "Удалить", b_del_sure: "Точно удалить?", b_taken: "Добавлено",
       m_clock: "", m_ca: "ок. ", m_sec: " с", m_audio: "со звуком, согласие {x}", m_silent: "без звука",
       danach_h: "После", danach_lead: "В тот же день: протокол по памяти. Надиктовать можно кнопкой у каждого поля.",
       seg_dict_aria: "Язык диктовки", dict_de: "Диктовка по-немецки", dict_ru: "Диктовка по-русски", dict: "Диктовать", gps: "Вставить место", gps_wait: "Ищу …",
@@ -314,7 +314,9 @@
     if (v === "danach") refreshProtoNow();
     if (v === "kontrolle" && !(history.state && history.state.rbK)) hideK(); // neu geöffnet: Knöpfe, nicht die alte Antwort
     if (v === "einrichten") renderEinrichten();
+    if (v === "aufnahme") renderTrCard();
     show(v);
+    if (v === "einrichten") focusEinrTr();
     if (v === "tresor") openTresor();
   }
   window.addEventListener("hashchange", route);
@@ -869,7 +871,7 @@
           '<video src="' + r.url + '" controls playsinline preload="metadata"></video>' +
           '<p class="rec-meta">' + esc(recMeta(r)) + "</p>" +
           '<p class="hash">SHA-256: ' + (r.hash ? esc(r.hash) : esc(r.noHash ? t("hash_na") : t("hash_wait"))) + "</p>" +
-          (r.fresh ? '<p class="rec-fresh">' + esc(t("rec_saved")) + "</p>" : "") +
+          (r.fresh ? '<p class="rec-fresh">' + esc(t("rec_saved")) + (trAvail() && !trOn() ? ' <a href="#einrichten" data-einr="tr">' + esc(t("rec_saved_tr")) + "</a>" : "") + "</p>" : "") +
           '<div class="actions"><button class="btn primary" type="button" data-share>' + esc(t("b_share")) + "</button>" +
           '<button class="btn" type="button" data-dl>' + esc(t("b_dl")) + "</button>" +
           '<button class="btn" type="button" data-proto>' + esc(t(inProto(r) ? "b_taken" : "b_proto")) + "</button>" +
@@ -1180,7 +1182,17 @@
   /* ---------- Tresor (tresor.js): verschlüsselte Kopie der laufenden Aufnahme außerhalb des Handys ----------
      Einschalten in „Einrichten“ (Code entsteht auf dem Handy). Abholen in #tresor – auf jedem Handy mit dem Code. */
   var TR = window.RBTresor || null, trState = null, trPrefill = "", trFound = [];
+  function trAvail() { return !!(window.RBTresor && window.RBTresor.available()); }
   function trOn() { return !!(TR && TR.available() && TR.getCode()); }
+  // Karte im Aufnahme-Tab: Denis fand den Tresor im Test nicht (26.09.2026) – er stand nur in „Einrichten“.
+  function renderTrCard() { var c = $("rec-tr-on"); if (c) c.hidden = !trAvail() || trOn(); }
+  var einrFocus = false;
+  document.addEventListener("click", function (e) { if (e.target.closest && e.target.closest('[data-einr="tr"]')) einrFocus = true; }, true);
+  function focusEinrTr() {
+    if (!einrFocus) return; einrFocus = false;
+    var li = $("einr-tr").parentNode; if (li.hidden) return;
+    li.scrollIntoView({ block: "start" }); li.classList.add("einr-hl"); setTimeout(function () { li.classList.remove("einr-hl"); }, 2500);
+  }
   function mmss(sec) { return pad(Math.floor(sec / 60)) + ":" + pad(sec % 60); }
   function trText() {
     var st = trState; if (!st) return "";
@@ -1193,7 +1205,7 @@
   function renderEinrTr() {
     var box = $("einr-tr"), T0 = window.RBTresor; if (!box) return;
     var avail = !!(T0 && T0.available()); // ohne Server-Adresse (noch nicht ausgeliefert) bleibt der Tresor unsichtbar
-    box.parentNode.hidden = !avail; $("rec-tr-link").hidden = !avail;
+    box.parentNode.hidden = !avail; $("rec-tr-link").hidden = !avail; renderTrCard();
     if (!avail) { box.innerHTML = ""; return; }
     var code = T0.getCode();
     box.innerHTML = !code

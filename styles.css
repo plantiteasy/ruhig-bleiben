@@ -325,6 +325,9 @@ body.k-mode main{padding-top:calc(env(safe-area-inset-top,0px) + 8px)}
 .big-speak{align-self:flex-start;min-height:48px}
 /* Einrichten */
 .einr-card{display:block;border:2px dashed var(--accent);border-radius:14px;padding:12px 14px;font-weight:650;text-decoration:none;color:var(--accent)}
+.tr-card{margin-top:14px}
+.einr li.einr-hl{outline:3px solid var(--accent);outline-offset:6px;border-radius:12px;transition:outline-color .6s}
+.rec-fresh a{font-weight:650;color:var(--accent)}
 .einr{margin:0;padding-left:22px;display:grid;gap:18px}
 .einr li{display:grid;gap:8px}
 .einr-t{font-weight:700;font-size:17px}
