@@ -356,7 +356,7 @@ body.k-mode main{padding-top:calc(env(safe-area-inset-top,0px) + 8px)}
 .k-thumb{cursor:zoom-in}.k-thumb.big{position:fixed;top:8px;left:8px;width:min(62vw,280px);height:auto;max-height:38vh;object-fit:contain;z-index:30;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.4);cursor:zoom-out}
 #fuer-dich .fd{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .k-bar.armed .k-status{display:none}.k-bar.armed .k-recbtn{flex:1}
-.k-save2{min-height:44px;margin:4px 0 0;padding:6px 14px;font-size:15px}
+.k-save2{display:flex;justify-content:center;width:100%;min-height:44px;margin:6px 0 0;padding:6px 14px;font-size:15px}
 .rec-tr-ok{font-size:14px;font-weight:650;color:var(--accent);margin:4px 0}
 
 /* Audit Runde 4 (26.09.2026): Dunkelmodus, Querformat, große Schrift */
