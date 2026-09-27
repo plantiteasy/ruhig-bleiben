@@ -1062,7 +1062,9 @@
     a.onended = phStopAudio; a.onerror = phStopAudio;
     var p = a.play(); if (p && p.catch) p.catch(phStopAudio);
   }
-  function phChipLabel(p) { if (UI === "ru") return p.ru; return p.k === "durchsuchung" ? t("ph_chip_suche") : p.de; }
+  // Kurze Chip-Namen (passen in 4 Spalten ohne Trennung mitten im Wort); die Karte selbst braucht keinen eigenen Titel mehr.
+  var PH_CHIP = { start: ["Anhalten", "Стоп"], papiere: ["Papiere", "Бумаги"], fragen: ["Fragen", "Вопросы"], tests: ["Tests", "Тесты"], durchsuchung: ["Suche", "Обыск"], massnahme: ["Zwang", "Меры"], ende: ["Ende", "Конец"] };
+  function phChipLabel(p) { var c = PH_CHIP[p.k]; return c ? c[UI === "ru" ? 1 : 0] : (UI === "ru" ? p.ru : p.de); }
   function phPlayBtn(id, cls, inner) {
     var s = phSatz(id), klein = cls.indexOf("klein") > -1;
     return '<button type="button" class="btn ph-play ' + cls + '" data-ph-play="' + id + '" aria-pressed="false" aria-label="' + esc(t("ph_play")) + ": " + esc(s.de) + '"><span class="ph-ico' + (klein ? " klein" : "") + '" aria-hidden="true"></span>' + (inner || "") + "</button>";
@@ -1077,15 +1079,14 @@
     var mainBtn = phPlayBtn(p.main, "ph-play-main primary", '<span class="ph-play-t">' + esc(t("ph_play")) + "</span>");
     var next = list[kPhase + 1];
     $("ph-karte").innerHTML =
-      '<p class="ph-kopf">' + (kPhase + 1) + ". " + esc(p.de) + (ru ? " · " + esc(p.ru) : "") + "</p>" +
       '<p class="ph-ziel">' + esc(ru ? p.ziel_ru : p.ziel_de) + "</p>" +
       '<p class="ph-satz" lang="de" translate="no">' + esc(s.de) + "</p>" +
       (ru ? '<p class="say-ru">' + esc(s.ru) + "</p>" : "") +
       '<div class="ph-aktionen">' + mainBtn + '<button type="button" class="btn ph-zeigen" data-ph-show="' + p.main + '">' + esc(t("ph_show")) + "</button></div>" +
       '<p class="ph-tipp">' + esc(ru ? p.tipp_ru : p.tipp_de) + "</p>" +
       '<p class="ph-nicht">' + esc(t("ph_nicht")) + " " + esc(ru ? p.nicht_ru : p.nicht_de) + "</p>" +
-      '<button type="button" class="btn ph-mehr" data-ph-detail="' + p.detail + '">' + esc(t("ph_mehr")) + "</button>" +
-      (next ? '<button type="button" class="ph-weiter" data-ph-weiter="1">' + esc(t("ph_weiter", ru ? next.ru : next.de)) + "</button>" : "");
+      '<div class="ph-unten"><button type="button" class="btn ph-mehr" data-ph-detail="' + p.detail + '">' + esc(t("ph_mehr")) + "</button>" +
+      (next ? '<button type="button" class="ph-weiter" data-ph-weiter="1">' + esc(t("ph_weiter", phChipLabel(next))) + "</button>" : "") + "</div>";
     $("ph-extra").innerHTML = p.extra.length ? '<span class="ph-label">' + esc(t("ph_wenn_noetig")) + "</span>" + p.extra.slice(0, 2).map(function (id) {
       var es = phSatz(id);
       return '<div class="ph-ex">' + phPlayBtn(id, "klein") + '<div class="ph-ex-txt"><div class="ph-ex-de" lang="de" translate="no">' + esc(es.de) + "</div>" + (ru ? '<div class="ph-ex-ru">' + esc(es.ru) + "</div>" : "") + "</div></div>";
