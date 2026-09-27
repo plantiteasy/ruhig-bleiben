@@ -18,7 +18,7 @@ window.RB = {
         "Motor ganz aus – erst dann das Handy in die Hand nehmen, auch zum Filmen (§ 23 Abs. 1a, 1b StVO, Start-Stopp zählt nicht). Fenster runter, Hände sichtbar lassen. Heißt es „Handy weg, Hände ans Lenkrad“: befolgen – Handy in die Halterung, es filmt offen weiter.",
         "Führerschein und Fahrzeugschein im Original zeigen. Der digitale Fahrzeugschein in der i‑Kfz‑App zählt, ein Foto nicht.",
         "Personalien angeben. Aussteigen, wenn die Polizei es für die Kontrolle verlangt.",
-        "Warndreieck, Verbandkasten und Warnweste holst du selbst heraus und zeigst sie – das erlaubt keine Durchsuchung. Durchsuchen darf die Polizei das Auto nur mit Grundlage, etwa bei Verdacht, an einer Kontrollstelle oder an einem gefährlichen Ort."
+        "Warndreieck, Verbandkasten und Warnweste holst du selbst heraus und zeigst sie, aus dem Innenraum einfach durchs Fenster – das erlaubt keine Durchsuchung. Durchsuchen darf die Polizei das Auto nur mit Grundlage, etwa bei Verdacht, an einer Kontrollstelle oder an einem gefährlichen Ort."
       ],
       dont: [
         "Keine Angaben zu Fahrziel, Alkohol, Drogen oder Medikamenten – auch nicht „nur ein Bier“.",
@@ -33,7 +33,7 @@ window.RB = {
         doo: ["Заглуши мотор полностью — только потом бери телефон в руку, в том числе чтобы снимать (§ 23 Abs. 1a, 1b StVO, старт-стоп не считается). Опусти стекло, держи руки на виду. Велят убрать телефон и положить руки на руль — выполняй: телефон в держатель, он открыто продолжит снимать.",
           "Покажи права (Führerschein) и техпаспорт (Fahrzeugschein) в оригинале. Электронный техпаспорт в приложении i\u2011Kfz считается, фото — нет.",
           "Назови свои данные. Выйди из машины, если полиция требует этого для проверки.",
-          "Знак аварийной остановки, аптечку и жилет достань сам и покажи — это не даёт права на обыск. Обыскивать машину полиция может только при наличии основания, например при подозрении, на контрольном пункте или в «опасном месте»."],
+          "Знак аварийной остановки, аптечку и жилет достань сам и покажи, из салона просто через окно — это не даёт права на обыск. Обыскивать машину полиция может только при наличии основания, например при подозрении, на контрольном пункте или в «опасном месте»."],
         dont: ["Не говори, куда едешь, и ничего про алкоголь, наркотики или лекарства — даже «всего одно пиво».",
           "Не соглашайся на добровольные тесты: дуть в трубку, моча, мазок, проверка зрачков фонариком, упражнения вроде «палец к носу».",
           "Не уезжай, не запирай двери. Ничего не подписывай — подписывать ты не обязан."],
@@ -156,7 +156,7 @@ window.RB = {
       ],
       doo: [
         "Deutlich sagen: „Ich bin nicht einverstanden.“ Schweigen kann als Zustimmung gewertet werden.",
-        "Warndreieck, Verbandkasten und Warnweste selbst herausholen und zeigen – das erlaubt der Polizei keine Durchsuchung des Autos.",
+        "Warndreieck, Verbandkasten und Warnweste selbst herausholen und zeigen, aus dem Innenraum durchs Fenster – das erlaubt der Polizei keine Durchsuchung des Autos.",
         "Durchsuchen darf sie bei konkretem Verdacht, zum Beispiel Cannabisgeruch, mit Beschluss, in der Stuttgarter Waffenverbotszone oder an bestimmten Orten nach dem Polizeigesetz. Dann dulden, aber nicht mithelfen.",
         "Zeugen ansprechen, Namen und Kennzeichen notieren, danach Gedächtnisprotokoll schreiben."
       ],
@@ -169,7 +169,7 @@ window.RB = {
       ru: {
         title: "Обыск машины", sub: "Багажник, бардачок, сумки", toneLabel: "Возражай",
         doo: ["Скажи чётко: «Ich bin nicht einverstanden» — «Я не согласен». Молчание могут посчитать согласием.",
-          "Знак аварийной остановки, аптечку и жилет достань сам и покажи — это не даёт полиции права обыскивать машину.",
+          "Знак аварийной остановки, аптечку и жилет достань сам и покажи, из салона через окно — это не даёт полиции права обыскивать машину.",
           "Обыскивать можно при конкретном подозрении, например запахе каннабиса, по постановлению, в зоне запрета оружия в Штутгарте или в отдельных местах по закону о полиции. Тогда терпи, но не помогай.",
           "Обратись к свидетелям, запиши имена и номера машин, потом напиши протокол по памяти."],
         dont: ["Ничего не держи, не придерживай дверь, никого не отталкивай — это сопротивление.",

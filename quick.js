@@ -58,17 +58,18 @@ window.RB.quick = [
   "g": "fahrer",
   "v": "musst",
   "cop": "Zeigen Sie mir bitte Warndreieck, Verbandkasten und Warnweste.",
-  "say": "Ich hole die Sachen selbst heraus und gebe sie Ihnen zur Prüfung – § 31b StVZO. Einer Durchsuchung des Fahrzeugs stimme ich nicht zu.",
+  "say": "Die Sachen liegen griffbereit. Ich zeige sie Ihnen und reiche sie durchs Fenster zur Prüfung – § 31b StVZO. Einer Durchsuchung stimme ich nicht zu.",
   "law": "§ 31b Nr. 2, 4, 4a StVZO · BKat Nr. 191",
-  "why": "Hier hat die Polizei recht: Der Fahrer muss Warndreieck, Erste-Hilfe-Material und Warnweste auf Verlangen vorzeigen und zur Prüfung aushändigen (Verweigerung: 5 €, BKat Nr. 191). Die Pflicht gilt nur für diese Gegenstände, sie erlaubt keine Durchsuchung des Autos.",
+  "why": "Hier hat die Polizei recht: Der Fahrer muss Warndreieck, Erste-Hilfe-Material und Warnweste auf Verlangen vorzeigen und zur Prüfung aushändigen (Verweigerung: 5 €, BKat Nr. 191). Die Pflicht gilt nur für diese Gegenstände, sie erlaubt keine Durchsuchung des Autos. Liegen die Sachen im Innenraum, reicht es, sie durchs offene Fenster zu zeigen und hinauszureichen – nur dafür muss man nicht aussteigen, § 31b StVZO schreibt nicht vor, wo sie liegen. Liegt etwas im Kofferraum, öffnet man ihn nur dafür und nimmt es selbst heraus. Ordnet der Beamte ausdrücklich an auszusteigen, gilt § 36 Abs. 5 StVO – dann aussteigen.",
   "src": [
    "https://www.gesetze-im-internet.de/stvzo_2012/__31b.html",
-   "https://www.gesetze-im-internet.de/bkatv_2013/BJNR049800013.html"
+   "https://www.gesetze-im-internet.de/bkatv_2013/BJNR049800013.html",
+   "https://www.gesetze-im-internet.de/stvo_2013/__36.html"
   ],
   "ru": {
    "cop": "Покажите, пожалуйста, знак аварийной остановки, аптечку и жилет.",
-   "say": "Я сам достану эти вещи и дам вам их проверить — § 31b StVZO. На обыск машины не соглашаюсь.",
-   "why": "Здесь полиция права: водитель обязан по требованию показать и дать проверить знак аварийной остановки, аптечку и жилет (отказ: 5 €, BKat Nr. 191). Обязанность касается только этих вещей, она не разрешает обыскивать машину."
+   "say": "Вещи под рукой. Я покажу их и передам вам через окно для проверки — § 31b StVZO. На обыск не соглашаюсь.",
+   "why": "Здесь полиция права: водитель обязан по требованию показать и дать проверить знак аварийной остановки, аптечку и жилет (отказ: 5 €, BKat Nr. 191). Обязанность касается только этих вещей, она не разрешает обыскивать машину. Если вещи в салоне, достаточно показать и передать их через открытое окно — только ради этого выходить не нужно, § 31b StVZO не говорит, где они должны лежать. Если что-то в багажнике, его открывают только для этого и достают сами. Если полицейский прямо велит выйти, действует § 36 Abs. 5 StVO — тогда выйти."
   }
  },
  {
