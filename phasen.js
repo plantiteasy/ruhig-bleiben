@@ -1,8 +1,10 @@
-/* „Sagen"-Modus (nur Rolle Fahrer): statt 10 Knöpfen 7 Phasen einer Kontrolle, je Phase ein kurzer deutscher Satz
+/* „Sagen"-Modus (Fahrer, Beifahrer, Zu Fuß, Rad; nicht „Ich filme“): statt 10 Knöpfen 7 Phasen einer Kontrolle, je Phase ein kurzer deutscher Satz
    zum Vorspielen (vorab erzeugte Audiodatei, Männer- oder Frauenstimme) und Anzeigen.
    Quelle: Probe_Taschenanwalt/daten.json + saetze.json (Prototyp „Anwalt in der Tasche"), 1:1 übernommen.
    ziel/tipp/nicht gab es dort nur auf Russisch – die deutsche Fassung ist eine kurze, sinngemäße Übersetzung,
    keine neue Rechtsaussage. detail = erste Antwort-ID aus den „details" des Prototyps (siehe quick.js/kontrolle.js).
+   Beifahrer/Zu Fuß/Rad (28.09.2026): Sätze = Kurzfassungen („kurz“) der geprüften Antworten aus kontrolle.js/quick.js;
+   tipp/nicht nur Verhaltenshinweise, die sich aus diesen Antworten ergeben.
    Noch nicht anwaltlich geprüft. */
 window.RB = window.RB || {};
 window.RB.phasen = {
@@ -19,7 +21,18 @@ window.RB.phasen = {
     "s-durchsuchung": { de: "Einer Durchsuchung stimme ich nicht zu. Widerstand leiste ich nicht.", ru: "На обыск не соглашаюсь. Сопротивления не оказываю." },
     "s-grundlage": { de: "Auf welcher Rechtsgrundlage, bitte?", ru: "На каком правовом основании, пожалуйста?" },
     "s-widerspruch": { de: "Ich widerspreche, leiste aber keinen Widerstand. Bitte vermerken Sie das.", ru: "Я возражаю, но не сопротивляюсь. Пожалуйста, занесите это в протокол." },
-    "s-ende": { de: "Ist die Kontrolle für mich beendet?", ru: "Проверка для меня закончена?" }
+    "s-ende": { de: "Ist die Kontrolle für mich beendet?", ru: "Проверка для меня закончена?" },
+    "s-personalien": { de: "Hier sind meine Personalien. Zu allem Weiteren sage ich nichts.", ru: "Вот мои данные. Больше ничего не скажу." },
+    "s-pass": { de: "Hier sind mein Pass und mein Aufenthaltstitel.", ru: "Вот мой паспорт и вид на жительство." },
+    "s-grund": { de: "Werde ich einer Straftat verdächtigt? Dann nennen Sie mir bitte die Tat.", ru: "Меня подозревают в преступлении? Тогда назовите, пожалуйста, в каком." },
+    "s-festgehalten": { de: "Werde ich festgehalten, und auf welcher Grundlage? Wenn nicht, möchte ich jetzt gehen.", ru: "Меня задерживают, и на каком основании? Если нет — я сейчас пойду." },
+    "s-handy-nein": { de: "Ich gebe das Handy nicht freiwillig heraus und widerspreche der Beschlagnahme. Meinen PIN nenne ich nicht.", ru: "Телефон добровольно не отдаю и возражаю против изъятия. PIN не назову." },
+    "s-wache": { de: "Ich komme mit, leiste keinen Widerstand, widerspreche aber.", ru: "Я иду с вами, не сопротивляюсь, но возражаю." },
+    "s-mitfahrer": { de: "Ich fahre nur mit. Auf welcher Rechtsgrundlage?", ru: "Я только пассажир. На каком правовом основании?" },
+    "s-zeuge": { de: "Hier sind meine Personalien. Bei der Polizei sage ich nur auf Ladung im Auftrag der Staatsanwaltschaft aus.", ru: "Вот мои данные. В полиции я даю показания только по вызову от прокуратуры." },
+    "s-rahmen": { de: "Die Rahmennummer zeige ich Ihnen gern selbst.", ru: "Номер рамы я вам сам покажу." },
+    "s-unterschrift": { de: "Ich unterschreibe nichts und sage nichts zur Sache. Eine Kopie nehme ich gern.", ru: "Я ничего не подписываю и по существу не говорю. Копию возьму." },
+    "s-verwarnung": { de: "Mit dem Verwarnungsgeld bin ich nicht einverstanden.", ru: "С предупредительным штрафом я не согласен." }
   },
   fahrer: [
     { k: "start", de: "Anhalten", ru: "Остановка",
@@ -64,6 +77,30 @@ window.RB.phasen = {
       tipp_de: "Nach der Kontrolle das Video mit „Jetzt sichern“ speichern.", tipp_ru: "После проверки сохрани видео кнопкой «Jetzt sichern».",
       nicht_de: "Nicht fragen „bin ich verhaftet?“ – klingt dramatisch.", nicht_ru: "Не спрашивать «я арестован?» — звучит драматично.",
       detail: "fahrer-kontrolle-beendet" }
+  ],
+  beifahrer: [
+    {"k": "start", "de": "Anhalten", "ru": "Остановка", "ziel_de": "", "ziel_ru": "", "main": "s-start", "extra": ["s-video", "s-handy"], "tipp_de": "Sitzen bleiben, Hände sichtbar, langsam sprechen.", "tipp_ru": "Сидеть спокойно, руки на виду, говорить медленно.", "nicht_de": "Nicht ohne Vorwarnung in Taschen oder Rucksack greifen.", "nicht_ru": "Не лезть в карманы или рюкзак без предупреждения.", "detail": "aufnahme-nehmen-sie-auf"},
+    {"k": "ausweis", "de": "Ausweis", "ru": "Документ", "ziel_de": "", "ziel_ru": "", "main": "s-mitfahrer", "extra": ["s-personalien", "s-pass"], "tipp_de": "Besteht der Beamte darauf: Personalien unter Widerspruch nennen.", "tipp_ru": "Если настаивают — назвать данные, но с возражением.", "nicht_de": "Keinen falschen Namen nennen – falsche Personalien sind eine Ordnungswidrigkeit.", "nicht_ru": "Не называть чужое имя — ложные данные тоже нарушение.", "detail": "person-beifahrer-ausweis"},
+    {"k": "fragen", "de": "Fragen", "ru": "Вопросы", "ziel_de": "", "ziel_ru": "", "main": "s-zeuge", "extra": ["s-zursache"], "tipp_de": "Als Zeuge musst du bei der Polizei ohne Ladung der Staatsanwaltschaft nicht aussagen.", "tipp_ru": "Как свидетель ты не обязан давать показания в полиции без вызова от прокуратуры.", "nicht_de": "Nichts über den Fahrer erzählen, auch nicht „um zu helfen“.", "nicht_ru": "Ничего не рассказывать о водителе, даже «чтобы помочь».", "detail": "druck-zeuge-beifahrer"},
+    {"k": "durchsuchung", "de": "Durchsuchung", "ru": "Обыск", "ziel_de": "", "ziel_ru": "", "main": "s-durchsuchung", "extra": ["s-grundlage", "s-handy-nein"], "tipp_de": "Hände sichtbar halten, nichts festhalten, nicht behindern.", "tipp_ru": "Руки на виду, ничего не держать, не мешать.", "nicht_de": "Taschen nicht selbst ausleeren – das kann wie eine Zustimmung wirken.", "nicht_ru": "Не выворачивать карманы самому — это может выглядеть как согласие.", "detail": "person-taschen-durchsuchen"},
+    {"k": "massnahme", "de": "Zwang", "ru": "Принуждение", "ziel_de": "", "ziel_ru": "", "main": "s-widerspruch", "extra": ["s-wache"], "tipp_de": "Wache, Fotos, Fingerabdrücke: mit Worten widersprechen, nicht mit dem Körper.", "tipp_ru": "Участок, фото, отпечатки: возражать словами, не телом.", "nicht_de": "Nicht losreißen oder weglaufen – sonst droht zusätzlich ein Strafverfahren wegen Widerstands.", "nicht_ru": "Не вырываться и не убегать — иначе грозит ещё и уголовное дело за сопротивление.", "detail": "person-wache"},
+    {"k": "ende", "de": "Ende", "ru": "Конец", "ziel_de": "", "ziel_ru": "", "main": "s-ende", "extra": ["s-festgehalten"], "tipp_de": "Nach der Kontrolle das Video mit „Jetzt sichern“ speichern.", "tipp_ru": "После проверки сохрани видео кнопкой «Jetzt sichern».", "nicht_de": "Nicht einfach weggehen, solange unklar ist, ob die Kontrolle vorbei ist.", "nicht_ru": "Не уходить просто так, пока не ясно, закончена ли проверка.", "detail": "person-weggehen"}
+  ],
+  fuss: [
+    {"k": "start", "de": "Anhalten", "ru": "Остановка", "ziel_de": "", "ziel_ru": "", "main": "s-start", "extra": ["s-video", "s-handy"], "tipp_de": "Stehen bleiben, Hände aus den Taschen, langsam sprechen.", "tipp_ru": "Остановиться, руки из карманов, говорить медленно.", "nicht_de": "Nicht ohne Vorwarnung in Taschen oder Rucksack greifen.", "nicht_ru": "Не лезть в карманы или рюкзак без предупреждения.", "detail": "aufnahme-nehmen-sie-auf"},
+    {"k": "ausweis", "de": "Ausweis", "ru": "Документ", "ziel_de": "", "ziel_ru": "", "main": "s-personalien", "extra": ["s-pass"], "tipp_de": "Personalien nennen und den Ausweis zeigen, wenn du ihn dabeihast – mehr nicht.", "tipp_ru": "Назвать данные и показать документ, если он с собой, — больше ничего.", "nicht_de": "Nicht erklären, wohin und warum – das sind schon Angaben zur Sache.", "nicht_ru": "Не объяснять, куда и зачем идёшь, — это уже показания по делу.", "detail": "person-personalien"},
+    {"k": "grund", "de": "Grund", "ru": "Причина", "ziel_de": "", "ziel_ru": "", "main": "s-grund", "extra": ["s-festgehalten"], "tipp_de": "Die Antwort des Beamten merken – das Video läuft.", "tipp_ru": "Запомни ответ полицейского — видео идёт.", "nicht_de": "Nicht darüber streiten, ob die Kontrolle fair ist.", "nicht_ru": "Не спорить, честная ли это проверка.", "detail": "person-grund"},
+    {"k": "durchsuchung", "de": "Durchsuchung", "ru": "Обыск", "ziel_de": "", "ziel_ru": "", "main": "s-durchsuchung", "extra": ["s-grundlage", "s-handy-nein"], "tipp_de": "Hände sichtbar halten, nichts festhalten, nicht behindern.", "tipp_ru": "Руки на виду, ничего не держать, не мешать.", "nicht_de": "Taschen nicht selbst ausleeren – das kann wie eine Zustimmung wirken.", "nicht_ru": "Не выворачивать карманы самому — это может выглядеть как согласие.", "detail": "person-taschen-durchsuchen"},
+    {"k": "massnahme", "de": "Zwang", "ru": "Принуждение", "ziel_de": "", "ziel_ru": "", "main": "s-widerspruch", "extra": ["s-wache"], "tipp_de": "Wache, Fotos, Fingerabdrücke: mit Worten widersprechen, nicht mit dem Körper.", "tipp_ru": "Участок, фото, отпечатки: возражать словами, не телом.", "nicht_de": "Nicht losreißen oder weglaufen – sonst droht zusätzlich ein Strafverfahren wegen Widerstands.", "nicht_ru": "Не вырываться и не убегать — иначе грозит ещё и уголовное дело за сопротивление.", "detail": "person-wache"},
+    {"k": "ende", "de": "Ende", "ru": "Конец", "ziel_de": "", "ziel_ru": "", "main": "s-ende", "extra": ["s-festgehalten"], "tipp_de": "Nach der Kontrolle das Video mit „Jetzt sichern“ speichern.", "tipp_ru": "После проверки сохрани видео кнопкой «Jetzt sichern».", "nicht_de": "Nicht einfach weggehen, solange unklar ist, ob die Kontrolle vorbei ist.", "nicht_ru": "Не уходить просто так, пока не ясно, закончена ли проверка.", "detail": "person-weggehen"}
+  ],
+  rad: [
+    {"k": "start", "de": "Anhalten", "ru": "Остановка", "ziel_de": "", "ziel_ru": "", "main": "s-start", "extra": ["s-video", "s-handy"], "tipp_de": "Anhalten, Hände sichtbar, langsam sprechen.", "tipp_ru": "Остановиться, руки на виду, говорить медленно.", "nicht_de": "Nicht ohne Vorwarnung in Taschen oder Rucksack greifen.", "nicht_ru": "Не лезть в карманы или рюкзак без предупреждения.", "detail": "aufnahme-nehmen-sie-auf"},
+    {"k": "ausweis", "de": "Ausweis", "ru": "Документ", "ziel_de": "", "ziel_ru": "", "main": "s-personalien", "extra": ["s-rahmen"], "tipp_de": "Personalien nennen; die Rahmennummer zeigst du selbst.", "tipp_ru": "Назвать данные; номер рамы показываешь сам.", "nicht_de": "Nicht erklären, woher das Rad ist – einen Kaufbeleg musst du nicht dabeihaben.", "nicht_ru": "Не объяснять, откуда велосипед, — чек с собой носить не обязан.", "detail": "person-personalien"},
+    {"k": "fragen", "de": "Fragen", "ru": "Вопросы", "ziel_de": "", "ziel_ru": "", "main": "s-zursache", "extra": [], "tipp_de": "Zum Vorwurf (Gehweg, Licht, Handy) nichts sagen, nur Personalien.", "tipp_ru": "По поводу обвинения (тротуар, свет, телефон) молчать, только данные.", "nicht_de": "„Nur kurz“, „habe ich nicht gesehen“ – das sind schon Angaben zur Sache.", "nicht_ru": "«Я только на минутку», «не заметил» — это уже показания по делу.", "detail": "rad-regeln"},
+    {"k": "tests", "de": "Tests", "ru": "Тесты", "ziel_de": "", "ziel_ru": "", "main": "s-test", "extra": ["s-anordnung"], "tipp_de": "Besteht der Beamte darauf: fragen, ob es eine Anordnung ist.", "tipp_ru": "Если настаивают — спросить, распоряжение ли это.", "nicht_de": "Nicht zustimmen, „damit es schneller vorbei ist“.", "nicht_ru": "Не соглашаться «чтобы быстрее закончилось».", "detail": "fahrer-pusten"},
+    {"k": "massnahme", "de": "Zwang", "ru": "Принуждение", "ziel_de": "", "ziel_ru": "", "main": "s-widerspruch", "extra": ["s-grundlage"], "tipp_de": "Blutprobe, Wache: mit Worten widersprechen, nicht mit dem Körper.", "tipp_ru": "Кровь, участок: возражать словами, не телом.", "nicht_de": "Nicht losreißen oder weglaufen – sonst droht zusätzlich ein Strafverfahren wegen Widerstands.", "nicht_ru": "Не вырываться и не убегать — иначе грозит ещё и уголовное дело за сопротивление.", "detail": "fahrer-blut"},
+    {"k": "ende", "de": "Ende", "ru": "Конец", "ziel_de": "", "ziel_ru": "", "main": "s-ende", "extra": ["s-unterschrift", "s-verwarnung"], "tipp_de": "Unterschreiben musst du nichts; eine Kopie darfst du mitnehmen.", "tipp_ru": "Подписывать ничего не обязан; копию можно взять.", "nicht_de": "Ein Verwarnungsgeld nicht aus Unsicherheit sofort annehmen.", "nicht_ru": "Не соглашаться на штраф сразу из неуверенности.", "detail": "fahrer-unterschrift"}
   ],
   immer: ["s-start", "s-zursache"]
 };

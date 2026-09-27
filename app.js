@@ -1063,7 +1063,7 @@
     var p = a.play(); if (p && p.catch) p.catch(phStopAudio);
   }
   // Kurze Chip-Namen (passen in 4 Spalten ohne Trennung mitten im Wort); die Karte selbst braucht keinen eigenen Titel mehr.
-  var PH_CHIP = { start: ["Anhalten", "Стоп"], papiere: ["Papiere", "Бумаги"], fragen: ["Fragen", "Вопросы"], tests: ["Tests", "Тесты"], durchsuchung: ["Suche", "Обыск"], massnahme: ["Zwang", "Меры"], ende: ["Ende", "Конец"] };
+  var PH_CHIP = { start: ["Anhalten", "Стоп"], ausweis: ["Ausweis", "Документ"], grund: ["Grund", "Причина"], papiere: ["Papiere", "Бумаги"], fragen: ["Fragen", "Вопросы"], tests: ["Tests", "Тесты"], durchsuchung: ["Suche", "Обыск"], massnahme: ["Zwang", "Меры"], ende: ["Ende", "Конец"] };
   function phChipLabel(p) { var c = PH_CHIP[p.k]; return c ? c[UI === "ru" ? 1 : 0] : (UI === "ru" ? p.ru : p.de); }
   function phPlayBtn(id, cls, inner) {
     var s = phSatz(id), klein = cls.indexOf("klein") > -1;
@@ -1072,7 +1072,7 @@
   function renderPhasen() {
     if (!PH) return;
     phStopAudio();
-    var list = PH.fahrer, p = list[kPhase] || list[0], s = phSatz(p.main), ru = UI === "ru";
+    var list = PH[kRole] || PH.fahrer, p = list[kPhase] || list[0], s = phSatz(p.main), ru = UI === "ru";
     $("ph-chips").innerHTML = list.map(function (x, i) {
       return '<button type="button" data-ph-chip="' + i + '"' + (i === kPhase ? ' aria-current="step"' : "") + ">" + esc(phChipLabel(x)) + "</button>";
     }).join("");
@@ -1113,11 +1113,13 @@
     $("k-hint").hidden = !h;
     if (h) $("k-hint").innerHTML = esc(UI === "ru" ? h.ru : h.de) + (h.tel ? ' <a href="tel:' + esc(h.tel) + '">' + esc(h.telText) + "</a>" : "");
     // „Sagen“-Modus (Umschalter nur für Fahrer sichtbar): Phasen ersetzen Überschrift, Knopf-Raster und „Alle Antworten“
-    var sagenOn = !!(PH && kRole === "fahrer" && kModus === "sagen");
-    $("k-modus").hidden = !(PH && kRole === "fahrer");
+    var sagenOn = !!(PH && PH[kRole] && kModus === "sagen");
+    $("k-modus").hidden = !(PH && PH[kRole]);
     [].forEach.call(document.querySelectorAll("#k-modus [data-km]"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-km") === kModus ? "true" : "false"); });
     $("k-h").hidden = sagenOn; $("k-grid").hidden = sagenOn; $("k-all").hidden = sagenOn;
     $("k-phasen").hidden = !sagenOn;
+    // Rollen-Hinweis (z. B. Rad: „Motorroller … Fahrer wählen“) im Sagen-Modus unter die Phasen, damit Satz und Play oben bleiben
+    if (sagenOn) $("k-phasen").insertBefore($("k-hint"), $("ph-stimme")); else $("k-grid").parentNode.insertBefore($("k-hint"), $("k-grid").nextSibling);
     $("k-test").hidden = sagenOn || lsGet(LS_KTEST) !== "1";
     if (sagenOn) renderPhasen(); else phStopAudio();
     $("k-listen").textContent = kListen ? t("k_listen_on") : t("k_listen");
@@ -1176,7 +1178,7 @@
     var b = e.target.closest("button"); if (!b) return;
     if (b.hasAttribute("data-ph-play")) { phPlay(b.getAttribute("data-ph-play"), b); return; }
     if (b.hasAttribute("data-ph-chip")) { kPhase = +b.getAttribute("data-ph-chip"); renderPhasen(); window.scrollTo(0, 0); return; }
-    if (b.hasAttribute("data-ph-weiter")) { kPhase = Math.min(kPhase + 1, (PH.fahrer.length - 1)); renderPhasen(); window.scrollTo(0, 0); return; }
+    if (b.hasAttribute("data-ph-weiter")) { kPhase = Math.min(kPhase + 1, ((PH[kRole] || PH.fahrer).length - 1)); renderPhasen(); window.scrollTo(0, 0); return; }
     if (b.hasAttribute("data-ph-show")) { var s = phSatz(b.getAttribute("data-ph-show")); openBig(s.de, "", b, "", "", { intro: UI !== "de" }); return; }
     if (b.hasAttribute("data-ph-detail")) { showK(b.getAttribute("data-ph-detail")); return; }
     if (b.hasAttribute("data-pst")) { kStimme = b.getAttribute("data-pst") === "c" ? "c" : "b"; lsSet(LS_KSTIMME, kStimme); phStopAudio(); renderPhasen(); return; }
