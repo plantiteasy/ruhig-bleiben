@@ -86,7 +86,7 @@ window.RB = {
       doo: [
         "Freiwillig sind: Pusten, Urin-, Speichel- und Wischtest, der Pupillentest mit der Taschenlampe und Übungen wie Finger-Nase oder auf einer Linie gehen. Ablehnen ist kein Schuldeingeständnis. Die Polizei muss darauf nicht hinweisen.",
         "Bei Verdacht auf Alkohol oder Drogen am Steuer darf die Polizei eine Blutprobe auch ohne Richter anordnen (§ 81a Abs. 2 StPO) – dann dulden, nicht wehren. Ohne solchen Verdacht gibt es keine Blutprobe. Die Drohung „dann eben Blut auf der Wache“ ist kein Grund, freiwillig zu testen.",
-        "Grenzwerte Auto und E-Scooter: 0,5 Promille, THC 3,5 ng/ml. Ab 1,1 Promille oder mit Ausfallerscheinungen ist es eine Straftat. Unter 21 und in der Probezeit: kein Alkohol, kein Cannabis.",
+        "Grenzwerte Auto und E-Scooter: 0,5 Promille, THC 3,5 ng/ml. Unter 21 und in der Probezeit: kein Alkohol, kein Cannabis. Auch bei Drogen gilt: Mit Fahrfehlern oder Ausfallerscheinungen ist es schon ab 0,3 Promille eine Straftat, sonst ab 1,1 Promille immer – dann droht die Entziehung des Führerscheins. Ab 1,6 Promille ordnet die Führerscheinstelle immer eine MPU an. Bei harten Drogen wie Kokain oder Amphetamin entzieht sie den Führerschein oft ohne MPU.",
         "Urintests zeigen Cannabis noch Tage nach dem Konsum.",
         "Medikamente wie Ritalin oder Cannabis auf Rezept: Rezept oder ärztliche Bescheinigung dabeihaben, vor Ort aber nichts erklären – erst bei der Blutprobe oder über den Anwalt."
       ],
@@ -96,13 +96,13 @@ window.RB = {
         "Die Blutprobe nicht körperlich verhindern – das ist Widerstand."
       ],
       note: "Erstverstoß ab 0,5 Promille oder 3,5 ng/ml THC: 500 €, 1 Monat Fahrverbot, 2 Punkte. Alkohol und THC zusammen: 1.000 €. Ist die Blutprobe negativ, wird das Verfahren eingestellt und du zahlst sie nicht.",
-      law: "§ 81a StPO · §§ 24a, 24c StVG · § 316 StGB",
+      law: "§ 81a StPO · §§ 24a, 24c StVG · § 316 StGB · § 13 S. 1 Nr. 2 Buchst. c FeV · Anlage 4 Nr. 9.1 FeV",
       actions: ["qh", "protokoll"],
       ru: {
         title: "Тест на алкоголь или наркотики", sub: "Дуть, моча, мазок, кровь", toneLabel: "Зависит",
         doo: ["Добровольно: дуть в трубку, тесты мочи, слюны и мазок, проверка зрачков фонариком и упражнения вроде «палец к носу» или «пройти по линии». Отказ — не признание вины. Полиция не обязана говорить, что это добровольно.",
           "При подозрении на алкоголь или наркотики за рулём полиция может назначить взятие крови и без судьи (§ 81a Abs. 2 StPO) — тогда терпи, не сопротивляйся. Без такого подозрения кровь не берут. Угроза «тогда возьмём кровь в участке» — не причина соглашаться на тест.",
-          "Пределы для машины и электросамоката: 0,5 промилле, THC 3,5 нг/мл. С 1,1 промилле или при явных признаках опьянения — это преступление. До 21 года и на испытательном сроке: ни алкоголя, ни каннабиса.",
+          "Пределы для машины и электросамоката: 0,5 промилле, THC 3,5 нг/мл. До 21 года и на испытательном сроке: ни алкоголя, ни каннабиса. И для наркотиков действует: при ошибках вождения или явных признаках опьянения это преступление уже с 0,3 промилле, иначе — всегда с 1,1 промилле, тогда грозит лишение прав. С 1,6 промилле ведомство по правам всегда назначает MPU. При тяжёлых наркотиках вроде кокаина или амфетамина права часто отбирают без MPU.",
           "Тест мочи показывает каннабис ещё несколько дней после употребления.",
           "Лекарства вроде риталина или каннабис по рецепту: носи с собой рецепт или справку врача, но на месте ничего не объясняй — только при взятии крови или через адвоката."],
         dont: ["Не называй количество, время и не говори «курил пару лет назад» — по этому пересчитывают и обосновывают анализ крови.",
@@ -616,6 +616,14 @@ window.RB = {
       ru: { title: "Письмо из полиции или штрафного ведомства", toneLabel: "Сроки",
         text: "Anhörungsbogen (ты под подозрением): обязательно только указать личные данные, по делу можешь молчать. Zeugenfragebogen владельцу машины: родственников как водителей называть не обязан, но тогда могут обязать вести журнал поездок (Fahrtenbuch). Назвать ложного водителя — штраф до 30 000 €. Против штрафного решения (Bußgeldbescheid) — письменное возражение в течение 2 недель со дня вручения. С 01.07.2026 нарушения ПДД, как правило, погашаются давностью через 6 месяцев; Anhörungsbogen прерывает срок." },
       kw: ["штраф", "радар", "сфоткал", "bussgeld", "anhoerung", "anhoerungsbogen", "zeugenfragebogen", "bussgeldbescheid", "bussgeld", "brief", "post von", "einspruch", "fahrer benennen", "fahrtenbuch", "blitzer", "geblitzt", "verjaehr", "письмо", "анкет", "заполнить", "по почте", "fragebogen", "formular", "ausfuellen", "анхерунг", "бусгельд", "пришло письмо", "пришел штраф", "обжалова", "кто был за рул", "фото с камеры", "блитцер", "камера скорост", "опросный лист"]
+    },
+    {
+      id: "k-drei-wege", cat: "danach", title: "Nach Blutprobe: wie geht es weiter?", tone: "warn", toneLabel: "3 Wege",
+      text: "Nach der Blutprobe laufen bis zu drei getrennte, unabhängige Wege: (1) Bußgeldstelle bei einer Ordnungswidrigkeit – Anhörungsbogen, Pflicht nur die Personalien, Einspruch 2 Wochen. (2) Staatsanwaltschaft bei Verdacht auf § 316 StGB – oft ein Strafbefehl, auch dagegen 2 Wochen Einspruch. (3) Führerscheinstelle prüft deine Fahreignung eigenständig, verlangt oft ein Gutachten oder eine MPU und kann die Fahrerlaubnis entziehen – eine Einstellung der anderen Verfahren stoppt das nicht automatisch. Keine Fristen versprechen, früh zum Fachanwalt Verkehrsrecht.",
+      law: "§ 2 Abs. 12 StVG · §§ 55, 67 OWiG · § 410 StPO · §§ 11, 13, 13a, 14 FeV · § 3 Abs. 3 StVG",
+      ru: { title: "После анализа крови: что дальше?", toneLabel: "3 пути",
+        text: "После анализа крови идут до трёх отдельных, независимых путей: (1) Ведомство по штрафам при нарушении — анкета-опрос, обязательны только личные данные, возражение — 2 недели. (2) Прокуратура при подозрении по § 316 StGB — часто судебный приказ, против него тоже 2 недели. (3) Führerscheinstelle проверяет твою пригодность самостоятельно, часто требует заключение или MPU и может лишить прав — закрытие других дел это не останавливает. Не обещай сроков, обратись пораньше к адвокату по дорожному праву." },
+      kw: ["was passiert nach der blutprobe", "was passiert jetzt", "wie geht es weiter", "wie geht's weiter", "ergebnis der blutprobe", "ergebnis bekommen sie", "bekommen sie per post", "что дальше", "что будет дальше", "после анализа крови", "führerscheinstelle", "fuehrerscheinstelle", "mpu", "entziehung der fahrerlaubnis", "strafbefehl"]
     },
     {
       id: "k-vorladung", cat: "danach", title: "Vorladung von der Polizei", tone: "right", toneLabel: "Oft keine Pflicht",

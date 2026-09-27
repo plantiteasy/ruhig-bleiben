@@ -1200,6 +1200,7 @@
   function renderEinrichten() {
     $("einr-role").innerHTML = K ? roleSeg(ownRole(), true) : ""; renderEinrTr();
     $("einr-test").checked = lsGet(LS_KTEST) === "1";
+    $("einr-test-label").hidden = lsGet(LS_KTEST) !== "1"; // nur sichtbar, wenn der Testmodus schon per ?mithoeren=1 an ist – sonst schaltet niemand aus Versehen Tonübertragung an Google ein
     $("einr-inst").innerHTML = $("install-help").innerHTML;
     try {
       if (navigator.permissions && navigator.permissions.query) navigator.permissions.query({ name: "camera" }).then(function (st) {
@@ -1216,7 +1217,7 @@
     }).catch(function () { m.textContent = permHelp("cammic"); m.className = "einr-msg err"; });
   });
   $("einr-test").addEventListener("change", function () {
-    if ($("einr-test").checked) lsSet(LS_KTEST, "1"); else try { localStorage.removeItem(LS_KTEST); } catch (e) {}
+    if ($("einr-test").checked) lsSet(LS_KTEST, "1"); else { try { localStorage.removeItem(LS_KTEST); } catch (e) {} $("einr-test-label").hidden = true; }
     renderKontrolle();
   });
   $("einr-done").addEventListener("click", function () { lsSet(LS_SETUP, isoDate(new Date())); renderFuerDich(); location.hash = lastTab === "wissen" ? "#wissen" : "#jetzt"; });
