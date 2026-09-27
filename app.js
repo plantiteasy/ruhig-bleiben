@@ -41,6 +41,11 @@
       k_test_warn: "Testmodus: nur mit Freunden, die Polizei spielen und einverstanden sind. Der Ton geht zur Erkennung an Google (Android) bzw. Apple (iPhone). Nicht bei echter Polizei benutzen.",
       k_listen: "Mithören starten (Test)", k_listen_on: "Mithören stoppen", k_live: "Hört mit (Test):", k_log_share: "Log teilen", k_test_off: "Testmodus aus", k_log_none: "kein Treffer",
       k_start_filme: "Ich filme eine Kontrolle (Freund, Fremde)", k_menu: "Menü", k_stop_sure: "Wirklich stoppen?", big_speak: "Vorlesen (Deutsch)",
+      // „Sagen“-Modus (nur Fahrer): Phasen statt Knopf-Raster, ein Satz mit Play-Knopf statt 10 Knöpfen
+      k_modus_sagen: "Was sage ich", k_modus_polizist: "Was sagt der Polizist",
+      ph_play: "Abspielen", ph_stop: "Stopp", ph_show: "Zeigen", ph_wenn_noetig: "Wenn nötig", ph_mehr: "Mehr und warum", ph_weiter: "Weiter: {x} ›",
+      ph_stimme: "Stimme:", ph_mann: "Mann", ph_frau: "Frau", ph_nicht: "Nicht:",
+      ph_note: "Kein Ton? Lautstärke prüfen. Der Text auf dem Bildschirm zählt.", ph_chip_suche: "Suche",
       einr_card: "In 30 Sekunden einrichten: Kamera erlauben, Tresor für deine Videos, auf den Startbildschirm →", einr_h: "In 30 Sekunden bereit", einr_lead: "Einmal jetzt in Ruhe – dann reicht im Ernstfall ein Tipp.",
       einr_1: "Sprache der App", einr_2: "Meistens bin ich", einr_3: "Kamera und Mikrofon erlauben", einr_3h: "Sonst fragt das Handy erst, wenn der Polizist schon da ist.",
       einr_cam: "Jetzt erlauben", einr_cam_ok: "✓ Erlaubt", einr_4: "Auf den Startbildschirm", einr_4h: "Danach: lange auf das App-Symbol drücken → „Kontrolle“ startet sofort das Video.",
@@ -162,6 +167,10 @@
       k_test_warn: "Тестовый режим: только с друзьями, которые играют полицию и согласны. Звук для распознавания уходит в Google (Android) или Apple (iPhone). Не использовать с настоящей полицией.",
       k_listen: "Начать прослушивание (тест)", k_listen_on: "Остановить прослушивание", k_live: "Слушает (тест):", k_log_share: "Поделиться логом", k_test_off: "Выключить тест", k_log_none: "нет совпадения",
       k_start_filme: "Я снимаю проверку (друга, чужих)", k_menu: "Меню", k_stop_sure: "Точно остановить?", big_speak: "Прочитать вслух по-немецки",
+      k_modus_sagen: "Что сказать", k_modus_polizist: "Что говорит полицейский",
+      ph_play: "Воспроизвести", ph_stop: "Стоп", ph_show: "Показать", ph_wenn_noetig: "Если нужно", ph_mehr: "Подробнее и почему", ph_weiter: "Дальше: {x} ›",
+      ph_stimme: "Голос:", ph_mann: "мужской", ph_frau: "женский", ph_nicht: "Не надо:",
+      ph_note: "Нет звука? Проверь громкость. Текст на экране — главное.", ph_chip_suche: "Обыск",
       einr_card: "Настроить за 30 секунд: камера, сейф для видео, значок на экране →", einr_h: "Настройка за 30 секунд", einr_lead: "Один раз сейчас спокойно — тогда в нужный момент хватит одного нажатия.",
       einr_1: "Язык приложения", einr_2: "Чаще всего я", einr_3: "Разрешить камеру и микрофон", einr_3h: "Иначе телефон спросит, когда полицейский уже рядом.",
       einr_cam: "Разрешить сейчас", einr_cam_ok: "✓ Разрешено", einr_4: "Значок на главный экран", einr_4h: "Потом: долго нажми на значок приложения → «Kontrolle» сразу включает видео.",
@@ -296,6 +305,7 @@
   var lastTab = "jetzt";
   function show(name) {
     if (name !== currentView) { stopListening(); if (name !== "fragen") stopSpeaking(); }
+    if (currentView === "kontrolle" && name !== "kontrolle") phStopAudio(); // „Sagen“-Modus: Ton stoppt beim Verlassen der Kontrolle
     currentView = name;
     views.forEach(function (v) { $("v-" + v).hidden = v !== name; });
     var TAB = { jetzt: "jetzt", kontrolle: "jetzt", einrichten: "jetzt", danach: "danach", tresor: "danach", wissen: "wissen", fragen: "wissen", profil: "wissen" };
@@ -1027,6 +1037,68 @@
       return '<button type="button" class="seg-b" data-kr="' + r[0] + '" aria-pressed="' + (sel === r[0]) + '">' + esc(UI === "ru" ? r[2] : r[1]) + "</button>";
     }).join("");
   }
+  /* ---------- „Sagen"-Modus (nur Fahrer): Phasen statt Knopf-Raster, ein Satz mit Play-Knopf statt 10 Knöpfen.
+     Quelle: phasen.js (aus dem Prototyp „Anwalt in der Tasche" übernommen). Wiedergabe per <audio>, kein Web Audio
+     (iPhone-Stummschalter soll wirken); nur ein Ton gleichzeitig; stoppt bei Phasenwechsel, Rollenwechsel, Verlassen. */
+  var PH = window.RB.phasen || null;
+  var LS_KMODUS = "rb-k-modus-v1", LS_KSTIMME = "rb-k-stimme-v1";
+  var kModus = lsGet(LS_KMODUS) === "polizist" ? "polizist" : "sagen";
+  var kStimme = lsGet(LS_KSTIMME) === "c" ? "c" : "b";
+  var kPhase = 0, kPhAudio = null, kPhBtn = null;
+  function phSatz(id) { return (PH && PH.saetze[id]) || { de: "", ru: "" }; }
+  function phSetIcon(btn, playing) {
+    btn.classList.toggle("playing", playing); btn.setAttribute("aria-pressed", playing ? "true" : "false");
+    var ico = btn.querySelector(".ph-ico"); if (ico) ico.classList.toggle("stop", playing);
+    if (btn.classList.contains("ph-play-main")) { var l = btn.querySelector(".ph-play-t"); if (l) l.textContent = t(playing ? "ph_stop" : "ph_play"); }
+  }
+  function phStopAudio() {
+    if (kPhAudio) { try { kPhAudio.pause(); } catch (e) {} kPhAudio = null; }
+    if (kPhBtn) { phSetIcon(kPhBtn, false); kPhBtn = null; }
+  }
+  function phPlay(id, btn) {
+    var war = kPhBtn === btn; phStopAudio(); if (war) return;
+    var a; try { a = new Audio("audio/" + id + "_" + kStimme + ".mp3"); } catch (e) { return; }
+    kPhAudio = a; kPhBtn = btn; phSetIcon(btn, true);
+    a.onended = phStopAudio; a.onerror = phStopAudio;
+    var p = a.play(); if (p && p.catch) p.catch(phStopAudio);
+  }
+  function phChipLabel(p) { if (UI === "ru") return p.ru; return p.k === "durchsuchung" ? t("ph_chip_suche") : p.de; }
+  function phPlayBtn(id, cls, inner) {
+    var s = phSatz(id), klein = cls.indexOf("klein") > -1;
+    return '<button type="button" class="btn ph-play ' + cls + '" data-ph-play="' + id + '" aria-pressed="false" aria-label="' + esc(t("ph_play")) + ": " + esc(s.de) + '"><span class="ph-ico' + (klein ? " klein" : "") + '" aria-hidden="true"></span>' + (inner || "") + "</button>";
+  }
+  function renderPhasen() {
+    if (!PH) return;
+    phStopAudio();
+    var list = PH.fahrer, p = list[kPhase] || list[0], s = phSatz(p.main), ru = UI === "ru";
+    $("ph-chips").innerHTML = list.map(function (x, i) {
+      return '<button type="button" data-ph-chip="' + i + '"' + (i === kPhase ? ' aria-current="step"' : "") + ">" + esc(phChipLabel(x)) + "</button>";
+    }).join("");
+    var mainBtn = phPlayBtn(p.main, "ph-play-main primary", '<span class="ph-play-t">' + esc(t("ph_play")) + "</span>");
+    var next = list[kPhase + 1];
+    $("ph-karte").innerHTML =
+      '<p class="ph-kopf">' + (kPhase + 1) + ". " + esc(p.de) + (ru ? " · " + esc(p.ru) : "") + "</p>" +
+      '<p class="ph-ziel">' + esc(ru ? p.ziel_ru : p.ziel_de) + "</p>" +
+      '<p class="ph-satz" lang="de" translate="no">' + esc(s.de) + "</p>" +
+      (ru ? '<p class="say-ru">' + esc(s.ru) + "</p>" : "") +
+      '<div class="ph-aktionen">' + mainBtn + '<button type="button" class="btn ph-zeigen" data-ph-show="' + p.main + '">' + esc(t("ph_show")) + "</button></div>" +
+      '<p class="ph-tipp">' + esc(ru ? p.tipp_ru : p.tipp_de) + "</p>" +
+      '<p class="ph-nicht">' + esc(t("ph_nicht")) + " " + esc(ru ? p.nicht_ru : p.nicht_de) + "</p>" +
+      '<button type="button" class="btn ph-mehr" data-ph-detail="' + p.detail + '">' + esc(t("ph_mehr")) + "</button>" +
+      (next ? '<button type="button" class="ph-weiter" data-ph-weiter="1">' + esc(t("ph_weiter", ru ? next.ru : next.de)) + "</button>" : "");
+    $("ph-extra").innerHTML = p.extra.length ? '<span class="ph-label">' + esc(t("ph_wenn_noetig")) + "</span>" + p.extra.slice(0, 2).map(function (id) {
+      var es = phSatz(id);
+      return '<div class="ph-ex">' + phPlayBtn(id, "klein") + '<div class="ph-ex-txt"><div class="ph-ex-de" lang="de" translate="no">' + esc(es.de) + "</div>" + (ru ? '<div class="ph-ex-ru">' + esc(es.ru) + "</div>" : "") + "</div></div>";
+    }).join("") : "";
+    // „Wenig Deutsch“ / „Zur Sache nichts“: feste deutsche Kurzbezeichnung (wird dem Beamten gezeigt), RU nur als kleiner Untertitel
+    var immerLabels = [{ de: "Wenig Deutsch", ru: "плохо говорю" }, { de: "Zur Sache nichts", ru: "молчу по делу" }];
+    $("ph-immer").innerHTML = (PH.immer || []).map(function (id, i) {
+      var lab = immerLabels[i] || { de: id, ru: "" };
+      return phPlayBtn(id, "klein ph-immer-b", '<span class="ph-play-t">' + esc(lab.de) + (ru ? "<br><small>" + esc(lab.ru) + "</small>" : "") + "</span>");
+    }).join("");
+    $("ph-stimme").innerHTML = '<span class="ph-stimme-l">' + esc(t("ph_stimme")) + '</span><button type="button" class="seg-b" data-pst="b" aria-pressed="' + (kStimme === "b") + '">' + esc(t("ph_mann")) + '</button><button type="button" class="seg-b" data-pst="c" aria-pressed="' + (kStimme === "c") + '">' + esc(t("ph_frau")) + "</button>";
+    $("ph-note").textContent = t("ph_note");
+  }
   function renderKontrolle() {
     if (!K) { $("k-start").hidden = true; $("k-start-filme").hidden = true; return; }
     $("k-role").innerHTML = roleSeg(); $("einr-role").innerHTML = roleSeg(ownRole(), true);
@@ -1040,7 +1112,14 @@
     var h = K.hinweis && K.hinweis[kRole];
     $("k-hint").hidden = !h;
     if (h) $("k-hint").innerHTML = esc(UI === "ru" ? h.ru : h.de) + (h.tel ? ' <a href="tel:' + esc(h.tel) + '">' + esc(h.telText) + "</a>" : "");
-    $("k-test").hidden = lsGet(LS_KTEST) !== "1";
+    // „Sagen“-Modus (Umschalter nur für Fahrer sichtbar): Phasen ersetzen Überschrift, Knopf-Raster und „Alle Antworten“
+    var sagenOn = !!(PH && kRole === "fahrer" && kModus === "sagen");
+    $("k-modus").hidden = !(PH && kRole === "fahrer");
+    [].forEach.call(document.querySelectorAll("#k-modus [data-km]"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-km") === kModus ? "true" : "false"); });
+    $("k-h").hidden = sagenOn; $("k-grid").hidden = sagenOn; $("k-all").hidden = sagenOn;
+    $("k-phasen").hidden = !sagenOn;
+    $("k-test").hidden = sagenOn || lsGet(LS_KTEST) !== "1";
+    if (sagenOn) renderPhasen(); else phStopAudio();
     $("k-listen").textContent = kListen ? t("k_listen_on") : t("k_listen");
     syncKBar();
     if (kCur) showK(kCur, true);
@@ -1086,8 +1165,21 @@
   [$("k-role"), $("einr-role")].forEach(function (el) {
     el.addEventListener("click", function (e) {
       var b = e.target.closest("[data-kr]"); if (!b) return;
-      kRole = b.getAttribute("data-kr"); if (kRole !== "filme") lsSet(LS_KROLE, kRole); hideK(); renderKontrolle();
+      kRole = b.getAttribute("data-kr"); if (kRole !== "filme") lsSet(LS_KROLE, kRole); hideK(); kPhase = 0; phStopAudio(); renderKontrolle();
     });
+  });
+  $("k-modus").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-km]"); if (!b) return;
+    kModus = b.getAttribute("data-km") === "polizist" ? "polizist" : "sagen"; lsSet(LS_KMODUS, kModus); hideK(); kPhase = 0; renderKontrolle();
+  });
+  $("k-phasen").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    if (b.hasAttribute("data-ph-play")) { phPlay(b.getAttribute("data-ph-play"), b); return; }
+    if (b.hasAttribute("data-ph-chip")) { kPhase = +b.getAttribute("data-ph-chip"); renderPhasen(); window.scrollTo(0, 0); return; }
+    if (b.hasAttribute("data-ph-weiter")) { kPhase = Math.min(kPhase + 1, (PH.fahrer.length - 1)); renderPhasen(); window.scrollTo(0, 0); return; }
+    if (b.hasAttribute("data-ph-show")) { var s = phSatz(b.getAttribute("data-ph-show")); openBig(s.de, "", b, "", "", { intro: UI !== "de" }); return; }
+    if (b.hasAttribute("data-ph-detail")) { showK(b.getAttribute("data-ph-detail")); return; }
+    if (b.hasAttribute("data-pst")) { kStimme = b.getAttribute("data-pst") === "c" ? "c" : "b"; lsSet(LS_KSTIMME, kStimme); phStopAudio(); renderPhasen(); return; }
   });
   $("k-status").addEventListener("click", function (e) {
     if (!e.target.closest("#k-save")) return;

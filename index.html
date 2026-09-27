@@ -72,16 +72,28 @@
     </div>
     <div class="k-pick" id="k-pick">
       <div class="seg k-role" id="k-role" role="group" aria-label="Ich bin" data-t-aria="k_role_aria"></div>
+      <div class="seg k-modus" id="k-modus" role="group" aria-label="Modus" hidden>
+        <button type="button" class="seg-b" data-km="sagen" aria-pressed="true" data-t="k_modus_sagen">Was sage ich</button>
+        <button type="button" class="seg-b" data-km="polizist" aria-pressed="false" data-t="k_modus_polizist">Was sagt der Polizist</button>
+      </div>
       <h1 id="k-h" class="k-h" data-t="k_h">Was sagt der Polizist?</h1>
       <div class="k-grid" id="k-grid"></div>
       <p class="k-hint" id="k-hint" hidden></p>
-      <a class="k-all" href="#aufnahme" data-act="qh" data-t="k_all">Alle 71 Antworten</a>
+      <a class="k-all" id="k-all" href="#aufnahme" data-act="qh" data-t="k_all">Alle 71 Antworten</a>
       <div class="k-test" id="k-test" hidden>
         <p class="k-test-w" data-t="k_test_warn">Testmodus: nur mit Freunden, die Polizei spielen und einverstanden sind. Der Ton geht zur Erkennung an Google. Nicht bei echter Polizei benutzen.</p>
         <button class="btn" type="button" id="k-listen" aria-pressed="false" data-t="k_listen">Mithören starten (Test)</button>
         <p class="hint" id="k-listen-msg" aria-live="polite"></p>
         <ol class="k-log" id="k-log"></ol>
         <div class="k-actions"><button class="btn" type="button" id="k-log-share" data-t="k_log_share">Log teilen</button><button class="btn ghost" type="button" id="k-test-off" data-t="k_test_off">Testmodus aus</button></div>
+      </div>
+      <div class="k-phasen" id="k-phasen" hidden>
+        <nav class="ph-chips" id="ph-chips" aria-label="Phase"></nav>
+        <div class="ph-karte" id="ph-karte" aria-live="polite"></div>
+        <div class="ph-extra" id="ph-extra"></div>
+        <div class="ph-immer" id="ph-immer"></div>
+        <div class="seg ph-stimme" id="ph-stimme" role="group"></div>
+        <p class="hint ph-note" id="ph-note"></p>
       </div>
     </div>
     <div class="k-foot" id="k-foot">
@@ -352,6 +364,7 @@
 <script src="data.js"></script>
 <script src="quick.js"></script>
 <script src="kontrolle.js"></script>
+<script src="phasen.js"></script>
 <script src="tresor.js"></script>
 <script src="app.js"></script>
 </body>
