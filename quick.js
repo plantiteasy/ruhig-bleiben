@@ -1,6 +1,8 @@
 /* Schnellhilfe „Polizei sagt → deine Antwort mit Paragraf“ (Stand 27.09.2026, Baden-Württemberg).
    Jede Antwort gegen den Gesetzestext geprüft (gesetze-im-internet.de, landesrecht-bw.de) und von einem zweiten Prüfer gegengelesen
-   (Rad/E-Scooter: rad-regeln, rad-rahmennummer und die Ergänzungen in fahrer-blut, fahrer-handy, fahrer-wissen-sie-warum, person-ausweis-mitfuehren am 27.09.2026);
+   (Rad/E-Scooter: rad-regeln, rad-rahmennummer und die Ergänzungen in fahrer-blut, fahrer-handy, fahrer-wissen-sie-warum, person-ausweis-mitfuehren am 27.09.2026;
+   Paket A+B: fahrer-verdacht-anzeichen, druck-nichts-zu-verbergen, fahrer-vorwurf-bestreiten neu, geändert fahrer-fragen, fahrer-drogenvortest,
+   fahrer-kofferraum, fahrer-anhalten, fahrer-schluessel-weiterfahrt, fahrer-verwarnungsgeld am 27.09.2026);
    „src“ = Primärquellen. Noch nicht anwaltlich geprüft. */
 window.RB.quickGroups = [["fahrer", "Fahrer", "Водитель"], ["person", "Beifahrer, Personenkontrolle", "Пассажир, проверка документов"], ["aufnahme", "Filmen und Handy", "Съёмка и телефон"], ["druck", "Druck und Fragen", "Давление и вопросы"]];
 window.RB.quickTop = ["fahrer-fragen", "fahrer-pusten", "fahrer-handy-weg-haende", "aufnahme-nehmen-sie-auf", "aufnahme-filmen-stoppen", "fahrer-drogenvortest", "fahrer-kofferraum", "person-beifahrer-ausweis", "fahrer-blut", "druck-widerstand-drohung", "aufnahme-handy-herausgeben", "person-taschen-durchsuchen"];
@@ -11,17 +13,18 @@ window.RB.quick = [
   "v": "musst",
   "cop": "Polizei – bitte folgen! Halten Sie da vorne rechts an.",
   "say": "Ich halte an und folge Ihren Anweisungen zur Verkehrskontrolle nach § 36 Abs. 5 StVO. Zur Sache mache ich keine Angaben.",
-  "law": "§ 36 Abs. 5 S. 1, S. 4 StVO · BKat Nr. 129 (Anlage BKatV) · FeV Anlage 13 Nr. 3.2.19",
-  "why": "Hier hat die Polizei recht: Zur allgemeinen Verkehrskontrolle darf sie jeden ohne Verdacht anhalten, ihre Anweisungen sind zu befolgen. Haltgebot missachtet: 70 € und 1 Punkt (BKat Nr. 129, FeV Anlage 13 Nr. 3.2.19).",
+  "law": "§ 36 Abs. 1 S. 2, Abs. 5 S. 1, S. 4 StVO · § 16 Abs. 2 S. 2 StVO · BKat Nr. 129 (Anlage BKatV) · FeV Anlage 13 Nr. 3.2.19",
+  "why": "Hier hat die Polizei recht: Zur allgemeinen Verkehrskontrolle darf sie jeden ohne Verdacht anhalten, ihre Anweisungen sind zu befolgen. Haltgebot missachtet: 70 € und 1 Punkt (BKat Nr. 129, FeV Anlage 13 Nr. 3.2.19). Zeigt die Polizei „Bitte folgen“, fahr hinterher, bis sie anhält, und halte dort, wo sie es anweist. Gibt sie nur das Haltezeichen und kannst du nicht sofort gefahrlos halten (keine Haltebucht, schnelle Straße, Dunkelheit): zeig, dass du verstanden hast – Blinker, deutlich langsamer – und halte an der nächsten sicheren Stelle. Das Haltezeichen entbindet nicht von der Sorgfaltspflicht (§ 36 Abs. 1 S. 2 StVO); bei besonders langsamer Fahrt auf schnellen Straßen ist Warnblinklicht erlaubt (§ 16 Abs. 2 S. 2 StVO). Nicht kilometerweit weiterfahren – das kann wie Flucht wirken. Nach dem Halten: Motor aus, bei Dunkelheit Innenlicht an, Hände sichtbar.",
   "src": [
    "https://www.gesetze-im-internet.de/stvo_2013/__36.html",
+   "https://www.gesetze-im-internet.de/stvo_2013/__16.html",
    "https://www.gesetze-im-internet.de/bkatv_2013/BJNR049800013.html",
    "https://www.gesetze-im-internet.de/fev_2010/anlage_13.html"
   ],
   "ru": {
    "cop": "Полиция — следуйте за нами! Остановитесь вон там справа.",
    "say": "Я останавливаюсь и выполняю ваши указания для дорожной проверки по § 36 Abs. 5 StVO. По существу ничего не скажу.",
-   "why": "Здесь полиция права: для общей дорожной проверки она может остановить любого без подозрения, её указания нужно выполнять. Не остановился по требованию: 70 € и 1 балл (BKat Nr. 129, FeV Anlage 13 Nr. 3.2.19)."
+   "why": "Здесь полиция права: для общей дорожной проверки она может остановить любого без подозрения, её указания нужно выполнять. Не остановился по требованию: 70 € и 1 балл (BKat Nr. 129, FeV Anlage 13 Nr. 3.2.19). Если полиция показывает «Bitte folgen», едь за ней, пока она не остановится, и встань там, где она укажет. Если есть только знак остановиться, а сразу безопасно остановиться нельзя (нет кармана, быстрая дорога, темно): покажи, что понял, — поворотник, заметно сбавь скорость — и остановись в ближайшем безопасном месте. Знак остановки не снимает с тебя обязанности соблюдать осторожность (§ 36 Abs. 1 S. 2 StVO); при очень медленной езде на быстрой дороге разрешена аварийная сигнализация (§ 16 Abs. 2 S. 2 StVO). Не проезжай лишние километры — это может выглядеть как бегство. После остановки: заглуши мотор, в темноте включи свет в салоне, держи руки на виду."
   }
  },
  {
@@ -89,20 +92,21 @@ window.RB.quick = [
   "v": "musst_nicht",
   "cop": "Wo kommen Sie her, wo wollen Sie hin? Haben Sie heute was getrunken?",
   "say": "Meine Personalien gebe ich an. Weitere Fragen beantworte ich nicht – dazu bin ich nicht verpflichtet (§ 43 Abs. 1 S. 2 PolG BW, § 136 Abs. 1 S. 2 StPO).",
-  "law": "§ 111 Abs. 1, 3 OWiG · § 43 Abs. 1 S. 2, 3, 5, 6 PolG BW · § 136 Abs. 1 S. 2 i.V.m. § 163a Abs. 4 S. 1–2 StPO · § 46 Abs. 1, § 55 OWiG",
-  "why": "Pflicht sind nur die Personalien: Name, Geburtsdatum und -ort, Familienstand, Beruf, Wohnort und Anschrift, Staatsangehörigkeit (§ 111 OWiG, Verweigerung bis 1.000 €). Zu Fahrtziel, Alkohol, Drogen oder Medikamenten darfst du schweigen: ohne Verdacht, weil § 43 Abs. 1 S. 2 PolG BW nur die Personalien zur Pflicht macht, als Beschuldigter nach § 136 StPO. Du darfst fragen: „Welche Tat wird mir vorgeworfen?“ (§ 163a Abs. 4 S. 1 StPO).",
+  "law": "§ 111 Abs. 1, 3 OWiG · § 43 Abs. 1 S. 2, 3, 5, 6 PolG BW · § 136 Abs. 1 S. 2 i.V.m. § 163a Abs. 4 S. 1–2 StPO · § 46 Abs. 1, § 55 OWiG · § 2 Abs. 12 StVG",
+  "why": "Pflicht sind nur die Personalien: Name, Geburtsdatum und -ort, Familienstand, Beruf, Wohnort und Anschrift, Staatsangehörigkeit (§ 111 OWiG, Verweigerung bis 1.000 €). Zu Fahrtziel, Alkohol, Drogen oder Medikamenten darfst du schweigen: ohne Verdacht, weil § 43 Abs. 1 PolG BW darüber hinaus nur zur Abwehr einer Gefahr etwa für Leben oder Gesundheit Angaben verlangt (S. 3) und du nichts sagen musst, was dich wegen einer Straftat oder Ordnungswidrigkeit belasten kann (S. 5); als Beschuldigter nach § 136 StPO. Das gilt auch für Nachfragen wie „Wann haben Sie zuletzt konsumiert?“, „Aber früher doch bestimmt?“ oder „Schon mal mit der Polizei zu tun gehabt?“: Jede Zeitangabe räumt Konsum ein, und Tatsachen, die auf nicht nur vorübergehende Eignungsmängel schließen lassen, übermittelt die Polizei der Führerscheinstelle (§ 2 Abs. 12 StVG). Du darfst fragen: „Welche Tat wird mir vorgeworfen?“ (§ 163a Abs. 4 S. 1 StPO).",
   "src": [
    "https://www.gesetze-im-internet.de/owig_1968/__111.html",
    "https://www.gesetze-im-internet.de/owig_1968/__55.html",
    "https://www.gesetze-im-internet.de/owig_1968/__46.html",
    "https://www.gesetze-im-internet.de/stpo/__136.html",
    "https://www.gesetze-im-internet.de/stpo/__163a.html",
-   "https://www.landesrecht-bw.de/perma?d=jlr-NNLBW00007D29NN00000000057"
+   "https://www.landesrecht-bw.de/perma?d=jlr-NNLBW00007D29NN00000000057",
+   "https://www.gesetze-im-internet.de/stvg/__2.html"
   ],
   "ru": {
    "cop": "Откуда едете, куда направляетесь? Сегодня что-нибудь пили?",
    "say": "Свои личные данные назову. На другие вопросы не отвечаю — я не обязан (§ 43 Abs. 1 S. 2 PolG BW, § 136 Abs. 1 S. 2 StPO).",
-   "why": "Обязательно назвать только личные данные: имя, дату и место рождения, семейное положение, профессию, место жительства и адрес, гражданство (§ 111 OWiG, отказ: до 1 000 €). О том, куда едешь, об алкоголе, наркотиках и лекарствах можешь молчать: без подозрения — потому что § 43 Abs. 1 S. 2 PolG BW обязывает называть только личные данные, как подозреваемый — по § 136 StPO. Можно спросить: «В чём меня обвиняют?» (§ 163a Abs. 4 S. 1 StPO)."
+   "why": "Обязательно назвать только личные данные: имя, дату и место рождения, семейное положение, профессию, место жительства и адрес, гражданство (§ 111 OWiG, отказ: до 1 000 €). О том, куда едешь, об алкоголе, наркотиках и лекарствах можешь молчать: без подозрения — потому что § 43 Abs. 1 PolG BW сверх этого требует сведений только для защиты от опасности, например для жизни или здоровья (S. 3), а говорить то, из-за чего тебя могут преследовать за преступление или правонарушение, ты не обязан (S. 5); как подозреваемый — по § 136 StPO. Это касается и вопросов вдогонку: «Когда вы последний раз употребляли?», «Но раньше-то точно?», «Уже имели дело с полицией?»: любое указание времени — признание употребления, а факты, указывающие на не только временные недостатки пригодности к вождению, полиция передаёт в ведомство по водительским правам (§ 2 Abs. 12 StVG). Можно спросить: «В чём меня обвиняют?» (§ 163a Abs. 4 S. 1 StPO)."
   }
  },
  {
@@ -133,7 +137,7 @@ window.RB.quick = [
   "cop": "Machen Sie mal einen Urintest oder Wischtest. Und folgen Sie meinem Finger mit den Augen.",
   "say": "Urin-, Speichel- und Koordinationstests mache ich nicht mit. Zur aktiven Mitwirkung bin ich nicht verpflichtet; eine Anordnung nach § 81a StPO dulde ich.",
   "law": "§ 81a Abs. 1 S. 1–2, Abs. 2 StPO · § 46 Abs. 4 OWiG · § 24a Abs. 1a, 2 StVG · § 316 StGB · BGH 2 StR 232/24 Rn. 32",
-  "why": "Urin abgeben, Speichel liefern, Finger-Nase, auf einer Linie gehen, dem Licht folgen: alles aktive Mitwirkung und damit freiwillig. Dulden musst du nur eine angeordnete körperliche Untersuchung oder Blutentnahme nach § 81a StPO. Die Polizei hat recht, wenn sie bei Verdacht nach § 24a Abs. 1a oder 2 StVG oder § 316 StGB eine Blutprobe anordnet.",
+  "why": "Urin abgeben, Speichel liefern, Finger-Nase, auf einer Linie gehen, dem Licht folgen: alles aktive Mitwirkung und damit freiwillig. Dulden musst du nur eine angeordnete körperliche Untersuchung oder Blutentnahme nach § 81a StPO. Die Polizei hat recht, wenn sie bei Verdacht nach § 24a Abs. 1a oder 2 StVG oder § 316 StGB eine Blutprobe anordnet. Wer mitmacht, liefert oft erst die Tatsachen dafür: Unsicherheit bei einer Übung oder ein positiver Vortest, auch ein falsch-positiver. Hinsehen und Beobachtungen notieren darf die Polizei (siehe Antwort „Ihre Pupillen sind geweitet …“).",
   "src": [
    "https://www.gesetze-im-internet.de/stpo/__81a.html",
    "https://www.gesetze-im-internet.de/owig_1968/__46.html",
@@ -144,7 +148,30 @@ window.RB.quick = [
   "ru": {
    "cop": "Сдайте тест мочи или мазок. И следите глазами за моим пальцем.",
    "say": "В тестах мочи, слюны и на координацию не участвую. Активно участвовать я не обязан; распоряжение по § 81a StPO я стерплю.",
-   "why": "Сдать мочу или слюну, «палец к носу», пройти по линии, следить за светом — всё это активное участие, значит добровольно. Терпеть нужно только назначенное телесное обследование или взятие крови по § 81a StPO. Полиция права, если при подозрении по § 24a Abs. 1a или 2 StVG или по § 316 StGB назначает анализ крови."
+   "why": "Сдать мочу или слюну, «палец к носу», пройти по линии, следить за светом — всё это активное участие, значит добровольно. Терпеть нужно только назначенное телесное обследование или взятие крови по § 81a StPO. Полиция права, если при подозрении по § 24a Abs. 1a или 2 StVG или по § 316 StGB назначает анализ крови. Кто участвует, часто сам и даёт для этого факты: неуверенность при упражнении или положительный предварительный тест, даже ложноположительный. Смотреть на тебя и записывать наблюдения полиция вправе (см. ответ «У вас расширены зрачки…»)."
+  }
+ },
+ {
+  "id": "fahrer-verdacht-anzeichen",
+  "g": "fahrer",
+  "v": "kommt_drauf_an",
+  "cop": "Ihre Pupillen sind geweitet, Sie wirken nervös und Ihre Lippen sind trocken. Da stimmt doch was nicht.",
+  "say": "Dazu sage ich nichts. Freiwilligen Tests stimme ich nicht zu. Eine Anordnung nach § 81a StPO dulde ich ohne Widerstand.",
+  "law": "§ 81a Abs. 1, Abs. 2 S. 2 StPO · § 46 Abs. 4 S. 2 Nr. 1 OWiG · § 136 Abs. 1 S. 2 StPO · § 24a Abs. 1a, 2, 4, § 24c, § 2 Abs. 12 StVG · § 316 StGB",
+  "why": "Pupillen, Nervosität, Zittern, gerötete Augen oder trockene Lippen notiert die Polizei als Anzeichen – dich ansehen und das aufschreiben darf sie. Begründen bestimmte Tatsachen den Verdacht einer Fahrt unter Alkohol oder Drogen (§ 316 StGB, § 24a StVG), darf sie die Blutentnahme ohne Richter anordnen (§ 81a Abs. 2 S. 2 StPO; bei § 24a, § 24c StVG über § 46 Abs. 4 OWiG). Dann hat sie recht: mitkommen und dulden. Ob die Anzeichen gereicht haben, prüft später das Gericht, nicht die Diskussion am Straßenrand. Freiwillig bleiben Pusten, Urin, Speichel und alle Übungen; Unsicherheit dabei kann selbst zum Anzeichen werden. Erkläre nichts („nur müde“, „nehme Tabletten“, „letzte Woche gekifft“): Jede Angabe zum Konsum kann den Verdacht erst begründen, und Tatsachen, die auf nicht nur vorübergehende Eignungsmängel schließen lassen, übermittelt die Polizei der Führerscheinstelle (§ 2 Abs. 12 StVG). Verschriebene Medikamente: Rezept dabeihaben, erklären erst bei der Blutprobe oder über den Anwalt (Ausnahme § 24a Abs. 4 StVG; sie hilft nicht, wenn du tatsächlich nicht sicher fahren konntest, § 316 StGB). Ausnahme Gesundheit: Geht es dir akut schlecht (z. B. Unterzucker, Anfall), sag das sofort und bitte um einen Arzt.",
+  "src": [
+   "https://www.gesetze-im-internet.de/stpo/__81a.html",
+   "https://www.gesetze-im-internet.de/owig_1968/__46.html",
+   "https://www.gesetze-im-internet.de/stpo/__136.html",
+   "https://www.gesetze-im-internet.de/stvg/__24a.html",
+   "https://www.gesetze-im-internet.de/stvg/__24c.html",
+   "https://www.gesetze-im-internet.de/stvg/__2.html",
+   "https://www.gesetze-im-internet.de/stgb/__316.html"
+  ],
+  "ru": {
+   "cop": "У вас расширены зрачки, вы нервничаете и губы сухие. Что-то тут не так.",
+   "say": "Об этом ничего не скажу. На добровольные тесты не соглашаюсь. Распоряжение по § 81a StPO стерплю, сопротивляться не буду.",
+   "why": "Зрачки, нервозность, дрожь, красные глаза или сухие губы полиция записывает как признаки — смотреть на тебя и записывать это она вправе. Если конкретные факты дают подозрение, что ты ехал под алкоголем или наркотиками (§ 316 StGB, § 24a StVG), она может назначить взятие крови без судьи (§ 81a Abs. 2 S. 2 StPO; при § 24a, § 24c StVG — через § 46 Abs. 4 OWiG). Тогда полиция права: поехать с ней и терпеть. Хватило ли признаков, потом проверяет суд, а не спор на обочине. Добровольными остаются трубка, моча, слюна и все упражнения; неуверенность при них сама может стать признаком. Ничего не объясняй («просто устал», «пью таблетки», «курил травку на прошлой неделе»): любые слова об употреблении могут как раз и создать подозрение, а факты, указывающие на не только временные недостатки пригодности к вождению, полиция передаёт в ведомство по водительским правам (§ 2 Abs. 12 StVG). Лекарства по рецепту: носи рецепт с собой, объясняй только при взятии крови или через адвоката (исключение § 24a Abs. 4 StVG не поможет, если ты на самом деле не мог безопасно вести машину, § 316 StGB). Исключение — здоровье: если тебе сейчас плохо (например, низкий сахар, приступ), скажи сразу и попроси врача."
   }
  },
  {
@@ -181,21 +208,25 @@ window.RB.quick = [
   "g": "fahrer",
   "v": "kommt_drauf_an",
   "cop": "Machen Sie mal den Kofferraum auf, wir schauen uns das Auto an.",
-  "say": "Einer Durchsuchung stimme ich nicht zu. Auf welcher Grundlage – § 102 StPO oder § 35 PolG BW? Ich leiste keinen Widerstand.",
-  "law": "§ 102, § 105 Abs. 1 S. 1, § 107 StPO · § 35 Nr. 3, 5, 7, 9 i.V.m. § 27 Abs. 1 Nr. 3, 5, 6 PolG BW · § 36 Abs. 5 StVO",
-  "why": "Die Verkehrskontrolle (§ 36 Abs. 5 StVO) erlaubt Anhalten und Anweisungen, keine Durchsuchung. Erlaubt ist sie bei Verdacht einer Straftat (§ 102 StPO; angeordnet vom Richter, bei Gefahr im Verzug auch von der Polizei, § 105 Abs. 1) oder nach § 35 PolG BW: wenn Tatsachen auf sicherstellbare Sachen hindeuten (Nr. 3), an gefährlichen Orten (Nr. 5), an einer Kontrollstelle oder in einem Kontrollbereich (Nr. 7 i. V. m. § 27 Abs. 1 Nr. 5, 6) oder bei zur Fahndung ausgeschriebenem Kennzeichen (Nr. 9). Die Schleierfahndung auf der Autobahn (§ 27 Abs. 1 Nr. 7) nennt § 35 dagegen nicht. Liegt eine Grundlage vor, hat die Polizei recht: dulden, nicht helfen.",
+  "say": "Geht es um Warndreieck, Verbandkasten, Warnweste oder die Ladung? Das zeige ich selbst. Einer Durchsuchung stimme ich nicht zu – auf welcher Grundlage, § 102 StPO oder § 35 PolG BW? Ich leiste keinen Widerstand.",
+  "law": "§ 102, § 105 Abs. 1 S. 1, § 107 StPO · § 35 Nr. 1, 3, 5, 7, 9 i.V.m. § 34 Abs. 2, § 27 Abs. 1 Nr. 3, 5, 6 PolG BW · § 27 Abs. 2 S. 3 PolG BW · § 36 Abs. 5 S. 1, 4 StVO · § 22 Abs. 1, § 23 Abs. 1 S. 2 StVO · § 31b StVZO",
+  "why": "Die Verkehrskontrolle (§ 36 Abs. 5 StVO) erlaubt Anhalten und Anweisungen, keine Durchsuchung. Nennt die Polizei die Ladung als Zweck, kann das eine Anweisung zur Verkehrskontrolle sein (§ 36 Abs. 5 S. 1, 4 StVO; Sicherungspflicht: § 22 Abs. 1, § 23 Abs. 1 S. 2 StVO): Ladung zeigen, nichts auspacken. Warndreieck, Verbandkasten und Warnweste musst du vorzeigen und zur Prüfung aushändigen (§ 31b StVZO): selbst herausnehmen, Kofferraum wieder schließen. Was die Polizei dabei offen sieht, kann einen Verdacht begründen. Taschen öffnen, Sachen herausnehmen oder Verkleidungen abbauen ist Durchsuchung. Erlaubt ist sie bei Verdacht einer Straftat (§ 102 StPO; Anordnung durch den Richter, bei Gefahr im Verzug auch durch die Polizei, § 105 Abs. 1) oder nach § 35 PolG BW, unter anderem: Tatsachen deuten auf sicherstellbare Sachen hin (Nr. 3), gefährlicher Ort (Nr. 5), Kontrollstelle oder Kontrollbereich (Nr. 7 i. V. m. § 27 Abs. 1 Nr. 5, 6), Kennzeichen zur gezielten Kontrolle ausgeschrieben (Nr. 9). Die Schleierfahndung auf Autobahn und Durchgangsstraßen (§ 27 Abs. 1 Nr. 7 b) nennt § 35 nicht; allein deswegen dürfen du und deine mitgeführten Sachen durchsucht werden, wenn sich deine Identität anders nicht oder nur schwer feststellen lässt (§ 27 Abs. 2 S. 3 PolG BW). Soll deine Identität festgestellt werden, dürfen du und deine mitgeführten Sachen außerdem nach Waffen durchsucht werden, wenn das nach den Umständen zum Schutz der Beamten erforderlich erscheint (§ 34 Abs. 2, § 35 Nr. 1 PolG BW). Liegt eine Grundlage vor, hat die Polizei recht: dulden, nicht helfen.",
   "src": [
    "https://www.gesetze-im-internet.de/stpo/__102.html",
    "https://www.gesetze-im-internet.de/stpo/__105.html",
    "https://www.gesetze-im-internet.de/stpo/__107.html",
    "https://www.landesrecht-bw.de/perma?j=PolG_BW_!_35",
+   "https://www.landesrecht-bw.de/perma?j=PolG_BW_!_34",
    "https://www.landesrecht-bw.de/perma?j=PolG_BW_!_27",
-   "https://www.gesetze-im-internet.de/stvo_2013/__36.html"
+   "https://www.gesetze-im-internet.de/stvo_2013/__36.html",
+   "https://www.gesetze-im-internet.de/stvo_2013/__22.html",
+   "https://www.gesetze-im-internet.de/stvo_2013/__23.html",
+   "https://www.gesetze-im-internet.de/stvzo_2012/__31b.html"
   ],
   "ru": {
    "cop": "Откройте-ка багажник, мы осмотрим машину.",
-   "say": "На обыск не соглашаюсь. На каком основании — § 102 StPO или § 35 PolG BW? Сопротивляться не буду.",
-   "why": "Дорожная проверка (§ 36 Abs. 5 StVO) разрешает остановить и давать указания, но не обыскивать. Обыск допустим при подозрении в преступлении (§ 102 StPO; назначает судья, при срочности и полиция, § 105 Abs. 1) или по § 35 PolG BW: если факты указывают на вещи, которые можно изъять (Nr. 3), в «опасных местах» (Nr. 5), на контрольном пункте или в зоне контроля (Nr. 7 вместе с § 27 Abs. 1 Nr. 5, 6) или если номер машины объявлен в розыск (Nr. 9). Проверку без подозрения на автобане (Schleierfahndung, § 27 Abs. 1 Nr. 7) § 35 для обыска машины не называет. Если основание есть, полиция права: терпи, но не помогай."
+   "say": "Речь о знаке аварийной остановки, аптечке, жилете или грузе? Это покажу сам. На обыск не соглашаюсь — на каком основании, § 102 StPO или § 35 PolG BW? Сопротивляться не буду.",
+   "why": "Дорожная проверка (§ 36 Abs. 5 StVO) разрешает остановить и давать указания, но не обыскивать. Если полиция называет целью груз, это может быть указанием в рамках дорожной проверки (§ 36 Abs. 5 S. 1, 4 StVO; обязанность закрепить груз: § 22 Abs. 1, § 23 Abs. 1 S. 2 StVO): груз показать, ничего не распаковывать. Знак аварийной остановки, аптечку и жилет нужно показать и дать на проверку (§ 31b StVZO): достань сам, потом закрой багажник. То, что полиция при этом видит открыто, может дать основание для подозрения. Открывать сумки, вынимать вещи или снимать обшивку — это уже обыск. Он допустим при подозрении в преступлении (§ 102 StPO; назначает судья, при срочности и полиция, § 105 Abs. 1) или по § 35 PolG BW, в том числе: факты указывают на вещи, которые можно изъять (Nr. 3), «опасное место» (Nr. 5), контрольный пункт или зона контроля (Nr. 7 вместе с § 27 Abs. 1 Nr. 5, 6), номер машины поставлен на целевой контроль (Nr. 9). Проверку без подозрения на автобанах и транзитных дорогах (Schleierfahndung, § 27 Abs. 1 Nr. 7 b) § 35 не называет; если проверка идёт только по этому основанию, обыскать тебя и твои вещи можно, если твою личность иначе установить нельзя или очень трудно (§ 27 Abs. 2 S. 3 PolG BW). Если устанавливают твою личность, тебя и твои вещи можно также обыскать на оружие, когда по обстоятельствам это нужно для защиты полицейских (§ 34 Abs. 2, § 35 Nr. 1 PolG BW). Если основание есть, полиция права: терпи, но не помогай."
   }
  },
  {
@@ -271,7 +302,7 @@ window.RB.quick = [
   "g": "fahrer",
   "v": "musst_nicht",
   "cop": "Das macht 35 Euro Verwarnungsgeld. Zahlen Sie das gleich hier?",
-  "say": "Mit der Verwarnung bin ich nicht einverstanden (§ 56 Abs. 2 OWiG). Zur Sache äußere ich mich gegebenenfalls später schriftlich.",
+  "say": "Mit dem Verwarnungsgeld bin ich nicht einverstanden (§ 56 Abs. 2 OWiG). Zur Sache äußere ich mich gegebenenfalls später schriftlich.",
   "law": "§ 56 Abs. 1–4, § 57 Abs. 2 OWiG · § 107 Abs. 1, 3 OWiG",
   "why": "Eine Verwarnung mit Verwarnungsgeld (5–55 €) wird nur wirksam, wenn du nach Belehrung einverstanden bist und sofort oder binnen einer Woche zahlst; dann ist die Sache ohne Kosten erledigt. Lehnst du ab, folgt in der Regel ein Bußgeldverfahren; ein Bußgeldbescheid kostet mindestens 25 € Gebühr plus Auslagen (§ 107 OWiG). Ablehnen lohnt nur, wenn du den Vorwurf bestreitest.",
   "src": [
@@ -281,8 +312,35 @@ window.RB.quick = [
   ],
   "ru": {
    "cop": "Это 35 евро предупредительного штрафа. Заплатите прямо здесь?",
-   "say": "С предупреждением я не согласен (§ 56 Abs. 2 OWiG). По существу, если понадобится, выскажусь позже письменно.",
+   "say": "С предупредительным штрафом не согласен (§ 56 Abs. 2 OWiG). По существу, если понадобится, выскажусь позже письменно.",
    "why": "Предупреждение со штрафом (5–55 €) действует, только если после разъяснения ты согласен и платишь сразу или в течение недели; тогда дело закрыто без издержек. Откажешься — как правило, начнётся процедура штрафа; постановление о штрафе (Bußgeldbescheid) стоит минимум 25 € пошлины плюс расходы (§ 107 OWiG). Отказываться стоит, только если ты оспариваешь обвинение."
+  }
+ },
+ {
+  "id": "fahrer-vorwurf-bestreiten",
+  "g": "fahrer",
+  "v": "musst_nicht",
+  "cop": "Sie waren nicht angeschnallt – wir haben es beide gesehen.",
+  "say": "Zum Vorwurf mache ich keine Angaben (§ 136 Abs. 1 S. 2 StPO, § 46 Abs. 1 OWiG).",
+  "law": "§ 136 Abs. 1 S. 2 StPO · § 46 Abs. 1, § 55 Abs. 1, § 56 Abs. 1–4 OWiG · § 49 Abs. 1, § 67 Abs. 1, § 107 Abs. 1, 3 OWiG · § 111 OWiG · § 21a Abs. 1, § 23 Abs. 1a StVO · BKat Nr. 100, 246.1",
+  "why": "Streiten am Straßenrand hilft nicht: Die Beamten sagen später als Zeugen aus, und jede Erklärung („Den Gurt hatte ich nur kurz ab“) kann als Geständnis gelten. Zur Sache darfst du schweigen (§ 136 Abs. 1 S. 2 StPO i. V. m. § 46 Abs. 1 OWiG), Personalien bleiben Pflicht (§ 111 OWiG). Ein Verwarnungsgeld (5–55 €, etwa 30 € ohne Gurt, BKat Nr. 100) wird nur wirksam, wenn du einverstanden bist und zahlst; dann ist die Sache unter diesem Vorwurf erledigt, Kosten fallen keine an (§ 56 Abs. 2–4 OWiG). Lehne nur ab, wenn du den Vorwurf wirklich bestreitest; sonst ist Zahlen am günstigsten. Handy am Steuer (100 €, BKat Nr. 246.1) liegt über 55 €, dafür gibt es gleich ein Bußgeldverfahren. Meist kommt später ein Anhörungsbogen: Angaben zur Person sind Pflicht, zur Sache nicht – es genügt, dass du Gelegenheit zur Äußerung bekommst (§ 55 Abs. 1 OWiG). Akteneinsicht, etwa ins Messprotokoll, gibt es auf Antrag (§ 49 Abs. 1 OWiG); gegen einen Bußgeldbescheid Einspruch binnen zwei Wochen ab Zustellung (§ 67 Abs. 1 OWiG). Ehrlich: Hält der Vorwurf, wird es teurer – ein Bußgeldbescheid kostet mindestens 25 € Gebühr plus Auslagen (§ 107 Abs. 1, 3 OWiG). Direkt danach Zeit, Ort und Zeugen notieren.",
+  "src": [
+   "https://www.gesetze-im-internet.de/stpo/__136.html",
+   "https://www.gesetze-im-internet.de/owig_1968/__46.html",
+   "https://www.gesetze-im-internet.de/owig_1968/__55.html",
+   "https://www.gesetze-im-internet.de/owig_1968/__56.html",
+   "https://www.gesetze-im-internet.de/owig_1968/__49.html",
+   "https://www.gesetze-im-internet.de/owig_1968/__67.html",
+   "https://www.gesetze-im-internet.de/owig_1968/__107.html",
+   "https://www.gesetze-im-internet.de/owig_1968/__111.html",
+   "https://www.gesetze-im-internet.de/stvo_2013/__21a.html",
+   "https://www.gesetze-im-internet.de/stvo_2013/__23.html",
+   "https://www.gesetze-im-internet.de/bkatv_2013/BJNR049800013.html"
+  ],
+  "ru": {
+   "cop": "Вы были не пристёгнуты — мы оба это видели.",
+   "say": "По обвинению ничего не скажу (§ 136 Abs. 1 S. 2 StPO, § 46 Abs. 1 OWiG).",
+   "why": "Спорить на обочине бесполезно: полицейские потом дают показания как свидетели, а любое объяснение («я отстегнулся всего на минуту») могут счесть признанием. По существу можешь молчать (§ 136 Abs. 1 S. 2 StPO вместе с § 46 Abs. 1 OWiG), личные данные назвать обязательно (§ 111 OWiG). Предупредительный штраф (5–55 €, например 30 € за непристёгнутый ремень, BKat Nr. 100) действует, только если ты согласен и платишь; тогда дело по этому обвинению закрыто, издержек нет (§ 56 Abs. 2–4 OWiG). Отказывайся, только если действительно оспариваешь обвинение; иначе заплатить дешевле всего. Телефон за рулём (100 €, BKat Nr. 246.1) дороже 55 €, там сразу начинается процедура штрафа. Обычно потом приходит анкета (Anhörungsbogen): личные данные — обязательно, по существу — нет; достаточно, что тебе дали возможность высказаться (§ 55 Abs. 1 OWiG). Ознакомиться с делом, например с протоколом измерения, можно по заявлению (§ 49 Abs. 1 OWiG); на постановление о штрафе (Bußgeldbescheid) — возражение в течение двух недель после вручения (§ 67 Abs. 1 OWiG). Честно: если обвинение подтвердится, выйдет дороже — постановление о штрафе стоит минимум 25 € пошлины плюс расходы (§ 107 Abs. 1, 3 OWiG). Сразу после проверки запиши время, место и свидетелей."
   }
  },
  {
@@ -354,19 +412,24 @@ window.RB.quick = [
   "g": "fahrer",
   "v": "kommt_drauf_an",
   "cop": "Sie fahren heute nicht mehr weiter. Geben Sie mir den Autoschlüssel.",
-  "say": "Ich fahre nicht weiter und gebe den Schlüssel heraus, widerspreche aber. Bitte Grund und Bescheinigung nach § 38 Abs. 3 PolG BW.",
-  "law": "§ 38 Abs. 1 Nr. 1, Abs. 3, 4 PolG BW · § 21 Abs. 2 Nr. 2 StVG · § 94 StPO · § 113 StGB",
-  "why": "Besteht der Verdacht, dass du nicht fahrtüchtig bist (Alkohol, Drogen), darf die Polizei zur Abwehr einer unmittelbar bevorstehenden Störung die Weiterfahrt verhindern und den Schlüssel beschlagnahmen (§ 38 Abs. 1 Nr. 1 PolG BW) – dann hat sie recht. Grund und Rechtsbehelf sind unverzüglich zu nennen, auf Verlangen gibt es eine Bescheinigung (§ 38 Abs. 3). Die Beschlagnahme ist aufzuheben, sobald ihr Zweck erreicht ist (§ 38 Abs. 4), etwa wenn du wieder nüchtern bist oder ein fahrtüchtiger Fahrer übernimmt. Ist der Führerschein nach § 94 StPO beschlagnahmt, ist das Fahren eines führerscheinpflichtigen Kraftfahrzeugs eine Straftat (§ 21 Abs. 2 Nr. 2 StVG).",
+  "say": "Ich fahre nicht weiter und gebe den Schlüssel heraus, widerspreche aber. Darf ein nüchterner Fahrer mit Führerschein übernehmen? Bitte Grund und Bescheinigung nach § 38 Abs. 3 PolG BW.",
+  "law": "§§ 1, 3, § 38 Abs. 1 Nr. 1, Abs. 3, 4 PolG BW · § 21 Abs. 1 Nr. 2, Abs. 2 Nr. 2 StVG · § 94 StPO · § 4 Abs. 1, 2 FeV · § 24a, § 24c StVG · § 316 StGB · § 113 StGB",
+  "why": "Besteht der Verdacht, dass du nicht fahrtüchtig bist (Alkohol, Drogen), darf die Polizei die Weiterfahrt untersagen (§§ 1, 3 PolG BW) und zur Abwehr einer unmittelbar bevorstehenden Störung den Schlüssel beschlagnahmen (§ 38 Abs. 1 Nr. 1 PolG BW) – dann hat sie recht. Grund und Rechtsbehelf sind unverzüglich zu nennen, auf Verlangen gibt es eine Bescheinigung (§ 38 Abs. 3). Die Beschlagnahme ist aufzuheben, sobald ihr Zweck erreicht ist (§ 38 Abs. 4), etwa wenn du wieder nüchtern bist oder ein fahrtüchtiger Fahrer übernimmt. Übernehmen kann, wer eine Fahrerlaubnis für das Auto hat, den Führerschein dabeihat (§ 4 Abs. 1, 2 FeV) und selbst unter den Grenzen bleibt und fahrtüchtig ist (§ 24a StVG, § 316 StGB); unter 21 oder in der Probezeit gar kein Alkohol und kein Cannabis (§ 24c StVG). Lässt du als Halter jemanden ohne Fahrerlaubnis fahren, machst du dich selbst strafbar (§ 21 Abs. 1 Nr. 2 StVG). Ob der neue Fahrer fahrtüchtig ist, wird die Polizei prüfen wollen; zu Tests ist auch er nicht verpflichtet. Ist der Führerschein nach § 94 StPO sichergestellt oder beschlagnahmt, ist das Fahren eines führerscheinpflichtigen Kraftfahrzeugs eine Straftat (§ 21 Abs. 2 Nr. 2 StVG).",
   "src": [
+   "https://www.landesrecht-bw.de/perma?j=PolG_BW_!_3",
    "https://www.landesrecht-bw.de/perma?j=PolG_BW_!_38",
    "https://www.gesetze-im-internet.de/stvg/__21.html",
-   "https://www.gesetze-im-internet.de/stgb/__113.html",
-   "https://www.gesetze-im-internet.de/stpo/__94.html"
+   "https://www.gesetze-im-internet.de/stpo/__94.html",
+   "https://www.gesetze-im-internet.de/fev_2010/__4.html",
+   "https://www.gesetze-im-internet.de/stvg/__24a.html",
+   "https://www.gesetze-im-internet.de/stvg/__24c.html",
+   "https://www.gesetze-im-internet.de/stgb/__316.html",
+   "https://www.gesetze-im-internet.de/stgb/__113.html"
   ],
   "ru": {
    "cop": "Сегодня вы дальше не поедете. Отдайте ключ от машины.",
-   "say": "Дальше не поеду и отдам ключ, но возражаю. Прошу назвать причину и выдать справку по § 38 Abs. 3 PolG BW.",
-   "why": "Если есть подозрение, что ты не способен вести машину (алкоголь, наркотики), полиция может для предотвращения непосредственно грозящего нарушения помешать ехать дальше и изъять ключ (§ 38 Abs. 1 Nr. 1 PolG BW) — тогда она права. Причину и способ обжалования обязаны сообщить сразу, по требованию выдают справку (§ 38 Abs. 3). Изъятие отменяется, как только цель достигнута (§ 38 Abs. 4), например когда ты протрезвел или за руль садится трезвый водитель. Если права изъяты по § 94 StPO, вождение механического транспортного средства (Kraftfahrzeug), для которого нужны права, — преступление (§ 21 Abs. 2 Nr. 2 StVG)."
+   "say": "Дальше не поеду и отдам ключ, но возражаю. Может ли трезвый водитель с правами сесть за руль? Прошу назвать причину и выдать справку по § 38 Abs. 3 PolG BW.",
+   "why": "Если есть подозрение, что ты не способен вести машину (алкоголь, наркотики), полиция может запретить ехать дальше (§§ 1, 3 PolG BW) и для предотвращения непосредственно грозящего нарушения изъять ключ (§ 38 Abs. 1 Nr. 1 PolG BW) — тогда она права. Причину и способ обжалования обязаны сообщить сразу, по требованию выдают справку (§ 38 Abs. 3). Изъятие отменяется, как только цель достигнута (§ 38 Abs. 4), например когда ты протрезвел или за руль садится водитель, способный вести машину. Сесть за руль может тот, у кого есть права на эту машину, они с собой (§ 4 Abs. 1, 2 FeV) и он сам не превышает пределы и способен вести машину (§ 24a StVG, § 316 StGB); до 21 года или на испытательном сроке — ни алкоголя, ни каннабиса (§ 24c StVG). Если ты как владелец разрешаешь ехать человеку без прав, это преступление и с твоей стороны (§ 21 Abs. 1 Nr. 2 StVG). Способен ли новый водитель вести машину, полиция захочет проверить; проходить тесты не обязан и он. Если права изъяты по § 94 StPO, вождение механического транспортного средства (Kraftfahrzeug), для которого нужны права, — преступление (§ 21 Abs. 2 Nr. 2 StVG)."
   }
  },
  {
@@ -1185,6 +1248,29 @@ window.RB.quick = [
    "cop": "Говорить — дело добровольное, но если будете молчать, заберём вас, и тогда обойдётся это дорого.",
    "say": "Мои личные данные у вас есть, по делу я молчу. Угрожать задержанием за молчание запрещает § 136a абз. 1 предл. 3 StPO. Я не сопротивляюсь.",
    "why": "Запрещено угрожать недопустимой мерой, чтобы получить показания (§ 136a абз. 1 предл. 3 StPO). В полиции это действует через § 163a абз. 4 предл. 2 StPO, при чисто полицейских опросах через § 40 абз. 2 PolG BW. Молчание по делу — не причина тебя забирать. Полицейский прав, если объявляет меру, которая и так допустима. Например: доставить в участок для установления личности, если ты не назвал данные (§ 163b абз. 1 предл. 2 StPO), или взять кровь при подозрении на вождение в нетрезвом виде (§ 81a абз. 2 предл. 2 StPO; при правонарушении по § 24a StVG — § 46 абз. 4 OWiG). Тогда подчиниться и не сопротивляться (§ 113 StGB)."
+  }
+ },
+ {
+  "id": "druck-nichts-zu-verbergen",
+  "g": "druck",
+  "v": "musst_nicht",
+  "cop": "Wer nichts zu verbergen hat, macht den Test. Welcher normale Mensch lehnt denn ab?",
+  "say": "Ich mache von meinem Recht Gebrauch und stimme nicht zu – das ist kein Schuldeingeständnis. Zur Sache sage ich nichts. Einer Anordnung folge ich ohne Widerstand.",
+  "law": "§ 81a Abs. 1, Abs. 2 S. 2 StPO · § 136 Abs. 1 S. 2, § 163a Abs. 4 S. 2 StPO · § 136a Abs. 1 S. 3 StPO · § 46 Abs. 1, 4 OWiG · § 111 OWiG · BGH 2 StR 232/24 Rn. 32",
+  "why": "Pusten, Urin- und Speicheltest sowie Übungen sind aktive Mitwirkung und freiwillig; einem Wischtest musst du nicht zustimmen. Erzwingbar ist nur das Dulden einer angeordneten Untersuchung oder Blutentnahme nach § 81a StPO; die Selbstbelastungsfreiheit schützt vor aktiver Mitwirkung, nicht vor dem Dulden (BGH 2 StR 232/24). Überreden darf der Beamte: „Wer nichts zu verbergen hat …“ ist Druck, aber keine Pflicht. Droht er für eine Aussage mit einer unzulässigen Maßnahme, ist das verboten (§ 136a Abs. 1 S. 3 StPO, siehe Antwort „Reden ist freiwillig – aber wenn Sie schweigen …“); spiegelt er beim Test eine Pflicht vor, ist ein Verwertungsverbot möglich (siehe Antwort „Pusten Sie mal kurz hier rein …“). Recht hat er, wenn schon bestimmte Tatsachen einen Verdacht begründen: Dann klärt er ihn ohne deinen Test mit einer Blutprobe, und die musst du dulden (§ 81a Abs. 2 S. 2 StPO, § 46 Abs. 4 OWiG). Mitmachen hat einen Preis: Ein positiver Vortest, auch ein falsch-positiver, liefert oft erst den Grund für die Blutprobe. Dasselbe gilt für Durchsuchung, Handy und Fragen zur Sache: Zustimmen ist freiwillig, Nein sagen ist dein Recht. Pflicht bleiben die Personalien (§ 111 OWiG).",
+  "src": [
+   "https://www.gesetze-im-internet.de/stpo/__81a.html",
+   "https://www.gesetze-im-internet.de/stpo/__136.html",
+   "https://www.gesetze-im-internet.de/stpo/__136a.html",
+   "https://www.gesetze-im-internet.de/stpo/__163a.html",
+   "https://www.gesetze-im-internet.de/owig_1968/__46.html",
+   "https://www.gesetze-im-internet.de/owig_1968/__111.html",
+   "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Strafsenate/2_StS/2024/2_StR_232-24A.pdf?__blob=publicationFile&v=1"
+  ],
+  "ru": {
+   "cop": "Кому нечего скрывать, тот проходит тест. Какой нормальный человек откажется?",
+   "say": "Я пользуюсь своим правом и не соглашаюсь — это не признание вины. По существу ничего не скажу. Распоряжению подчинюсь без сопротивления.",
+   "why": "Дуть в трубку, тесты мочи и слюны и упражнения — это активное участие, значит добровольно; на мазок (Wischtest) соглашаться ты не обязан. Заставить можно только терпеть назначенное обследование или взятие крови по § 81a StPO; право не свидетельствовать против себя защищает от активного участия, но не от обязанности терпеть (BGH 2 StR 232/24). Уговаривать полицейский может: «Кому нечего скрывать…» — это давление, но не обязанность. Если ради показаний он угрожает недопустимой мерой, это запрещено (§ 136a Abs. 1 S. 3 StPO, см. ответ «Говорить — дело добровольное, но если будете молчать…»); если выдаёт тест за обязанность, результат могут не допустить как доказательство (см. ответ «Дуньте-ка сюда…»). Прав он, если конкретные факты уже дают подозрение: тогда он проверит его без твоего теста — анализом крови, и его нужно терпеть (§ 81a Abs. 2 S. 2 StPO, § 46 Abs. 4 OWiG). У участия есть цена: положительный предварительный тест, даже ложноположительный, часто и даёт основание для анализа крови. То же с обыском, телефоном и вопросами по существу: соглашаться — добровольно, сказать «нет» — твоё право. Личные данные назвать обязательно (§ 111 OWiG)."
   }
  },
  {

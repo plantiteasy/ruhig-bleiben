@@ -1,6 +1,6 @@
 # Ruhig bleiben — Prototyp
 
-Prototyp einer App für Polizeikontrollen in Baden-Württemberg: Situationen mit Sätzen zum Sagen, Frage per Sprache, Video ohne Ton, Aufnahme mit Einwilligung und darunter die Schnellhilfe „Polizei sagt → Antwort mit Paragraf“ (67 Sätze, gegen den Gesetzestext geprüft, `quick.js`), Gedächtnisprotokoll, Fristen und Briefvorlagen.
+Prototyp einer App für Polizeikontrollen in Baden-Württemberg: Situationen mit Sätzen zum Sagen, Frage per Sprache, Video ohne Ton, Aufnahme mit Einwilligung und darunter die Schnellhilfe „Polizei sagt → Antwort mit Paragraf“ (70 Sätze, gegen den Gesetzestext geprüft, `quick.js`), Gedächtnisprotokoll, Fristen und Briefvorlagen.
 
 **Kontrolle-Modus** (`#kontrolle`, Knopf „Ich werde kontrolliert“ bzw. „Ich filme eine Kontrolle“ oder Shortcut auf dem App-Icon): Vollbild ohne Kopf und Tabs, ein Tipp startet Video ohne Ton, darunter je Rolle (Fahrer, Beifahrer, zu Fuß, Rad/E-Scooter, ich filme) 10 Knöpfe in der Reihenfolge einer Kontrolle; ein zweiter Tipp zeigt oben einen kurzen Satz mit Paragraf, die Knöpfe bleiben darunter. „Zeigen“ dreht den deutschen Satz zum Beamten (auf Russisch mit „Ich spreche wenig Deutsch“) und liest ihn auf Wunsch mit deutscher Stimme vor. Einrichten in 30 Sekunden (`#einrichten`): Sprache, Rolle, Kamera-Erlaubnis vorab, Startbildschirm, Üben. „Stichwort sagen“ hört nur die eigene Stimme. Kurzfassungen und Stichwörter: `kontrolle.js`. Test-Mithörmodus nur für Proben mit Freunden: Link mit `?mithoeren=1` (Ton geht zur Erkennung an Google, nicht bei echter Polizei).
 
