@@ -1059,7 +1059,7 @@
     $("k-dann").textContent = dann || ""; $("k-dann").hidden = !dann;
     $("k-full").textContent = nb(q.say); $("k-full-ru").textContent = ru && q.ru ? nb(q.ru.say) : ""; $("k-full-ru").hidden = !ru;
     $("k-why").textContent = nb(L(q, "why")); $("k-lawfull").textContent = nb(q.law);
-    if (!noPush) { $("k-more").hidden = true; $("k-more-b").setAttribute("aria-expanded", "false"); }
+    if (!noPush) { $("k-more").hidden = true; $("k-more-b").setAttribute("aria-expanded", "false"); $("k-ans").classList.remove("more-on"); }
     $("k-thumb").classList.remove("big");
     $("k-ans").hidden = false; $("v-kontrolle").classList.add("ans-on");
     [].forEach.call(document.querySelectorAll("#k-grid .k-b"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-k") === id ? "true" : "false"); });
@@ -1074,7 +1074,7 @@
   window.addEventListener("popstate", function () { if (!(history.state && history.state.rbK) && !$("k-ans").hidden) hideK(); });
   $("k-close").addEventListener("click", function () { if (history.state && history.state.rbK) history.back(); else hideK(); });
   $("k-more-b").addEventListener("click", function () {
-    var open = $("k-more").hidden; $("k-more").hidden = !open; $("k-more-b").setAttribute("aria-expanded", open ? "true" : "false");
+    var open = $("k-more").hidden; $("k-more").hidden = !open; $("k-more-b").setAttribute("aria-expanded", open ? "true" : "false"); $("k-ans").classList.toggle("more-on", open);
   });
   // Zeigen: nur der deutsche Satz und der Paragraf für den Beamten; bei russischer Oberfläche mit „Ich spreche wenig Deutsch“.
   $("k-big").addEventListener("click", function () {

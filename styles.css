@@ -311,6 +311,9 @@ body.k-mode main{padding-top:calc(env(safe-area-inset-top,0px) + 8px)}
 .k-cop{padding-right:40px}
 .k-cop-ru{color:var(--muted);font-size:14px;margin-top:-6px}
 .k-cop-ru:empty{display:none}
+/* Polizei-Satz in der Antwort höchstens 2 Zeilen, damit Zeigen/Mehr und Paragraf auch bei 320 px und russischer Oberfläche über der Fußleiste bleiben; „Mehr“ zeigt ihn ganz */
+.k-ans .k-cop,.k-ans .k-cop-ru:not(:empty){display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.k-ans.more-on .k-cop,.k-ans.more-on .k-cop-ru:not(:empty){display:block;-webkit-line-clamp:unset}
 .k-ans .say-ru{font-size:18px;color:var(--ink);line-height:1.35}
 .k.ans-on .k-h,.k.ans-on .k-role,.k.ans-on .k-b-v,.k.ans-on .k-b-de{display:none}
 .k.ans-on .k-b{min-height:46px;padding:6px 10px}
@@ -352,7 +355,7 @@ body.k-mode main{padding-top:calc(env(safe-area-inset-top,0px) + 8px)}
 .danach-recs{display:block;margin:0 0 16px;text-align:center}
 .tr-url{font-family:var(--mono);font-size:14px;text-align:center;margin:-4px 0 10px;color:var(--muted);word-break:break-all;user-select:all}
 .rec-tr-link{display:block;margin:18px 0 6px;text-align:center}
-@media (max-width:380px){.k.ans-on .k-say{font-size:clamp(18px,5.4vw,24px)}.k.ans-on .k-b{min-height:40px;padding:4px 8px}}
+@media (max-width:380px){.k.ans-on .k-say{font-size:clamp(18px,5.4vw,24px)}.k.ans-on .k-b{min-height:40px;padding:4px 8px}.k-ans .say-ru{font-size:16px}}
 .k-thumb{cursor:zoom-in}.k-thumb.big{position:fixed;top:8px;left:8px;width:min(62vw,280px);height:auto;max-height:38vh;object-fit:contain;z-index:30;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,.4);cursor:zoom-out}
 #fuer-dich .fd{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 .k-bar.armed .k-status{display:none}.k-bar.armed .k-recbtn{flex:1}
