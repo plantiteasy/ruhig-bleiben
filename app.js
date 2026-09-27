@@ -167,7 +167,7 @@
       k_test_warn: "Тестовый режим: только с друзьями, которые играют полицию и согласны. Звук для распознавания уходит в Google (Android) или Apple (iPhone). Не использовать с настоящей полицией.",
       k_listen: "Начать прослушивание (тест)", k_listen_on: "Остановить прослушивание", k_live: "Слушает (тест):", k_log_share: "Поделиться логом", k_test_off: "Выключить тест", k_log_none: "нет совпадения",
       k_start_filme: "Я снимаю проверку (друга, чужих)", k_menu: "Меню", k_stop_sure: "Точно остановить?", big_speak: "Прочитать вслух по-немецки",
-      k_modus_sagen: "Что сказать", k_modus_polizist: "Что говорит полицейский",
+      k_modus_sagen: "Что сказать", k_modus_polizist: "Слова полиции",
       ph_play: "Воспроизвести", ph_stop: "Стоп", ph_show: "Показать", ph_wenn_noetig: "Если нужно", ph_mehr: "Подробнее и почему", ph_weiter: "Дальше: {x} ›",
       ph_stimme: "Голос:", ph_mann: "мужской", ph_frau: "женский", ph_nicht: "Не надо:",
       ph_note: "Нет звука? Проверь громкость. Текст на экране — главное.", ph_chip_suche: "Обыск",
@@ -1079,7 +1079,6 @@
     var mainBtn = phPlayBtn(p.main, "ph-play-main primary", '<span class="ph-play-t">' + esc(t("ph_play")) + "</span>");
     var next = list[kPhase + 1];
     $("ph-karte").innerHTML =
-      '<p class="ph-ziel">' + esc(ru ? p.ziel_ru : p.ziel_de) + "</p>" +
       '<p class="ph-satz" lang="de" translate="no">' + esc(s.de) + "</p>" +
       (ru ? '<p class="say-ru">' + esc(s.ru) + "</p>" : "") +
       '<div class="ph-aktionen">' + mainBtn + '<button type="button" class="btn ph-zeigen" data-ph-show="' + p.main + '">' + esc(t("ph_show")) + "</button></div>" +
