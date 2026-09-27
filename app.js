@@ -448,7 +448,7 @@
     if (a) {
       pendingAct = a.getAttribute("data-act");
       // Aus einer Situation zur Aufnahme: passende Antworten gleich oben
-      var sid = currentView === "situation" ? location.hash.slice(3) : "", cat = currentView === "kontrolle" ? ({ filme: "aufnahme", fahrer: "fahrer", beifahrer: "person", fuss: "person" })[kRole] : SIT_QH[sid];
+      var sid = currentView === "situation" ? location.hash.slice(3) : "", cat = currentView === "kontrolle" ? ({ filme: "aufnahme", fahrer: "fahrer", beifahrer: "person", fuss: "person", rad: "fahrer" })[kRole] : SIT_QH[sid];
       if (cat) { qhCat = cat; renderQuick(); }
     }
   });
@@ -1039,7 +1039,7 @@
     }).join("");
     var h = K.hinweis && K.hinweis[kRole];
     $("k-hint").hidden = !h;
-    if (h) $("k-hint").innerHTML = esc(UI === "ru" ? h.ru : h.de) + ' <a href="tel:' + esc(h.tel) + '">' + esc(h.telText) + "</a>";
+    if (h) $("k-hint").innerHTML = esc(UI === "ru" ? h.ru : h.de) + (h.tel ? ' <a href="tel:' + esc(h.tel) + '">' + esc(h.telText) + "</a>" : "");
     $("k-test").hidden = lsGet(LS_KTEST) !== "1";
     $("k-listen").textContent = kListen ? t("k_listen_on") : t("k_listen");
     syncKBar();

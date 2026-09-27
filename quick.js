@@ -1,5 +1,6 @@
-/* Schnellhilfe „Polizei sagt → deine Antwort mit Paragraf“ (Stand 26.09.2026, Baden-Württemberg).
-   Jede Antwort gegen den Gesetzestext geprüft (gesetze-im-internet.de, landesrecht-bw.de) und von einem zweiten Prüfer gegengelesen;
+/* Schnellhilfe „Polizei sagt → deine Antwort mit Paragraf“ (Stand 27.09.2026, Baden-Württemberg).
+   Jede Antwort gegen den Gesetzestext geprüft (gesetze-im-internet.de, landesrecht-bw.de) und von einem zweiten Prüfer gegengelesen
+   (Rad/E-Scooter: rad-regeln, rad-rahmennummer und die Ergänzungen in fahrer-blut, fahrer-handy, fahrer-wissen-sie-warum, person-ausweis-mitfuehren am 27.09.2026);
    „src“ = Primärquellen. Noch nicht anwaltlich geprüft. */
 window.RB.quickGroups = [["fahrer", "Fahrer", "Водитель"], ["person", "Beifahrer, Personenkontrolle", "Пассажир, проверка документов"], ["aufnahme", "Filmen und Handy", "Съёмка и телефон"], ["druck", "Druck und Fragen", "Давление и вопросы"]];
 window.RB.quickTop = ["fahrer-fragen", "fahrer-pusten", "fahrer-handy-weg-haende", "aufnahme-nehmen-sie-auf", "aufnahme-filmen-stoppen", "fahrer-drogenvortest", "fahrer-kofferraum", "person-beifahrer-ausweis", "fahrer-blut", "druck-widerstand-drohung", "aufnahme-handy-herausgeben", "person-taschen-durchsuchen"];
@@ -152,19 +153,27 @@ window.RB.quick = [
   "v": "kommt_drauf_an",
   "cop": "Wenn Sie nicht pusten, nehmen wir eben Blut. Kommen Sie mit auf die Wache.",
   "say": "Ich stimme nicht zu, leiste aber keinen Widerstand. Bitte vermerken Sie, wer die Blutentnahme nach § 81a StPO angeordnet hat und auf welche Tatsachen.",
-  "law": "§ 81a Abs. 1 S. 2, Abs. 2 S. 1–2 StPO · § 46 Abs. 4 S. 1–2 OWiG · § 316, § 315c StGB · § 113 StGB",
-  "why": "Begründen bestimmte Tatsachen den Verdacht einer Trunkenheits- oder Rauschfahrt (§ 316, § 315c Abs. 1 Nr. 1a StGB) oder einer Tat nach § 24a/§ 24c StVG, darf die Polizei die Blutentnahme ohne Richter anordnen; ein Arzt nimmt sie ab, du musst sie dulden – dann hat die Polizei recht. Ohne solchen Verdacht gibt es keine Blutentnahme; bei anderen Taten ordnet grundsätzlich der Richter an (§ 81a Abs. 2 S. 1 StPO). Das Pusten abzulehnen ist dein Recht.",
+  "law": "§ 81a Abs. 1 S. 2, Abs. 2 S. 1–2 StPO · § 46 Abs. 4 S. 1–2 OWiG · § 316, § 315c StGB · § 113 StGB · § 24a Abs. 1, 1a, § 24c Abs. 1 StVG · § 1 Abs. 3 StVG · § 13 S. 1 Nr. 2 Buchst. c, § 46 Abs. 3 FeV · OLG Karlsruhe, Beschl. v. 14.07.2020 – 2 Rv 35 Ss 175/20 · OLG Hamm 1 ORs 70/24 · § 69 Abs. 2 Nr. 2 StGB",
+  "why": "Begründen bestimmte Tatsachen den Verdacht einer Trunkenheits- oder Rauschfahrt (§ 316, § 315c Abs. 1 Nr. 1a StGB) oder einer Tat nach § 24a/§ 24c StVG, darf die Polizei die Blutentnahme ohne Richter anordnen; ein Arzt nimmt sie ab, du musst sie dulden – dann hat die Polizei recht. Ohne solchen Verdacht gibt es keine Blutentnahme; bei anderen Taten ordnet grundsätzlich der Richter an (§ 81a Abs. 2 S. 1 StPO). Auf dem Fahrrad, auch dem Pedelec bis 25 km/h, gelten § 24a und § 24c StVG nicht, sie betreffen nur Kraftfahrzeuge (§ 1 Abs. 3 StVG). Auf dem Rad ist Fahren nach der Rechtsprechung schon unter 1,6 ‰ strafbar, wenn du wegen Alkohol Fahrfehler machst oder Ausfallerscheinungen zeigst, ab 1,6 ‰ immer (§ 316 StGB; OLG Karlsruhe 2 Rv 35 Ss 175/20). Ab 1,6 ‰ auf dem Rad verlangt die Fahrerlaubnisbehörde eine MPU (§ 13 S. 1 Nr. 2 Buchst. c, § 46 Abs. 3 FeV) – das kann den Autoführerschein kosten. E-Scooter sind Kraftfahrzeuge: ab 0,5 ‰ oder 3,5 ng/ml THC Bußgeld, unter 21 oder in der Probezeit 0,0 (§ 24a Abs. 1, 1a, § 24c Abs. 1 StVG). Mit alkoholbedingten Fahrfehlern ist Fahren schon unter 1,1 ‰ strafbar, ab 1,1 ‰ immer (§ 316 StGB; OLG Hamm 1 ORs 70/24, der BGH hat das offengelassen). Dann wird meist auch die Fahrerlaubnis entzogen, also auch der Autoführerschein (§ 69 Abs. 2 Nr. 2 StGB). Das Pusten abzulehnen ist dein Recht.",
   "src": [
    "https://www.gesetze-im-internet.de/stpo/__81a.html",
    "https://www.gesetze-im-internet.de/owig_1968/__46.html",
    "https://www.gesetze-im-internet.de/stgb/__316.html",
    "https://www.gesetze-im-internet.de/stgb/__315c.html",
-   "https://www.gesetze-im-internet.de/stgb/__113.html"
+   "https://www.gesetze-im-internet.de/stgb/__113.html",
+   "https://www.gesetze-im-internet.de/stvg/__24a.html",
+   "https://www.gesetze-im-internet.de/stvg/__24c.html",
+   "https://www.gesetze-im-internet.de/stvg/__1.html",
+   "https://www.gesetze-im-internet.de/fev_2010/__13.html",
+   "https://www.gesetze-im-internet.de/fev_2010/__46.html",
+   "https://nrwe.justiz.nrw.de/olgs/hamm/j2025/1_ORs_70_24_Urteil_20250108.html",
+   "https://www.burhoff.de/asp_weitere_beschluesse/inhalte/5733.htm",
+   "https://www.gesetze-im-internet.de/stgb/__69.html"
   ],
   "ru": {
    "cop": "Раз не дуете — возьмём кровь. Едем в участок.",
    "say": "Я не соглашаюсь, но сопротивляться не буду. Прошу записать, кто назначил взятие крови по § 81a StPO и на каких фактах основано решение.",
-   "why": "Если конкретные факты дают подозрение в езде в нетрезвом виде или под воздействием веществ (§ 316, § 315c Abs. 1 Nr. 1a StGB) или в нарушении по § 24a/§ 24c StVG, полиция может назначить взятие крови без судьи; кровь берёт врач, ты обязан это терпеть — тогда полиция права. Без такого подозрения кровь не берут; при других деяниях решение, как правило, принимает судья (§ 81a Abs. 2 S. 1 StPO). Отказаться дуть — твоё право."
+   "why": "Если конкретные факты дают подозрение в езде в нетрезвом виде или под воздействием веществ (§ 316, § 315c Abs. 1 Nr. 1a StGB) или в нарушении по § 24a/§ 24c StVG, полиция может назначить взятие крови без судьи; кровь берёт врач, ты обязан это терпеть — тогда полиция права. Без такого подозрения кровь не берут; при других деяниях решение, как правило, принимает судья (§ 81a Abs. 2 S. 1 StPO). На велосипеде, в том числе на педелеке до 25 км/ч, § 24a и § 24c StVG не действуют: они касаются только механических транспортных средств (Kraftfahrzeuge), а педелек до 25 км/ч по закону к ним не относится (§ 1 Abs. 3 StVG). На велосипеде езда по судебной практике наказуема уже ниже 1,6 ‰, если из-за алкоголя есть ошибки вождения или явные признаки опьянения, а с 1,6 ‰ — всегда (§ 316 StGB; OLG Karlsruhe 2 Rv 35 Ss 175/20). С 1,6 ‰ на велосипеде ведомство по водительским правам требует MPU (медико-психологическую экспертизу, § 13 S. 1 Nr. 2 Buchst. c, § 46 Abs. 3 FeV) — так можно лишиться и автомобильных прав. Электросамокат по закону — механическое транспортное средство (Kraftfahrzeug): с 0,5 ‰ или 3,5 нг/мл THC — штраф, до 21 года или на испытательном сроке — 0,0 (§ 24a Abs. 1, 1a, § 24c Abs. 1 StVG). При ошибках вождения из-за алкоголя езда наказуема уже ниже 1,1 ‰, с 1,1 ‰ — всегда (§ 316 StGB; OLG Hamm 1 ORs 70/24, BGH этот вопрос не решил). Тогда обычно лишают и водительских прав, в том числе на автомобиль (§ 69 Abs. 2 Nr. 2 StGB). Отказаться дуть — твоё право."
   }
  },
  {
@@ -195,8 +204,8 @@ window.RB.quick = [
   "v": "musst_nicht",
   "cop": "Sie hatten das Handy in der Hand. Zeigen Sie mal her und entsperren Sie es.",
   "say": "Zum Vorwurf sage ich nichts. Mein Handy entsperre ich nicht, den Code nenne ich nicht – § 136 Abs. 1 S. 2 StPO. Ich leiste keinen Widerstand.",
-  "law": "§ 23 Abs. 1a StVO · § 136 Abs. 1 S. 2 StPO · § 46 Abs. 1 OWiG · § 94 Abs. 2, § 98 Abs. 2 StPO · § 81b Abs. 1 StPO · § 48 Abs. 3a, § 71 Abs. 4 AufenthG · BGH 2 StR 232/24",
-  "why": "Handy am Steuer ist eine Ordnungswidrigkeit (§ 23 Abs. 1a StVO, 100 €, 1 Punkt). Zeigen, Entsperren oder PIN nennen ist aktive Mitwirkung, dazu bist du nie verpflichtet. Ausnahme: Besitzt du als Ausländer überhaupt keinen gültigen Pass, Passersatz oder sonstigen geeigneten Identitätsnachweis, darf dein Handy ausgelesen werden, wenn das zur Klärung von Identität, Staatsangehörigkeit und Rückführungsmöglichkeit erforderlich ist, und du musst die Zugangsdaten dafür zur Verfügung stellen (§ 48 Abs. 3a AufenthG; zuständig ist auch die Landespolizei, § 71 Abs. 4; für EU-Bürger gilt das grundsätzlich nicht, § 1 Abs. 2 Nr. 1 AufenthG). Die Polizei kann das Gerät als Beweismittel beschlagnahmen (§ 94 Abs. 2, § 98 StPO i.V.m. § 46 OWiG), muss aber verhältnismäßig bleiben. Den Finger zwangsweise auflegen erlaubt der BGH jedenfalls bei richterlich angeordneter Durchsuchung.",
+  "law": "§ 23 Abs. 1a StVO · BKat Nr. 246.1, 246.4 · FeV Anlage 13 Nr. 3.2.15 · § 136 Abs. 1 S. 2 StPO · § 46 Abs. 1 OWiG · § 94 Abs. 2, § 98 Abs. 2 StPO · § 81b Abs. 1 StPO · § 48 Abs. 3a, § 71 Abs. 4 AufenthG · BGH 2 StR 232/24",
+  "why": "Handy am Steuer ist eine Ordnungswidrigkeit (§ 23 Abs. 1a StVO, 100 €, 1 Punkt; auf dem Fahrrad 55 €, kein Punkt). Zeigen, Entsperren oder PIN nennen ist aktive Mitwirkung, dazu bist du nie verpflichtet. Ausnahme: Besitzt du als Ausländer überhaupt keinen gültigen Pass, Passersatz oder sonstigen geeigneten Identitätsnachweis, darf dein Handy ausgelesen werden, wenn das zur Klärung von Identität, Staatsangehörigkeit und Rückführungsmöglichkeit erforderlich ist, und du musst die Zugangsdaten dafür zur Verfügung stellen (§ 48 Abs. 3a AufenthG; zuständig ist auch die Landespolizei, § 71 Abs. 4; für EU-Bürger gilt das grundsätzlich nicht, § 1 Abs. 2 Nr. 1 AufenthG). Die Polizei kann das Gerät als Beweismittel beschlagnahmen (§ 94 Abs. 2, § 98 StPO i.V.m. § 46 OWiG), muss aber verhältnismäßig bleiben. Den Finger zwangsweise auflegen erlaubt der BGH jedenfalls bei richterlich angeordneter Durchsuchung.",
   "src": [
    "https://www.gesetze-im-internet.de/stvo_2013/__23.html",
    "https://www.gesetze-im-internet.de/stpo/__94.html",
@@ -205,12 +214,14 @@ window.RB.quick = [
    "https://www.gesetze-im-internet.de/owig_1968/__46.html",
    "https://www.gesetze-im-internet.de/aufenthg_2004/__48.html",
    "https://www.gesetze-im-internet.de/aufenthg_2004/__71.html",
-   "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Strafsenate/2_StS/2024/2_StR_232-24A.pdf?__blob=publicationFile&v=1"
+   "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Strafsenate/2_StS/2024/2_StR_232-24A.pdf?__blob=publicationFile&v=1",
+   "https://www.gesetze-im-internet.de/bkatv_2013/BJNR049800013.html",
+   "https://www.gesetze-im-internet.de/fev_2010/anlage_13.html"
   ],
   "ru": {
    "cop": "У вас в руке был телефон. Покажите и разблокируйте его.",
    "say": "По обвинению ничего не скажу. Телефон не разблокирую и код не назову — § 136 Abs. 1 S. 2 StPO. Сопротивляться не буду.",
-   "why": "Телефон за рулём — административное нарушение (§ 23 Abs. 1a StVO, 100 €, 1 балл). Показать, разблокировать или назвать PIN — активное участие, это ты никогда не обязан. Исключение: если у тебя как у иностранца вообще нет действующего паспорта, Passersatz или иного подходящего удостоверения личности, данные с твоего телефона могут считать, когда это нужно для установления личности, гражданства и возможности возврата в другую страну, и ты обязан предоставить для этого данные доступа (§ 48 Abs. 3a AufenthG; земельная полиция на это тоже уполномочена, § 71 Abs. 4; к гражданам ЕС это в принципе не относится, § 1 Abs. 2 Nr. 1 AufenthG). Полиция может изъять телефон как доказательство (§ 94 Abs. 2, § 98 StPO вместе с § 46 OWiG), но должна соблюдать соразмерность. Прикладывать твой палец силой BGH разрешил во всяком случае при обыске по решению судьи."
+   "why": "Телефон за рулём — административное нарушение (§ 23 Abs. 1a StVO, 100 €, 1 балл; на велосипеде 55 €, без балла). Показать, разблокировать или назвать PIN — активное участие, это ты никогда не обязан. Исключение: если у тебя как у иностранца вообще нет действующего паспорта, Passersatz или иного подходящего удостоверения личности, данные с твоего телефона могут считать, когда это нужно для установления личности, гражданства и возможности возврата в другую страну, и ты обязан предоставить для этого данные доступа (§ 48 Abs. 3a AufenthG; земельная полиция на это тоже уполномочена, § 71 Abs. 4; к гражданам ЕС это в принципе не относится, § 1 Abs. 2 Nr. 1 AufenthG). Полиция может изъять телефон как доказательство (§ 94 Abs. 2, § 98 StPO вместе с § 46 OWiG), но должна соблюдать соразмерность. Прикладывать твой палец силой BGH разрешил во всяком случае при обыске по решению судьи."
   }
  },
  {
@@ -305,7 +316,7 @@ window.RB.quick = [
   "cop": "Wissen Sie, warum wir Sie angehalten haben?",
   "say": "Bitte sagen Sie es mir. Wird mir etwas vorgeworfen, nennen Sie bitte die Tat (§ 163a Abs. 4 S. 1 StPO). Zur Sache sage ich nichts.",
   "law": "§ 163a Abs. 4 S. 1, 2 StPO · § 136 Abs. 1 S. 1, 2 StPO · § 46 Abs. 1, § 55 Abs. 1 OWiG · § 36 Abs. 5 S. 1 StVO",
-  "why": "Die Frage lädt dazu ein, selbst einen Verstoß zu nennen („Ich war wohl zu schnell“) – das wäre ein Geständnis. Raten musst du nicht: Dem Beschuldigten ist bei der Vernehmung zu eröffnen, welche Tat ihm zur Last gelegt wird, und er darf schweigen (§ 163a Abs. 4 S. 1, 2 i. V. m. § 136 Abs. 1 S. 2 StPO). Im Bußgeldverfahren gilt das sinngemäß (§ 46 Abs. 1 OWiG); dort genügt es, dir Gelegenheit zur Äußerung zu geben (§ 55 Abs. 1 OWiG). Recht hat der Beamte bei einer allgemeinen Verkehrskontrolle: Sie braucht keinen Anlass (§ 36 Abs. 5 S. 1 StVO), Papiere und Personalien bleiben Pflicht.",
+  "why": "Die Frage lädt dazu ein, selbst einen Verstoß zu nennen („Ich war wohl zu schnell“) – das wäre ein Geständnis. Raten musst du nicht: Dem Beschuldigten ist bei der Vernehmung zu eröffnen, welche Tat ihm zur Last gelegt wird, und er darf schweigen (§ 163a Abs. 4 S. 1, 2 i. V. m. § 136 Abs. 1 S. 2 StPO). Im Bußgeldverfahren gilt das sinngemäß (§ 46 Abs. 1 OWiG); dort genügt es, dir Gelegenheit zur Äußerung zu geben (§ 55 Abs. 1 OWiG). Recht hat der Beamte bei einer allgemeinen Verkehrskontrolle: Sie braucht keinen Anlass (§ 36 Abs. 5 S. 1 StVO). Personalien bleiben Pflicht, im Auto oder auf dem Motorrad auch die Papiere.",
   "src": [
    "https://www.gesetze-im-internet.de/stpo/__163a.html",
    "https://www.gesetze-im-internet.de/stpo/__136.html",
@@ -316,7 +327,7 @@ window.RB.quick = [
   "ru": {
    "cop": "Знаете, почему мы вас остановили?",
    "say": "Скажите мне, пожалуйста. Если меня в чём-то обвиняют, назовите, пожалуйста, деяние (§ 163a Abs. 4 S. 1 StPO). По существу ничего не скажу.",
-   "why": "Этот вопрос подталкивает самому назвать нарушение («Наверное, я превысил скорость») — это было бы признанием. Гадать не нужно: подозреваемому при допросе обязаны сообщить, в каком деянии его обвиняют, и он вправе молчать (§ 163a Abs. 4 S. 1, 2 вместе с § 136 Abs. 1 S. 2 StPO). В деле об административном нарушении это действует соответственно (§ 46 Abs. 1 OWiG); там достаточно дать тебе возможность высказаться (§ 55 Abs. 1 OWiG). Полицейский прав при общей дорожной проверке: для неё повод не нужен (§ 36 Abs. 5 S. 1 StVO), документы и личные данные остаются обязательными."
+   "why": "Этот вопрос подталкивает самому назвать нарушение («Наверное, я превысил скорость») — это было бы признанием. Гадать не нужно: подозреваемому при допросе обязаны сообщить, в каком деянии его обвиняют, и он вправе молчать (§ 163a Abs. 4 S. 1, 2 вместе с § 136 Abs. 1 S. 2 StPO). В деле об административном нарушении это действует соответственно (§ 46 Abs. 1 OWiG); там достаточно дать тебе возможность высказаться (§ 55 Abs. 1 OWiG). Полицейский прав при общей дорожной проверке: для неё повод не нужен (§ 36 Abs. 5 S. 1 StVO). Назвать личные данные обязательно, а в машине или на мотоцикле — и показать документы."
   }
  },
  {
@@ -344,17 +355,18 @@ window.RB.quick = [
   "v": "kommt_drauf_an",
   "cop": "Sie fahren heute nicht mehr weiter. Geben Sie mir den Autoschlüssel.",
   "say": "Ich fahre nicht weiter und gebe den Schlüssel heraus, widerspreche aber. Bitte Grund und Bescheinigung nach § 38 Abs. 3 PolG BW.",
-  "law": "§ 38 Abs. 1 Nr. 1, Abs. 3, 4 PolG BW · § 21 Abs. 2 Nr. 2 StVG · § 113 StGB",
-  "why": "Besteht der Verdacht, dass du nicht fahrtüchtig bist (Alkohol, Drogen), darf die Polizei zur Abwehr einer unmittelbar bevorstehenden Störung die Weiterfahrt verhindern und den Schlüssel beschlagnahmen (§ 38 Abs. 1 Nr. 1 PolG BW) – dann hat sie recht. Grund und Rechtsbehelf sind unverzüglich zu nennen, auf Verlangen gibt es eine Bescheinigung (§ 38 Abs. 3). Die Beschlagnahme ist aufzuheben, sobald ihr Zweck erreicht ist (§ 38 Abs. 4), etwa wenn du wieder nüchtern bist oder ein fahrtüchtiger Fahrer übernimmt. Ist auch der Führerschein beschlagnahmt, ist jedes Fahren eine Straftat (§ 21 Abs. 2 Nr. 2 StVG).",
+  "law": "§ 38 Abs. 1 Nr. 1, Abs. 3, 4 PolG BW · § 21 Abs. 2 Nr. 2 StVG · § 94 StPO · § 113 StGB",
+  "why": "Besteht der Verdacht, dass du nicht fahrtüchtig bist (Alkohol, Drogen), darf die Polizei zur Abwehr einer unmittelbar bevorstehenden Störung die Weiterfahrt verhindern und den Schlüssel beschlagnahmen (§ 38 Abs. 1 Nr. 1 PolG BW) – dann hat sie recht. Grund und Rechtsbehelf sind unverzüglich zu nennen, auf Verlangen gibt es eine Bescheinigung (§ 38 Abs. 3). Die Beschlagnahme ist aufzuheben, sobald ihr Zweck erreicht ist (§ 38 Abs. 4), etwa wenn du wieder nüchtern bist oder ein fahrtüchtiger Fahrer übernimmt. Ist der Führerschein nach § 94 StPO beschlagnahmt, ist das Fahren eines führerscheinpflichtigen Kraftfahrzeugs eine Straftat (§ 21 Abs. 2 Nr. 2 StVG).",
   "src": [
    "https://www.landesrecht-bw.de/perma?j=PolG_BW_!_38",
    "https://www.gesetze-im-internet.de/stvg/__21.html",
-   "https://www.gesetze-im-internet.de/stgb/__113.html"
+   "https://www.gesetze-im-internet.de/stgb/__113.html",
+   "https://www.gesetze-im-internet.de/stpo/__94.html"
   ],
   "ru": {
    "cop": "Сегодня вы дальше не поедете. Отдайте ключ от машины.",
    "say": "Дальше не поеду и отдам ключ, но возражаю. Прошу назвать причину и выдать справку по § 38 Abs. 3 PolG BW.",
-   "why": "Если есть подозрение, что ты не способен вести машину (алкоголь, наркотики), полиция может для предотвращения непосредственно грозящего нарушения помешать ехать дальше и изъять ключ (§ 38 Abs. 1 Nr. 1 PolG BW) — тогда она права. Причину и способ обжалования обязаны сообщить сразу, по требованию выдают справку (§ 38 Abs. 3). Изъятие отменяется, как только цель достигнута (§ 38 Abs. 4), например когда ты протрезвел или за руль садится трезвый водитель. Если изъяли и права, любая поездка — преступление (§ 21 Abs. 2 Nr. 2 StVG)."
+   "why": "Если есть подозрение, что ты не способен вести машину (алкоголь, наркотики), полиция может для предотвращения непосредственно грозящего нарушения помешать ехать дальше и изъять ключ (§ 38 Abs. 1 Nr. 1 PolG BW) — тогда она права. Причину и способ обжалования обязаны сообщить сразу, по требованию выдают справку (§ 38 Abs. 3). Изъятие отменяется, как только цель достигнута (§ 38 Abs. 4), например когда ты протрезвел или за руль садится трезвый водитель. Если права изъяты по § 94 StPO, вождение механического транспортного средства (Kraftfahrzeug), для которого нужны права, — преступление (§ 21 Abs. 2 Nr. 2 StVG)."
   }
  },
  {
@@ -454,8 +466,8 @@ window.RB.quick = [
   "v": "kommt_drauf_an",
   "cop": "Sie müssen Ihren Ausweis immer dabeihaben!",
   "say": "Als Deutscher muss ich nach § 1 Abs. 1 PAuswG einen Ausweis besitzen, aber nicht mitführen. Meine Personalien nenne ich Ihnen.",
-  "law": "§ 1 Abs. 1 S. 1, 2 PAuswG · § 1 Abs. 2 S. 3 PAuswG · § 32 Abs. 1 Nr. 2, Abs. 3 PAuswG · §§ 47a, 48 Abs. 1 AufenthG · § 8 Abs. 1a FreizügG/EU · § 4 Abs. 2 S. 2 FeV · § 48a Abs. 5 Nr. 2 FeV",
-  "why": "Deutsche ab 16 müssen einen Ausweis nur besitzen; ein gültiger Reisepass genügt (§ 1 Abs. 2 S. 3 PAuswG). Hast du ihn dabei, musst du ihn einer zur Identitätsfeststellung berechtigten Behörde vorlegen und den Lichtbildabgleich ermöglichen, sonst drohen bis 3.000 € (§ 1 Abs. 1 S. 2, § 32 Abs. 1 Nr. 2, Abs. 3 PAuswG). Recht hat der Beamte bei Ausländern: Sie müssen Pass und Aufenthaltstitel auf Verlangen vorlegen (§§ 47a, 48 Abs. 1 AufenthG; EU-Bürger § 8 Abs. 1a FreizügG/EU). Ebenso bei dem, der fährt (§ 4 Abs. 2 S. 2 FeV), und bei der Begleitperson beim Begleiteten Fahren (§ 48a Abs. 5 Nr. 2 FeV).",
+  "law": "§ 1 Abs. 1 S. 1, 2 PAuswG · § 1 Abs. 2 S. 3 PAuswG · § 32 Abs. 1 Nr. 2, Abs. 3 PAuswG · §§ 47a, 48 Abs. 1 AufenthG · § 8 Abs. 1a FreizügG/EU · § 4 Abs. 1 S. 2 Nr. 1a, Abs. 2 S. 2 FeV · § 5 Abs. 4 S. 2 FeV · § 1 Abs. 3 StVG · § 48a Abs. 5 Nr. 2 FeV",
+  "why": "Deutsche ab 16 müssen einen Ausweis nur besitzen; ein gültiger Reisepass genügt (§ 1 Abs. 2 S. 3 PAuswG). Hast du ihn dabei, musst du ihn einer zur Identitätsfeststellung berechtigten Behörde vorlegen und den Lichtbildabgleich ermöglichen, sonst drohen bis 3.000 € (§ 1 Abs. 1 S. 2, § 32 Abs. 1 Nr. 2, Abs. 3 PAuswG). Recht hat der Beamte bei Ausländern: Sie müssen Pass und Aufenthaltstitel auf Verlangen vorlegen (§§ 47a, 48 Abs. 1 AufenthG; EU-Bürger § 8 Abs. 1a FreizügG/EU). Ebenso beim Führerschein, wenn du ein Kraftfahrzeug fährst, für das du eine Fahrerlaubnis brauchst, auch S-Pedelec bis 45 km/h oder Motorroller (§ 4 Abs. 2 S. 2 FeV); beim Mofa ist es die Prüfbescheinigung (§ 5 Abs. 4 S. 2 FeV). Ebenso bei der Begleitperson beim Begleiteten Fahren (§ 48a Abs. 5 Nr. 2 FeV). Für Fahrrad, Pedelec bis 25 km/h und E-Scooter brauchst du keinen Führerschein (§ 4 Abs. 1 S. 2 Nr. 1a FeV, § 1 Abs. 3 StVG).",
   "src": [
    "https://www.gesetze-im-internet.de/pauswg/__1.html",
    "https://www.gesetze-im-internet.de/pauswg/__32.html",
@@ -463,13 +475,15 @@ window.RB.quick = [
    "https://www.gesetze-im-internet.de/aufenthg_2004/__48.html",
    "https://www.gesetze-im-internet.de/freiz_gg_eu_2004/__8.html",
    "https://www.gesetze-im-internet.de/fev_2010/__4.html",
+   "https://www.gesetze-im-internet.de/fev_2010/__5.html",
    "https://www.gesetze-im-internet.de/fev_2010/__48a.html",
-   "https://www.landesrecht-bw.de/bsbw/document/jlr-NNLBW00007D29"
+   "https://www.landesrecht-bw.de/bsbw/document/jlr-NNLBW00007D29",
+   "https://www.gesetze-im-internet.de/stvg/__1.html"
   ],
   "ru": {
    "cop": "Вы обязаны всегда носить с собой удостоверение личности!",
    "say": "Как гражданин Германии я по § 1 Abs. 1 PAuswG обязан иметь удостоверение, но не носить его с собой. Свои данные я вам назову.",
-   "why": "Граждане Германии с 16 лет обязаны только иметь удостоверение; подходит и действующий загранпаспорт (§ 1 Abs. 2 S. 3 PAuswG). Если документ при тебе, его нужно предъявить ведомству, которое вправе устанавливать личность, и дать сверить лицо с фото, иначе штраф до 3000 € (§ 1 Abs. 1 S. 2, § 32 Abs. 1 Nr. 2, Abs. 3 PAuswG). Полицейский прав в отношении иностранцев: они по требованию обязаны предъявить паспорт и вид на жительство (§§ 47a, 48 Abs. 1 AufenthG; граждане ЕС — § 8 Abs. 1a FreizügG/EU). Также в отношении того, кто за рулём (§ 4 Abs. 2 S. 2 FeV), и сопровождающего при вождении с 17 лет (§ 48a Abs. 5 Nr. 2 FeV)."
+   "why": "Граждане Германии с 16 лет обязаны только иметь удостоверение; подходит и действующий загранпаспорт (§ 1 Abs. 2 S. 3 PAuswG). Если документ при тебе, его нужно предъявить ведомству, которое вправе устанавливать личность, и дать сверить лицо с фото, иначе штраф до 3000 € (§ 1 Abs. 1 S. 2, § 32 Abs. 1 Nr. 2, Abs. 3 PAuswG). Полицейский прав в отношении иностранцев: они по требованию обязаны предъявить паспорт и вид на жительство (§§ 47a, 48 Abs. 1 AufenthG; граждане ЕС — § 8 Abs. 1a FreizügG/EU). Также в отношении водительских прав, если ты ведёшь механическое транспортное средство (Kraftfahrzeug), для которого нужны права, в том числе S-Pedelec до 45 км/ч или мотороллер (§ 4 Abs. 2 S. 2 FeV); для мопеда Mofa — свидетельство о сдаче экзамена (Prüfbescheinigung, § 5 Abs. 4 S. 2 FeV). Также в отношении сопровождающего при вождении с 17 лет (§ 48a Abs. 5 Nr. 2 FeV). Для велосипеда, педелека до 25 км/ч и электросамоката права не нужны (§ 4 Abs. 1 S. 2 Nr. 1a FeV, § 1 Abs. 3 StVG)."
   }
  },
  {
@@ -1390,6 +1404,66 @@ window.RB.quick = [
    "cop": "Если не будете содействовать, это сопротивление сотрудникам полиции!",
    "say": "Я не сопротивляюсь и не применяю силу. Я просто не даю согласия — § 113 Abs. 1 StGB требует насилия или угрозы насилием.",
    "why": "Наказуем только тот, кто при служебном действии «сопротивляется с применением насилия или угрозой насилия» (§ 113 Abs. 1 StGB). По BGH сопротивление — это активные действия против полицейского, а насилие — активное применение физической силы против него (5 StR 157/20, п. 9). Поэтому не соглашаться, молчать, не дуть в трубку или не подписывать — не сопротивление. Отказ назвать личные данные — административное нарушение (§ 111 OWiG), а не сопротивление. Полицейский прав, как только ты вырываешься, отдёргиваешься, толкаешься или упираешься; нападение наказуемо отдельно (§ 114 StGB)."
+  }
+ },
+ {
+  "id": "rad-regeln",
+  "g": "fahrer",
+  "v": "kommt_drauf_an",
+  "cop": "Sie sind auf dem Gehweg gefahren – ohne Licht und mit Kopfhörern.",
+  "say": "Ich folge Ihren Anweisungen zur Verkehrskontrolle (§ 36 Abs. 5 StVO) und gebe meine Personalien an. Zum Vorwurf mache ich keine Angaben (§ 136 Abs. 1 S. 2 StPO i. V. m. § 46 Abs. 1 OWiG).",
+  "law": "§ 36 Abs. 1, 5 StVO · § 111 OWiG · § 136 Abs. 1 S. 2 StPO i.V.m. § 46 Abs. 1 OWiG · § 2 Abs. 1, 4, 5 StVO · § 41 Abs. 1 StVO i.V.m. Anlage 2 (Zeichen 220, 239, 242.1) · § 17 Abs. 1 StVO · § 23 Abs. 1 S. 1, Abs. 1a StVO · § 37 Abs. 2 StVO · § 56 Abs. 1, 2, § 57 Abs. 2 OWiG · § 107 Abs. 1, 3 OWiG · § 55 Abs. 1 OWiG · § 8, § 10 Abs. 1, 2, § 14 Nr. 4, 5 eKFV · BKat Nr. 2, 73, 107.1, 132a, 132a.3, 139.2, 141.4, 238, 246.1, 246.4 · FeV Anlage 13 Nr. 3.2.15, 3.2.19",
+  "why": "Auch auf Rad oder E-Scooter musst du bei einer Verkehrskontrolle anhalten, Anweisungen befolgen und deine Personalien angeben (§ 36 Abs. 1, 5 StVO, § 111 OWiG). Zum Vorwurf musst du nichts sagen (§ 136 Abs. 1 S. 2 StPO i. V. m. § 46 Abs. 1 OWiG). Oft hat der Beamte recht: Ab 10 Jahren darfst du nicht auf dem Gehweg fahren, außer ein Zusatzzeichen erlaubt es oder du begleitest als Aufsichtsperson ein Kind unter 8 (§ 2 Abs. 1, 5 StVO). In der Fußgängerzone darfst du nur fahren, wenn ein Zusatzzeichen es erlaubt (§ 41 Abs. 1 StVO, Zeichen 242.1). Das kostet 25–55 €. Einbahnstraße in Gegenrichtung ohne Freigabe: 20 €. Ohne Licht bei Dunkelheit: 20 € (§ 17 Abs. 1 StVO). Handy in der Hand: 55 €, in der Halterung ist ein kurzer Blick erlaubt (§ 23 Abs. 1a StVO). Kopfhörer sind nur verboten, wenn sie das Gehör beeinträchtigen: 10 € (§ 23 Abs. 1 S. 1 StVO). Rotlicht: 60 €, war es schon länger als 1 Sekunde rot, 100 €, jeweils 1 Punkt (§ 37 Abs. 2 StVO). Nebeneinander fahren ist erlaubt, solange niemand behindert wird (§ 2 Abs. 4 S. 1 StVO). Mit dem Fahrrad musst du einen Radweg nur bei blauem Schild benutzen (§ 2 Abs. 4 S. 2 StVO), mit dem E-Scooter immer, wenn es einen gibt (§ 10 Abs. 1 eKFV). Weist dich ein Beamter an, befolge das trotzdem und lass es später prüfen. Bis 55 € wird eine Verwarnung nur wirksam, wenn du einverstanden bist (§ 56 Abs. 2 OWiG). Stimmt der Vorwurf, ist Zahlen meist günstiger: Ein Bußgeldbescheid kostet mindestens 25 € Gebühr plus Auslagen (§ 107 OWiG). Lehnst du ab oder liegt der Betrag über 55 €, kommt meist ein Anhörungsbogen: Angaben zur Person musst du machen (§ 111 OWiG), zur Sache nicht (§ 55 OWiG, § 136 Abs. 1 S. 2 StPO). E-Scooter: Gehweg ohne Zusatzzeichen 15 €, nie zu zweit (§§ 8, 10 eKFV), Handy 100 € und 1 Punkt.",
+  "src": [
+   "https://www.gesetze-im-internet.de/stvo_2013/__36.html",
+   "https://www.gesetze-im-internet.de/stvo_2013/__2.html",
+   "https://www.gesetze-im-internet.de/stvo_2013/__41.html",
+   "https://www.gesetze-im-internet.de/stvo_2013/anlage_2.html",
+   "https://www.gesetze-im-internet.de/stvo_2013/__17.html",
+   "https://www.gesetze-im-internet.de/stvo_2013/__23.html",
+   "https://www.gesetze-im-internet.de/stvo_2013/__37.html",
+   "https://www.gesetze-im-internet.de/owig_1968/__46.html",
+   "https://www.gesetze-im-internet.de/owig_1968/__55.html",
+   "https://www.gesetze-im-internet.de/owig_1968/__56.html",
+   "https://www.gesetze-im-internet.de/owig_1968/__57.html",
+   "https://www.gesetze-im-internet.de/owig_1968/__107.html",
+   "https://www.gesetze-im-internet.de/owig_1968/__111.html",
+   "https://www.gesetze-im-internet.de/stpo/__136.html",
+   "https://www.gesetze-im-internet.de/bkatv_2013/BJNR049800013.html",
+   "https://www.gesetze-im-internet.de/fev_2010/anlage_13.html",
+   "https://www.gesetze-im-internet.de/ekfv/__8.html",
+   "https://www.gesetze-im-internet.de/ekfv/__10.html",
+   "https://www.gesetze-im-internet.de/ekfv/__14.html"
+  ],
+  "ru": {
+   "cop": "Вы ехали по тротуару — без света и в наушниках.",
+   "say": "Выполняю ваши указания для дорожной проверки (§ 36 Abs. 5 StVO) и назову свои личные данные. По обвинению ничего не скажу (§ 136 Abs. 1 S. 2 StPO вместе с § 46 Abs. 1 OWiG).",
+   "why": "И на велосипеде, и на электросамокате при дорожной проверке нужно остановиться, выполнять указания и назвать личные данные (§ 36 Abs. 1, 5 StVO, § 111 OWiG). По обвинению можно молчать (§ 136 Abs. 1 S. 2 StPO вместе с § 46 Abs. 1 OWiG). Часто полицейский прав: с 10 лет нельзя ездить по тротуару, если это не разрешено дополнительной табличкой и ты не сопровождаешь ребёнка до 8 лет, за которым присматриваешь (§ 2 Abs. 1, 5 StVO). В пешеходной зоне ездить можно, только если это разрешено дополнительной табличкой (§ 41 Abs. 1 StVO, знак 242.1). Штраф 25–55 €. Против движения по улице с односторонним движением без разрешающей таблички: 20 €. Без света в темноте: 20 € (§ 17 Abs. 1 StVO). Телефон в руке: 55 €, в держателе короткий взгляд разрешён (§ 23 Abs. 1a StVO). Наушники запрещены, только если мешают слышать: 10 € (§ 23 Abs. 1 S. 1 StVO). Красный свет: 60 €, если красный горел уже больше 1 секунды — 100 €, в обоих случаях 1 балл (§ 37 Abs. 2 StVO). Ехать рядом друг с другом можно, если это никому не мешает (§ 2 Abs. 4 S. 1 StVO). На велосипеде велодорожкой обязан пользоваться только при синем знаке (§ 2 Abs. 4 S. 2 StVO), на электросамокате — всегда, если она есть (§ 10 Abs. 1 eKFV). Если полицейский велит ехать по ней, всё равно выполняй и обжалуй потом. Предупреждение со штрафом до 55 € действует, только если ты согласен (§ 56 Abs. 2 OWiG). Если обвинение верно, заплатить обычно дешевле: постановление о штрафе стоит минимум 25 € пошлины плюс расходы (§ 107 OWiG). Если откажешься или сумма больше 55 €, обычно придёт анкета-опрос (Anhörungsbogen): личные данные указать нужно (§ 111 OWiG), по существу можно не отвечать (§ 55 OWiG, § 136 Abs. 1 S. 2 StPO). Электросамокат: по тротуару без разрешающей таблички — 15 €, никогда вдвоём (§§ 8, 10 eKFV), телефон — 100 € и 1 балл."
+  }
+ },
+ {
+  "id": "rad-rahmennummer",
+  "g": "fahrer",
+  "v": "kommt_drauf_an",
+  "cop": "Ist das Ihr Fahrrad? Wir prüfen mal die Rahmennummer.",
+  "say": "Die Rahmennummer zeige ich Ihnen gern selbst. Einen Kaufbeleg muss ich nicht dabeihaben. Weitere Angaben zur Sache mache ich nicht.",
+  "law": "§ 47 Abs. 1 S. 2, 3 PolG BW · § 36 Abs. 5 StVO · § 1006 Abs. 1 BGB · §§ 94, 98 Abs. 1, 2 StPO · § 37 Abs. 1, 4 PolG BW · § 113 StGB · § 839 BGB · Art. 34 GG",
+  "why": "Die Polizei darf die Rahmennummer mit dem Fahndungsbestand abgleichen, wenn Grund zu der Annahme besteht, dass das für ihre Aufgabe nötig ist, und dich für die Dauer des Abgleichs anhalten (§ 47 Abs. 1 S. 2, 3 PolG BW). Die Schwelle ist niedrig, meist hat sie hier recht. Einen Kaufbeleg oder Fahrradpass musst du nicht mitführen, das schreibt kein Gesetz vor. Zivilrechtlich wird vermutet, dass das Rad dem gehört, der es besitzt (§ 1006 Abs. 1 S. 1 BGB); gegenüber dem Bestohlenen gilt das nicht, und es hält die Polizei nicht davon ab, einem konkreten Diebstahlsverdacht nachzugehen. Ist das Rad als gestohlen gemeldet oder deuten Tatsachen auf einen Diebstahl hin, darf die Polizei es als Beweismittel beschlagnahmen (§§ 94, 98 Abs. 1 StPO) oder für den Eigentümer sicherstellen (§ 37 PolG BW). Dann ausdrücklich widersprechen, aber nicht festhalten (§ 113 StGB), und eine Bescheinigung über die Mitnahme verlangen. Gegen eine Beschlagnahme kannst du jederzeit die gerichtliche Entscheidung beantragen (§ 98 Abs. 2 S. 2 StPO); eine Sicherstellung ist aufzuheben, wenn der Eigentümer es verlangt, spätestens nach zwei Wochen (§ 37 Abs. 4 PolG BW). Beschädigt ein Beamter das Rad schuldhaft, etwa beim Umdrehen, haftet der Staat, also Land oder Bund (§ 839 BGB, Art. 34 GG): Schaden sofort fotografieren, Namen oder Dienststelle notieren und schriftlich Ersatz verlangen. Tipp: Rahmennummer, Foto und Kaufbeleg zu Hause oder im Handy aufbewahren. Zeigst du den Beleg auf dem Handy, gib das Handy nicht aus der Hand.",
+  "src": [
+   "https://www.landesrecht-bw.de/perma?j=PolG_BW_!_47",
+   "https://www.landesrecht-bw.de/perma?j=PolG_BW_!_37",
+   "https://www.gesetze-im-internet.de/stvo_2013/__36.html",
+   "https://www.gesetze-im-internet.de/bgb/__1006.html",
+   "https://www.gesetze-im-internet.de/stpo/__94.html",
+   "https://www.gesetze-im-internet.de/stpo/__98.html",
+   "https://www.gesetze-im-internet.de/stgb/__113.html",
+   "https://www.gesetze-im-internet.de/bgb/__839.html",
+   "https://www.gesetze-im-internet.de/gg/art_34.html"
+  ],
+  "ru": {
+   "cop": "Это ваш велосипед? Проверим номер рамы.",
+   "say": "Номер рамы охотно покажу сам. Чек носить с собой я не обязан. Других сведений по делу не даю.",
+   "why": "Полиция может сверить номер рамы с базой розыска, если есть основания полагать, что это нужно для её задач, и на время сверки остановить тебя (§ 47 Abs. 1 S. 2, 3 PolG BW). Порог низкий, обычно здесь она права. Чек или паспорт велосипеда носить с собой не нужно, этого не требует ни один закон. По гражданскому праву предполагается, что велосипед принадлежит тому, у кого он находится (§ 1006 Abs. 1 S. 1 BGB); против того, у кого его украли, это не действует и не мешает полиции проверять конкретное подозрение в краже. Если велосипед числится украденным или факты указывают на кражу, полиция может изъять его как доказательство (§§ 94, 98 Abs. 1 StPO) или взять на хранение для собственника (§ 37 PolG BW). Тогда прямо возрази, но не удерживай велосипед (§ 113 StGB), и потребуй справку об изъятии. При изъятии (Beschlagnahme) можно в любое время потребовать судебного решения (§ 98 Abs. 2 S. 2 StPO); хранение (Sicherstellung) нужно прекратить, если этого требует собственник, самое позднее через две недели (§ 37 Abs. 4 PolG BW). Если полицейский по своей вине повредил велосипед, например переворачивая его, отвечает государство — федеральная земля или Федерация (§ 839 BGB, Art. 34 GG): сразу сфотографируй повреждение, запиши имя или отдел полиции и письменно потребуй возмещения. Совет: храни номер рамы, фото и чек дома или в телефоне. Если показываешь чек в телефоне, не выпускай телефон из рук."
   }
  }
 ];
