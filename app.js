@@ -27,7 +27,7 @@
   var UI = lsGet(LS_UI) || (/^(ru|uk|be|kk)/i.test(navigator.language || "") ? "ru" : "de");
   var T = {
     de: {
-      meta: "Prototyp · Baden-Württemberg · Stand 26.09.2026 · keine Rechtsberatung", install: "Installieren", install_app: "App installieren",
+      meta: "Prototyp · Baden-Württemberg · Stand 28.09.2026 · keine Rechtsberatung", install: "Installieren", install_app: "App installieren",
       tab_jetzt: "Jetzt", tab_fragen: "Fragen", tab_aufnahme: "Aufnahme", tab_danach: "Danach", tab_wissen: "Wissen", tab_vorb: "Vorbereiten", vorb_h: "Vorbereiten", vorb_lead: "In Ruhe, bevor etwas passiert: Frage stellen, Rechte nachlesen, App einrichten.", vorb_einr: "Einrichten", danach_recs: "Meine Videos und Tresor →", tabs_aria: "Bereiche",
       jetzt_h: "Was passiert gerade?", jetzt_lead: "Tippe auf deine Situation. Du bekommst sofort, was du sagen und was du lassen solltest.",
       q_ask: "Frage stellen", q_proto: "Protokoll", back: "Zurück", close: "Schließen",
@@ -155,7 +155,7 @@
       days_1: "1 Tag", days_n: "{n} Tage"
     },
     ru: {
-      meta: "Прототип · Баден-Вюртемберг · на 26.09.2026 · не юридическая консультация", install: "Установить", install_app: "Установить приложение",
+      meta: "Прототип · Баден-Вюртемберг · на 28.09.2026 · не юридическая консультация", install: "Установить", install_app: "Установить приложение",
       tab_jetzt: "Сейчас", tab_fragen: "Вопрос", tab_aufnahme: "Запись", tab_danach: "После", tab_wissen: "Знания", tab_vorb: "Подготовка", vorb_h: "Подготовка", vorb_lead: "Спокойно, заранее: задать вопрос, прочитать о правах, настроить приложение.", vorb_einr: "Настроить", danach_recs: "Мои видео и сейф →", tabs_aria: "Разделы",
       jetzt_h: "Что происходит?", jetzt_lead: "Нажми на свою ситуацию — сразу увидишь, что сказать и чего не делать.",
       q_ask: "Задать вопрос", q_proto: "Протокол", back: "Назад", close: "Закрыть",

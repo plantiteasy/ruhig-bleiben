@@ -41,7 +41,7 @@ window.RB.phasen = {
       tipp_de: "Licht im Auto an, Fenster runter, Hände ans Lenkrad. Langsam sprechen.", tipp_ru: "Свет в салоне, окно открыть, руки на руле. Говорить медленно.",
       nicht_de: "Nicht ohne Vorwarnung ins Handschuhfach oder in die Tasche greifen.", nicht_ru: "Не тянуться к бардачку или сумке без предупреждения.",
       detail: "aufnahme-nehmen-sie-auf",
-      cop_de: "Guten Abend, allgemeine Verkehrskontrolle.", cop_ru: "Добрый вечер, обычная проверка движения." },
+      cop_de: "Guten Abend, allgemeine Verkehrskontrolle.", cop_ru: "Добрый вечер, обычная проверка на дороге." },
     { k: "papiere", de: "Papiere", ru: "Документы",
       ziel_de: "Die Pflicht knapp erfüllen, nichts Zusätzliches sagen.", ziel_ru: "Быстро выполнить обязанность, ничего лишнего.",
       main: "s-papiere", extra: ["s-warn"],
