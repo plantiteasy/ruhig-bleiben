@@ -94,6 +94,7 @@
         <div class="ph-extra" id="ph-extra"></div>
         <div class="seg ph-stimme" id="ph-stimme" role="group"></div>
         <p class="hint ph-note" id="ph-note"></p>
+        <a class="ph-ueben-link" href="#ueben" id="ph-ueben-link" data-t="ph_ueben_link">Üben ohne Polizei</a>
       </div>
     </div>
     <div class="k-foot" id="k-foot">
@@ -114,22 +115,36 @@
       <li><p class="einr-t" data-t="einr_1">Sprache der App</p>
         <div class="seg" role="group" id="einr-lang"><button type="button" class="seg-b lang-b" data-ui="de" lang="de">Deutsch</button><button type="button" class="seg-b lang-b" data-ui="ru" lang="ru">Русский</button></div></li>
       <li><p class="einr-t" data-t="einr_2">Meistens bin ich</p><div class="seg k-role" role="group" id="einr-role"></div></li>
-      <li><p class="einr-t" data-t="einr_3">Kamera und Mikrofon erlauben</p>
-        <p class="hint" data-t="einr_3h">Sonst fragt das Handy erst, wenn der Polizist schon da ist.</p>
-        <button class="btn primary" type="button" id="einr-cam" data-t="einr_cam">Jetzt erlauben</button><p class="einr-msg" id="einr-cam-msg" aria-live="polite"></p></li>
       <li><p class="einr-t" data-t="einr_4">Auf den Startbildschirm</p>
         <button class="btn primary" type="button" data-install data-t="install_app" hidden>App installieren</button>
         <p class="hint" id="einr-inst"></p>
         <p class="hint" data-t="einr_4h">Danach: lange auf das App-Symbol drücken → „Kontrolle“ startet sofort das Video.</p></li>
-      <li><p class="einr-t" data-t="einr_tr">Tresor: Kopie außerhalb des Handys</p>
-        <p class="hint" data-t="einr_tr_h">Während du filmst, geht jede Sekunde verschlüsselt ins Netz.</p>
-        <div class="einr-tr" id="einr-tr"></div></li>
-      <li><p class="einr-t" data-t="einr_6">Optional: Profil</p><a class="btn ghost" href="#profil" data-t="einr_prof">Führerschein, Aufenthalt – für passende Hinweise</a></li>
       <li><p class="einr-t" data-t="einr_5">Einmal üben</p>
-        <a class="btn" href="#kontrolle" id="einr-try" data-t="einr_try">Kontrolle-Bildschirm ansehen (ohne Aufnahme)</a>
-        <label class="check" id="einr-test-label" hidden><input type="checkbox" id="einr-test"> <span data-t="einr_test">Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google)</span></label></li>
+        <a class="btn primary" href="#ueben" id="einr-ueben" data-t="einr_ueben">Sätze üben (2 Minuten)</a>
+        <a class="btn ghost" href="#kontrolle" id="einr-try" data-t="einr_try">Kontrolle-Bildschirm ansehen (ohne Aufnahme)</a></li>
     </ol>
+    <details class="einr-more" id="einr-more">
+      <summary data-t="einr_more">Mehr einrichten (optional)</summary>
+      <ol class="einr">
+        <li><p class="einr-t" data-t="einr_3">Kamera und Mikrofon erlauben</p>
+          <p class="hint" data-t="einr_3h">Sonst fragt das Handy erst, wenn der Polizist schon da ist.</p>
+          <button class="btn primary" type="button" id="einr-cam" data-t="einr_cam">Jetzt erlauben</button><p class="einr-msg" id="einr-cam-msg" aria-live="polite"></p></li>
+        <li><p class="einr-t" data-t="einr_tr">Tresor: Kopie außerhalb des Handys</p>
+          <p class="hint" data-t="einr_tr_h">Während du filmst, geht jede Sekunde verschlüsselt ins Netz.</p>
+          <div class="einr-tr" id="einr-tr"></div></li>
+        <li><p class="einr-t" data-t="einr_6">Optional: Profil</p><a class="btn ghost" href="#profil" data-t="einr_prof">Führerschein, Aufenthalt – für passende Hinweise</a></li>
+        <li><label class="check" id="einr-test-label" hidden><input type="checkbox" id="einr-test"> <span data-t="einr_test">Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google)</span></label></li>
+      </ol>
+    </details>
     <button class="btn primary big-btn" type="button" id="einr-done" data-t="einr_done">Fertig</button>
+  </section>
+
+  <!-- Üben: Sätze vorher lernen, nur Tippen (kein Mikrofon nötig) -->
+  <section class="view" id="v-ueben" hidden aria-labelledby="h-ueben">
+    <button class="back" type="button" id="ueben-back" data-t="back">Zurück</button>
+    <h1 id="h-ueben" data-t="ueben_h">Sätze üben</h1>
+    <div class="seg k-role" role="group" id="ueben-role" aria-label="Ich bin"></div>
+    <div id="ueben-body"></div>
   </section>
 
   <!-- Situation -->

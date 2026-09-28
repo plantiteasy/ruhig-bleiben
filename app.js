@@ -45,12 +45,14 @@
       k_modus_sagen: "Was sage ich", k_modus_polizist: "Was sagt der Polizist",
       ph_play: "Abspielen", ph_stop: "Stopp", ph_show: "Zeigen", ph_wenn_noetig: "Wenn nötig", ph_mehr: "Mehr und warum", ph_weiter: "Weiter: {x} ›",
       ph_stimme: "Stimme:", ph_mann: "Mann", ph_frau: "Frau", ph_nicht: "Nicht:",
-      ph_note: "Kein Ton? Lautstärke prüfen. Der Text auf dem Bildschirm zählt.", ph_chip_suche: "Suche",
+      ph_note: "Kein Ton? Lautstärke prüfen. Der Text auf dem Bildschirm zählt.", ph_chip_suche: "Suche", ph_ueben_link: "Üben ohne Polizei",
       einr_card: "In 30 Sekunden einrichten: Kamera erlauben, Tresor für deine Videos, auf den Startbildschirm →", einr_h: "In 30 Sekunden bereit", einr_lead: "Einmal jetzt in Ruhe – dann reicht im Ernstfall ein Tipp.",
       einr_1: "Sprache der App", einr_2: "Meistens bin ich", einr_3: "Kamera und Mikrofon erlauben", einr_3h: "Sonst fragt das Handy erst, wenn der Polizist schon da ist.",
       einr_cam: "Jetzt erlauben", einr_cam_ok: "✓ Erlaubt", einr_4: "Auf den Startbildschirm", einr_4h: "Danach: lange auf das App-Symbol drücken → „Kontrolle“ startet sofort das Video.",
-      einr_5: "Einmal üben", einr_try: "Kontrolle-Bildschirm ansehen (ohne Aufnahme)", einr_test: "Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google bzw. Apple)",
-      einr_6: "Optional: Profil", einr_prof: "Führerschein, Aufenthalt – für passende Hinweise", einr_done: "Fertig",
+      einr_5: "Einmal üben", einr_ueben: "Sätze üben (2 Minuten)", einr_try: "Kontrolle-Bildschirm ansehen (ohne Aufnahme)", einr_test: "Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google bzw. Apple)",
+      einr_6: "Optional: Profil", einr_prof: "Führerschein, Aufenthalt – für passende Hinweise", einr_done: "Fertig", einr_more: "Mehr einrichten (optional)",
+      ueben_h: "Sätze üben", ueben_cop_sagt: "Der Polizist sagt:", ueben_cop_hoeren: "Polizist anhören", ueben_du_sagst: "Was sagst du?",
+      ueben_weiter: "Weiter", ueben_ende: "{x} von {y} richtig", ueben_again: "Nochmal", ueben_zur_kontrolle: "Zur Kontrolle",
       einr_tr: "Tresor: Kopie außerhalb des Handys", einr_tr_h: "Während du filmst, geht jede Sekunde verschlüsselt ins Netz. Nimmt jemand das Handy weg oder löscht darauf, bleibt die Kopie 30 Tage. Ohne deinen Code kommt niemand ran – auch wir nicht.",
       einr_tr_on: "Tresor einschalten", einr_tr_data: "Braucht mobiles Internet, etwa 9 MB pro Minute Video.", einr_tr_code: "Dein Code. Code und Adresse aufschreiben oder einer Vertrauensperson schicken – abholen geht auf jedem Handy unter der Adresse darunter. In den Tresor kommen nur Videos, die du ab jetzt filmst:",
       einr_tr_share: "Code an Vertrauensperson senden", einr_tr_pick: "Video mit Code holen", einr_tr_off: "Tresor ausschalten", einr_tr_sure: "Sicher? Nochmal tippen: Der Code wird auf diesem Handy gelöscht. Alte Videos bleiben bis zu 30 Tage im Tresor – abholen kann sie, wer den Code hat.",
@@ -170,12 +172,14 @@
       k_modus_sagen: "Что сказать", k_modus_polizist: "Слова полиции",
       ph_play: "Воспроизвести", ph_stop: "Стоп", ph_show: "Показать", ph_wenn_noetig: "Если нужно", ph_mehr: "Подробнее и почему", ph_weiter: "Дальше: {x} ›",
       ph_stimme: "Голос:", ph_mann: "мужской", ph_frau: "женский", ph_nicht: "Не надо:",
-      ph_note: "Нет звука? Проверь громкость. Текст на экране — главное.", ph_chip_suche: "Обыск",
+      ph_note: "Нет звука? Проверь громкость. Текст на экране — главное.", ph_chip_suche: "Обыск", ph_ueben_link: "Потренироваться без полиции",
       einr_card: "Настроить за 30 секунд: камера, сейф для видео, значок на экране →", einr_h: "Настройка за 30 секунд", einr_lead: "Один раз сейчас спокойно — тогда в нужный момент хватит одного нажатия.",
       einr_1: "Язык приложения", einr_2: "Чаще всего я", einr_3: "Разрешить камеру и микрофон", einr_3h: "Иначе телефон спросит, когда полицейский уже рядом.",
       einr_cam: "Разрешить сейчас", einr_cam_ok: "✓ Разрешено", einr_4: "Значок на главный экран", einr_4h: "Потом: долго нажми на значок приложения → «Kontrolle» сразу включает видео.",
-      einr_5: "Один раз попробовать", einr_try: "Посмотреть экран проверки (без записи)", einr_test: "Потренироваться с другом: включить тест прослушивания (звук уходит в Google или Apple)",
-      einr_6: "По желанию: профиль", einr_prof: "Права, вид на жительство — для точных подсказок", einr_done: "Готово",
+      einr_5: "Один раз попробовать", einr_ueben: "Потренировать фразы (2 минуты)", einr_try: "Посмотреть экран проверки (без записи)", einr_test: "Потренироваться с другом: включить тест прослушивания (звук уходит в Google или Apple)",
+      einr_6: "По желанию: профиль", einr_prof: "Права, вид на жительство — для точных подсказок", einr_done: "Готово", einr_more: "Ещё настроить (по желанию)",
+      ueben_h: "Тренировка фраз", ueben_cop_sagt: "Полицейский говорит:", ueben_cop_hoeren: "Послушать полицейского", ueben_du_sagst: "Что скажешь ты?",
+      ueben_weiter: "Дальше", ueben_ende: "{x} из {y} правильно", ueben_again: "Ещё раз", ueben_zur_kontrolle: "К проверке",
       einr_tr: "Сейф: копия вне телефона", einr_tr_h: "Пока ты снимаешь, каждая секунда видео в зашифрованном виде уходит в интернет. Если телефон отберут или на нём удалят видео, копия хранится 30 дней. Без твоего кода её не откроет никто — даже мы.",
       einr_tr_on: "Включить сейф", einr_tr_data: "Нужен мобильный интернет, около 9 МБ на минуту видео.", einr_tr_code: "Твой код. Запиши код и адрес или отправь доверенному человеку — забрать видео можно с любого телефона по адресу ниже. В сейф попадают только видео, снятые после включения:",
       einr_tr_share: "Отправить код доверенному человеку", einr_tr_pick: "Забрать видео по коду", einr_tr_off: "Выключить сейф", einr_tr_sure: "Точно? Нажми ещё раз: код удалится с этого телефона. Старые видео остаются в сейфе до 30 дней — забрать их может тот, у кого есть код.",
@@ -301,11 +305,12 @@
   }
 
   /* ---------- Views ---------- */
-  var views = ["jetzt", "fragen", "aufnahme", "danach", "wissen", "situation", "profil", "kontrolle", "einrichten", "tresor"], currentView = "jetzt";
+  var views = ["jetzt", "fragen", "aufnahme", "danach", "wissen", "situation", "profil", "kontrolle", "einrichten", "tresor", "ueben"], currentView = "jetzt";
   var lastTab = "jetzt";
   function show(name) {
     if (name !== currentView) { stopListening(); if (name !== "fragen") stopSpeaking(); }
     if (currentView === "kontrolle" && name !== "kontrolle") phStopAudio(); // „Sagen“-Modus: Ton stoppt beim Verlassen der Kontrolle
+    if (currentView === "ueben" && name !== "ueben") uebStopAudio(); // Üben: Ton stoppt beim Verlassen
     currentView = name;
     views.forEach(function (v) { $("v-" + v).hidden = v !== name; });
     var TAB = { jetzt: "jetzt", kontrolle: "jetzt", einrichten: "jetzt", danach: "danach", tresor: "danach", wissen: "wissen", fragen: "wissen", profil: "wissen" };
@@ -326,8 +331,10 @@
     if (v === "kontrolle" && !(history.state && history.state.rbK)) hideK(); // neu geöffnet: Knöpfe, nicht die alte Antwort
     if (v === "einrichten") renderEinrichten();
     if (v === "aufnahme") renderTrCard();
+    if (v === "ueben") { uebRole = ownRole(); uebPhase = 0; uebScore = 0; uebAnswers = []; }
     show(v);
     if (v === "einrichten") focusEinrTr();
+    if (v === "ueben") uebRender();
     if (pendingScroll) { var ps = $(pendingScroll); pendingScroll = null; if (ps) ps.scrollIntoView({ block: "start" }); }
     if (v === "tresor") openTresor();
   }
@@ -1320,6 +1327,96 @@
   $("einr-try").addEventListener("click", function () { kFromEinr = true; if (kRole === "filme") { kRole = ownRole(); hideK(); renderKontrolle(); } });
   $("k-menu").addEventListener("click", function (e) { if (kFromEinr) { e.preventDefault(); kFromEinr = false; location.hash = "#einrichten"; } });
   $("einr-back").addEventListener("click", goBack);
+  $("ueben-back").addEventListener("click", goBack);
+
+  /* ---------- Üben (#ueben): Sätze vorher lernen, ohne Mikrofon – nur Tippen. ----------
+     Für jede Phase der eigenen Rolle: „Der Polizist sagt“ (fest erzeugte cop-Audio, Stimme Orus) anhören, dann aus
+     3 Sätzen den richtigen tippen (main-Satz der Phase vs. main-Sätze zweier anderer Phasen derselben Rolle).
+     Eigener Ton-Zustand (uebAudio/uebBtn), unabhängig vom Sagen-Modus in #kontrolle; stoppt beim Verlassen der Ansicht. */
+  var uebRole = "fahrer", uebPhase = 0, uebScore = 0, uebAnswered = false, uebAnswers = [], uebAudio = null, uebBtn = null;
+  function uebStopAudio() {
+    if (uebAudio) { try { uebAudio.pause(); } catch (e) {} uebAudio = null; }
+    if (uebBtn) { uebBtn.classList.remove("playing"); uebBtn.setAttribute("aria-pressed", "false"); uebBtn = null; }
+  }
+  function uebPlayCop() {
+    var btn = $("ueben-cop-play"); if (!btn) return;
+    var war = uebBtn === btn; uebStopAudio(); if (war) return;
+    var list = PH[uebRole] || PH.fahrer, p = list[uebPhase]; if (!p) return;
+    var a; try { a = new Audio("audio/cop-" + uebRole + "-" + p.k + ".mp3"); } catch (e) { return; }
+    uebAudio = a; uebBtn = btn; btn.classList.add("playing"); btn.setAttribute("aria-pressed", "true");
+    a.onended = uebStopAudio; a.onerror = uebStopAudio;
+    var pr = a.play(); if (pr && pr.catch) pr.catch(uebStopAudio);
+  }
+  function uebPlaySatz(id) {
+    uebStopAudio();
+    var a; try { a = new Audio("audio/" + id + "_" + kStimme + ".mp3"); } catch (e) { return; }
+    uebAudio = a; a.onended = function () { if (uebAudio === a) uebAudio = null; }; a.onerror = a.onended;
+    var pr = a.play(); if (pr && pr.catch) pr.catch(function () {});
+  }
+  function shuffle(arr) {
+    arr = arr.slice();
+    for (var i = arr.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), x = arr[i]; arr[i] = arr[j]; arr[j] = x; }
+    return arr;
+  }
+  function uebNewRound() {
+    uebAnswered = false;
+    var list = PH[uebRole] || PH.fahrer, p = list[uebPhase];
+    var wrong = shuffle(list.filter(function (x, i) { return i !== uebPhase; })).slice(0, 2);
+    uebAnswers = shuffle([{ id: p.main, correct: true }].concat(wrong.map(function (x) { return { id: x.main, correct: false }; })));
+  }
+  function uebRender() {
+    if (!PH) return;
+    uebStopAudio();
+    $("ueben-role").innerHTML = roleSeg(uebRole, true);
+    var list = PH[uebRole] || PH.fahrer;
+    if (uebPhase >= list.length) {
+      $("ueben-body").innerHTML =
+        '<div class="ueb-end">' +
+          '<p class="ueb-end-score">' + esc(t("ueben_ende").replace("{x}", uebScore).replace("{y}", list.length)) + "</p>" +
+          '<div class="ueb-end-actions"><button type="button" class="btn primary" id="ueben-again">' + esc(t("ueben_again")) + "</button>" +
+          '<a class="btn" href="#kontrolle" id="ueben-zur-kontrolle">' + esc(t("ueben_zur_kontrolle")) + "</a></div></div>";
+      return;
+    }
+    var p = list[uebPhase], ru = UI === "ru";
+    if (!uebAnswers.length) uebNewRound();
+    var answersHtml = uebAnswers.map(function (a, i) {
+      var s = phSatz(a.id);
+      return '<button type="button" class="ueb-ans" data-ueb-i="' + i + '" aria-pressed="false">' +
+        '<span class="ueb-ans-de" lang="de" translate="no">' + esc(s.de) + "</span>" +
+        (ru ? '<span class="ueb-ans-ru" lang="ru">' + esc(s.ru) + "</span>" : "") + "</button>";
+    }).join("");
+    $("ueben-body").innerHTML =
+      '<div class="ueb-card"><p class="ueb-label">' + esc(t("ueben_cop_sagt")) + "</p>" +
+        '<p class="ueb-cop-de" lang="de" translate="no">' + esc(p.cop_de) + "</p>" +
+        (ru ? '<p class="ueb-cop-ru" lang="ru">' + esc(p.cop_ru) + "</p>" : "") +
+        '<button type="button" class="btn ueb-listen" id="ueben-cop-play" aria-pressed="false">' + esc(t("ueben_cop_hoeren")) + "</button></div>" +
+      '<p class="ueb-label ueb-frage">' + esc(t("ueben_du_sagst")) + "</p>" +
+      '<div class="ueb-answers" id="ueben-answers">' + answersHtml + "</div>" +
+      '<div class="ueb-weiter" id="ueben-weiter" hidden><button type="button" class="btn primary big-btn" id="ueben-next">' + esc(t("ueben_weiter")) + "</button></div>";
+  }
+  $("ueben-role").addEventListener("click", function (e) {
+    var b = e.target.closest("[data-kr]"); if (!b) return;
+    uebRole = b.getAttribute("data-kr"); uebPhase = 0; uebScore = 0; uebAnswers = []; uebRender();
+  });
+  $("v-ueben").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    if (b.id === "ueben-cop-play") { uebPlayCop(); return; }
+    if (b.hasAttribute("data-ueb-i")) {
+      if (uebAnswered) return;
+      uebAnswered = true;
+      var i = +b.getAttribute("data-ueb-i"), a = uebAnswers[i], correctA = uebAnswers.filter(function (x) { return x.correct; })[0];
+      if (a.correct) uebScore++;
+      [].forEach.call(document.querySelectorAll("#ueben-answers .ueb-ans"), function (btn2, idx2) {
+        btn2.setAttribute("aria-pressed", idx2 === i ? "true" : "false");
+        if (uebAnswers[idx2].correct) btn2.classList.add("correct"); else if (idx2 === i) btn2.classList.add("wrong");
+      });
+      uebPlaySatz(correctA.id);
+      $("ueben-weiter").hidden = false;
+      return;
+    }
+    if (b.id === "ueben-next") { uebPhase++; uebAnswers = []; uebRender(); window.scrollTo(0, 0); return; }
+    if (b.id === "ueben-again") { uebPhase = 0; uebScore = 0; uebAnswers = []; uebRender(); return; }
+  });
 
   /* ---------- Tresor (tresor.js): verschlüsselte Kopie der laufenden Aufnahme außerhalb des Handys ----------
      Einschalten in „Einrichten“ (Code entsteht auf dem Handy). Abholen in #tresor – auf jedem Handy mit dem Code. */
@@ -1333,6 +1430,7 @@
   function focusEinrTr() {
     if (!einrFocus) return; einrFocus = false;
     var li = $("einr-tr").parentNode; if (li.hidden) return;
+    var det = $("einr-more"); if (det && !det.open) det.open = true; // Tresor steckt jetzt in „Mehr einrichten“ – erst aufklappen
     li.scrollIntoView({ block: "start" }); li.classList.add("einr-hl"); setTimeout(function () { li.classList.remove("einr-hl"); }, 2500);
   }
   function mmss(sec) { sec = Math.floor(sec); return pad(Math.floor(sec / 60)) + ":" + pad(sec % 60); }
