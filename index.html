@@ -61,14 +61,14 @@
       <button class="k-close" type="button" id="k-close" aria-label="Schließen" data-t-aria="close">×</button>
       <p class="k-cop" id="k-cop" lang="de" translate="no"></p>
       <p class="k-cop-ru" id="k-cop-ru" lang="ru"></p>
-      <span class="pill" id="k-v"></span>
+      <div class="k-v-row"><span class="pill" id="k-v"></span><button type="button" class="land-badge" id="k-land-badge"></button></div>
       <p class="k-say" id="k-say" lang="de" translate="no"></p>
       <p class="say-ru" id="k-say-ru" lang="ru"></p>
       <div class="k-actions"><button class="btn primary" type="button" id="k-big" data-t="k_big">Zeigen</button><button class="btn" type="button" id="k-more-b" aria-expanded="false" data-t="k_more">Mehr und warum</button></div>
       <p class="law k-law" id="k-law" lang="de" translate="no"></p>
       <p class="k-dann" id="k-dann"></p>
       <div class="k-more" id="k-more" hidden>
-        <p class="k-full" id="k-full" lang="de" translate="no"></p><p class="say-ru" id="k-full-ru" lang="ru"></p><p class="k-why" id="k-why"></p><p class="law" id="k-lawfull" lang="de" translate="no"></p></div>
+        <p class="k-full" id="k-full" lang="de" translate="no"></p><p class="say-ru" id="k-full-ru" lang="ru"></p><p class="k-why" id="k-why"></p><p class="law" id="k-lawfull" lang="de" translate="no"></p><div id="k-land-info"></div></div>
     </div>
     <div class="k-pick" id="k-pick">
       <div class="seg k-role" id="k-role" role="group" aria-label="Ich bin" data-t-aria="k_role_aria"></div>
@@ -133,6 +133,10 @@
           <p class="hint" data-t="einr_geo_h">Beim Start einer Aufnahme wird der Ort gespeichert – nur auf diesem Handy.</p>
           <button class="btn primary" type="button" id="einr-geo" data-t="einr_geo_on">Jetzt erlauben</button><p class="einr-msg" id="einr-geo-msg" aria-live="polite"></p>
           <label class="check"><input type="checkbox" id="einr-geo-save"> <span data-t="einr_geo_save">Ort bei Aufnahme speichern</span></label></li>
+        <li><p class="einr-t" data-t="einr_land">Bundesland</p>
+          <p class="hint" data-t="einr_land_h">Legt fest, welche Landesnorm bei den Antworten steht. Automatisch nur, wenn Standort erlaubt ist – sonst Baden-Württemberg als Standard.</p>
+          <div class="field"><label for="einr-land" class="sr" data-t="einr_land">Bundesland</label><select id="einr-land"></select></div>
+          <p class="einr-msg" id="einr-land-msg" aria-live="polite"></p></li>
         <li><p class="einr-t" data-t="einr_tr">Tresor: Kopie außerhalb des Handys</p>
           <p class="hint" data-t="einr_tr_h">Während du filmst, geht jede Sekunde verschlüsselt ins Netz.</p>
           <div class="einr-tr" id="einr-tr"></div></li>
@@ -377,10 +381,13 @@
   <p class="big-ru" id="big-ru" lang="ru"></p>
   <p class="big-law" id="big-law" lang="de" translate="no"></p>
   <p class="big-why" id="big-why"></p>
+  <div id="big-land-info"></div>
   <button class="btn big-speak" type="button" id="big-speak" data-t="big_speak" hidden>Vorlesen (Deutsch)</button>
 </div>
 
 <script src="data.js"></script>
+<script src="laender.js"></script>
+<script src="land-texte.js"></script>
 <script src="quick.js"></script>
 <script src="kontrolle.js"></script>
 <script src="phasen.js"></script>

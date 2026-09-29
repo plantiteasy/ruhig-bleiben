@@ -50,6 +50,9 @@
       einr_1: "Sprache der App", einr_2: "Meistens bin ich", einr_3: "Kamera und Mikrofon erlauben", einr_3h: "Sonst fragt das Handy erst, wenn der Polizist schon da ist.",
       einr_cam: "Jetzt erlauben", einr_cam_ok: "✓ Erlaubt", einr_4: "Auf den Startbildschirm", einr_4h: "Danach: lange auf das App-Symbol drücken → „Kontrolle“ startet sofort das Video.",
       einr_geo: "Standort erlauben", einr_geo_h: "Beim Start einer Aufnahme wird der Ort gespeichert – nur auf diesem Handy.", einr_geo_on: "Jetzt erlauben", einr_geo_ok: "✓ Erlaubt", einr_geo_fail: "Nicht erlaubt – in den Einstellungen des Handys änderbar", einr_geo_save: "Ort bei Aufnahme speichern",
+      einr_land: "Bundesland", einr_land_h: "Legt fest, welche Landesnorm bei den Antworten steht. Automatisch nur, wenn Standort erlaubt ist – sonst Baden-Württemberg als Standard.",
+      land_auto: "Automatisch (Standort)", land_badge: "Recht: {x}", land_status_auto: "Erkannt: {x}", land_status_standard: "Standort unklar oder nicht erlaubt – Baden-Württemberg als Standard",
+      land_anders: "In {x} anders:", land_ungeprueft: "nicht bestätigt",
       einr_5: "Einmal üben", einr_ueben: "Sätze üben (2 Minuten)", einr_try: "Kontrolle-Bildschirm ansehen (ohne Aufnahme)", einr_test: "Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google bzw. Apple)",
       einr_6: "Optional: Profil", einr_prof: "Führerschein, Aufenthalt – für passende Hinweise", einr_done: "Fertig", einr_more: "Mehr einrichten (optional)",
       ueben_h: "Sätze üben", ueben_cop_sagt: "Der Polizist sagt:", ueben_cop_hoeren: "Polizist anhören", ueben_du_sagst: "Was sagst du?",
@@ -179,6 +182,9 @@
       einr_1: "Язык приложения", einr_2: "Чаще всего я", einr_3: "Разрешить камеру и микрофон", einr_3h: "Иначе телефон спросит, когда полицейский уже рядом.",
       einr_cam: "Разрешить сейчас", einr_cam_ok: "✓ Разрешено", einr_4: "Значок на главный экран", einr_4h: "Потом: долго нажми на значок приложения → «Kontrolle» сразу включает видео.",
       einr_geo: "Разрешить местоположение", einr_geo_h: "При старте записи сохранится место — только на этом телефоне.", einr_geo_on: "Разрешить сейчас", einr_geo_ok: "✓ Разрешено", einr_geo_fail: "Не разрешено — можно изменить в настройках телефона", einr_geo_save: "Сохранять место при записи",
+      einr_land: "Земля (Bundesland)", einr_land_h: "Определяет, какая земельная норма указана в ответах. Автоматически — только если разрешено местоположение, иначе Baden-Württemberg по умолчанию.",
+      land_auto: "Автоматически (по местоположению)", land_badge: "Право: {x}", land_status_auto: "Определено: {x}", land_status_standard: "Местоположение неизвестно или не разрешено — Baden-Württemberg по умолчанию",
+      land_anders: "В {x} иначе:", land_ungeprueft: "не подтверждено",
       einr_5: "Один раз попробовать", einr_ueben: "Потренировать фразы (2 минуты)", einr_try: "Посмотреть экран проверки (без записи)", einr_test: "Потренироваться с другом: включить тест прослушивания (звук уходит в Google или Apple)",
       einr_6: "По желанию: профиль", einr_prof: "Права, вид на жительство — для точных подсказок", einr_done: "Готово", einr_more: "Ещё настроить (по желанию)",
       ueben_h: "Тренировка фраз", ueben_cop_sagt: "Полицейский говорит:", ueben_cop_hoeren: "Послушать полицейского", ueben_du_sagst: "Что скажешь ты?",
@@ -289,6 +295,69 @@
   function t(k, x) { var v = T[UI][k]; if (v == null) v = T.de[k]; if (v == null) v = k; return x == null ? v : v.replace("{x}", x); }
   // Feld aus data.js in der gewählten Sprache; fehlt die Übersetzung, gilt Deutsch.
   function L(o, f) { return UI === "ru" && o && o.ru && o.ru[f] != null ? o.ru[f] : o[f]; }
+
+  /* ---------- Bundesland: automatisch per Standort (offline), manuell änderbar (app/laender.js) ----------
+     Quelldaten in quick.js/kontrolle.js/phasen.js/data.js bleiben Baden-Württemberg; hier nur Anzeige-Ersetzung. */
+  var RBL = window.RB && window.RB.laender;
+  function currentLand() { return RBL ? RBL.aktuellesLand() : "BW"; }
+  function landLang() { return UI === "ru" ? "ru" : "de"; }
+  // Ersetzt BW-Paragrafen im angezeigten Text durch die Norm des gewählten Landes (id: Antwort-ID, für den Zahlen-Hinweis).
+  function LT(text) { return RBL ? RBL.ersetzeNormen(text, currentLand(), landLang()) : text; }
+  function landName(code) { return RBL ? RBL.landName(code, UI) : code; }
+  function landBadgeText() { return t("land_badge", landName(currentLand())); }
+  // Hervorgehobener Absatz „In <Land> anders:“ (Hook für app/land-texte.js) bzw. genereller Zahlen-Hinweis, unter der why-Erklärung.
+  function landInfoHTML(id) {
+    if (!RBL || !id) return "";
+    var land = currentLand();
+    var entry = RBL.landTextEintrag(id, land);
+    if (entry) {
+      var txt = UI === "ru" ? entry.ru : entry.de;
+      return '<p class="land-anders">' + esc(t("land_anders", landName(land))) + " " + esc(txt) +
+        (entry.geprueft === false ? ' <span class="land-ungeprueft">(' + esc(t("land_ungeprueft")) + ")</span>" : "") + "</p>";
+    }
+    if (RBL.brauchtZahlenHinweis(id, land)) return '<p class="land-hinweis">' + esc(RBL.zahlenHinweisText(land, landLang())) + "</p>";
+    return "";
+  }
+  function syncLandBadges() {
+    var txt = landBadgeText();
+    [].forEach.call(document.querySelectorAll(".land-badge"), function (el) { el.textContent = txt; });
+    var m = document.querySelector('[data-t="meta"]');
+    if (m) m.textContent = t("meta").replace("Baden-Württemberg", landName(currentLand())).replace("Баден-Вюртемберг", landName(currentLand()));
+  }
+  function renderLandSelect() {
+    var sel = $("einr-land"); if (!sel || !RBL) return;
+    var cur = RBL.wahl();
+    sel.innerHTML = '<option value="">' + esc(t("land_auto")) + "</option>" +
+      RBL.liste.map(function (l) { return '<option value="' + esc(l[0]) + '">' + esc(UI === "ru" ? l[2] : l[1]) + "</option>"; }).join("");
+    sel.value = cur;
+    var st = RBL.status(), msg = $("einr-land-msg");
+    if (msg) msg.textContent = st.quelle === "manuell" ? "" : st.quelle === "auto" ? t("land_status_auto", landName(st.land)) : t("land_status_standard");
+  }
+  // Neu rendern, was Landesnormen zeigt – wie applyUI() bei Sprachwechsel, nur für die Landesauswahl.
+  function applyLand() {
+    syncLandBadges();
+    renderQuick(); renderKontrolle();
+    if (currentView === "situation") route();
+    if (currentView === "einrichten") renderLandSelect();
+    if ($("answers") && $("answers").innerHTML && $("ask-input").value.trim()) renderAnswers($("ask-input").value.trim());
+  }
+  // Land nur automatisch erkennen, wenn die Standort-Berechtigung schon erteilt ist (nie extra danach fragen) – Ergebnis
+  // bleibt rein lokal in localStorage, geht nie an Tresor/Server.
+  function landAutoErkennen() {
+    if (!RBL || !navigator.geolocation) return;
+    var run = function () {
+      navigator.geolocation.getCurrentPosition(function (pos) {
+        var code = RBL.erkenneLand(pos.coords.latitude, pos.coords.longitude);
+        if (code) { var changed = RBL.autoLand() !== code; RBL.setAutoLand(code); if (changed && !RBL.wahl()) applyLand(); else if (!RBL.wahl()) syncLandBadges(); }
+        if (currentView === "einrichten") renderLandSelect();
+      }, function () {}, { enableHighAccuracy: false, timeout: 15000, maximumAge: 30 * 60 * 1000 });
+    };
+    try {
+      if (navigator.permissions && navigator.permissions.query) {
+        navigator.permissions.query({ name: "geolocation" }).then(function (st) { if (st.state === "granted") run(); }).catch(function () {});
+      }
+    } catch (e) {}
+  }
   function leftText(n) {
     if (n < 0) return t("left_over"); if (n === 0) return t("left_today");
     if (UI !== "ru") return n === 1 ? t("left_1") : t("left_n", n);
@@ -387,13 +456,15 @@
     // Dringendes (rot/gelb) über „Sag“, reine Info erst unter „Lass“ – die Sätze sollen ohne Scrollen sichtbar bleiben.
     var urgent = mine.filter(function (n) { return n.lv !== "info"; }), info = mine.filter(function (n) { return n.lv === "info"; });
     return (noHead ? "" : '<div class="s-head"><h' + (compact ? "3" : "1") + ">" + esc(L(s, "title")) + "</h" + (compact ? "3" : "1") + '><span class="pill ' + s.tone + '">' + esc(L(s, "toneLabel")) + "</span></div>") +
+      (noHead ? "" : '<button type="button" class="land-badge">' + esc(landBadgeText()) + "</button>") +
       fdBox(urgent) +
       '<div class="block"><p class="block-t say">' + esc(t("b_say")) + "</p>" + sayButtons(s.say) + "</div>" +
       '<div class="block"><p class="block-t do">' + esc(t("b_do")) + '</p><ul class="pts">' + L(s, "doo").map(function (x) { return "<li>" + telLinks(esc(x)) + "</li>"; }).join("") + "</ul></div>" +
       '<div class="block"><p class="block-t dont">' + esc(t("b_dont")) + '</p><ul class="pts">' + L(s, "dont").map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" +
       fdBox(info) +
       (note ? '<p class="note">' + esc(note) + "</p>" : "") +
-      '<p class="law" lang="de" translate="no">' + esc(s.law) + "</p>" +
+      '<p class="law" lang="de" translate="no">' + esc(LT(s.law)) + "</p>" +
+      landInfoHTML(s.id) +
       '<div class="s-actions">' + actionButtons(s.actions) + "</div>";
   }
   function renderSituation(s) { $("sit-body").innerHTML = '<div class="view" style="padding:0">' + situationHTML(s, false) + "</div>"; }
@@ -427,9 +498,10 @@
   }
   function releaseAwake() { try { if (wakeLock) { var l = wakeLock; wakeLock = null; l.release(); } } catch (e) {} }
   function needAwake() { return !!(recState && recState.rec) || !$("big").hidden; }
-  // opts.intro: „Ich spreche wenig Deutsch. Bitte lesen Sie:“ – für das Zeigen an den Beamten.
+  // opts.intro: „Ich spreche wenig Deutsch. Bitte lesen Sie:“ – für das Zeigen an den Beamten. opts.id: Antwort-ID, für den Landeshinweis.
   function openBig(de, ru, from, law, why, opts) {
-    $("big-de").textContent = nb(de); $("big-ru").textContent = nb(ru); $("big-law").textContent = nb(law); $("big-why").textContent = nb(why);
+    $("big-de").textContent = nb(de); $("big-ru").textContent = nb(ru); $("big-law").textContent = nb(LT(law)); $("big-why").textContent = nb(LT(why));
+    $("big-land-info").innerHTML = landInfoHTML(opts && opts.id);
     $("big-intro").hidden = !(opts && opts.intro); bigSpeakText = de; bigSpeakUI(false);
     $("big-speak").hidden = !("speechSynthesis" in window);
     $("big").hidden = false; lastFocus = from; keepAwake();
@@ -464,7 +536,9 @@
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeBig(); });
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest(".say-b");
-    if (b) openBig(b.getAttribute("data-de"), b.getAttribute("data-ru"), b, b.getAttribute("data-law") || "", b.getAttribute("data-why") || "");
+    if (b) openBig(b.getAttribute("data-de"), b.getAttribute("data-ru"), b, b.getAttribute("data-law") || "", b.getAttribute("data-why") || "", { id: b.getAttribute("data-id") || "" });
+    var lb = e.target.closest && e.target.closest(".land-badge");
+    if (lb) { location.hash = "#einrichten"; setTimeout(function () { var more = $("einr-more"); if (more) more.open = true; var sel = $("einr-land"); if (sel) sel.focus(); }, 60); }
     var a = e.target.closest && e.target.closest("[data-act]");
     if (a) {
       pendingAct = a.getAttribute("data-act");
@@ -542,15 +616,16 @@
   function telLinks(html) { return html.replace(/(?:\+49|\b0)\d{2,4}(?: ?\d{2,4}){2,4}\b/g, function (m) { return '<a href="tel:' + m.replace(/ /g, "") + '">' + m + "</a>"; }); }
   function cardHTML(c, noHead) {
     return (noHead ? "" : '<div class="w-head"><h3>' + esc(L(c, "title")) + '</h3><span class="pill ' + c.tone + '">' + esc(L(c, "toneLabel")) + "</span></div>") +
-      "<p>" + telLinks(esc(L(c, "text"))) + "</p>" + (c.say ? sayButtons(c.say) : "") + '<p class="law" lang="de" translate="no">' + esc(c.law) + "</p>";
+      "<p>" + telLinks(esc(L(c, "text"))) + "</p>" + (c.say ? sayButtons(c.say) : "") + '<p class="law" lang="de" translate="no">' + esc(LT(c.law)) + "</p>";
   }
   // Antwort aus der Schnellhilfe (Polizei sagt → Antwort mit §), wenn keine Karte passt – z. B. „Steigen Sie aus“.
   function quickAnsHTML(q) {
     var ru = UI === "ru" && q.ru ? q.ru.say : "";
     return '<article class="ans top" data-id="' + esc(q.id) + '"><div class="w-head"><h3>„' + esc(L(q, "cop")) + '“</h3><span class="pill ' + VTONE[q.v] + '">' + esc(t("v_" + q.v)) + "</span></div>" +
-      '<button class="say-b" type="button" data-de="' + esc(q.say) + '" data-ru="' + esc(ru) + '" data-law="' + esc(q.law) + '" data-why="' + esc(L(q, "why")) + '"><span class="say-de" lang="de" translate="no">' + esc(nb(q.say)) + "</span>" +
+      '<button type="button" class="land-badge">' + esc(landBadgeText()) + '</button>' +
+      '<button class="say-b" type="button" data-id="' + esc(q.id) + '" data-de="' + esc(q.say) + '" data-ru="' + esc(ru) + '" data-law="' + esc(LT(q.law)) + '" data-why="' + esc(LT(L(q, "why"))) + '"><span class="say-de" lang="de" translate="no">' + esc(nb(q.say)) + "</span>" +
       (ru ? '<span class="say-ru" lang="ru">' + esc(nb(ru)) + "</span>" : "") + '<span class="say-tap">' + esc(t("tap")) + "</span></button>" +
-      "<p>" + esc(nb(L(q, "why"))) + '</p><p class="law" lang="de" translate="no">' + esc(nb(q.law)) + "</p></article>";
+      "<p>" + esc(nb(LT(L(q, "why")))) + '</p><p class="law" lang="de" translate="no">' + esc(nb(LT(q.law))) + "</p>" + landInfoHTML(q.id) + "</article>";
   }
   function speakText(e) {
     var it = e.item;
@@ -1041,14 +1116,14 @@
     $("qh-list").innerHTML = list.map(function (q) {
       return '<button type="button" class="qh-i" data-q="' + esc(q.id) + '"><span class="qh-cop">„' + esc(L(q, "cop")) + '“</span>' +
         '<span class="pill ' + VTONE[q.v] + '">' + esc(t("v_" + q.v)) + '</span><span class="qh-say" lang="de" translate="no">' + esc(nb(q.say)) + "</span>" +
-        (UI === "ru" && q.ru ? '<span class="say-ru" lang="ru">' + esc(nb(q.ru.say)) + "</span>" : "") + '<span class="law" lang="de" translate="no">' + esc(nb(q.law)) + "</span></button>";
+        (UI === "ru" && q.ru ? '<span class="say-ru" lang="ru">' + esc(nb(q.ru.say)) + "</span>" : "") + '<span class="law" lang="de" translate="no">' + esc(nb(LT(q.law))) + "</span></button>";
     }).join("");
   }
   $("qh-cats").addEventListener("click", function (e) { var b = e.target.closest("[data-qc]"); if (!b) return; qhCat = b.getAttribute("data-qc"); renderQuick(); });
   $("qh-list").addEventListener("click", function (e) {
     var b = e.target.closest("[data-q]"); if (!b) return;
     var q = (D.quick || []).filter(function (x) { return x.id === b.getAttribute("data-q"); })[0]; if (!q) return;
-    openBig(q.say, UI === "ru" && q.ru ? q.ru.say : "", b, q.law, L(q, "why"));
+    openBig(q.say, UI === "ru" && q.ru ? q.ru.say : "", b, q.law, L(q, "why"), { id: q.id });
   });
 
   /* ---------- Kontrolle-Modus ----------
@@ -1185,10 +1260,12 @@
     $("k-v").className = "pill " + VTONE[q.v]; $("k-v").textContent = t("v_" + q.v);
     $("k-say").textContent = nb(k.de || q.say);
     $("k-say-ru").textContent = ru ? nb(k.ru || (q.ru && q.ru.say) || "") : ""; $("k-say-ru").hidden = !ru;
-    $("k-law").textContent = nb(k.law || q.law);
-    $("k-dann").textContent = dann || ""; $("k-dann").hidden = !dann;
+    $("k-land-badge").textContent = landBadgeText();
+    $("k-law").textContent = nb(LT(k.law || q.law));
+    $("k-dann").textContent = LT(dann) || ""; $("k-dann").hidden = !dann;
     $("k-full").textContent = nb(q.say); $("k-full-ru").textContent = ru && q.ru ? nb(q.ru.say) : ""; $("k-full-ru").hidden = !ru;
-    $("k-why").textContent = nb(L(q, "why")); $("k-lawfull").textContent = nb(q.law);
+    $("k-why").textContent = nb(LT(L(q, "why"))); $("k-lawfull").textContent = nb(LT(q.law));
+    $("k-land-info").innerHTML = landInfoHTML(id);
     if (!noPush) { $("k-more").hidden = true; $("k-more-b").setAttribute("aria-expanded", "false"); $("k-ans").classList.remove("more-on"); }
     $("k-thumb").classList.remove("big");
     $("k-ans").hidden = false; $("v-kontrolle").classList.add("ans-on");
@@ -1209,7 +1286,7 @@
   // Zeigen: nur der deutsche Satz und der Paragraf für den Beamten; bei russischer Oberfläche mit „Ich spreche wenig Deutsch“.
   $("k-big").addEventListener("click", function () {
     var q = qById(kCur), k = (K && K.kurz[kCur]) || {}; if (!q) return;
-    openBig(k.de || q.say, "", $("k-big"), k.law || q.law, "", { intro: UI !== "de" }); bigFromK = true;
+    openBig(k.de || q.say, "", $("k-big"), k.law || q.law, "", { intro: UI !== "de", id: kCur }); bigFromK = true;
   });
   $("k-grid").addEventListener("click", function (e) { var b = e.target.closest("[data-k]"); if (b) showK(b.getAttribute("data-k")); });
   $("k-thumb").addEventListener("click", function () { this.classList.toggle("big"); });
@@ -1346,6 +1423,7 @@
     $("einr-test-label").hidden = lsGet(LS_KTEST) !== "1"; // nur sichtbar, wenn der Testmodus schon per ?mithoeren=1 an ist – sonst schaltet niemand aus Versehen Tonübertragung an Google ein
     $("einr-inst").innerHTML = $("install-help").innerHTML;
     $("einr-geo-save").checked = geoSaveOn();
+    renderLandSelect();
     try {
       if (navigator.permissions && navigator.permissions.query) navigator.permissions.query({ name: "camera" }).then(function (st) {
         if (st.state === "granted") { $("einr-cam-msg").textContent = t("einr_cam_ok"); $("einr-cam-msg").className = "einr-msg ok"; }
@@ -1354,7 +1432,11 @@
         if (st.state === "granted") { $("einr-geo-msg").textContent = t("einr_geo_ok"); $("einr-geo-msg").className = "einr-msg ok"; }
       }).catch(function () {});
     } catch (e) {}
+    landAutoErkennen();
   }
+  $("einr-land").addEventListener("change", function () {
+    RBL.setWahl($("einr-land").value); renderLandSelect(); applyLand();
+  });
   $("einr-cam").addEventListener("click", function () {
     var m = $("einr-cam-msg");
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) { m.textContent = t("rec_nobrowser"); return; }
@@ -1733,7 +1815,7 @@
     if (!ort && lines[0]) { var gm = lines[0].match(/Standort ([\d.]+, [\d.]+)/); ort = gm ? "der Nähe der GPS-Position " + gm[1] : lines[0]; }
     var map = { datum: protoDateText(), zeit: o.zeit || "[Uhrzeit]", ort: ort || "[Ort]",
       beamte: o.beamte ? o.beamte.replace(/\n/g, "; ") : "Beamte und Kennzeichen unbekannt", ablauf: o.ablauf || "[kurze Schilderung]", name: o.name || "[Name, Anschrift]" };
-    return body.replace(/\{(\w+)\}/g, function (m, k) { return map[k] != null ? map[k] : m; });
+    return LT(body.replace(/\{(\w+)\}/g, function (m, k) { return map[k] != null ? map[k] : m; }));
   }
   function renderLetters() {
     var letters = D.letters, o = protoData(), miss = [], cyr = /[\u0400-\u04ff]/;
@@ -1972,6 +2054,7 @@
     if (recState && recState.r) $("rec-mode").textContent = recModeText(recState.r);
     renderEinrTr(); trShow();
     dateMsgs();
+    syncLandBadges();
   }
   function setUI(u) {
     if (u === UI || !T[u]) return;
@@ -1990,6 +2073,7 @@
   var kAuto = /[?&]start=1/.test(location.search);
   if (kAuto) { try { history.replaceState(history.state, "", location.pathname + "#kontrolle"); } catch (e) {} }
   applyUI(); loadProfile(); fillProfileForm(); renderFuerDich(); buildCorpus(); renderGrid(); syncSeg(); loadProto(); renderDeadlines(); renderLetters(); renderCats(); renderWissen(""); renderQuick(); renderKontrolle(); syncInstall(); route(); loadRecs();
+  landAutoErkennen();
   if (kAuto && !recState) startRecording(false, null);
   if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
     var hadController = !!navigator.serviceWorker.controller;
