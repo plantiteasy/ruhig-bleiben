@@ -52,7 +52,7 @@
       einr_geo: "Standort erlauben", einr_geo_h: "Beim Start einer Aufnahme wird der Ort gespeichert – nur auf diesem Handy.", einr_geo_on: "Jetzt erlauben", einr_geo_ok: "✓ Erlaubt", einr_geo_fail: "Nicht erlaubt – in den Einstellungen des Handys änderbar", einr_geo_save: "Ort bei Aufnahme speichern",
       einr_land: "Bundesland", einr_land_h: "Legt fest, welche Landesnorm bei den Antworten steht. Automatisch nur, wenn Standort erlaubt ist – sonst Baden-Württemberg als Standard.",
       land_auto: "Automatisch (Standort)", land_badge: "Recht: {x}", land_status_auto: "Erkannt: {x}", land_status_standard: "Standort unklar oder nicht erlaubt – Baden-Württemberg als Standard",
-      land_anders: "In {x} anders:", land_ungeprueft: "nicht bestätigt",
+      land_anders: "{x} anders:", land_ungeprueft: "nicht bestätigt",
       einr_5: "Einmal üben", einr_ueben: "Sätze üben (2 Minuten)", einr_try: "Kontrolle-Bildschirm ansehen (ohne Aufnahme)", einr_test: "Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google bzw. Apple)",
       einr_6: "Optional: Profil", einr_prof: "Führerschein, Aufenthalt – für passende Hinweise", einr_done: "Fertig", einr_more: "Mehr einrichten (optional)",
       ueben_h: "Sätze üben", ueben_cop_sagt: "Der Polizist sagt:", ueben_cop_hoeren: "Polizist anhören", ueben_du_sagst: "Was sagst du?",
@@ -184,7 +184,7 @@
       einr_geo: "Разрешить местоположение", einr_geo_h: "При старте записи сохранится место — только на этом телефоне.", einr_geo_on: "Разрешить сейчас", einr_geo_ok: "✓ Разрешено", einr_geo_fail: "Не разрешено — можно изменить в настройках телефона", einr_geo_save: "Сохранять место при записи",
       einr_land: "Земля (Bundesland)", einr_land_h: "Определяет, какая земельная норма указана в ответах. Автоматически — только если разрешено местоположение, иначе Baden-Württemberg по умолчанию.",
       land_auto: "Автоматически (по местоположению)", land_badge: "Право: {x}", land_status_auto: "Определено: {x}", land_status_standard: "Местоположение неизвестно или не разрешено — Baden-Württemberg по умолчанию",
-      land_anders: "В {x} иначе:", land_ungeprueft: "не подтверждено",
+      land_anders: "{x} иначе:", land_ungeprueft: "не подтверждено",
       einr_5: "Один раз попробовать", einr_ueben: "Потренировать фразы (2 минуты)", einr_try: "Посмотреть экран проверки (без записи)", einr_test: "Потренироваться с другом: включить тест прослушивания (звук уходит в Google или Apple)",
       einr_6: "По желанию: профиль", einr_prof: "Права, вид на жительство — для точных подсказок", einr_done: "Готово", einr_more: "Ещё настроить (по желанию)",
       ueben_h: "Тренировка фраз", ueben_cop_sagt: "Полицейский говорит:", ueben_cop_hoeren: "Послушать полицейского", ueben_du_sagst: "Что скажешь ты?",
@@ -303,7 +303,10 @@
   function landLang() { return UI === "ru" ? "ru" : "de"; }
   // Ersetzt BW-Paragrafen im angezeigten Text durch die Norm des gewählten Landes (id: Antwort-ID, für den Zahlen-Hinweis).
   function LT(text) { return RBL ? RBL.ersetzeNormen(text, currentLand(), landLang()) : text; }
+  // Gesprochene Sätze und Briefe: Landesnorm statt BW-Norm, aber ohne Klammer-Hinweis.
+  function LS(text) { return RBL && text ? RBL.ersetzeNormen(text, currentLand(), landLang(), true) : text; }
   function landName(code) { return RBL ? RBL.landName(code, UI) : code; }
+  function landInCap(code) { var s = RBL && RBL.landIn ? RBL.landIn(code, UI) : code; return s.charAt(0).toUpperCase() + s.slice(1); }
   function landBadgeText() { return t("land_badge", landName(currentLand())); }
   // Hervorgehobener Absatz „In <Land> anders:“ (Hook für app/land-texte.js) bzw. genereller Zahlen-Hinweis, unter der why-Erklärung.
   function landInfoHTML(id) {
@@ -312,7 +315,7 @@
     var entry = RBL.landTextEintrag(id, land);
     if (entry) {
       var txt = UI === "ru" ? entry.ru : entry.de;
-      return '<p class="land-anders">' + esc(t("land_anders", landName(land))) + " " + esc(txt) +
+      return '<p class="land-anders">' + esc(t("land_anders", landInCap(land))) + " " + esc(txt) +
         (entry.geprueft === false ? ' <span class="land-ungeprueft">(' + esc(t("land_ungeprueft")) + ")</span>" : "") + "</p>";
     }
     if (RBL.brauchtZahlenHinweis(id, land)) return '<p class="land-hinweis">' + esc(RBL.zahlenHinweisText(land, landLang())) + "</p>";
@@ -433,8 +436,8 @@
   }
   function sayButtons(list) {
     return (list || []).map(function (p) {
-      return '<button class="say-b" type="button" data-de="' + esc(p[0]) + '" data-ru="' + esc(p[1] || "") + '"><span class="say-de" lang="de" translate="no">' + esc(p[0]) +
-        '</span><span class="say-ru" lang="ru">' + esc(p[1] || "") + '</span><span class="say-tap">' + esc(t("tap")) + "</span></button>";
+      return '<button class="say-b" type="button" data-de="' + esc(LS(p[0])) + '" data-ru="' + esc(LS(p[1] || "")) + '"><span class="say-de" lang="de" translate="no">' + esc(LS(p[0])) +
+        '</span><span class="say-ru" lang="ru">' + esc(LS(p[1] || "")) + '</span><span class="say-tap">' + esc(t("tap")) + "</span></button>";
     }).join("");
   }
   function actionButtons(actions) {
@@ -620,16 +623,16 @@
   }
   // Antwort aus der Schnellhilfe (Polizei sagt → Antwort mit §), wenn keine Karte passt – z. B. „Steigen Sie aus“.
   function quickAnsHTML(q) {
-    var ru = UI === "ru" && q.ru ? q.ru.say : "";
+    var ru = UI === "ru" && q.ru ? LS(q.ru.say) : "";
     return '<article class="ans top" data-id="' + esc(q.id) + '"><div class="w-head"><h3>„' + esc(L(q, "cop")) + '“</h3><span class="pill ' + VTONE[q.v] + '">' + esc(t("v_" + q.v)) + "</span></div>" +
       '<button type="button" class="land-badge">' + esc(landBadgeText()) + '</button>' +
-      '<button class="say-b" type="button" data-id="' + esc(q.id) + '" data-de="' + esc(q.say) + '" data-ru="' + esc(ru) + '" data-law="' + esc(LT(q.law)) + '" data-why="' + esc(LT(L(q, "why"))) + '"><span class="say-de" lang="de" translate="no">' + esc(nb(q.say)) + "</span>" +
+      '<button class="say-b" type="button" data-id="' + esc(q.id) + '" data-de="' + esc(LS(q.say)) + '" data-ru="' + esc(ru) + '" data-law="' + esc(LT(q.law)) + '" data-why="' + esc(LT(L(q, "why"))) + '"><span class="say-de" lang="de" translate="no">' + esc(nb(LS(q.say))) + "</span>" +
       (ru ? '<span class="say-ru" lang="ru">' + esc(nb(ru)) + "</span>" : "") + '<span class="say-tap">' + esc(t("tap")) + "</span></button>" +
       "<p>" + esc(nb(LT(L(q, "why")))) + '</p><p class="law" lang="de" translate="no">' + esc(nb(LT(q.law))) + "</p>" + landInfoHTML(q.id) + "</article>";
   }
   function speakText(e) {
     var it = e.item;
-    if (e.kind === "s") return L(it, "title") + ". " + t("speak_say") + ": " + it.say[0][UI === "ru" ? 1 : 0] + " " + L(it, "doo")[0];
+    if (e.kind === "s") return L(it, "title") + ". " + t("speak_say") + ": " + LS(it.say[0][UI === "ru" ? 1 : 0]) + " " + L(it, "doo")[0];
     return L(it, "title") + ". " + L(it, "text");
   }
   function stopSpeaking() { try { if ("speechSynthesis" in window) speechSynthesis.cancel(); } catch (e) {} }
@@ -1115,15 +1118,15 @@
       : Q.filter(function (q) { return q.g === qhCat; });
     $("qh-list").innerHTML = list.map(function (q) {
       return '<button type="button" class="qh-i" data-q="' + esc(q.id) + '"><span class="qh-cop">„' + esc(L(q, "cop")) + '“</span>' +
-        '<span class="pill ' + VTONE[q.v] + '">' + esc(t("v_" + q.v)) + '</span><span class="qh-say" lang="de" translate="no">' + esc(nb(q.say)) + "</span>" +
-        (UI === "ru" && q.ru ? '<span class="say-ru" lang="ru">' + esc(nb(q.ru.say)) + "</span>" : "") + '<span class="law" lang="de" translate="no">' + esc(nb(LT(q.law))) + "</span></button>";
+        '<span class="pill ' + VTONE[q.v] + '">' + esc(t("v_" + q.v)) + '</span><span class="qh-say" lang="de" translate="no">' + esc(nb(LS(q.say))) + "</span>" +
+        (UI === "ru" && q.ru ? '<span class="say-ru" lang="ru">' + esc(nb(LS(q.ru.say))) + "</span>" : "") + '<span class="law" lang="de" translate="no">' + esc(nb(LT(q.law))) + "</span></button>";
     }).join("");
   }
   $("qh-cats").addEventListener("click", function (e) { var b = e.target.closest("[data-qc]"); if (!b) return; qhCat = b.getAttribute("data-qc"); renderQuick(); });
   $("qh-list").addEventListener("click", function (e) {
     var b = e.target.closest("[data-q]"); if (!b) return;
     var q = (D.quick || []).filter(function (x) { return x.id === b.getAttribute("data-q"); })[0]; if (!q) return;
-    openBig(q.say, UI === "ru" && q.ru ? q.ru.say : "", b, q.law, L(q, "why"), { id: q.id });
+    openBig(LS(q.say), UI === "ru" && q.ru ? LS(q.ru.say) : "", b, q.law, L(q, "why"), { id: q.id });
   });
 
   /* ---------- Kontrolle-Modus ----------
@@ -1258,12 +1261,12 @@
     $("k-cop").textContent = "„" + q.cop + "“";
     $("k-cop-ru").textContent = ru && q.ru && q.ru.cop ? "„" + q.ru.cop + "“" : ""; $("k-cop-ru").hidden = !ru;
     $("k-v").className = "pill " + VTONE[q.v]; $("k-v").textContent = t("v_" + q.v);
-    $("k-say").textContent = nb(k.de || q.say);
-    $("k-say-ru").textContent = ru ? nb(k.ru || (q.ru && q.ru.say) || "") : ""; $("k-say-ru").hidden = !ru;
+    $("k-say").textContent = nb(LS(k.de || q.say));
+    $("k-say-ru").textContent = ru ? nb(LS(k.ru || (q.ru && q.ru.say) || "")) : ""; $("k-say-ru").hidden = !ru;
     $("k-land-badge").textContent = landBadgeText();
     $("k-law").textContent = nb(LT(k.law || q.law));
     $("k-dann").textContent = LT(dann) || ""; $("k-dann").hidden = !dann;
-    $("k-full").textContent = nb(q.say); $("k-full-ru").textContent = ru && q.ru ? nb(q.ru.say) : ""; $("k-full-ru").hidden = !ru;
+    $("k-full").textContent = nb(LS(q.say)); $("k-full-ru").textContent = ru && q.ru ? nb(LS(q.ru.say)) : ""; $("k-full-ru").hidden = !ru;
     $("k-why").textContent = nb(LT(L(q, "why"))); $("k-lawfull").textContent = nb(LT(q.law));
     $("k-land-info").innerHTML = landInfoHTML(id);
     if (!noPush) { $("k-more").hidden = true; $("k-more-b").setAttribute("aria-expanded", "false"); $("k-ans").classList.remove("more-on"); }
@@ -1286,7 +1289,7 @@
   // Zeigen: nur der deutsche Satz und der Paragraf für den Beamten; bei russischer Oberfläche mit „Ich spreche wenig Deutsch“.
   $("k-big").addEventListener("click", function () {
     var q = qById(kCur), k = (K && K.kurz[kCur]) || {}; if (!q) return;
-    openBig(k.de || q.say, "", $("k-big"), k.law || q.law, "", { intro: UI !== "de", id: kCur }); bigFromK = true;
+    openBig(LS(k.de || q.say), "", $("k-big"), k.law || q.law, "", { intro: UI !== "de", id: kCur }); bigFromK = true;
   });
   $("k-grid").addEventListener("click", function (e) { var b = e.target.closest("[data-k]"); if (b) showK(b.getAttribute("data-k")); });
   $("k-thumb").addEventListener("click", function () { this.classList.toggle("big"); });
@@ -1815,7 +1818,7 @@
     if (!ort && lines[0]) { var gm = lines[0].match(/Standort ([\d.]+, [\d.]+)/); ort = gm ? "der Nähe der GPS-Position " + gm[1] : lines[0]; }
     var map = { datum: protoDateText(), zeit: o.zeit || "[Uhrzeit]", ort: ort || "[Ort]",
       beamte: o.beamte ? o.beamte.replace(/\n/g, "; ") : "Beamte und Kennzeichen unbekannt", ablauf: o.ablauf || "[kurze Schilderung]", name: o.name || "[Name, Anschrift]" };
-    return LT(body.replace(/\{(\w+)\}/g, function (m, k) { return map[k] != null ? map[k] : m; }));
+    return LS(body.replace(/\{(\w+)\}/g, function (m, k) { return map[k] != null ? map[k] : m; }));
   }
   function renderLetters() {
     var letters = D.letters, o = protoData(), miss = [], cyr = /[\u0400-\u04ff]/;
