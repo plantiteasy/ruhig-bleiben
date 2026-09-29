@@ -21,14 +21,22 @@
   function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
   function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
 
+  // Lr(de, ru, id): dünner Zugriff auf window.RB.i18nLr (app/i18n-runtime.js) - "de" bei fehlendem Runtime-Modul
+  // (defensiv, i18n-runtime.js lädt normalerweise vor laender.js, siehe index.html/sw.js).
+  function Lr(lang, de, ru, id) { return window.RB.i18nLr ? window.RB.i18nLr(lang, de, ru, id) : (lang === "ru" ? ru : de); }
   function landName(code, lang) {
-    for (var i = 0; i < liste.length; i++) if (liste[i][0] === code) return lang === "ru" ? liste[i][2] : liste[i][1];
+    for (var i = 0; i < liste.length; i++) if (liste[i][0] === code) return Lr(lang, liste[i][1], liste[i][2], "laender.name." + code);
     return code;
   }
 
-  // „in Bayern“ / „im Saarland“ (DE), „в земле Бавария“ (RU, ohne Kasus-Beugung des Namens).
+  // „in Bayern“ / „im Saarland“ (DE), „в земле Бавария“ (RU, ohne Kasus-Beugung des Namens). Jede weitere Sprache:
+  // generische Vorlage "{x}" aus dem Paket (laender.in_template), sonst einfach der Landesname.
   function landIn(code, lang) {
     if (lang === "ru") return "в земле " + landName(code, "ru");
+    if (lang && lang !== "de" && window.RB.i18nGet) {
+      var tpl = window.RB.i18nGet(lang, "laender.in_template");
+      if (tpl != null) return tpl.replace("{x}", landName(code, lang));
+    }
     return (code === "SL" ? "im " : "in ") + landName(code, "de");
   }
 
@@ -112,14 +120,12 @@
     if (!e || e.status === "nicht_gefunden") return null;
     return { kurz: kurzNorm(e.norm) };
   }
-  var HINT_DE = " (BW-Norm; {in} gilt eine entsprechende Landesregel)";
-  var HINT_RU = " (норма BW; {in} действует соответствующая земельная норма)";
   // Ersetzt BW-Zitate im Text durch die Norm des gewählten Landes. Quelldaten (quick.js/kontrolle.js/phasen.js/data.js) bleiben BW.
   // land === "" / "BW" / unbekannt -> Text unverändert. lang: "de" (Default) oder "ru", fuer den nicht_gefunden-Hinweistext.
   // ohneHinweis: für gesprochene Sätze und Briefe – dort kein Klammer-Hinweis, nicht ersetzbare Zitate bleiben einfach stehen.
   function ersetzeNormen(text, land, lang, ohneHinweis) {
     if (!text || !land || land === "BW" || !byCode(land)) return text;
-    var hint = ohneHinweis ? "" : (lang === "ru" ? HINT_RU : HINT_DE).replace("{in}", landIn(land, lang));
+    var hint = ohneHinweis ? "" : Lr(lang, " (BW-Norm; {in} gilt eine entsprechende Landesregel)", " (норма BW; {in} действует соответствующая земельная норма)", "laender.hint").replace("{in}", landIn(land, lang));
     return String(text).replace(CITE_RE, function (cite) {
       var nums = paraNums(cite);
       if (!nums.length) return cite;
@@ -145,10 +151,8 @@
     if (!land || land === "BW" || HINWEIS_IDS.indexOf(quickId) === -1) return false;
     return !landTextEintrag(quickId, land);
   }
-  var ZAHLEN_HINWEIS_DE = "Zahlen/Fristen gelten für Baden-Württemberg; {in} können sie abweichen.";
-  var ZAHLEN_HINWEIS_RU = "Цифры и сроки указаны для земли Baden-Württemberg; {in} они могут отличаться.";
   function zahlenHinweisText(land, lang) {
-    return (lang === "ru" ? ZAHLEN_HINWEIS_RU : ZAHLEN_HINWEIS_DE).replace("{in}", landIn(land, lang));
+    return Lr(lang, "Zahlen/Fristen gelten für Baden-Württemberg; {in} können sie abweichen.", "Цифры и сроки указаны для земли Baden-Württemberg; {in} они могут отличаться.", "laender.zahlen_hinweis").replace("{in}", landIn(land, lang));
   }
 
   window.RB.laender = {

@@ -19,7 +19,7 @@
   function fmtTime(d) { return pad(d.getHours()) + ":" + pad(d.getMinutes()); }
   function isoDate(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
   function flash(el, text, ms) { el.textContent = text; clearTimeout(el._t); el._t = setTimeout(function () { el.textContent = ""; }, ms || 3500); }
-  function mb(n) { var m = (n || 0) / 1048576; return (m < 10 ? m.toFixed(1).replace(".", ",") : String(Math.round(m))) + (UI === "ru" ? " МБ" : " MB"); }
+  function mb(n) { var m = (n || 0) / 1048576; return (m < 10 ? m.toFixed(1).replace(".", ",") : String(Math.round(m))) + " " + t("unit_mb"); }
   /* ---------- Sprache der Oberfläche (DE/RU) ----------
      Inhalte stehen in data.js deutsch, die russische Fassung jeweils in „ru“. Sätze zum Sagen bleiben immer deutsch
      (groß), darunter russisch – gezeigt wird ja der Polizei. Paragrafen und Briefe an Behörden bleiben deutsch. */
@@ -160,7 +160,9 @@
       n_pass_eu: "Als EU-Bürger: Pass oder Personalausweis immer dabeihaben und der Polizei auf Verlangen zeigen.",
       n_pass: "Als ausländischer Staatsbürger: Pass oder Aufenthaltstitel immer dabeihaben und der Polizei auf Verlangen zeigen.",
       n_bau: "Auf der Baustelle: Ausweis immer im Original dabei (sonst Bußgeld bis 5.000 €). Beim Zoll musst du Fragen zu deiner Arbeit beantworten – anders als bei der Polizei.",
-      days_1: "1 Tag", days_n: "{n} Tage"
+      days_1: "1 Tag", days_n: "{n} Tage", unit_mb: "MB",
+      // Sprachwahl-Dialog (app/i18n-runtime.js lädt app/lang/manifest.json für die Liste der Sprachen)
+      lang_more: "Mehr Sprachen", lang_dialog_h: "Sprache wählen", lang_dialog_close: "Schließen", lang_loading: "Wird geladen …", lang_fallback: "unvollständig übersetzt, zeigt teils Deutsch"
     },
     ru: {
       meta: "Прототип · Баден-Вюртемберг · на 28.09.2026 · не юридическая консультация", install: "Установить", install_app: "Установить приложение",
@@ -295,19 +297,81 @@
       n_pass_eu: "Гражданину ЕС: паспорт или удостоверение личности всегда с собой, показывать полиции по требованию.",
       n_pass: "Иностранцу: паспорт или вид на жительство всегда с собой, показывать полиции по требованию.",
       n_bau: "На стройке: документ всегда в оригинале с собой (штраф до 5 000 €). Таможне ты обязан отвечать на вопросы о работе — в отличие от полиции.",
-      days_1: "1 день", days_n: "{n} дн."
+      days_1: "1 день", days_n: "{n} дн.", unit_mb: "МБ",
+      lang_more: "Другие языки", lang_dialog_h: "Выбрать язык", lang_dialog_close: "Закрыть", lang_loading: "Загрузка …", lang_fallback: "переведено не полностью, местами по-немецки"
     }
   };
-  function t(k, x) { var v = T[UI][k]; if (v == null) v = T.de[k]; if (v == null) v = k; return x == null ? v : v.replace("{x}", x); }
-  // Feld aus data.js in der gewählten Sprache; fehlt die Übersetzung, gilt Deutsch.
-  function L(o, f) { return UI === "ru" && o && o.ru && o.ru[f] != null ? o.ru[f] : o[f]; }
+  // UI-Text T.<k>: Deutsch/Russisch bleiben inline (T.de/T.ru), jede weitere Sprache kommt per ID "T.<k>" aus dem
+  // nachgeladenen Paket (app/lang/<code>.js) - fehlt sie dort, gilt Deutsch. Siehe app/i18n-runtime.js.
+  function t(k, x) {
+    var v = T[UI] && T[UI][k];
+    if (v == null && UI !== "de" && UI !== "ru") v = window.RB.i18nGet(UI, "T." + k);
+    if (v == null) v = T.de[k];
+    if (v == null) v = k;
+    return x == null ? v : v.replace("{x}", x);
+  }
+  // Modul-Vorsilbe für die ID des Pakets (siehe tools/i18n_extract.js): L() bekommt Objekte aus drei Sammlungen
+  // (quick.js-Antworten, data.js-Situationen, data.js-Karten) mit teils denselben Variablennamen (q/s/it/c) und
+  // muss die passende Vorsilbe selbst erkennen - anhand eines Felds, das nur in der jeweiligen Sammlung vorkommt
+  // (cop nur bei quick, doo nur bei Situationen, cat nur bei Karten).
+  function idPrefix(o) {
+    if (o.cop !== undefined) return "quick.";
+    if (o.doo !== undefined) return "data.situations.";
+    if (o.cat !== undefined) return "data.cards.";
+    return "";
+  }
+  // Feld aus quick.js/data.js in der gewählten Sprache. Russisch bleibt inline (o.ru), jede weitere Sprache kommt per
+  // ID "<Vorsilbe><o.id>.<f>[.<i>]" aus dem nachgeladenen Paket - fehlt die Übersetzung, gilt Deutsch. Siehe app/i18n-runtime.js.
+  function L(o, f) {
+    if (!o) return o;
+    var base = o[f];
+    if (UI === "ru") { var rv = o.ru && o.ru[f]; return rv != null ? rv : base; }
+    if (UI !== "de" && o.id) {
+      var id = idPrefix(o) + o.id + "." + f;
+      if (Array.isArray(base)) {
+        return base.map(function (item, i) { var v = window.RB.i18nGet(UI, id + "." + i); return v != null ? v : item; });
+      }
+      var v2 = window.RB.i18nGet(UI, id);
+      if (v2 != null) return v2;
+    }
+    return base;
+  }
+  // Lr(de, ru, id): dünner Wrapper um window.RB.i18nLr mit der aktuellen UI-Sprache - für Stellen, die kein L(o,f)
+  // nutzen können (positionsbasierte [key,de,ru]-Arrays, _de/_ru-Suffix-Felder, {de,ru}-Paare).
+  function Lr(de, ru, id) { return window.RB.i18nLr(UI, de, ru, id); }
+  // trDR(de, ru, id): wie Lr, aber "" statt Deutsch, wenn UI deutsch ist ODER keine Übersetzung vorliegt - für
+  // zusätzliche Zeilen, die nur bei nicht-deutscher Oberfläche und nur bei vorhandener Übersetzung erscheinen
+  // (z. B. "say-ru"-Zeile unter einem deutschen Satz). Ersetzt das frühere "UI === 'ru' && x.ru ? ... : ''".
+  function trDR(de, ru, id) { if (UI === "de") return ""; var v = Lr(de, ru, id); return v !== de ? v : ""; }
+  // Sprachcode + Textrichtung für eine zusätzliche Übersetzungszeile (RU bleibt "ru"/ltr wie bisher; ein neues
+  // Sprachpaket kann dir:"rtl" melden - siehe app/lang/<code>.js meta.dir).
+  function trLangCode() { return UI === "de" ? "ru" : UI; }
+  function packDir() { var p = window.RB.i18n[UI]; return p && p.meta && p.meta.dir === "rtl" ? "rtl" : "ltr"; }
+  function trAttrs() { return ' lang="' + esc(trLangCode()) + '" dir="' + packDir() + '"'; }
+  // Setzt Text + hidden + lang/dir an einem festen "-ru"-Element (k-cop-ru, k-say-ru, k-full-ru, big-ru): Inhalt wie
+  // gehabt bei RU, zusätzlich nutzbar für jede weitere Sprache (dir="rtl" bei Bedarf, wichtig für die Großanzeige/
+  // das Kontrolle-Panel).
+  function setTrEl(elId, text) {
+    var el = $(elId); if (!el) return;
+    el.textContent = text || ""; el.hidden = !text;
+    el.setAttribute("lang", trLangCode()); el.setAttribute("dir", packDir());
+  }
+  // Übersetzter say-Satz (data.js situations.say = [[de,ru],...], keine .ru-Objekt-Struktur): id-Schema
+  // "data.situations.<id>.say.<i>".
+  function LSay(it, i) {
+    var p = it.say && it.say[i]; if (!p) return "";
+    return Lr(p[0], p[1], "data.situations." + (it.id || "") + ".say." + i);
+  }
+  // Sprachcode fürs Sprachausgabe-/Spracheingabe-BCP-47-Tag; unbekannte Sprachen (noch kein Eintrag) gehen 1:1 durch,
+  // die meisten Engines akzeptieren auch nur "tr" statt "tr-TR".
+  function speechLocale(code) { var m = { de: "de-DE", ru: "ru-RU" }; return m[code || UI] || (code || UI); }
 
   /* ---------- Bundesland: automatisch per Standort (offline), manuell änderbar (app/laender.js) ----------
      Quelldaten in quick.js/kontrolle.js/phasen.js/data.js bleiben Baden-Württemberg; hier nur Anzeige-Ersetzung. */
   var RBL = window.RB && window.RB.laender;
   var RBLok = window.RB && window.RB.lokal;
   function currentLand() { return RBL ? RBL.aktuellesLand() : "BW"; }
-  function landLang() { return UI === "ru" ? "ru" : "de"; }
+  function landLang() { return UI; }
   // Standort fuer ortsbezogene Inhalte (app/lokal.js: naechster Notdienst) - NUR wenn die Geo-Erlaubnis schon erteilt
   // ist (siehe landAutoErkennen unten), bleibt rein lokal im Speicher, wird nie extra abgefragt und nie gesendet.
   var lastCoords = null;
@@ -325,7 +389,7 @@
     var land = currentLand();
     var entry = RBL.landTextEintrag(id, land);
     if (entry) {
-      var txt = UI === "ru" ? entry.ru : entry.de;
+      var txt = Lr(entry.de, entry.ru, "land-texte." + id + "." + land);
       return '<p class="land-anders">' + esc(t("land_anders", landInCap(land))) + " " + esc(txt) +
         (entry.geprueft === false ? ' <span class="land-ungeprueft">(' + esc(t("land_ungeprueft")) + ")</span>" : "") + "</p>";
     }
@@ -342,7 +406,7 @@
     var sel = $("einr-land"); if (!sel || !RBL) return;
     var cur = RBL.wahl();
     sel.innerHTML = '<option value="">' + esc(t("land_auto")) + "</option>" +
-      RBL.liste.map(function (l) { return '<option value="' + esc(l[0]) + '">' + esc(UI === "ru" ? l[2] : l[1]) + "</option>"; }).join("");
+      RBL.liste.map(function (l) { return '<option value="' + esc(l[0]) + '">' + esc(Lr(l[1], l[2], "laender.name." + l[0])) + "</option>"; }).join("");
     sel.value = cur;
     var st = RBL.status(), msg = $("einr-land-msg");
     if (msg) msg.textContent = st.quelle === "manuell" ? "" : st.quelle === "auto" ? t("land_status_auto", landName(st.land)) : t("land_status_standard");
@@ -436,7 +500,7 @@
   function findSituation(id) { for (var i = 0; i < D.situations.length; i++) if (D.situations[i].id === id) return D.situations[i]; return null; }
   function renderGrid() {
     var names = {}, last = null;
-    (D.groups || []).forEach(function (g) { names[g[0]] = UI === "ru" && g[2] ? g[2] : g[1]; });
+    (D.groups || []).forEach(function (g) { names[g[0]] = Lr(g[1], g[2], "data.groups." + g[0]); });
     $("sit-grid").innerHTML = D.situations.map(function (s) {
       // Überschrift, sobald eine neue Gruppe beginnt – bei 15 Kacheln findet man so schneller die eigene Lage.
       var head = s.group && s.group !== last && names[s.group] ? '<h2 class="grid-h">' + esc(names[s.group]) + "</h2>" : "";
@@ -537,7 +601,7 @@
   function needAwake() { return !!(recState && recState.rec) || !$("big").hidden; }
   // opts.intro: „Ich spreche wenig Deutsch. Bitte lesen Sie:“ – für das Zeigen an den Beamten. opts.id: Antwort-ID, für den Landeshinweis.
   function openBig(de, ru, from, law, why, opts) {
-    $("big-de").textContent = nb(de); $("big-ru").textContent = nb(ru); $("big-law").textContent = nb(LT(law)); $("big-why").textContent = nb(LT(why));
+    $("big-de").textContent = nb(de); setTrEl("big-ru", ru ? nb(ru) : ""); $("big-law").textContent = nb(LT(law)); $("big-why").textContent = nb(LT(why));
     $("big-land-info").innerHTML = landInfoHTML(opts && opts.id);
     $("big-intro").hidden = !(opts && opts.intro); bigSpeakText = de; bigSpeakUI(false);
     $("big-speak").hidden = !("speechSynthesis" in window);
@@ -665,25 +729,28 @@
   // "Messer in Stuttgart" (k-messer) außerhalb BW: generisch, nur bundesrechtlicher Inhalt der schon in der App steht
   // (§ 42 Abs. 5, § 42c WaffG - Zonen, die Länder bzw. Städte festlegen); nichts Neues behauptet, nur weggelassen/verallgemeinert.
   function messerGenericHTML(c, noHead) {
-    var lang = landLang();
-    var title = lang === "ru" ? "Ножи и зоны запрета оружия" : "Messer und Waffenverbotszonen";
-    var tone = lang === "ru" ? "Зависит" : "Kommt drauf an";
-    var text = lang === "ru"
-      ? "По всей Германии города и земли могут устанавливать зоны запрета оружия (§ 42 Abs. 5, § 42c WaffG); там возможны проверки и без подозрения. Исключение: рабочий инструмент в закрытой упаковке, не под рукой — например, в закрытом ящике для инструментов. При проверке сразу скажи, где лежит нож."
-      : "Bundesweit können Städte und Länder Waffenverbotszonen festlegen (§ 42 Abs. 5, § 42c WaffG); dort sind Kontrollen auch ohne Verdacht möglich. Ausnahme: Werkzeug für den Beruf, verschlossen verpackt und nicht griffbereit – etwa im geschlossenen Werkzeugkoffer. Bei einer Kontrolle vorher sagen, wo das Messer steckt.";
+    var title = Lr("Messer und Waffenverbotszonen", "Ножи и зоны запрета оружия", "lokal.messer_generic.title");
+    var tone = Lr("Kommt drauf an", "Зависит", "lokal.messer_generic.tone");
+    var text = Lr(
+      "Bundesweit können Städte und Länder Waffenverbotszonen festlegen (§ 42 Abs. 5, § 42c WaffG); dort sind Kontrollen auch ohne Verdacht möglich. Ausnahme: Werkzeug für den Beruf, verschlossen verpackt und nicht griffbereit – etwa im geschlossenen Werkzeugkoffer. Bei einer Kontrolle vorher sagen, wo das Messer steckt.",
+      "По всей Германии города и земли могут устанавливать зоны запрета оружия (§ 42 Abs. 5, § 42c WaffG); там возможны проверки и без подозрения. Исключение: рабочий инструмент в закрытой упаковке, не под рукой — например, в закрытом ящике для инструментов. При проверке сразу скажи, где лежит нож.",
+      "lokal.messer_generic.text");
     return (noHead ? "" : '<div class="w-head"><h3>' + esc(title) + '</h3><span class="pill warn">' + esc(tone) + "</span></div>") +
       "<p>" + telLinks(esc(text)) + "</p>" + '<p class="law" lang="de" translate="no">' + esc(LT("§§ 42, 42a, 42c WaffG")) + "</p>";
   }
   // „Wo kann ich mich beschweren?“ außerhalb BW: Stelle aus app/lokal.js (nur geprüfte), Frist nur, wenn im Datensatz belegt.
   // Rest des BW-Textes (Bundespolizei, Dienstaufsicht, Gegenanzeige) ist bundesweit gleich und bleibt.
   function beschwerdeCardHTML(c, noHead, land) {
-    var lang = landLang(), b = RBLok.beschwerdeInfo(land), m = RBLok.beschwerdeFristMonate(b);
-    var stelle = b ? b.name : (lang === "ru" ? "служба жалоб полиции твоей земли" : "die Beschwerdestelle der Polizei deines Landes");
-    var frist = m ? (lang === "ru" ? " — в течение " + m + " месяцев" : " – innerhalb von " + m + " Monaten") : "";
-    var text = lang === "ru"
-      ? "Бесплатно: " + stelle + frist + "; на федеральную полицию — уполномоченному по полиции при Бундестаге, 6 месяцев. Служебная жалоба — письменно в полицейское управление. Заявление на полицейских — отдельный путь. Часто в ответ приходит встречное заявление, например за оскорбление или ложное обвинение, — поэтому сначала поговори с адвокатом."
-      : "Kostenlos: " + stelle + frist + "; bei der Bundespolizei der Polizeibeauftragte des Bundes, 6 Monate. Dienstaufsichtsbeschwerde schriftlich an das Polizeipräsidium. Eine Strafanzeige gegen Beamte ist ein eigener Weg. Oft folgt eine Gegenanzeige, etwa wegen Beleidigung oder falscher Verdächtigung – deshalb erst mit einem Anwalt sprechen.";
-    var tone = m ? (lang === "ru" ? m + " месяцев" : m + " Monate") : (lang === "ru" ? "Бесплатно" : "Kostenlos");
+    var b = RBLok.beschwerdeInfo(land), m = RBLok.beschwerdeFristMonate(b);
+    var stelle = b ? b.name : Lr("die Beschwerdestelle der Polizei deines Landes", "служба жалоб полиции твоей земли", "lokal.beschwerde_generic.stelle");
+    var frist = m ? Lr(" – innerhalb von {x} Monaten", " — в течение {x} месяцев", "lokal.beschwerde_generic.frist").replace("{x}", m) : "";
+    var lead = Lr("Kostenlos: ", "Бесплатно: ", "lokal.beschwerde_generic.lead");
+    var rest = Lr(
+      "; bei der Bundespolizei der Polizeibeauftragte des Bundes, 6 Monate. Dienstaufsichtsbeschwerde schriftlich an das Polizeipräsidium. Eine Strafanzeige gegen Beamte ist ein eigener Weg. Oft folgt eine Gegenanzeige, etwa wegen Beleidigung oder falscher Verdächtigung – deshalb erst mit einem Anwalt sprechen.",
+      "; на федеральную полицию — уполномоченному по полиции при Бундестаге, 6 месяцев. Служебная жалоба — письменно в полицейское управление. Заявление на полицейских — отдельный путь. Часто в ответ приходит встречное заявление, например за оскорбление или ложное обвинение, — поэтому сначала поговори с адвокатом.",
+      "lokal.beschwerde_generic.rest");
+    var text = lead + stelle + frist + rest;
+    var tone = m ? Lr("{x} Monate", "{x} месяцев", "lokal.beschwerde_generic.tone_months").replace("{x}", m) : Lr("Kostenlos", "Бесплатно", "lokal.beschwerde_generic.tone_free");
     var law = (b && b.url ? b.url.replace(/^https?:\/\//, "").replace(/\/$/, "") + " · " : "") + "§ 340 StGB · § 164 StGB · PolBeauftrG";
     return (noHead ? "" : '<div class="w-head"><h3>' + esc(L(c, "title")) + '</h3><span class="pill ' + c.tone + '">' + esc(tone) + "</span></div>") +
       "<p>" + esc(text) + "</p>" + '<p class="law" lang="de" translate="no">' + esc(law) + "</p>";
@@ -701,22 +768,22 @@
         (RBL ? " " + RBL.zahlenHinweisText(land, landLang()) : "");
     }
     // „4 Wochen“ im Etikett ist eine BW-Frist – außerhalb BW neutral „Sofort“.
-    var tl = c.id === "k-bodycam" && land && land !== "BW" ? (landLang() === "ru" ? "Срочно" : "Sofort") : L(c, "toneLabel");
+    var tl = c.id === "k-bodycam" && land && land !== "BW" ? Lr("Sofort", "Срочно", "lokal.bodycam_sofort") : L(c, "toneLabel");
     return (noHead ? "" : '<div class="w-head"><h3>' + esc(L(c, "title")) + '</h3><span class="pill ' + c.tone + '">' + esc(tl) + "</span></div>") +
       "<p>" + telLinks(esc(text)) + "</p>" + (c.say ? sayButtons(c.say) : "") + '<p class="law" lang="de" translate="no">' + esc(LT(c.law)) + "</p>";
   }
   // Antwort aus der Schnellhilfe (Polizei sagt → Antwort mit §), wenn keine Karte passt – z. B. „Steigen Sie aus“.
   function quickAnsHTML(q) {
-    var ru = UI === "ru" && q.ru ? LS(q.ru.say) : "";
+    var ru = trDR(q.say, q.ru && q.ru.say, "quick." + q.id + ".say");
     return '<article class="ans top" data-id="' + esc(q.id) + '"><div class="w-head"><h3>„' + esc(L(q, "cop")) + '“</h3><span class="pill ' + VTONE[q.v] + '">' + esc(t("v_" + q.v)) + "</span></div>" +
       '<button type="button" class="land-badge">' + esc(landBadgeText()) + '</button>' +
-      '<button class="say-b" type="button" data-id="' + esc(q.id) + '" data-de="' + esc(LS(q.say)) + '" data-ru="' + esc(ru) + '" data-law="' + esc(LT(q.law)) + '" data-why="' + esc(LT(L(q, "why"))) + '"><span class="say-de" lang="de" translate="no">' + esc(nb(LS(q.say))) + "</span>" +
-      (ru ? '<span class="say-ru" lang="ru">' + esc(nb(ru)) + "</span>" : "") + '<span class="say-tap">' + esc(t("tap")) + "</span></button>" +
+      '<button class="say-b" type="button" data-id="' + esc(q.id) + '" data-de="' + esc(LS(q.say)) + '" data-ru="' + esc(ru ? LS(ru) : "") + '" data-law="' + esc(LT(q.law)) + '" data-why="' + esc(LT(L(q, "why"))) + '"><span class="say-de" lang="de" translate="no">' + esc(nb(LS(q.say))) + "</span>" +
+      (ru ? '<span class="say-ru"' + trAttrs() + '>' + esc(nb(LS(ru))) + "</span>" : "") + '<span class="say-tap">' + esc(t("tap")) + "</span></button>" +
       "<p>" + esc(nb(LT(L(q, "why")))) + '</p><p class="law" lang="de" translate="no">' + esc(nb(LT(q.law))) + "</p>" + landInfoHTML(q.id) + "</article>";
   }
   function speakText(e) {
     var it = e.item;
-    if (e.kind === "s") return L(it, "title") + ". " + t("speak_say") + ": " + LS(it.say[0][UI === "ru" ? 1 : 0]) + " " + L(it, "doo")[0];
+    if (e.kind === "s") return L(it, "title") + ". " + t("speak_say") + ": " + LSay(it, 0) + " " + L(it, "doo")[0];
     return L(it, "title") + ". " + L(it, "text");
   }
   function stopSpeaking() { try { if ("speechSynthesis" in window) speechSynthesis.cancel(); } catch (e) {} }
@@ -744,7 +811,7 @@
         if (!("speechSynthesis" in window)) { sp.textContent = t("speak_na"); return; }
         if (talking) { talking = false; stopSpeaking(); sp.textContent = t("speak"); return; }
         stopSpeaking();
-        var u = new SpeechSynthesisUtterance(speakText(res[0].e)); u.lang = UI === "ru" ? "ru-RU" : "de-DE"; u.rate = 1;
+        var u = new SpeechSynthesisUtterance(speakText(res[0].e)); u.lang = speechLocale(); u.rate = 1;
         u.onend = u.onerror = function () { talking = false; sp.textContent = t("speak"); };
         talking = true; speechSynthesis.speak(u); sp.textContent = t("stop");
       });
@@ -758,7 +825,7 @@
 
   /* ---------- Speech recognition ---------- */
   var SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  var lang = lsGet(LS_LANG) || (UI === "ru" ? "ru-RU" : "de-DE");
+  var lang = lsGet(LS_LANG) || speechLocale();
   function syncSeg() {
     [].forEach.call(document.querySelectorAll(".seg-b[data-lang]"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-lang") === lang ? "true" : "false"); });
   }
@@ -1196,21 +1263,23 @@
     var Q = D.quick || [];
     $("qh").hidden = !Q.length;
     if (!Q.length) return;
-    var cats = [["top", t("qh_top")]].concat((D.quickGroups || []).map(function (g) { return [g[0], UI === "ru" && g[2] ? g[2] : g[1]]; }));
+    var cats = [["top", t("qh_top")]].concat((D.quickGroups || []).map(function (g) { return [g[0], Lr(g[1], g[2], "quick.groups." + g[0])]; }));
     $("qh-cats").innerHTML = cats.map(function (c) { return '<button type="button" class="chip" data-qc="' + c[0] + '" aria-pressed="' + (qhCat === c[0]) + '">' + esc(c[1]) + "</button>"; }).join("");
     var list = qhCat === "top" ? (D.quickTop || []).map(function (id) { return Q.filter(function (q) { return q.id === id; })[0]; }).filter(Boolean)
       : Q.filter(function (q) { return q.g === qhCat; });
     $("qh-list").innerHTML = list.map(function (q) {
+      var tr = trDR(q.say, q.ru && q.ru.say, "quick." + q.id + ".say");
       return '<button type="button" class="qh-i" data-q="' + esc(q.id) + '"><span class="qh-cop">„' + esc(L(q, "cop")) + '“</span>' +
         '<span class="pill ' + VTONE[q.v] + '">' + esc(t("v_" + q.v)) + '</span><span class="qh-say" lang="de" translate="no">' + esc(nb(LS(q.say))) + "</span>" +
-        (UI === "ru" && q.ru ? '<span class="say-ru" lang="ru">' + esc(nb(LS(q.ru.say))) + "</span>" : "") + '<span class="law" lang="de" translate="no">' + esc(nb(LT(q.law))) + "</span></button>";
+        (tr ? '<span class="say-ru"' + trAttrs() + '>' + esc(nb(LS(tr))) + "</span>" : "") + '<span class="law" lang="de" translate="no">' + esc(nb(LT(q.law))) + "</span></button>";
     }).join("");
   }
   $("qh-cats").addEventListener("click", function (e) { var b = e.target.closest("[data-qc]"); if (!b) return; qhCat = b.getAttribute("data-qc"); renderQuick(); });
   $("qh-list").addEventListener("click", function (e) {
     var b = e.target.closest("[data-q]"); if (!b) return;
     var q = (D.quick || []).filter(function (x) { return x.id === b.getAttribute("data-q"); })[0]; if (!q) return;
-    openBig(LS(q.say), UI === "ru" && q.ru ? LS(q.ru.say) : "", b, q.law, L(q, "why"), { id: q.id });
+    var tr = trDR(q.say, q.ru && q.ru.say, "quick." + q.id + ".say");
+    openBig(LS(q.say), tr ? LS(tr) : "", b, q.law, L(q, "why"), { id: q.id });
   });
 
   /* ---------- Kontrolle-Modus ----------
@@ -1257,7 +1326,7 @@
   function roleSeg(sel, own) {
     sel = sel || kRole;
     return K.roles.filter(function (r) { return !own || r[0] !== "filme"; }).map(function (r) {
-      return '<button type="button" class="seg-b" data-kr="' + r[0] + '" aria-pressed="' + (sel === r[0]) + '">' + esc(UI === "ru" ? r[2] : r[1]) + "</button>";
+      return '<button type="button" class="seg-b" data-kr="' + r[0] + '" aria-pressed="' + (sel === r[0]) + '">' + esc(Lr(r[1], r[2], "kontrolle.roles." + r[0])) + "</button>";
     }).join("");
   }
   /* ---------- „Sagen"-Modus (nur Fahrer): Phasen statt Knopf-Raster, ein Satz mit Play-Knopf statt 10 Knöpfen.
@@ -1287,7 +1356,7 @@
   }
   // Kurze Chip-Namen (passen in 4 Spalten ohne Trennung mitten im Wort); die Karte selbst braucht keinen eigenen Titel mehr.
   var PH_CHIP = { start: ["Anhalten", "Стоп"], ausweis: ["Ausweis", "Документ"], grund: ["Grund", "Причина"], papiere: ["Papiere", "Бумаги"], fragen: ["Fragen", "Вопросы"], tests: ["Tests", "Тесты"], durchsuchung: ["Suche", "Обыск"], massnahme: ["Zwang", "Меры"], ende: ["Ende", "Конец"] };
-  function phChipLabel(p) { var c = PH_CHIP[p.k]; return c ? c[UI === "ru" ? 1 : 0] : (UI === "ru" ? p.ru : p.de); }
+  function phChipLabel(p) { var c = PH_CHIP[p.k]; return c ? Lr(c[0], c[1], "phasen.chip." + p.k) : Lr(p.de, p.ru, "phasen.label." + p.k); }
   function phPlayBtn(id, cls, inner) {
     var s = phSatz(id), klein = cls.indexOf("klein") > -1;
     return '<button type="button" class="btn ph-play ' + cls + '" data-ph-play="' + id + '" aria-pressed="false" aria-label="' + esc(t("ph_play")) + ": " + esc(s.de) + '"><span class="ph-ico' + (klein ? " klein" : "") + '" aria-hidden="true"></span>' + (inner || "") + "</button>";
@@ -1295,7 +1364,10 @@
   function renderPhasen() {
     if (!PH) return;
     phStopAudio();
-    var list = PH[kRole] || PH.fahrer, p = list[kPhase] || list[0], s = phSatz(p.main), ru = UI === "ru";
+    var list = PH[kRole] || PH.fahrer, p = list[kPhase] || list[0], s = phSatz(p.main);
+    var sTr = trDR(s.de, s.ru, "phasen.saetze." + p.main);
+    var tipp = Lr(p.tipp_de, p.tipp_ru, "phasen." + kRole + "." + p.k + ".tipp");
+    var nicht = Lr(p.nicht_de, p.nicht_ru, "phasen." + kRole + "." + p.k + ".nicht");
     $("ph-chips").innerHTML = list.map(function (x, i) {
       return '<button type="button" data-ph-chip="' + i + '"' + (i === kPhase ? ' aria-current="step"' : "") + ">" + esc(phChipLabel(x)) + "</button>";
     }).join("");
@@ -1303,21 +1375,22 @@
     var next = list[kPhase + 1];
     $("ph-karte").innerHTML =
       '<p class="ph-satz" lang="de" translate="no">' + esc(s.de) + "</p>" +
-      (ru ? '<p class="say-ru">' + esc(s.ru) + "</p>" : "") +
+      (sTr ? '<p class="say-ru"' + trAttrs() + '>' + esc(sTr) + "</p>" : "") +
       '<div class="ph-aktionen">' + mainBtn + '<button type="button" class="btn ph-zeigen" data-ph-show="' + p.main + '">' + esc(t("ph_show")) + "</button></div>" +
-      '<p class="ph-tipp">' + esc(ru ? p.tipp_ru : p.tipp_de) + "</p>" +
-      '<p class="ph-nicht">' + esc(t("ph_nicht")) + " " + esc(ru ? p.nicht_ru : p.nicht_de) + "</p>" +
+      '<p class="ph-tipp">' + esc(tipp) + "</p>" +
+      '<p class="ph-nicht">' + esc(t("ph_nicht")) + " " + esc(nicht) + "</p>" +
       '<div class="ph-unten"><button type="button" class="btn ph-mehr" data-ph-detail="' + p.detail + '">' + esc(t("ph_mehr")) + "</button>" +
       (next ? '<button type="button" class="ph-weiter" data-ph-weiter="1">' + esc(t("ph_weiter", phChipLabel(next))) + "</button>" : "") + "</div>";
     $("ph-extra").innerHTML = p.extra.length ? '<span class="ph-label">' + esc(t("ph_wenn_noetig")) + "</span>" + p.extra.slice(0, 2).map(function (id) {
-      var es = phSatz(id);
-      return '<div class="ph-ex">' + phPlayBtn(id, "klein") + '<div class="ph-ex-txt"><div class="ph-ex-de" lang="de" translate="no">' + esc(es.de) + "</div>" + (ru ? '<div class="ph-ex-ru">' + esc(es.ru) + "</div>" : "") + "</div></div>";
+      var es = phSatz(id), esTr = trDR(es.de, es.ru, "phasen.saetze." + id);
+      return '<div class="ph-ex">' + phPlayBtn(id, "klein") + '<div class="ph-ex-txt"><div class="ph-ex-de" lang="de" translate="no">' + esc(es.de) + "</div>" + (esTr ? '<div class="ph-ex-ru"' + trAttrs() + '>' + esc(esTr) + "</div>" : "") + "</div></div>";
     }).join("") : "";
-    // „Wenig Deutsch“ / „Zur Sache nichts“: feste deutsche Kurzbezeichnung (wird dem Beamten gezeigt), RU nur als kleiner Untertitel
+    // „Wenig Deutsch“ / „Zur Sache nichts“: feste deutsche Kurzbezeichnung (wird dem Beamten gezeigt), Übersetzung nur als kleiner Untertitel
     var immerLabels = [{ de: "Wenig Deutsch", ru: "плохо говорю" }, { de: "Zur Sache nichts", ru: "молчу по делу" }];
     $("ph-immer").innerHTML = (PH.immer || []).map(function (id, i) {
       var lab = immerLabels[i] || { de: id, ru: "" };
-      return phPlayBtn(id, "klein ph-immer-b", '<span class="ph-play-t">' + esc(lab.de) + (ru ? "<br><small>" + esc(lab.ru) + "</small>" : "") + "</span>");
+      var labTr = trDR(lab.de, lab.ru, "phasen.immer." + i);
+      return phPlayBtn(id, "klein ph-immer-b", '<span class="ph-play-t">' + esc(lab.de) + (labTr ? "<br><small" + trAttrs() + ">" + esc(labTr) + "</small>" : "") + "</span>");
     }).join("");
     $("ph-stimme").innerHTML = '<span class="ph-stimme-l">' + esc(t("ph_stimme")) + '</span><button type="button" class="seg-b" data-pst="b" aria-pressed="' + (kStimme === "b") + '">' + esc(t("ph_mann")) + '</button><button type="button" class="seg-b" data-pst="c" aria-pressed="' + (kStimme === "c") + '">' + esc(t("ph_frau")) + "</button>";
     $("ph-note").textContent = t("ph_note");
@@ -1325,24 +1398,25 @@
   function renderKontrolle() {
     if (!K) { $("k-start").hidden = true; $("k-start-filme").hidden = true; return; }
     $("k-role").innerHTML = roleSeg(); $("einr-role").innerHTML = roleSeg(ownRole(), true);
-    // Russische Oberfläche: darunter klein das deutsche Stichwort – das hört man vom Beamten.
+    // Nicht-deutsche Oberfläche: darunter klein das deutsche Stichwort – das hört man vom Beamten.
     $("k-grid").innerHTML = (K.buttons[kRole] || []).map(function (b) {
       var q = qById(b[0]); if (!q) return "";
-      return '<button type="button" class="k-b" data-k="' + b[0] + '" aria-pressed="' + (kCur === b[0]) + '"><span class="k-b-t">' + esc(UI === "ru" ? b[2] : b[1]) + "</span>" +
-        (UI === "ru" ? '<span class="k-b-de" lang="de" translate="no">' + esc(b[1]) + "</span>" : "") +
+      return '<button type="button" class="k-b" data-k="' + b[0] + '" aria-pressed="' + (kCur === b[0]) + '"><span class="k-b-t">' + esc(Lr(b[1], b[2], "kontrolle.buttons." + kRole + "." + b[0])) + "</span>" +
+        (UI !== "de" ? '<span class="k-b-de" lang="de" translate="no">' + esc(b[1]) + "</span>" : "") +
         '<span class="k-b-v ' + VTONE[q.v] + '">' + esc(t("v_" + q.v)) + "</span></button>";
     }).join("");
     var h = K.hinweis && K.hinweis[kRole];
     $("k-hint").hidden = !h;
     if (h) {
-      var hTel = h.tel, hTelText = h.telText, hDe = h.de, hRu = h.ru;
+      var hTel = h.tel, hTelText = h.telText;
+      var hTxt = Lr(h.de, h.ru, "kontrolle.hinweis." + kRole);
       // Notdienst-Nummer im Kontroll-Hinweis (Rolle "filme") ortsbezogen aus app/lokal.js statt der BW-Festnummer.
       if (h.tel && RBLok) {
         var ndInfo = RBLok.notdienstInfo(currentLand(), currentCoords());
         hTel = RBLok.notdienstTelE164(ndInfo); hTelText = hTel ? RBLok.notdienstKurzText(ndInfo) : null;
-        if (!hTel) { hDe = h.de + " " + RBLok.notdienstTippZeile(ndInfo, "de"); hRu = h.ru + " " + RBLok.notdienstTippZeile(ndInfo, "ru"); }
+        if (!hTel) hTxt = hTxt + " " + RBLok.notdienstTippZeile(ndInfo, UI);
       }
-      $("k-hint").innerHTML = esc(UI === "ru" ? hRu : hDe) + (hTel ? ' <a href="tel:' + esc(hTel) + '">' + esc(hTelText) + "</a>" : "");
+      $("k-hint").innerHTML = esc(hTxt) + (hTel ? ' <a href="tel:' + esc(hTel) + '">' + esc(hTelText) + "</a>" : "");
     }
     // „Sagen“-Modus (Umschalter nur für Fahrer sichtbar): Phasen ersetzen Überschrift, Knopf-Raster und „Alle Antworten“
     var sagenOn = !!(PH && PH[kRole] && kModus === "sagen");
@@ -1361,17 +1435,19 @@
   // Antwort oben, die Knöpfe bleiben darunter: die nächste Frage ist wieder nur ein Tipp.
   function showK(id, noPush) {
     var q = qById(id), k = (K && K.kurz[id]) || {}; if (!q) return;
-    var ru = UI === "ru", dann = ru ? k.dann_ru : k.dann;
+    var dann = Lr(k.dann, k.dann_ru, "kontrolle.kurz." + id + ".dann");
+    var sayDe = k.de || q.say, saySrc = Lr(sayDe, k.ru || (q.ru && q.ru.say) || "", "kontrolle.kurz." + id + ".say");
+    var copTr = trDR(q.cop, q.ru && q.ru.cop, "quick." + q.id + ".cop");
     kCur = id; $("k-heard").textContent = "";
     $("k-cop").textContent = "„" + q.cop + "“";
-    $("k-cop-ru").textContent = ru && q.ru && q.ru.cop ? "„" + q.ru.cop + "“" : ""; $("k-cop-ru").hidden = !ru;
+    setTrEl("k-cop-ru", copTr ? "„" + copTr + "“" : "");
     $("k-v").className = "pill " + VTONE[q.v]; $("k-v").textContent = t("v_" + q.v);
-    $("k-say").textContent = nb(LS(k.de || q.say));
-    $("k-say-ru").textContent = ru ? nb(LS(k.ru || (q.ru && q.ru.say) || "")) : ""; $("k-say-ru").hidden = !ru;
+    $("k-say").textContent = nb(LS(sayDe));
+    setTrEl("k-say-ru", saySrc !== sayDe ? nb(LS(saySrc)) : "");
     $("k-land-badge").textContent = landBadgeText();
     $("k-law").textContent = nb(LT(k.law || q.law));
-    $("k-dann").textContent = LT(dann) || ""; $("k-dann").hidden = !dann;
-    $("k-full").textContent = nb(LS(q.say)); $("k-full-ru").textContent = ru && q.ru ? nb(LS(q.ru.say)) : ""; $("k-full-ru").hidden = !ru;
+    $("k-dann").textContent = dann ? LT(dann) : ""; $("k-dann").hidden = !dann;
+    $("k-full").textContent = nb(LS(q.say)); setTrEl("k-full-ru", trDR(q.say, q.ru && q.ru.say, "quick." + q.id + ".say") ? nb(LS(L(q, "say"))) : "");
     $("k-why").textContent = nb(LT(L(q, "why"))); $("k-lawfull").textContent = nb(LT(q.law));
     $("k-land-info").innerHTML = landInfoHTML(id);
     if (!noPush) { $("k-more").hidden = true; $("k-more-b").setAttribute("aria-expanded", "false"); $("k-ans").classList.remove("more-on"); }
@@ -1483,7 +1559,7 @@
      und öffnet die Antwort von selbst. Einschalten per Link mit ?mithoeren=1. Das Log bleibt nur im Speicher. */
   var kLog = [];
   (function () { var m = /[?&]mithoeren=([01])/.exec(location.search); if (m) { if (m[1] === "1") lsSet(LS_KTEST, "1"); else try { localStorage.removeItem(LS_KTEST); } catch (e) {} } })();
-  function kLabel(id) { var r = null; if (K) Object.keys(K.buttons).forEach(function (k) { K.buttons[k].forEach(function (b) { if (b[0] === id) r = UI === "ru" ? b[2] : b[1]; }); }); return r || id; }
+  function kLabel(id) { var r = null; if (K) Object.keys(K.buttons).forEach(function (k) { K.buttons[k].forEach(function (b) { if (b[0] === id) r = Lr(b[1], b[2], "kontrolle.buttons." + k + "." + b[0]); }); }); return r || id; }
   function renderKLog() {
     $("k-log").innerHTML = kLog.slice(0, 20).map(function (x) {
       return "<li><span class=\"k-log-t\">" + fmtTime(x.t) + "</span> „" + esc(x.text) + "“ → <b>" + esc(x.id ? kLabel(x.id) : t("k_log_none")) + "</b></li>";
@@ -1623,18 +1699,19 @@
           '<a class="btn" href="#kontrolle" id="ueben-zur-kontrolle">' + esc(t("ueben_zur_kontrolle")) + "</a></div></div>";
       return;
     }
-    var p = list[uebPhase], ru = UI === "ru";
+    var p = list[uebPhase];
+    var copTr = trDR(p.cop_de, p.cop_ru, "phasen." + uebRole + "." + p.k + ".cop");
     if (!uebAnswers.length) uebNewRound();
     var answersHtml = uebAnswers.map(function (a, i) {
-      var s = phSatz(a.id);
+      var s = phSatz(a.id), sTr = trDR(s.de, s.ru, "phasen.saetze." + a.id);
       return '<button type="button" class="ueb-ans" data-ueb-i="' + i + '" aria-pressed="false">' +
         '<span class="ueb-ans-de" lang="de" translate="no">' + esc(s.de) + "</span>" +
-        (ru ? '<span class="ueb-ans-ru" lang="ru">' + esc(s.ru) + "</span>" : "") + "</button>";
+        (sTr ? '<span class="ueb-ans-ru"' + trAttrs() + '>' + esc(sTr) + "</span>" : "") + "</button>";
     }).join("");
     $("ueben-body").innerHTML =
       '<div class="ueb-card"><p class="ueb-label">' + esc(t("ueben_cop_sagt")) + "</p>" +
         '<p class="ueb-cop-de" lang="de" translate="no">' + esc(p.cop_de) + "</p>" +
-        (ru ? '<p class="ueb-cop-ru" lang="ru">' + esc(p.cop_ru) + "</p>" : "") +
+        (copTr ? '<p class="ueb-cop-ru"' + trAttrs() + '>' + esc(copTr) + "</p>" : "") +
         '<button type="button" class="btn ueb-listen" id="ueben-cop-play" aria-pressed="false">' + esc(t("ueben_cop_hoeren")) + "</button></div>" +
       '<p class="ueb-label ueb-frage">' + esc(t("ueben_du_sagst")) + "</p>" +
       '<div class="ueb-answers" id="ueben-answers">' + answersHtml + "</div>" +
@@ -1978,7 +2055,7 @@
     D.cards.forEach(function (c) { used[c.cat] = (used[c.cat] || 0) + 1; });
     $("w-cats").innerHTML = '<button type="button" class="chip" data-cat="" aria-pressed="' + (wCat === "") + '">' + esc(t("w_all")) + "</button>" +
       D.cats.filter(function (c) { return used[c[0]]; }).map(function (c) {
-        return '<button type="button" class="chip" data-cat="' + c[0] + '" aria-pressed="' + (wCat === c[0]) + '">' + esc(UI === "ru" && c[2] ? c[2] : c[1]) + "</button>";
+        return '<button type="button" class="chip" data-cat="' + c[0] + '" aria-pressed="' + (wCat === c[0]) + '">' + esc(Lr(c[1], c[2], "data.cats." + c[0])) + "</button>";
       }).join("");
   }
   // Mit Suchtext: dieselbe Suche wie unter „Fragen“ (Situationen zuerst, dann Karten nach Punkten).
@@ -2169,17 +2246,35 @@
   });
   $("prof-back").addEventListener("click", goBack);
 
-  /* ---------- Sprache umschalten ---------- */
+  /* ---------- Sprache umschalten ----------
+     DE + RU bleiben inline (T.de/T.ru), zwei feste Knöpfe im Header/bei „Einrichten“. Jede weitere Sprache kommt
+     aus app/lang/<code>.js (Katalog: app/lang/manifest.json, siehe app/i18n-runtime.js) - der zweite Knopf zeigt
+     immer die zuletzt gewählte Sprache (Start: RU, wie bisher), ein „⋯“-Knopf öffnet den Sprachdialog mit allen. */
   var linksHTML = null;
+  var LS_UI_LAST = "rb-ui-last-v1";
+  var langCatalog = null; // einmal aus app/lang/manifest.json geladen: [{code,name,dir},...]
+  function ensureLangCatalog(cb) {
+    if (langCatalog) { cb(langCatalog); return; }
+    window.RB.i18nManifest().then(function (m) { langCatalog = (m && m.codes) || []; cb(langCatalog); });
+  }
+  function langEntry(code) {
+    if (code === "de") return { code: "de", name: "Deutsch", dir: "ltr" };
+    if (code === "ru") return { code: "ru", name: "Русский", dir: "ltr" };
+    var found = null;
+    (langCatalog || []).forEach(function (l) { if (l.code === code) found = l; });
+    return found;
+  }
+  function lastLangCode() { return lsGet(LS_UI_LAST) || "ru"; }
   function applyUI() {
     document.documentElement.lang = UI;
+    document.documentElement.dir = packDir();
     [].forEach.call(document.querySelectorAll("[data-t]"), function (el) { el.textContent = t(el.getAttribute("data-t")); });
     [].forEach.call(document.querySelectorAll("[data-t-ph]"), function (el) { el.placeholder = t(el.getAttribute("data-t-ph")); });
     [].forEach.call(document.querySelectorAll("[data-t-aria]"), function (el) { el.setAttribute("aria-label", t(el.getAttribute("data-t-aria"))); });
     var disc = document.querySelector('[data-t-html="disclaimer"]'); // Quellen-Links bleiben, nur der Text davor wechselt
     if (disc) { if (linksHTML === null) linksHTML = disc.innerHTML.slice(disc.innerHTML.indexOf("<a ")); disc.innerHTML = t("disclaimer").replace("{links}", linksHTML); }
     [].forEach.call(document.querySelectorAll('[data-t-html="rec_note"]'), function (el) { el.innerHTML = t("rec_note"); });
-    [].forEach.call(document.querySelectorAll(".lang-b"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-ui") === UI ? "true" : "false"); });
+    syncLangButtons();
     $("mic-label").textContent = activeListen ? t("mic_on") : t("mic_idle");
     [].forEach.call(document.querySelectorAll(".dict"), function (b) { b.textContent = b.getAttribute("aria-pressed") === "true" ? t("stop") : t("dict"); });
     if (recState && recState.r) $("rec-mode").textContent = recModeText(recState.r);
@@ -2187,17 +2282,68 @@
     dateMsgs();
     syncLandBadges();
   }
-  function setUI(u) {
-    if (u === UI || !T[u]) return;
+  // Zweiter Knopf (".lang-2nd") zeigt Code + Sprachname der zuletzt gewählten Sprache; alle ".lang-b[data-ui]" (DE, 2. Knopf)
+  // bekommen aria-pressed passend zur aktuellen Oberfläche.
+  function syncLangButtons() {
+    var last = lastLangCode(), le = langEntry(last) || { code: "ru", name: "Русский" };
+    [].forEach.call(document.querySelectorAll(".lang-2nd"), function (b) {
+      b.setAttribute("data-ui", le.code); b.setAttribute("lang", le.code); b.textContent = le.code.toUpperCase();
+      b.title = le.name || le.code;
+    });
+    [].forEach.call(document.querySelectorAll(".lang-b[data-ui]"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-ui") === UI ? "true" : "false"); });
+  }
+  // u: Sprachcode. cb(ok): optional - true sobald die Oberfläche umgeschaltet ist (nach Nachladen bei neuen Sprachen), false bei Ladefehler (bleibt wie sie war).
+  function setUI(u, cb) {
+    if (u === UI) { if (cb) cb(true); return; }
+    if (u === "de" || u === "ru") { finishSetUI(u); if (cb) cb(true); return; }
+    window.RB.i18nEnsureLoaded(u, function (ok) { if (ok) finishSetUI(u); if (cb) cb(ok); });
+  }
+  function finishSetUI(u) {
     UI = u; lsSet(LS_UI, u);
-    if (!lsGet(LS_LANG)) { lang = u === "ru" ? "ru-RU" : "de-DE"; syncSeg(); } // Spracheingabe folgt, solange nicht selbst gewählt
+    if (u !== "de") lsSet(LS_UI_LAST, u); // Startzustand des 2. Knopfs bleibt RU, bis eine andere Sprache gewählt wird
+    if (!lsGet(LS_LANG)) { lang = speechLocale(u); syncSeg(); } // Spracheingabe folgt, solange nicht selbst gewählt
     applyUI(); renderGrid(); renderFuerDich(); renderCats(); renderWissen($("w-q").value); renderDeadlines(); renderLetters(); syncProtoHints(protoData()); syncInstall(); renderRecs(); renderQuick(); renderKontrolle(); renderKLog();
     if (currentView === "situation") route();
     if (currentView === "einrichten") renderEinrichten();
     fieldMsg($("p-gps"), ""); $("prof-msg").textContent = "";
     if ($("answers").innerHTML && $("ask-input").value.trim()) renderAnswers($("ask-input").value.trim());
   }
-  [].forEach.call(document.querySelectorAll(".lang-b"), function (b) { b.addEventListener("click", function () { setUI(b.getAttribute("data-ui")); }); });
+  [].forEach.call(document.querySelectorAll(".lang-b[data-ui]"), function (b) { b.addEventListener("click", function () { setUI(b.getAttribute("data-ui")); }); });
+
+  /* ---------- Sprachdialog (alle Sprachen aus app/lang/manifest.json) ---------- */
+  var langDialogOpen = false;
+  function langDialogHTML(list) {
+    return list.map(function (l) {
+      var name = l.code === "de" ? "Deutsch" : l.code === "ru" ? "Русский" : l.name || l.native || l.code.toUpperCase();
+      return '<button type="button" class="lang-opt" data-ui="' + esc(l.code) + '" aria-pressed="' + (UI === l.code) + '" lang="' + esc(l.code) + '"' + (l.dir === "rtl" ? ' dir="rtl"' : "") + '>' + esc(name) + (UI === l.code ? " ✓" : "") + "</button>";
+    }).join("");
+  }
+  function openLangDialog() {
+    var dlg = $("lang-dialog"); if (!dlg) return;
+    ensureLangCatalog(function (list) {
+      var all = [{ code: "de", name: "Deutsch", dir: "ltr" }, { code: "ru", name: "Русский", dir: "ltr" }].concat(list);
+      $("lang-dialog-list").innerHTML = langDialogHTML(all);
+    });
+    langDialogOpen = true;
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+  }
+  function closeLangDialog() { var dlg = $("lang-dialog"); if (!dlg) return; langDialogOpen = false; if (dlg.close) dlg.close(); else dlg.removeAttribute("open"); }
+  [].forEach.call(document.querySelectorAll(".lang-more"), function (b) { b.addEventListener("click", openLangDialog); });
+  var langDialogEl = $("lang-dialog");
+  if (langDialogEl) {
+    langDialogEl.addEventListener("click", function (e) {
+      var opt = e.target.closest(".lang-opt");
+      if (opt) {
+        var code = opt.getAttribute("data-ui");
+        if (code === UI) { closeLangDialog(); return; }
+        var origText = opt.textContent; opt.textContent = t("lang_loading"); opt.disabled = true;
+        setUI(code, function (ok) { opt.disabled = false; if (ok) closeLangDialog(); else opt.textContent = origText; });
+        return;
+      }
+      if (e.target.closest("[data-lang-close]") || e.target === langDialogEl) closeLangDialog();
+    });
+    langDialogEl.addEventListener("cancel", function () { langDialogOpen = false; });
+  }
 
   /* ---------- Start ---------- */
   // Homescreen-Shortcut „Kontrolle“ (./?start=1#kontrolle): Video ohne Ton sofort starten; ?start aus der Adresse nehmen, damit Neuladen nicht erneut startet.
@@ -2216,5 +2362,18 @@
       if (hadController && !recState && !userActed && $("big").hidden && currentView !== "kontrolle" && performance.now() < 15000) location.reload();
     });
     window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () {}); });
+  }
+  // Erstwahl nach navigator.languages, falls eine der Browsersprachen im Katalog (app/lang/manifest.json) unterstützt
+  // ist: nur beim allerersten Besuch (noch keine gespeicherte Wahl) und nur DE/RU nachgeschaltet, damit die erste
+  // Ansicht (oben, synchron mit dem DE/RU-Startwert von UI) sofort da ist, keine Verzögerung vorm ersten Rendern.
+  if (!lsGet(LS_UI)) {
+    var browserLangs = (navigator.languages || [navigator.language || ""]).map(function (l) { return String(l).slice(0, 2).toLowerCase(); });
+    ensureLangCatalog(function (list) {
+      for (var i = 0; i < browserLangs.length; i++) {
+        var hit = null;
+        list.forEach(function (l) { if (l.code === browserLangs[i]) hit = l; });
+        if (hit && hit.code !== UI) { setUI(hit.code); break; }
+      }
+    });
   }
 })();

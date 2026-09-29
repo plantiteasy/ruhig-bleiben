@@ -1,0 +1,4 @@
+{
+  "_hinweis": "Katalog der ladbaren Sprachen jenseits DE/RU (siehe tools/I18N.md). tools/i18n_build.js <code> trägt einen Sprachcode hier automatisch ein, sobald app/lang/<code>.js gebaut wurde. DE/RU stehen nicht hier - sie sind fest im Code (app.js T.de/T.ru).",
+  "codes": []
+}

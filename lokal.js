@@ -95,6 +95,9 @@ window.RB.lokal = {
 /* ---------- Logik: naechster Notdienst, Land-Fallbacks, Satz-Bausteine (Aufruf aus app.js) ---------- */
 (function () {
   "use strict";
+  // Lr(lang, de, ru, id): dünner Zugriff auf window.RB.i18nLr (app/i18n-runtime.js) - "de" bei fehlendem Runtime-Modul
+  // (defensiv, i18n-runtime.js lädt normalerweise vor lokal.js, siehe index.html/sw.js).
+  function Lr(lang, de, ru, id) { return window.RB.i18nLr ? window.RB.i18nLr(lang, de, ru, id) : (lang === "ru" ? ru : de); }
 
   function haversineKm(lat1, lon1, lat2, lon2) {
     var R = 6371, rad = Math.PI / 180;
@@ -130,48 +133,50 @@ window.RB.lokal = {
     return /rund um die uhr|24\s*h|24 stunden|0-24|durchgehend/.test(s);
   }
   function zeitenKurz(e, lang) {
-    if (istRundUmDieUhr(e && e.zeiten)) return lang === "ru" ? "круглосуточно" : "rund um die Uhr";
-    return lang === "ru" ? "только вечером/выходные" : "nur abends/Wochenende";
+    if (istRundUmDieUhr(e && e.zeiten)) return Lr(lang, "rund um die Uhr", "круглосуточно", "lokal.zeiten_kurz.rund");
+    return Lr(lang, "nur abends/Wochenende", "только вечером/выходные", "lokal.zeiten_kurz.teil");
   }
-  function stadtSatzteil(e, lang) { return lang === "ru" ? "город " + e.stadt : e.stadt; }
+  function stadtSatzteil(e, lang) { return Lr(lang, "{x}", "город {x}", "lokal.stadt_satzteil").replace("{x}", e.stadt); }
   // Eine anzeigbare Zeile "Stadt, Zeiten: Nummer (Traeger)".
   function zeile(e, lang) { return stadtSatzteil(e, lang) + ", " + zeitenKurz(e, lang) + ": " + e.tel + (e.traeger ? " (" + e.traeger + ")" : ""); }
 
-  function fallbackSatz(lang) { return lang === "ru" ? window.RB.lokal.notdienst_fallback.ru : window.RB.lokal.notdienst_fallback.de; }
+  function fallbackSatz(lang) { return Lr(lang, window.RB.lokal.notdienst_fallback.de, window.RB.lokal.notdienst_fallback.ru, "lokal.notdienst_fallback"); }
 
   // Tipp-Zeile fuer festnahme.doo (ein Listenpunkt, ersetzt die BW-Zeile "Anwaltsnotdienst Stuttgart ...").
   function tippZeile(info, lang) {
     if (info.mode === "fallback") return fallbackSatz(lang);
     var e = hauptEntry(info);
-    if (istStandard(e)) return lang === "ru" ? "Дежурный адвокат в Штутгарте, круглосуточно: 0711 998 899 66." : "Anwaltsnotdienst Stuttgart, rund um die Uhr: 0711 998 899 66.";
+    if (istStandard(e)) return Lr(lang, "Anwaltsnotdienst Stuttgart, rund um die Uhr: 0711 998 899 66.", "Дежурный адвокат в Штутгарте, круглосуточно: 0711 998 899 66.", "lokal.tipp_zeile.standard");
     var items = info.mode === "nearest" ? [e] : info.items;
-    var pref = lang === "ru" ? "Дежурный адвокат: " : "Anwaltsnotdienst: ";
+    var pref = Lr(lang, "Anwaltsnotdienst: ", "Дежурный адвокат: ", "lokal.tipp_zeile.pref");
     return pref + items.map(function (x) { return zeile(x, lang); }).join("; ") + ".";
   }
 
   // Volltext fuer die Karte "Sofort einen Anwalt" (k-notdienst).
   function textK(info, lang) {
-    var recht = lang === "ru"
-      ? " Полиция обязана помочь тебе связаться с адвокатом. Можно попросить назначить защитника; самое позднее перед судьёй по аресту его назначат. Если тебя осудят, расходы обычно платишь сам."
-      : " Die Polizei muss dir helfen, einen Anwalt zu erreichen. Einen Pflichtverteidiger kannst du beantragen; spätestens vor dem Haftrichter bekommst du einen. Wirst du verurteilt, trägst du die Kosten meist selbst.";
+    var recht = Lr(lang,
+      " Die Polizei muss dir helfen, einen Anwalt zu erreichen. Einen Pflichtverteidiger kannst du beantragen; spätestens vor dem Haftrichter bekommst du einen. Wirst du verurteilt, trägst du die Kosten meist selbst.",
+      " Полиция обязана помочь тебе связаться с адвокатом. Можно попросить назначить защитника; самое позднее перед судьёй по аресту его назначат. Если тебя осудят, расходы обычно платишь сам.",
+      "lokal.text_k.recht");
     if (info.mode === "fallback") return fallbackSatz(lang) + recht;
     var e = hauptEntry(info);
     if (istStandard(e)) {
-      return (lang === "ru"
-        ? "Дежурные адвокаты по уголовным делам в Штутгарте, круглосуточно: 0711 998 899 66 (AnwaltVerein Stuttgart)."
-        : "Anwaltlicher Notdienst für Strafsachen in Stuttgart, rund um die Uhr: 0711 998 899 66 (AnwaltVerein Stuttgart).") + recht;
+      return Lr(lang,
+        "Anwaltlicher Notdienst für Strafsachen in Stuttgart, rund um die Uhr: 0711 998 899 66 (AnwaltVerein Stuttgart).",
+        "Дежурные адвокаты по уголовным делам в Штутгарте, круглосуточно: 0711 998 899 66 (AnwaltVerein Stuttgart).",
+        "lokal.text_k.standard") + recht;
     }
     var items = info.mode === "nearest" ? [e] : info.items;
-    var lead = lang === "ru" ? "Дежурные адвокаты по уголовным делам: " : "Anwaltlicher Notdienst für Strafsachen: ";
+    var lead = Lr(lang, "Anwaltlicher Notdienst für Strafsachen: ", "Дежурные адвокаты по уголовным делам: ", "lokal.text_k.lead");
     return lead + items.map(function (x) { return zeile(x, lang); }).join("; ") + "." + recht;
   }
 
   // Sag-Satz fuer k-notdienst - ohne bekannte Nummer entfaellt der Nummer-Teil (Fallback-Satz stattdessen).
   function sagSatz(info, lang) {
-    var basis = lang === "ru" ? "Я хочу сразу адвоката." : "Ich will sofort einen Anwalt.";
+    var basis = Lr(lang, "Ich will sofort einen Anwalt.", "Я хочу сразу адвоката.", "lokal.sag_satz.basis");
     if (info.mode === "fallback") return basis + " " + fallbackSatz(lang);
     var e = hauptEntry(info);
-    return basis + " " + (lang === "ru" ? "Позвоните, пожалуйста, в дежурную адвокатскую службу: " + e.tel + "." : "Bitte rufen Sie den Anwaltlichen Notdienst an: " + e.tel + ".");
+    return basis + " " + Lr(lang, "Bitte rufen Sie den Anwaltlichen Notdienst an: {x}.", "Позвоните, пожалуйста, в дежурную адвокатскую службу: {x}.", "lokal.sag_satz.bitte").replace("{x}", e.tel);
   }
 
   function stadtLabel(info, lang) {
@@ -181,14 +186,14 @@ window.RB.lokal = {
     return e.stadt;
   }
   function titel(info, lang) {
-    if (info.mode === "fallback") return lang === "ru" ? "Срочно адвокат" : "Sofort einen Anwalt";
+    if (info.mode === "fallback") return Lr(lang, "Sofort einen Anwalt", "Срочно адвокат", "lokal.titel.fallback");
     var e = hauptEntry(info);
-    if (istStandard(e)) return lang === "ru" ? "Срочно адвокат — дежурная служба Штутгарта" : "Sofort einen Anwalt – Notdienst Stuttgart";
-    return (lang === "ru" ? "Срочно адвокат" : "Sofort einen Anwalt") + " (" + stadtLabel(info, lang) + ")";
+    if (istStandard(e)) return Lr(lang, "Sofort einen Anwalt – Notdienst Stuttgart", "Срочно адвокат — дежурная служба Штутгарта", "lokal.titel.standard");
+    return Lr(lang, "Sofort einen Anwalt", "Срочно адвокат", "lokal.titel.default") + " (" + stadtLabel(info, lang) + ")";
   }
   function toneLabel(info, lang) {
-    if (info.mode === "fallback") return lang === "ru" ? "Твоё право" : "Dein Recht";
-    return lang === "ru" ? "Круглосуточно" : "Rund um die Uhr";
+    if (info.mode === "fallback") return Lr(lang, "Dein Recht", "Твоё право", "lokal.tone_label.fallback");
+    return Lr(lang, "Rund um die Uhr", "Круглосуточно", "lokal.tone_label.default");
   }
   function telE164(info) { if (info.mode === "fallback") return null; var e = hauptEntry(info); return e.tel_e164 || null; }
   // Kurztext fuer die Kontrolle-Hinweiszeile (kontrolle.js hinweis.filme): BW-Standard bleibt "0711 998 899 66" ohne Stadt-Praefix.
@@ -226,9 +231,7 @@ window.RB.lokal = {
   function bpolHinweis(lang) {
     var b = window.RB.lokal.beschwerde && window.RB.lokal.beschwerde.BPOL;
     if (!b || !b.geprueft) return "";
-    return lang === "ru"
-      ? "При федеральной полиции (вокзал, поезд, аэропорт): " + b.name + "."
-      : "Bei der Bundespolizei (Bahnhof, Zug, Flughafen): " + b.name + ".";
+    return Lr(lang, "Bei der Bundespolizei (Bahnhof, Zug, Flughafen): {x}.", "При федеральной полиции (вокзал, поезд, аэропорт): {x}.", "lokal.bpol_hinweis").replace("{x}", b.name);
   }
 
   window.RB.lokal.notdienstInfo = notdienstInfo;

@@ -24,7 +24,8 @@
   <div class="head-r">
     <div class="lang" role="group" aria-label="Sprache · Язык">
       <button type="button" class="lang-b" data-ui="de" aria-pressed="true" lang="de" translate="no">DE</button>
-      <button type="button" class="lang-b" data-ui="ru" aria-pressed="false" lang="ru">RU</button>
+      <button type="button" class="lang-b lang-2nd" data-ui="ru" aria-pressed="false" lang="ru">RU</button>
+      <button type="button" class="lang-b lang-more" id="lang-more-head" aria-haspopup="dialog" data-t-aria="lang_more">⋯</button>
     </div>
     <button class="btn inst" type="button" data-install data-t="install" hidden>Installieren</button>
   </div>
@@ -113,7 +114,7 @@
     <p class="lead" data-t="einr_lead">Einmal jetzt in Ruhe – dann reicht im Ernstfall ein Tipp.</p>
     <ol class="einr">
       <li><p class="einr-t" data-t="einr_1">Sprache der App</p>
-        <div class="seg" role="group" id="einr-lang"><button type="button" class="seg-b lang-b" data-ui="de" lang="de">Deutsch</button><button type="button" class="seg-b lang-b" data-ui="ru" lang="ru">Русский</button></div></li>
+        <div class="seg" role="group" id="einr-lang"><button type="button" class="seg-b lang-b" data-ui="de" lang="de">Deutsch</button><button type="button" class="seg-b lang-b lang-2nd" data-ui="ru" lang="ru">Русский</button><button type="button" class="seg-b lang-b lang-more" data-t="lang_more">Mehr Sprachen</button></div></li>
       <li><p class="einr-t" data-t="einr_2">Meistens bin ich</p><div class="seg k-role" role="group" id="einr-role"></div></li>
       <li><p class="einr-t" data-t="einr_4">Auf den Startbildschirm</p>
         <button class="btn primary" type="button" data-install data-t="install_app" hidden>App installieren</button>
@@ -385,7 +386,16 @@
   <button class="btn big-speak" type="button" id="big-speak" data-t="big_speak" hidden>Vorlesen (Deutsch)</button>
 </div>
 
+<dialog class="lang-dialog" id="lang-dialog" aria-labelledby="lang-dialog-h">
+  <div class="lang-dialog-head">
+    <p id="lang-dialog-h" data-t="lang_dialog_h">Sprache wählen</p>
+    <button type="button" class="btn lang-dialog-x" data-lang-close data-t-aria="lang_dialog_close" aria-label="Schließen">✕</button>
+  </div>
+  <div class="lang-dialog-list" id="lang-dialog-list"></div>
+</dialog>
+
 <script src="data.js"></script>
+<script src="i18n-runtime.js"></script>
 <script src="laender.js"></script>
 <script src="land-texte.js"></script>
 <script src="lokal.js"></script>
@@ -393,6 +403,18 @@
 <script src="kontrolle.js"></script>
 <script src="phasen.js"></script>
 <script src="tresor.js"></script>
+<script>
+// Zuletzt gewählte Sprache jenseits DE/RU (app/lang/<code>.js) synchron nachladen, BEVOR app.js läuft: Beim
+// nächsten Öffnen ist sie sofort da (Service-Worker-Cache oder Netz), kein leerer Bildschirm/kein Sprachsprung.
+// document.write während des Parsens blockiert wie ein normales <script>-Tag - offline ohne Cache-Treffer
+// schlägt der Request fehl und app.js läuft trotzdem (Fallback: Deutsch, siehe app/i18n-runtime.js).
+(function () {
+  try {
+    var u = localStorage.getItem("rb-ui-v1");
+    if (u && u !== "de" && u !== "ru" && /^[a-z-]{2,12}$/.test(u)) document.write('<script src="lang/' + u + '.js"><\/script>');
+  } catch (e) {}
+})();
+</script>
 <script src="app.js"></script>
 </body>
 </html>
