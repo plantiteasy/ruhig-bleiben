@@ -5,8 +5,8 @@
    keine neue Rechtsaussage. detail = erste Antwort-ID aus den „details" des Prototyps (siehe quick.js/kontrolle.js).
    Beifahrer/Zu Fuß/Rad (28.09.2026): Sätze = Kurzfassungen („kurz“) der geprüften Antworten aus kontrolle.js/quick.js;
    tipp/nicht nur Verhaltenshinweise, die sich aus diesen Antworten ergeben.
-   Stimmen (29.09.2026): _b = ElevenLabs „George“ (eleven_v3), _c = ElevenLabs „Charlotte“ (eleven_multilingual_v2),
-   jede Datei per Whisper Wort für Wort gegen den Satz geprüft; Polizist im Trainer (cop-*.mp3): Gemini „Orus“.
+   Stimmen: _b = Gemini „Charon“ (Mann), _c = Gemini „Sulafat“ (Frau), Polizist im Trainer (cop-*.mp3) = Gemini „Orus“.
+   ElevenLabs (George/Charlotte) am 29.09.2026 probiert – Denis bleibt bei den kostenlosen Gemini-Stimmen.
    Noch nicht anwaltlich geprüft. */
 window.RB = window.RB || {};
 window.RB.phasen = {
