@@ -454,7 +454,7 @@ window.RB = {
         "Nicht „nur kurz erklären“ – jede Erklärung ist eine Aussage."
       ],
       law: "Art. 104 GG · §§ 114b, 114c, 128, 163c StPO · § 187 GVG · § 33 PolG BW",
-      actions: ["tel:+4971199889966", "qh", "protokoll"],
+      actions: ["tel:notdienst", "qh", "protokoll"],
       ru: {
         title: "Задержание или участок", sub: "Тебя забирают", toneLabel: "Твои права",
         doo: ["Сохраняй спокойствие, не сопротивляйся.",

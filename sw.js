@@ -1,5 +1,5 @@
-var CACHE = "rb-v40";
-var FILES = ["./", "index.html", "styles.css", "data.js", "laender.js", "land-texte.js", "quick.js", "kontrolle.js", "phasen.js", "tresor.js", "app.js", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png",
+var CACHE = "rb-v41";
+var FILES = ["./", "index.html", "styles.css", "data.js", "laender.js", "land-texte.js", "lokal.js", "quick.js", "kontrolle.js", "phasen.js", "tresor.js", "app.js", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png",
   "audio/s-anordnung_b.mp3", "audio/s-anordnung_c.mp3", "audio/s-aussteigen_b.mp3", "audio/s-aussteigen_c.mp3", "audio/s-durchsuchung_b.mp3", "audio/s-durchsuchung_c.mp3",
   "audio/s-ende_b.mp3", "audio/s-ende_c.mp3", "audio/s-grundlage_b.mp3", "audio/s-grundlage_c.mp3", "audio/s-handy_b.mp3", "audio/s-handy_c.mp3",
   "audio/s-papiere_b.mp3", "audio/s-papiere_c.mp3", "audio/s-start_b.mp3", "audio/s-start_c.mp3", "audio/s-test_b.mp3", "audio/s-test_c.mp3",

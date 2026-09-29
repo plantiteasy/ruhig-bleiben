@@ -113,11 +113,14 @@
       l_missing: "Vor dem Senden noch ausfüllen: {x}.", l_cyr: "Der Brief geht an deutsche Behörden: Ort und Name in lateinischen Buchstaben, die Schilderung auf Deutsch.",
       qh_h: "Polizei sagt … – deine Antwort", qh_lead: "Antippen: Der Satz erscheint groß mit Paragraf. Läuft die Aufnahme, ist alles drauf, was gesagt wird.",
       qh_top: "Wichtigste", v_musst: "Pflicht – mitmachen", v_musst_nicht: "Musst du nicht", v_darf_nicht: "Darf die Polizei nicht", v_kommt_drauf_an: "Kommt drauf an",
-      dl_bc_over: "Frist vorbei – Aufnahmen sind wahrscheinlich gelöscht. Trotzdem schicken und Anwalt fragen.", act_notdienst: "Anwaltsnotdienst Stuttgart anrufen", alt_more: "Öffnen",
+      dl_bc_over: "Frist vorbei – Aufnahmen sind wahrscheinlich gelöscht. Trotzdem schicken und Anwalt fragen.", act_notdienst: "Anwaltsnotdienst Stuttgart anrufen", act_notdienst_stadt: "Anwaltsnotdienst {x} anrufen", alt_more: "Öffnen",
       copied: "Kopiert", copy_fail: "Kopieren ging nicht – bitte „Teilen“ nutzen", geo_na: "Standort ist hier nicht verfügbar", geo_fail: "Standort nicht gefunden. Draußen noch einmal versuchen.",
       fristen_h: "Fristen", briefe_h: "Briefe",
       dl_proto: "Gedächtnisprotokoll", dl_proto_d: "am selben Tag – {x}", dl_bc: "Bodycam-Sicherung beantragen", dl_bc_d: "sofort; gelöscht wird spätestens am {x}",
-      dl_bb: "Bürgerbeauftragte BW", dl_bb_d: "bis {x}, nicht parallel zu einem Straf- oder Gerichtsverfahren", dl_anwalt: "Anwalt", dl_anwalt_d: "vor jeder Beschwerde oder Anzeige sprechen",
+      dl_bb: "Bürgerbeauftragte BW", dl_bb_d: "bis {x}, nicht parallel zu einem Straf- oder Gerichtsverfahren",
+      dl_bb_land: "Keine feste Fristzahl geprüft – Frist bei der Stelle erfragen.", dl_bb_generic: "Beschwerdestelle der Polizei", dl_bb_generic_d: "zuständiges Polizeipräsidium deines Landes; keine Fristzahl bekannt.",
+      dl_anwalt: "Anwalt", dl_anwalt_d: "vor jeder Beschwerde oder Anzeige sprechen",
+      brief_praes_hint: "Adresse deines zuständigen Polizeipräsidiums eintragen.", brief_beschwerde_land: "Beschwerdestelle: {x}.", brief_beschwerde_generic: "Wende dich an die Beschwerdestelle der Polizei deines Landes bzw. das zuständige Polizeipräsidium.",
       left_over: "abgelaufen", left_today: "heute", left_1: "noch 1 Tag", left_n: "noch {x} Tage",
       l_to: "An:", l_copy: "Kopieren", l_mail: "In Mail öffnen",
       wissen_h: "Wissen", w_label: "Wissen durchsuchen", w_ph: "Suchen: pusten, Ausweis, filmen …", w_cats: "Themen", w_all: "Alle",
@@ -245,11 +248,14 @@
       l_missing: "Перед отправкой заполни: {x}.", l_cyr: "Письмо уйдёт в немецкие органы: место и имя латиницей, как в паспорте, описание — по-немецки (переключи «Диктовка по-немецки»).",
       qh_h: "Полиция говорит … — твой ответ", qh_lead: "Нажми: фраза появится крупно с параграфом. Если идёт запись, всё сказанное попадёт на неё.",
       qh_top: "Главное", v_musst: "Обязан — выполни", v_musst_nicht: "Не обязан", v_darf_nicht: "Полиции нельзя", v_kommt_drauf_an: "Зависит",
-      dl_bc_over: "Срок прошёл — записи, скорее всего, удалены. Всё равно отправь и спроси адвоката.", act_notdienst: "Позвонить дежурному адвокату (Штутгарт)", alt_more: "Открыть",
+      dl_bc_over: "Срок прошёл — записи, скорее всего, удалены. Всё равно отправь и спроси адвоката.", act_notdienst: "Позвонить дежурному адвокату (Штутгарт)", act_notdienst_stadt: "Позвонить дежурному адвокату ({x})", alt_more: "Открыть",
       copied: "Скопировано", copy_fail: "Скопировать не удалось — нажми «Поделиться»", geo_na: "Местоположение здесь недоступно", geo_fail: "Место не найдено. Попробуй ещё раз на улице.",
       fristen_h: "Сроки", briefe_h: "Письма",
       dl_proto: "Протокол по памяти", dl_proto_d: "в тот же день — {x}", dl_bc: "Попросить сохранить записи камер", dl_bc_d: "сразу; удалят не позже {x}",
-      dl_bb: "Уполномоченная по делам граждан BW", dl_bb_d: "до {x}, не параллельно с уголовным делом или судом", dl_anwalt: "Адвокат", dl_anwalt_d: "поговорить до любой жалобы или заявления",
+      dl_bb: "Уполномоченная по делам граждан BW", dl_bb_d: "до {x}, не параллельно с уголовным делом или судом",
+      dl_bb_land: "Точный срок не проверен — уточни его у этой инстанции.", dl_bb_generic: "Жалобная инстанция полиции", dl_bb_generic_d: "соответствующее управление полиции твоей земли; срок неизвестен.",
+      dl_anwalt: "Адвокат", dl_anwalt_d: "поговорить до любой жалобы или заявления",
+      brief_praes_hint: "Впиши адрес своего управления полиции.", brief_beschwerde_land: "Жалобная инстанция: {x}.", brief_beschwerde_generic: "Обратись в жалобную инстанцию полиции твоей земли либо в соответствующее управление полиции.",
       left_over: "срок истёк", left_today: "сегодня",
       l_to: "Кому:", l_copy: "Копировать", l_mail: "Открыть в почте",
       wissen_h: "Знания", w_label: "Поиск по знаниям", w_ph: "Поиск: дуть, паспорт, снимать …", w_cats: "Темы", w_all: "Все",
@@ -299,8 +305,13 @@
   /* ---------- Bundesland: automatisch per Standort (offline), manuell änderbar (app/laender.js) ----------
      Quelldaten in quick.js/kontrolle.js/phasen.js/data.js bleiben Baden-Württemberg; hier nur Anzeige-Ersetzung. */
   var RBL = window.RB && window.RB.laender;
+  var RBLok = window.RB && window.RB.lokal;
   function currentLand() { return RBL ? RBL.aktuellesLand() : "BW"; }
   function landLang() { return UI === "ru" ? "ru" : "de"; }
+  // Standort fuer ortsbezogene Inhalte (app/lokal.js: naechster Notdienst) - NUR wenn die Geo-Erlaubnis schon erteilt
+  // ist (siehe landAutoErkennen unten), bleibt rein lokal im Speicher, wird nie extra abgefragt und nie gesendet.
+  var lastCoords = null;
+  function currentCoords() { return lastCoords; }
   // Ersetzt BW-Paragrafen im angezeigten Text durch die Norm des gewählten Landes (id: Antwort-ID, für den Zahlen-Hinweis).
   function LT(text) { return RBL ? RBL.ersetzeNormen(text, currentLand(), landLang()) : text; }
   // Gesprochene Sätze und Briefe: Landesnorm statt BW-Norm, aber ohne Klammer-Hinweis.
@@ -342,6 +353,7 @@
     renderQuick(); renderKontrolle();
     if (currentView === "situation") route();
     if (currentView === "einrichten") renderLandSelect();
+    if (currentView === "danach") { renderDeadlines(); renderLetters(); } // Notdienst/Beschwerdestelle/Brief-Adresse (app/lokal.js) ortsbezogen
     if ($("answers") && $("answers").innerHTML && $("ask-input").value.trim()) renderAnswers($("ask-input").value.trim());
   }
   // Land nur automatisch erkennen, wenn die Standort-Berechtigung schon erteilt ist (nie extra danach fragen) – Ergebnis
@@ -350,6 +362,7 @@
     if (!RBL || !navigator.geolocation) return;
     var run = function () {
       navigator.geolocation.getCurrentPosition(function (pos) {
+        lastCoords = { lat: pos.coords.latitude, lon: pos.coords.longitude };
         var code = RBL.erkenneLand(pos.coords.latitude, pos.coords.longitude);
         if (code) { var changed = RBL.autoLand() !== code; RBL.setAutoLand(code); if (changed && !RBL.wahl()) applyLand(); else if (!RBL.wahl()) syncLandBadges(); }
         if (currentView === "einrichten") renderLandSelect();
@@ -403,7 +416,7 @@
     if (h.indexOf("tresor=") === 0) { trPrefill = decodeURIComponent(h.slice(7)); h = "tresor"; }
     if (h.indexOf("s/") === 0) { var s = findSituation(h.slice(2)); if (s) { renderSituation(s); show("situation"); return; } }
     var v = views.indexOf(h) > -1 && h !== "situation" ? h : "jetzt";
-    if (v === "danach") { refreshProtoNow(); syncOrtGeoHint(); }
+    if (v === "danach") { refreshProtoNow(); syncOrtGeoHint(); renderDeadlines(); renderLetters(); } // Fristen/Brief-Adresse (app/lokal.js) beim Öffnen immer aktuell zum Land
     if (v === "kontrolle" && !(history.state && history.state.rbK)) hideK(); // neu geöffnet: Knöpfe, nicht die alte Antwort
     if (v === "einrichten") renderEinrichten();
     if (v === "aufnahme") renderTrCard();
@@ -446,6 +459,13 @@
       if (a === "consent") return '<a class="btn" href="#aufnahme" data-act="consent">' + esc(t("act_consent")) + "</a>";
       if (a === "protokoll") return '<a class="btn" href="#danach">' + esc(t("act_proto")) + "</a>";
       if (a === "qh") return '<a class="btn" href="#aufnahme" data-act="qh">' + esc(t("act_qh")) + "</a>";
+      // Anwaltsnotdienst ortsbezogen (app/lokal.js): kein bekannter Notdienst im aktuellen Land -> kein Knopf, stattdessen der Fallback-Satz im Text.
+      if (a === "tel:notdienst") {
+        var ndInfo = RBLok ? RBLok.notdienstInfo(currentLand(), currentCoords()) : { mode: "fallback" };
+        var ndTel = RBLok ? RBLok.notdienstTelE164(ndInfo) : null;
+        if (!ndTel) return "";
+        return '<a class="btn primary" href="tel:' + esc(ndTel) + '">' + esc(t("act_notdienst_stadt", RBLok.notdienstKnopfStadt(ndInfo, landLang()))) + "</a>";
+      }
       if (a.indexOf("tel:") === 0) return '<a class="btn primary" href="' + esc(a) + '">' + esc(t("act_notdienst")) + "</a>";
       if (a.indexOf("situation:") === 0) { var sit = findSituation(a.slice(10)); return sit ? '<a class="btn" href="#s/' + sit.id + '">' + esc(L(sit, "title")) + "</a>" : ""; }
       return "";
@@ -454,7 +474,20 @@
   function fdBox(list) {
     return list.length ? '<div class="fd-box"><div class="fd-head"><p class="block-t">' + esc(t("fd_h")) + '</p><a class="fd-edit" href="#profil">' + esc(t("fd_edit")) + "</a></div>" + list.map(noteHTML).join("") + "</div>" : "";
   }
+  // doo/dont ortsbezogen anpassen (app/lokal.js): festnahme[3] bekommt den dynamischen Notdienst, Stuttgart-spezifische
+  // Zeilen ("Stuttgart: ...") entfallen außerhalb BW, "in der Stuttgarter Waffenverbotszone" wird verallgemeinert.
+  function situationListe(s, field, land) {
+    var list = (L(s, field) || []).slice();
+    if (s.id === "festnahme" && field === "doo" && RBLok) {
+      var info = RBLok.notdienstInfo(land, currentCoords());
+      list[3] = RBLok.notdienstTippZeile(info, landLang());
+      return list;
+    }
+    if (!land || land === "BW") return list;
+    return list.filter(function (x) { return !/^(Stuttgart|Штутгарт):/.test(x); }).map(function (x) { return RBLok ? RBLok.wvzGeneric(x) : x; });
+  }
   function situationHTML(s, compact, noHead) {
+    var land = currentLand();
     var note = L(s, "note"), mine = profileNotes().filter(function (n) { return n.sits.indexOf(s.id) > -1; });
     // Dringendes (rot/gelb) über „Sag“, reine Info erst unter „Lass“ – die Sätze sollen ohne Scrollen sichtbar bleiben.
     var urgent = mine.filter(function (n) { return n.lv !== "info"; }), info = mine.filter(function (n) { return n.lv === "info"; });
@@ -462,8 +495,8 @@
       (noHead ? "" : '<button type="button" class="land-badge">' + esc(landBadgeText()) + "</button>") +
       fdBox(urgent) +
       '<div class="block"><p class="block-t say">' + esc(t("b_say")) + "</p>" + sayButtons(s.say) + "</div>" +
-      '<div class="block"><p class="block-t do">' + esc(t("b_do")) + '</p><ul class="pts">' + L(s, "doo").map(function (x) { return "<li>" + telLinks(esc(x)) + "</li>"; }).join("") + "</ul></div>" +
-      '<div class="block"><p class="block-t dont">' + esc(t("b_dont")) + '</p><ul class="pts">' + L(s, "dont").map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" +
+      '<div class="block"><p class="block-t do">' + esc(t("b_do")) + '</p><ul class="pts">' + situationListe(s, "doo", land).map(function (x) { return "<li>" + telLinks(esc(x)) + "</li>"; }).join("") + "</ul></div>" +
+      '<div class="block"><p class="block-t dont">' + esc(t("b_dont")) + '</p><ul class="pts">' + situationListe(s, "dont", land).map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" +
       fdBox(info) +
       (note ? '<p class="note">' + esc(note) + "</p>" : "") +
       '<p class="law" lang="de" translate="no">' + esc(LT(s.law)) + "</p>" +
@@ -617,9 +650,36 @@
   }
   // Telefonnummern (0711 …) antippbar machen – im Stress abtippen klappt nicht.
   function telLinks(html) { return html.replace(/(?:\+49|\b0)\d{2,4}(?: ?\d{2,4}){2,4}\b/g, function (m) { return '<a href="tel:' + m.replace(/ /g, "") + '">' + m + "</a>"; }); }
+  // "Sofort einen Anwalt" (k-notdienst): Titel/Text/Sag-Satz/Gesetz ortsbezogen aus app/lokal.js statt der BW-Festwerte.
+  function notdienstCardHTML(c, noHead, land) {
+    var info = RBLok.notdienstInfo(land, currentCoords()), lang = landLang();
+    var title = RBLok.notdienstTitel(info, lang), tone = RBLok.notdienstToneLabel(info, lang), text = RBLok.notdienstTextK(info, lang);
+    var law = "§§ 136, 140, 141 StPO" + (RBLok.notdienstLawSuffix(info) ? " · " + RBLok.notdienstLawSuffix(info) : "");
+    var say = [[RBLok.notdienstSagSatz(info, "de"), RBLok.notdienstSagSatz(info, "ru")]];
+    var fb = info.mode === "fallback" && window.RB.lokal.notdienst_fallback;
+    var link = fb && fb.geprueft && fb.url ? '<p class="hint"><a href="' + esc(fb.url) + '" target="_blank" rel="noopener">' + esc(fb.name) + "</a></p>" : "";
+    return (noHead ? "" : '<div class="w-head"><h3>' + esc(title) + '</h3><span class="pill ' + c.tone + '">' + esc(tone) + "</span></div>") +
+      "<p>" + telLinks(esc(text)) + "</p>" + link + sayButtons(say) + '<p class="law" lang="de" translate="no">' + esc(LT(law)) + "</p>";
+  }
+  // "Messer in Stuttgart" (k-messer) außerhalb BW: generisch, nur bundesrechtlicher Inhalt der schon in der App steht
+  // (§ 42 Abs. 5, § 42c WaffG - Zonen, die Länder bzw. Städte festlegen); nichts Neues behauptet, nur weggelassen/verallgemeinert.
+  function messerGenericHTML(c, noHead) {
+    var lang = landLang();
+    var title = lang === "ru" ? "Ножи и зоны запрета оружия" : "Messer und Waffenverbotszonen";
+    var tone = lang === "ru" ? "Зависит" : "Kommt drauf an";
+    var text = lang === "ru"
+      ? "По всей Германии города и земли могут устанавливать зоны запрета оружия (§ 42 Abs. 5, § 42c WaffG); там возможны проверки и без подозрения. Исключение: рабочий инструмент в закрытой упаковке, не под рукой — например, в закрытом ящике для инструментов. При проверке сразу скажи, где лежит нож."
+      : "Bundesweit können Städte und Länder Waffenverbotszonen festlegen (§ 42 Abs. 5, § 42c WaffG); dort sind Kontrollen auch ohne Verdacht möglich. Ausnahme: Werkzeug für den Beruf, verschlossen verpackt und nicht griffbereit – etwa im geschlossenen Werkzeugkoffer. Bei einer Kontrolle vorher sagen, wo das Messer steckt.";
+    return (noHead ? "" : '<div class="w-head"><h3>' + esc(title) + '</h3><span class="pill warn">' + esc(tone) + "</span></div>") +
+      "<p>" + telLinks(esc(text)) + "</p>" + '<p class="law" lang="de" translate="no">' + esc(LT("§§ 42, 42a, 42c WaffG")) + "</p>";
+  }
   function cardHTML(c, noHead) {
+    var land = currentLand();
+    if (c.id === "k-notdienst" && RBLok) return notdienstCardHTML(c, noHead, land);
+    if (c.id === "k-messer" && land && land !== "BW") return messerGenericHTML(c, noHead);
+    var text = land && land !== "BW" && RBLok ? RBLok.wvzGeneric(L(c, "text")) : L(c, "text");
     return (noHead ? "" : '<div class="w-head"><h3>' + esc(L(c, "title")) + '</h3><span class="pill ' + c.tone + '">' + esc(L(c, "toneLabel")) + "</span></div>") +
-      "<p>" + telLinks(esc(L(c, "text"))) + "</p>" + (c.say ? sayButtons(c.say) : "") + '<p class="law" lang="de" translate="no">' + esc(LT(c.law)) + "</p>";
+      "<p>" + telLinks(esc(text)) + "</p>" + (c.say ? sayButtons(c.say) : "") + '<p class="law" lang="de" translate="no">' + esc(LT(c.law)) + "</p>";
   }
   // Antwort aus der Schnellhilfe (Polizei sagt → Antwort mit §), wenn keine Karte passt – z. B. „Steigen Sie aus“.
   function quickAnsHTML(q) {
@@ -1137,7 +1197,19 @@
   function ownRole() { var r = lsGet(LS_KROLE); return r && r !== "filme" && D.kontrolle && D.kontrolle.buttons[r] ? r : "fahrer"; }
   var K = D.kontrolle || null, LS_KROLE = "rb-k-rolle-v1", LS_KTEST = "rb-test-mithoeren", kRole = ownRole(), kCur = null, kSaved = false;
   if (K && !K.buttons[kRole]) kRole = "fahrer";
-  function qById(id) { var Q = D.quick || []; for (var i = 0; i < Q.length; i++) if (Q[i].id === id) return Q[i]; return null; }
+  // Waffenverbotszone außerhalb BW: die Stuttgart-spezifische Zeit-/Orts-Erklärung und die WMVZ-VO-Stuttgart-Norm
+  // entfallen (nur bundesrechtlicher § 42c/§ 42 Abs. 5 WaffG-Inhalt bleibt) - nichts Neues behauptet, nur weggelassen.
+  function adjustQuick(q) {
+    if (q.id !== "person-waffenverbotszone" || !RBLok) return q;
+    var land = currentLand();
+    if (!land || land === "BW") return q;
+    var q2 = JSON.parse(JSON.stringify(q));
+    q2.why = RBLok.wvzGeneric(q2.why);
+    q2.law = "§ 42c WaffG · § 42 Abs. 5 WaffG · § 113 StGB";
+    if (q2.ru) q2.ru.why = RBLok.wvzGeneric(q2.ru.why);
+    return q2;
+  }
+  function qById(id) { var Q = D.quick || []; for (var i = 0; i < Q.length; i++) if (Q[i].id === id) return adjustQuick(Q[i]); return null; }
   function syncKBar(clock) {
     if (!$("k-bar")) return;
     var on = !!(recState && recState.rec), wait = !!(recState && recState.pending);
@@ -1238,7 +1310,16 @@
     }).join("");
     var h = K.hinweis && K.hinweis[kRole];
     $("k-hint").hidden = !h;
-    if (h) $("k-hint").innerHTML = esc(UI === "ru" ? h.ru : h.de) + (h.tel ? ' <a href="tel:' + esc(h.tel) + '">' + esc(h.telText) + "</a>" : "");
+    if (h) {
+      var hTel = h.tel, hTelText = h.telText, hDe = h.de, hRu = h.ru;
+      // Notdienst-Nummer im Kontroll-Hinweis (Rolle "filme") ortsbezogen aus app/lokal.js statt der BW-Festnummer.
+      if (h.tel && RBLok) {
+        var ndInfo = RBLok.notdienstInfo(currentLand(), currentCoords());
+        hTel = RBLok.notdienstTelE164(ndInfo); hTelText = hTel ? RBLok.notdienstKurzText(ndInfo) : null;
+        if (!hTel) { hDe = h.de + " " + RBLok.notdienstTippZeile(ndInfo, "de"); hRu = h.ru + " " + RBLok.notdienstTippZeile(ndInfo, "ru"); }
+      }
+      $("k-hint").innerHTML = esc(UI === "ru" ? hRu : hDe) + (hTel ? ' <a href="tel:' + esc(hTel) + '">' + esc(hTelText) + "</a>" : "");
+    }
     // „Sagen“-Modus (Umschalter nur für Fahrer sichtbar): Phasen ersetzen Überschrift, Knopf-Raster und „Alle Antworten“
     var sagenOn = !!(PH && PH[kRole] && kModus === "sagen");
     $("k-modus").hidden = !(PH && PH[kRole]);
@@ -1797,12 +1878,22 @@
   function addDays(d, n) { var x = new Date(d); x.setDate(x.getDate() + n); return x; }
   function addMonths(d, n) { var x = new Date(d); var day = x.getDate(); x.setDate(1); x.setMonth(x.getMonth() + n); var last = new Date(x.getFullYear(), x.getMonth() + 1, 0).getDate(); x.setDate(Math.min(day, last)); return x; }
   function daysLeft(d) { var today = new Date(); today.setHours(0, 0, 0, 0); var x = new Date(d); x.setHours(0, 0, 0, 0); return Math.round((x - today) / 86400000); }
+  // Beschwerdefrist-Zeile ortsbezogen: BW/SH haben eine geprüfte Fristzahl (3 bzw. 12 Monate), sonst keine Fristzahl
+  // erfinden - nur die zuständige Stelle nennen (app/lokal.js).
+  function deadlineBB(d) {
+    var land = currentLand();
+    if (!land || land === "BW" || !RBLok) { var bb = addMonths(d, 3), nbb = daysLeft(bb); return [t("dl_bb"), t("dl_bb_d", fmtDate(bb) + " (" + leftText(nbb) + ")"), nbb]; }
+    var bi = RBLok.beschwerdeInfo(land), monate = bi ? RBLok.beschwerdeFristMonate(bi) : null;
+    if (bi && monate) { var bb2 = addMonths(d, monate), nbb2 = daysLeft(bb2); return [bi.name, t("dl_bb_d", fmtDate(bb2) + " (" + leftText(nbb2) + ")"), nbb2]; }
+    if (bi) return [bi.name, t("dl_bb_land"), null];
+    return [t("dl_bb_generic"), t("dl_bb_generic_d"), null];
+  }
   function renderDeadlines() {
-    var d = protoDateObj() || new Date(), bc = addDays(d, 28), bb = addMonths(d, 3), nbc = daysLeft(bc), nbb = daysLeft(bb);
+    var d = protoDateObj() || new Date(), bc = addDays(d, 28), nbc = daysLeft(bc);
     var items = [ // [Titel, Text, Tage bis Fristende oder null]
       [t("dl_proto"), t("dl_proto_d", fmtDate(d)), null],
       [t("dl_bc"), nbc < 0 ? t("dl_bc_over") : t("dl_bc_d", fmtDate(bc)) + " (" + leftText(nbc) + ")", nbc],
-      [t("dl_bb"), t("dl_bb_d", fmtDate(bb) + " (" + leftText(nbb) + ")"), nbb],
+      deadlineBB(d),
       [t("dl_anwalt"), t("dl_anwalt_d"), null]
     ];
     $("deadlines").innerHTML = items.map(function (x) {
@@ -1821,15 +1912,28 @@
     return LS(body.replace(/\{(\w+)\}/g, function (m, k) { return map[k] != null ? map[k] : m; }));
   }
   function renderLetters() {
-    var letters = D.letters, o = protoData(), miss = [], cyr = /[\u0400-\u04ff]/;
+    var letters = D.letters, o = protoData(), miss = [], cyr = /[\u0400-\u04ff]/, land = currentLand();
     if (!o.ort) miss.push(t("f_ort")); if (!o.name) miss.push(t("f_name"));
     var warn = (miss.length ? '<p class="field-msg">' + esc(t("l_missing", miss.join(", "))) + "</p>" : "") +
       (cyr.test(o.ort + o.beamte + o.name + o.ablauf) ? '<p class="field-msg">' + esc(t("l_cyr")) + "</p>" : "");
     $("letters").innerHTML = Object.keys(letters).map(function (k) {
-      var l = letters[k], text = fillLetter(l.body), isMail = l.to.indexOf("@") > -1;
-      var mail = isMail ? "mailto:" + l.to + "?subject=" + encodeURIComponent(l.title) + "&body=" + encodeURIComponent(text) : "";
-      return '<div class="letter"><h3>' + esc(L(l, "title")) + '</h3><p class="hint">' + esc(L(l, "hint")) + "</p>" + warn + "<p>" + esc(t("l_to")) + ' <span class="to">' + esc(l.to) + "</span>" +
-        (l.post ? '<br><span class="hint">' + esc(l.post) + "</span>" : "") + "</p>" +
+      var l = letters[k], text = fillLetter(l.body);
+      // Brief-Adressat au\u00dferhalb BW: die Stuttgarter Adresse wird nicht vorausgef\u00fcllt (app/lokal.js: praesidien/beschwerde je Land).
+      var to = l.to, post = l.post, hint = L(l, "hint");
+      if (land && land !== "BW" && RBLok) {
+        to = ""; post = "";
+        var pr = RBLok.praesidiumInfo(land);
+        hint = t("brief_praes_hint") + (pr ? " " + pr.url : "");
+        if (k === "beschwerde") {
+          var bi = RBLok.beschwerdeInfo(land);
+          hint = (bi ? t("brief_beschwerde_land", bi.name) : t("brief_beschwerde_generic")) + (pr ? " " + pr.url : "");
+        }
+        var bp = RBLok.bpolHinweis(landLang()); if (bp) hint += " " + bp;
+      }
+      var isMail = to.indexOf("@") > -1;
+      var mail = isMail ? "mailto:" + to + "?subject=" + encodeURIComponent(l.title) + "&body=" + encodeURIComponent(text) : "";
+      return '<div class="letter"><h3>' + esc(L(l, "title")) + '</h3><p class="hint">' + esc(hint) + "</p>" + warn +
+        (to ? "<p>" + esc(t("l_to")) + ' <span class="to">' + esc(to) + "</span>" + (post ? '<br><span class="hint">' + esc(post) + "</span>" : "") + "</p>" : "") +
         '<pre lang="de" translate="no">' + esc(text) + '</pre><div class="actions"><button class="btn primary" type="button" data-copy="' + k + '">' + esc(t("l_copy")) + "</button>" +
         (isMail ? '<a class="btn" href="' + mail + '">' + esc(t("l_mail")) + "</a>" : "") +
         '<button class="btn" type="button" data-sharel="' + k + '">' + esc(t("share")) + '</button></div><p class="hint" data-msg="' + k + '" aria-live="polite"></p></div>';
