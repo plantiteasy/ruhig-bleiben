@@ -512,10 +512,14 @@
       b.addEventListener("click", function () { location.hash = "#s/" + b.getAttribute("data-id"); });
     });
   }
-  function sayButtons(list) {
-    return (list || []).map(function (p) {
-      return '<button class="say-b" type="button" data-de="' + esc(LS(p[0])) + '" data-ru="' + esc(LS(p[1] || "")) + '"><span class="say-de" lang="de" translate="no">' + esc(LS(p[0])) +
-        '</span><span class="say-ru" lang="ru">' + esc(LS(p[1] || "")) + '</span><span class="say-tap">' + esc(t("tap")) + "</span></button>";
+  // idBase (z. B. "data.situations.festnahme.say"): Übersetzung des deutschen Satzes aus dem Sprachpaket (app/lang/<code>.js);
+  // bei DE/RU wie bisher das Paar aus data.js. Fehlt die Übersetzung, bleibt nur der deutsche Satz – nie Russisch für andere Sprachen.
+  function sayButtons(list, idBase) {
+    return (list || []).map(function (p, i) {
+      var tr = UI === "ru" ? (p[1] || "") : UI === "de" ? (p[1] || "") : (idBase && window.RB.i18nGet ? window.RB.i18nGet(UI, idBase + "." + i) || "" : "");
+      var tl = UI === "de" ? "ru" : UI;
+      return '<button class="say-b" type="button" data-de="' + esc(LS(p[0])) + '" data-ru="' + esc(LS(tr)) + '"><span class="say-de" lang="de" dir="ltr" translate="no">' + esc(LS(p[0])) +
+        '</span><span class="say-ru" lang="' + tl + '">' + esc(LS(tr)) + '</span><span class="say-tap">' + esc(t("tap")) + "</span></button>";
     }).join("");
   }
   function actionButtons(actions) {
@@ -559,7 +563,7 @@
     return (noHead ? "" : '<div class="s-head"><h' + (compact ? "3" : "1") + ">" + esc(L(s, "title")) + "</h" + (compact ? "3" : "1") + '><span class="pill ' + s.tone + '">' + esc(L(s, "toneLabel")) + "</span></div>") +
       (noHead ? "" : '<button type="button" class="land-badge">' + esc(landBadgeText()) + "</button>") +
       fdBox(urgent) +
-      '<div class="block"><p class="block-t say">' + esc(t("b_say")) + "</p>" + sayButtons(s.say) + "</div>" +
+      '<div class="block"><p class="block-t say">' + esc(t("b_say")) + "</p>" + sayButtons(s.say, "data.situations." + s.id + ".say") + "</div>" +
       '<div class="block"><p class="block-t do">' + esc(t("b_do")) + '</p><ul class="pts">' + situationListe(s, "doo", land).map(function (x) { return "<li>" + telLinks(esc(x)) + "</li>"; }).join("") + "</ul></div>" +
       '<div class="block"><p class="block-t dont">' + esc(t("b_dont")) + '</p><ul class="pts">' + situationListe(s, "dont", land).map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" +
       fdBox(info) +
@@ -770,7 +774,7 @@
     // „4 Wochen“ im Etikett ist eine BW-Frist – außerhalb BW neutral „Sofort“.
     var tl = c.id === "k-bodycam" && land && land !== "BW" ? Lr("Sofort", "Срочно", "lokal.bodycam_sofort") : L(c, "toneLabel");
     return (noHead ? "" : '<div class="w-head"><h3>' + esc(L(c, "title")) + '</h3><span class="pill ' + c.tone + '">' + esc(tl) + "</span></div>") +
-      "<p>" + telLinks(esc(text)) + "</p>" + (c.say ? sayButtons(c.say) : "") + '<p class="law" lang="de" translate="no">' + esc(LT(c.law)) + "</p>";
+      "<p>" + telLinks(esc(text)) + "</p>" + (c.say ? sayButtons(c.say, "data.cards." + c.id + ".say") : "") + '<p class="law" lang="de" translate="no">' + esc(LT(c.law)) + "</p>";
   }
   // Antwort aus der Schnellhilfe (Polizei sagt → Antwort mit §), wenn keine Karte passt – z. B. „Steigen Sie aus“.
   function quickAnsHTML(q) {
