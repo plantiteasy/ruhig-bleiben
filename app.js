@@ -353,7 +353,8 @@
     renderQuick(); renderKontrolle();
     if (currentView === "situation") route();
     if (currentView === "einrichten") renderLandSelect();
-    if (currentView === "danach") { renderDeadlines(); renderLetters(); } // Notdienst/Beschwerdestelle/Brief-Adresse (app/lokal.js) ortsbezogen
+    // Alle landabhängigen Listen sofort neu, nicht nur die sichtbare – sonst zeigen Danach/Wissen nach dem Landwechsel noch das alte Land.
+    renderDeadlines(); renderLetters(); renderWissen($("w-q").value); // Notdienst/Beschwerdestelle/Brief-Adresse (app/lokal.js) ortsbezogen
     if ($("answers") && $("answers").innerHTML && $("ask-input").value.trim()) renderAnswers($("ask-input").value.trim());
   }
   // Land nur automatisch erkennen, wenn die Standort-Berechtigung schon erteilt ist (nie extra danach fragen) – Ergebnis
@@ -673,12 +674,35 @@
     return (noHead ? "" : '<div class="w-head"><h3>' + esc(title) + '</h3><span class="pill warn">' + esc(tone) + "</span></div>") +
       "<p>" + telLinks(esc(text)) + "</p>" + '<p class="law" lang="de" translate="no">' + esc(LT("§§ 42, 42a, 42c WaffG")) + "</p>";
   }
+  // „Wo kann ich mich beschweren?“ außerhalb BW: Stelle aus app/lokal.js (nur geprüfte), Frist nur, wenn im Datensatz belegt.
+  // Rest des BW-Textes (Bundespolizei, Dienstaufsicht, Gegenanzeige) ist bundesweit gleich und bleibt.
+  function beschwerdeCardHTML(c, noHead, land) {
+    var lang = landLang(), b = RBLok.beschwerdeInfo(land), m = RBLok.beschwerdeFristMonate(b);
+    var stelle = b ? b.name : (lang === "ru" ? "служба жалоб полиции твоей земли" : "die Beschwerdestelle der Polizei deines Landes");
+    var frist = m ? (lang === "ru" ? " — в течение " + m + " месяцев" : " – innerhalb von " + m + " Monaten") : "";
+    var text = lang === "ru"
+      ? "Бесплатно: " + stelle + frist + "; на федеральную полицию — уполномоченному по полиции при Бундестаге, 6 месяцев. Служебная жалоба — письменно в полицейское управление. Заявление на полицейских — отдельный путь. Часто в ответ приходит встречное заявление, например за оскорбление или ложное обвинение, — поэтому сначала поговори с адвокатом."
+      : "Kostenlos: " + stelle + frist + "; bei der Bundespolizei der Polizeibeauftragte des Bundes, 6 Monate. Dienstaufsichtsbeschwerde schriftlich an das Polizeipräsidium. Eine Strafanzeige gegen Beamte ist ein eigener Weg. Oft folgt eine Gegenanzeige, etwa wegen Beleidigung oder falscher Verdächtigung – deshalb erst mit einem Anwalt sprechen.";
+    var tone = m ? (lang === "ru" ? m + " месяцев" : m + " Monate") : (lang === "ru" ? "Бесплатно" : "Kostenlos");
+    var law = (b && b.url ? b.url.replace(/^https?:\/\//, "").replace(/\/$/, "") + " · " : "") + "§ 340 StGB · § 164 StGB · PolBeauftrG";
+    return (noHead ? "" : '<div class="w-head"><h3>' + esc(L(c, "title")) + '</h3><span class="pill ' + c.tone + '">' + esc(tone) + "</span></div>") +
+      "<p>" + esc(text) + "</p>" + '<p class="law" lang="de" translate="no">' + esc(law) + "</p>";
+  }
   function cardHTML(c, noHead) {
     var land = currentLand();
     if (c.id === "k-notdienst" && RBLok) return notdienstCardHTML(c, noHead, land);
     if (c.id === "k-messer" && land && land !== "BW") return messerGenericHTML(c, noHead);
-    var text = land && land !== "BW" && RBLok ? RBLok.wvzGeneric(L(c, "text")) : L(c, "text");
-    return (noHead ? "" : '<div class="w-head"><h3>' + esc(L(c, "title")) + '</h3><span class="pill ' + c.tone + '">' + esc(L(c, "toneLabel")) + "</span></div>") +
+    if (c.id === "k-beschwerde" && land && land !== "BW" && RBLok) return beschwerdeCardHTML(c, noHead, land);
+    var text = LT(land && land !== "BW" && RBLok ? RBLok.wvzGeneric(L(c, "text")) : L(c, "text"));
+    if (c.id === "k-bodycam" && land && land !== "BW") {
+      // Sicherungsantrag geht ans eigene Präsidium; 60 s / 4 Wochen sind BW-Fristen -> Hinweis statt falscher Sicherheit.
+      text = text.replace("beim Polizeipräsidium Stuttgart", "bei deinem zuständigen Polizeipräsidium")
+        .replace("полицейское управление Штутгарта", "своё полицейское управление") +
+        (RBL ? " " + RBL.zahlenHinweisText(land, landLang()) : "");
+    }
+    // „4 Wochen“ im Etikett ist eine BW-Frist – außerhalb BW neutral „Sofort“.
+    var tl = c.id === "k-bodycam" && land && land !== "BW" ? (landLang() === "ru" ? "Срочно" : "Sofort") : L(c, "toneLabel");
+    return (noHead ? "" : '<div class="w-head"><h3>' + esc(L(c, "title")) + '</h3><span class="pill ' + c.tone + '">' + esc(tl) + "</span></div>") +
       "<p>" + telLinks(esc(text)) + "</p>" + (c.say ? sayButtons(c.say) : "") + '<p class="law" lang="de" translate="no">' + esc(LT(c.law)) + "</p>";
   }
   // Antwort aus der Schnellhilfe (Polizei sagt → Antwort mit §), wenn keine Karte passt – z. B. „Steigen Sie aus“.
