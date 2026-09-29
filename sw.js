@@ -1,4 +1,4 @@
-var CACHE = "rb-v38";
+var CACHE = "rb-v39";
 var FILES = ["./", "index.html", "styles.css", "data.js", "quick.js", "kontrolle.js", "phasen.js", "tresor.js", "app.js", "manifest.webmanifest", "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png",
   "audio/s-anordnung_b.mp3", "audio/s-anordnung_c.mp3", "audio/s-aussteigen_b.mp3", "audio/s-aussteigen_c.mp3", "audio/s-durchsuchung_b.mp3", "audio/s-durchsuchung_c.mp3",
   "audio/s-ende_b.mp3", "audio/s-ende_c.mp3", "audio/s-grundlage_b.mp3", "audio/s-grundlage_c.mp3", "audio/s-handy_b.mp3", "audio/s-handy_c.mp3",

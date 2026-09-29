@@ -129,6 +129,10 @@
         <li><p class="einr-t" data-t="einr_3">Kamera und Mikrofon erlauben</p>
           <p class="hint" data-t="einr_3h">Sonst fragt das Handy erst, wenn der Polizist schon da ist.</p>
           <button class="btn primary" type="button" id="einr-cam" data-t="einr_cam">Jetzt erlauben</button><p class="einr-msg" id="einr-cam-msg" aria-live="polite"></p></li>
+        <li><p class="einr-t" data-t="einr_geo">Standort erlauben</p>
+          <p class="hint" data-t="einr_geo_h">Beim Start einer Aufnahme wird der Ort gespeichert – nur auf diesem Handy.</p>
+          <button class="btn primary" type="button" id="einr-geo" data-t="einr_geo_on">Jetzt erlauben</button><p class="einr-msg" id="einr-geo-msg" aria-live="polite"></p>
+          <label class="check"><input type="checkbox" id="einr-geo-save"> <span data-t="einr_geo_save">Ort bei Aufnahme speichern</span></label></li>
         <li><p class="einr-t" data-t="einr_tr">Tresor: Kopie außerhalb des Handys</p>
           <p class="hint" data-t="einr_tr_h">Während du filmst, geht jede Sekunde verschlüsselt ins Netz.</p>
           <div class="einr-tr" id="einr-tr"></div></li>
@@ -281,7 +285,7 @@
       </div>
       <p class="hint field-msg" id="p-when-msg" aria-live="polite"></p>
       <div class="field">
-        <div class="lab-row"><label for="p-ort" data-t="f_ort">Ort</label><span class="tools"><button type="button" class="tool" id="p-gps" data-t="gps">Standort einfügen</button><button type="button" class="tool dict" data-for="p-ort" data-t-aria="dict">Diktieren</button></span></div>
+        <div class="lab-row"><label for="p-ort" data-t="f_ort">Ort</label><span class="tools"><button type="button" class="tool" id="p-ort-geo" data-t="p_ort_geo" hidden>Ort aus der Aufnahme übernehmen</button><button type="button" class="tool" id="p-gps" data-t="gps">Standort einfügen</button><button type="button" class="tool dict" data-for="p-ort" data-t-aria="dict">Diktieren</button></span></div>
         <textarea id="p-ort" name="ort" rows="2" placeholder="Straße, Haltestelle, Richtung" data-t-ph="ph_ort"></textarea>
         <p class="hint field-msg" aria-live="polite"></p>
       </div>

@@ -49,6 +49,7 @@
       einr_card: "In 30 Sekunden einrichten: Kamera erlauben, Tresor für deine Videos, auf den Startbildschirm →", einr_h: "In 30 Sekunden bereit", einr_lead: "Einmal jetzt in Ruhe – dann reicht im Ernstfall ein Tipp.",
       einr_1: "Sprache der App", einr_2: "Meistens bin ich", einr_3: "Kamera und Mikrofon erlauben", einr_3h: "Sonst fragt das Handy erst, wenn der Polizist schon da ist.",
       einr_cam: "Jetzt erlauben", einr_cam_ok: "✓ Erlaubt", einr_4: "Auf den Startbildschirm", einr_4h: "Danach: lange auf das App-Symbol drücken → „Kontrolle“ startet sofort das Video.",
+      einr_geo: "Standort erlauben", einr_geo_h: "Beim Start einer Aufnahme wird der Ort gespeichert – nur auf diesem Handy.", einr_geo_on: "Jetzt erlauben", einr_geo_ok: "✓ Erlaubt", einr_geo_fail: "Nicht erlaubt – in den Einstellungen des Handys änderbar", einr_geo_save: "Ort bei Aufnahme speichern",
       einr_5: "Einmal üben", einr_ueben: "Sätze üben (2 Minuten)", einr_try: "Kontrolle-Bildschirm ansehen (ohne Aufnahme)", einr_test: "Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google bzw. Apple)",
       einr_6: "Optional: Profil", einr_prof: "Führerschein, Aufenthalt – für passende Hinweise", einr_done: "Fertig", einr_more: "Mehr einrichten (optional)",
       ueben_h: "Sätze üben", ueben_cop_sagt: "Der Polizist sagt:", ueben_cop_hoeren: "Polizist anhören", ueben_du_sagst: "Was sagst du?",
@@ -88,6 +89,7 @@
       rec_storage: "Speichern auf dem Gerät klappt nicht (Speicher voll oder privater Modus). Die Aufnahme läuft weiter – nach dem Stopp sofort „Sichern“.",
       rec_nopersist: "Dieses Gerät speichert Aufnahmen nicht dauerhaft. Nach dem Stopp sofort „Sichern“.", rec_empty: "Die Aufnahme ist leer. Bitte noch einmal starten.",
       recs_h: "Auf diesem Gerät", k_tr_srv: "Tresor-Server gestört – gesichert bis {x}", rec_tr_miss: "Nicht vollständig im Tresor – nur auf diesem Handy. Mit „Sichern“ an dich selbst schicken.", k_nohear: "Nichts verstanden – tippe unten auf den passenden Knopf.", sr_net_k: "Spracheingabe braucht Internet. Tippe auf einen Knopf – die Antworten gehen auch offline.", sr_blocked_k: "Spracheingabe ist blockiert. Tippe auf einen Knopf.", sr_none_k: "Dieser Browser hat keine Spracheingabe. Tippe auf einen Knopf.", sr_ios_k: "Spracheingabe ist gesperrt (Einstellungen › Allgemein › Tastatur › Diktierfunktion). Tippe jetzt auf einen Knopf.", gps_old: "Der Vorfall war nicht heute – dein jetziger Standort ist wahrscheinlich nicht der Ort der Kontrolle. Trotzdem einfügen? Nochmal tippen.", gps_anyway: "Trotzdem einfügen", rec_in_tr: "Auch im Tresor ✓", tr_old_not_in: "Dein letztes Video ist noch nicht im Tresor (nur Videos ab jetzt). Schick es mit „Sichern“ an dich selbst.", when_time: "Uhrzeit prüfen – sie steht noch auf der jetzigen Zeit, nicht auf der des Vorfalls.", gps_now: "Das ist dein jetziger Standort – nur richtig, wenn du noch am Ort der Kontrolle bist.", recs_none: "Auf diesem Handy sind noch keine Videos. Handy weg? Oben „Video aus dem Tresor holen“.", rec_saved_trok: "Auf dem Handy und im Tresor gesichert (30 Tage). Zur Sicherheit zusätzlich „Sichern“.", recs_one: "Aufnahme", recs_many: "Aufnahmen", recs_hint: "„Sichern“ schickt die Originaldatei an dich selbst: in Telegram „Als Datei senden“, in WhatsApp als „Dokument“ – sonst wird das Video verkleinert. Oder in Google Drive.",
+      rec_geo: "Ort: ", rec_geo_karte: "Karte",
       rec_saved: "Gespeichert auf diesem Handy. Jetzt „Sichern“ tippen – falls das Handy abgenommen wird.", rec_share_big: "Zu groß zum direkten Teilen (über 50 MB). Die Datei liegt jetzt unter „Downloads“ – dort antippen › Teilen › Google Drive oder Telegram (als Datei).",
       rec_cut: "Aufnahme gestoppt – das Handy hat die Kamera beendet ({x} Uhr). Das Video bis dahin ist gespeichert.", rec_try_silent: "Oder ohne Ton filmen: „Video ohne Ton starten“ tippen.",
       perm_inapp: "Du bist im Browser von Telegram, WhatsApp o. Ä. Hier sind Kamera und Mikrofon oft gesperrt und Aufnahmen gehen leicht verloren. Öffne die Seite in Chrome: Menü ⋮ › „Im Browser öffnen“.",
@@ -95,7 +97,7 @@
       b_share: "Sichern", b_dl: "Herunterladen", b_proto: "Ins Protokoll", b_del: "Löschen", b_del_sure: "Wirklich löschen?", b_taken: "Übernommen",
       m_clock: " Uhr", m_ca: "ca. ", m_sec: " s", m_audio: "mit Ton, Einwilligung {x}", m_silent: "ohne Ton",
       danach_h: "Danach", danach_lead: "Noch am selben Tag: Gedächtnisprotokoll. Diktieren geht mit dem Mikrofon neben jedem Feld.",
-      seg_dict_aria: "Sprache fürs Diktieren", dict_de: "Diktat Deutsch", dict_ru: "Диктовка по-русски", dict: "Diktieren", gps: "Standort einfügen", gps_wait: "Suche …",
+      seg_dict_aria: "Sprache fürs Diktieren", dict_de: "Diktat Deutsch", dict_ru: "Диктовка по-русски", dict: "Diktieren", gps: "Standort einfügen", gps_wait: "Suche …", p_ort_geo: "Ort aus der Aufnahme übernehmen",
       f_datum: "Datum", f_zeit: "Uhrzeit", f_ort: "Ort", f_beamte: "Beamte und Fahrzeuge", f_ablauf: "Was ist passiert?", f_zitate: "Wörtliche Aussagen", f_zeugen: "Zeugen",
       f_aufnahmen: "Aufnahmen", f_schaden: "Verletzungen und Schäden", f_name: "Dein Name und Anschrift (für Briefe)",
       ph_ort: "Straße, Haltestelle, Richtung", ph_beamte: "Namen, Dienststelle, Kennzeichen, Aussehen", ph_ablauf: "Der Reihe nach, mit Uhrzeiten, so genau wie möglich",
@@ -176,6 +178,7 @@
       einr_card: "Настроить за 30 секунд: камера, сейф для видео, значок на экране →", einr_h: "Настройка за 30 секунд", einr_lead: "Один раз сейчас спокойно — тогда в нужный момент хватит одного нажатия.",
       einr_1: "Язык приложения", einr_2: "Чаще всего я", einr_3: "Разрешить камеру и микрофон", einr_3h: "Иначе телефон спросит, когда полицейский уже рядом.",
       einr_cam: "Разрешить сейчас", einr_cam_ok: "✓ Разрешено", einr_4: "Значок на главный экран", einr_4h: "Потом: долго нажми на значок приложения → «Kontrolle» сразу включает видео.",
+      einr_geo: "Разрешить местоположение", einr_geo_h: "При старте записи сохранится место — только на этом телефоне.", einr_geo_on: "Разрешить сейчас", einr_geo_ok: "✓ Разрешено", einr_geo_fail: "Не разрешено — можно изменить в настройках телефона", einr_geo_save: "Сохранять место при записи",
       einr_5: "Один раз попробовать", einr_ueben: "Потренировать фразы (2 минуты)", einr_try: "Посмотреть экран проверки (без записи)", einr_test: "Потренироваться с другом: включить тест прослушивания (звук уходит в Google или Apple)",
       einr_6: "По желанию: профиль", einr_prof: "Права, вид на жительство — для точных подсказок", einr_done: "Готово", einr_more: "Ещё настроить (по желанию)",
       ueben_h: "Тренировка фраз", ueben_cop_sagt: "Полицейский говорит:", ueben_cop_hoeren: "Послушать полицейского", ueben_du_sagst: "Что скажешь ты?",
@@ -215,6 +218,7 @@
       rec_storage: "Сохранить на телефоне не получается (память заполнена или приватный режим). Запись продолжается — после остановки сразу нажми «Сохранить копию».",
       rec_nopersist: "Этот телефон не хранит записи надолго. После остановки сразу нажми «Сохранить копию».", rec_empty: "Запись пустая. Начни ещё раз.",
       recs_h: "На этом телефоне", k_tr_srv: "Сбой сервера сейфа — сохранено до {x}", rec_tr_miss: "В сейфе не полностью — только на этом телефоне. Отправь себе через «Сохранить копию».", k_nohear: "Ничего не распознано — нажми нужную кнопку ниже.", sr_net_k: "Для голоса нужен интернет. Нажми на кнопку — ответы работают и без сети.", sr_blocked_k: "Голосовой ввод заблокирован. Нажми на кнопку.", sr_none_k: "В этом браузере нет голосового ввода. Нажми на кнопку.", sr_ios_k: "Голосовой ввод выключен (Настройки › Основные › Клавиатура › «Диктовка»). Сейчас нажми на кнопку.", gps_old: "Случай был не сегодня — твоё место сейчас, скорее всего, не место проверки. Всё равно вставить? Нажми ещё раз.", gps_anyway: "Всё равно вставить", rec_in_tr: "Есть и в сейфе ✓", tr_old_not_in: "Последнего видео в сейфе нет (там только видео с этого момента). Отправь его себе через «Сохранить копию».", when_time: "Проверь время — там всё ещё текущее время, а не время случая.", gps_now: "Это твоё место сейчас — верно, только если ты ещё там, где была проверка.", recs_none: "На этом телефоне пока нет видео. Телефон забрали? Выше — «Забрать видео из сейфа».", rec_saved_trok: "Сохранено на телефоне и в сейфе (30 дней). Для надёжности нажми ещё «Сохранить копию».", recs_one: "запись", recs_few: "записи", recs_many: "записей", recs_hint: "«Сохранить копию» отправляет оригинальный файл: в Telegram — «Отправить как файл», в WhatsApp — как «Документ», иначе видео сожмётся. Или в Google Drive.",
+      rec_geo: "Место: ", rec_geo_karte: "Карта",
       rec_saved: "Сохранено на этом телефоне. Теперь нажми «Сохранить копию» — на случай, если телефон заберут.", rec_share_big: "Файл слишком большой для прямой отправки (больше 50 МБ). Он сохранён в «Загрузки» — открой его там › Поделиться › Google Drive или Telegram (как файл).",
       rec_cut: "Запись остановлена — телефон отключил камеру ({x}). Видео до этого момента сохранено.", rec_try_silent: "Или снимай без звука: нажми «Начать видео без звука».",
       perm_inapp: "Ты во встроенном браузере Telegram, WhatsApp или другого мессенджера. Здесь камера и микрофон часто заблокированы, а записи легко потерять. Открой страницу в Chrome: меню ⋮ › «Открыть в браузере».",
@@ -222,7 +226,7 @@
       b_share: "Сохранить копию", b_dl: "Скачать", b_proto: "В протокол", b_del: "Удалить", b_del_sure: "Точно удалить?", b_taken: "Добавлено",
       m_clock: "", m_ca: "ок. ", m_sec: " с", m_audio: "со звуком, согласие {x}", m_silent: "без звука",
       danach_h: "После", danach_lead: "В тот же день: протокол по памяти. Надиктовать можно кнопкой у каждого поля.",
-      seg_dict_aria: "Язык диктовки", dict_de: "Диктовка по-немецки", dict_ru: "Диктовка по-русски", dict: "Диктовать", gps: "Вставить место", gps_wait: "Ищу …",
+      seg_dict_aria: "Язык диктовки", dict_de: "Диктовка по-немецки", dict_ru: "Диктовка по-русски", dict: "Диктовать", gps: "Вставить место", gps_wait: "Ищу …", p_ort_geo: "Взять место из записи",
       f_datum: "Дата", f_zeit: "Время", f_ort: "Место", f_beamte: "Полицейские и машины", f_ablauf: "Что произошло?", f_zitate: "Точные слова", f_zeugen: "Свидетели",
       f_aufnahmen: "Записи", f_schaden: "Травмы и ущерб", f_name: "Твоё имя и адрес (для писем)",
       ph_ort: "Улица, остановка, направление", ph_beamte: "Имена, участок, номера машин, внешность", ph_ablauf: "По порядку, со временем, как можно точнее",
@@ -327,7 +331,7 @@
     if (h.indexOf("tresor=") === 0) { trPrefill = decodeURIComponent(h.slice(7)); h = "tresor"; }
     if (h.indexOf("s/") === 0) { var s = findSituation(h.slice(2)); if (s) { renderSituation(s); show("situation"); return; } }
     var v = views.indexOf(h) > -1 && h !== "situation" ? h : "jetzt";
-    if (v === "danach") refreshProtoNow();
+    if (v === "danach") { refreshProtoNow(); syncOrtGeoHint(); }
     if (v === "kontrolle" && !(history.state && history.state.rbK)) hideK(); // neu geöffnet: Knöpfe, nicht die alte Antwort
     if (v === "einrichten") renderEinrichten();
     if (v === "aufnahme") renderTrCard();
@@ -760,6 +764,11 @@
 
   /* ---------- Recording ---------- */
   var recState = null, recordings = [], pendingAct = null;
+  // Ort bei Aufnahme (Einstellung, Standard AN) – bleibt IMMER nur auf dem Gerät: nicht in den Tresor, nicht in Dateinamen,
+  // nicht in geteilte Dateien. Nur ins IndexedDB-Feld r.geo dieser einen Aufnahme.
+  var LS_GEO_SAVE = "rb-geo-speichern-v1";
+  function geoSaveOn() { return lsGet(LS_GEO_SAVE) !== "0"; }
+  function fmtCoord(n) { return n.toFixed(4).replace(".", ","); }
   function pickMime(withAudio) {
     var c = withAudio
       ? ["video/mp4;codecs=avc1,mp4a.40.2", "video/mp4", "video/webm;codecs=vp9,opus", "video/webm;codecs=vp8,opus", "video/webm"]
@@ -824,6 +833,16 @@
         if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(function () {});
         $("rec-mode").textContent = recModeText(r);
         tick(); setRecUI("live"); keepAwake(); updateRecFloat();
+        // Ort dieser Aufnahme: erst NACHDEM die Kamera sicher läuft anfragen (iPhone fragt sonst mitten in den Kamera-Start hinein –
+        // das darf die Aufnahme nicht aufhalten). Läuft nebenher, blockiert nichts, Fehler bleiben still. Bleibt nur auf dem Gerät:
+        // geht NIE an den Tresor-Server, NIE in den Dateinamen, NIE in eine geteilte Datei (siehe tresor.js: kein geo-Feld im Manifest).
+        if (geoSaveOn() && navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function (pos) {
+            r.geo = { lat: pos.coords.latitude, lon: pos.coords.longitude, acc: Math.round(pos.coords.accuracy), t: new Date().toISOString() };
+            if (storageOK) putRec(r).catch(function () {}); // trägt auch nach, wenn die Position erst nach Aufnahmeende ankommt
+            renderRecs();
+          }, function () {}, { enableHighAccuracy: true, timeout: 15000, maximumAge: 60000 });
+        }
       })
       .catch(function (e) { recState = null; setRecUI("start"); recError(camError(e, withAudio)); syncKBar(); });
   }
@@ -891,9 +910,30 @@
       (r.withAudio ? "mit Ton, Einwilligung um " + fmtTime(r.consentAt) : "ohne Ton") +
       (r.status === "recovered" ? ", unterbrochen und wiederhergestellt" : "") + (r.hash ? ", SHA-256 " + r.hash : "") + ", Datei " + r.name;
   }
+  // Ort bleibt nur auf dem Gerät: hier nur zum Anzeigen, geht NIE in den Tresor-Upload oder eine geteilte Datei.
+  function geoLine(r) {
+    if (!r.geo) return "";
+    var la = fmtCoord(r.geo.lat), lo = fmtCoord(r.geo.lon);
+    var url = "https://www.openstreetmap.org/?mlat=" + r.geo.lat + "&mlon=" + r.geo.lon + "#map=18/" + r.geo.lat + "/" + r.geo.lon;
+    return '<p class="rec-meta rec-geo">' + esc(t("rec_geo")) + la + " · " + lo + " (± " + r.geo.acc + " m) " +
+      '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(t("rec_geo_karte")) + "</a></p>";
+  }
+  function ortGeoText(r) {
+    var la = r.geo.lat.toFixed(5), lo = r.geo.lon.toFixed(5), gt = new Date(r.geo.t);
+    return "Standort (ermittelt " + fmtDate(gt) + " " + fmtTime(gt) + ") " + la + ", " + lo + " (±" + r.geo.acc + " m) https://www.openstreetmap.org/?mlat=" + la + "&mlon=" + lo + "#map=18/" + la + "/" + lo;
+  }
+  // Jüngste Aufnahme (≤ 12 h) mit gespeichertem Ort – für den Übernehmen-Knopf im Protokoll.
+  function recentGeoRec() {
+    var r = recordings[0];
+    return r && r.geo && Date.now() - r.started.getTime() <= 12 * 3600 * 1000 ? r : null;
+  }
+  function syncOrtGeoHint() {
+    var b = $("p-ort-geo"); if (!b) return;
+    b.hidden = !!$("p-ort").value.trim() || !recentGeoRec();
+  }
   function renderRecs() {
     var box = $("rec-list");
-    if (!recordings.length) { box.innerHTML = "<h2>" + esc(t("recs_h")) + '</h2><p class="hint">' + esc(t("recs_none")) + "</p>"; return; }
+    if (!recordings.length) { box.innerHTML = "<h2>" + esc(t("recs_h")) + '</h2><p class="hint">' + esc(t("recs_none")) + "</p>"; syncOrtGeoHint(); return; }
     var total = 0; recordings.forEach(function (r) { total += r.size || 0; });
     box.innerHTML = "<h2>" + esc(t("recs_h")) + '</h2><p class="hint">' + esc(recCount(recordings.length)) + ", " + mb(total) + ". " + esc(t("recs_hint")) + "</p>" +
       recordings.map(function (r) {
@@ -902,6 +942,7 @@
           (r.status === "recovered" ? '<p class="rec-flag">' + esc(t("rec_recovered")) + "</p>" : "") +
           '<video src="' + r.url + '" controls playsinline preload="metadata"></video>' +
           '<p class="rec-meta">' + esc(recMeta(r)) + "</p>" +
+          geoLine(r) +
           '<p class="hash">SHA-256: ' + (r.hash ? esc(r.hash) : esc(r.noHash ? t("hash_na") : t("hash_wait"))) + "</p>" +
           (r.trDone && !r.fresh ? '<p class="rec-tr-ok">' + esc(t("rec_in_tr")) + "</p>" : "") +
           (r.tresor && !r.trDone && r._old ? '<p class="rec-trmiss">' + esc(t("rec_tr_miss")) + "</p>" : "") +
@@ -911,6 +952,7 @@
           '<button class="btn" type="button" data-proto>' + esc(t(inProto(r) ? "b_taken" : "b_proto")) + "</button>" +
           '<button class="btn ghost" type="button" data-del>' + esc(t("b_del")) + '</button></div><p class="field-msg rec-msg" aria-live="polite"></p></div>';
       }).join("");
+    syncOrtGeoHint();
   }
   function inProto(r) { return !!r.name && $("p-aufnahmen").value.indexOf(r.name) > -1; }
   function addToProto(r, b) {
@@ -1303,9 +1345,13 @@
     $("einr-test").checked = lsGet(LS_KTEST) === "1";
     $("einr-test-label").hidden = lsGet(LS_KTEST) !== "1"; // nur sichtbar, wenn der Testmodus schon per ?mithoeren=1 an ist – sonst schaltet niemand aus Versehen Tonübertragung an Google ein
     $("einr-inst").innerHTML = $("install-help").innerHTML;
+    $("einr-geo-save").checked = geoSaveOn();
     try {
       if (navigator.permissions && navigator.permissions.query) navigator.permissions.query({ name: "camera" }).then(function (st) {
         if (st.state === "granted") { $("einr-cam-msg").textContent = t("einr_cam_ok"); $("einr-cam-msg").className = "einr-msg ok"; }
+      }).catch(function () {});
+      if (navigator.permissions && navigator.permissions.query) navigator.permissions.query({ name: "geolocation" }).then(function (st) {
+        if (st.state === "granted") { $("einr-geo-msg").textContent = t("einr_geo_ok"); $("einr-geo-msg").className = "einr-msg ok"; }
       }).catch(function () {});
     } catch (e) {}
   }
@@ -1317,6 +1363,16 @@
       m.textContent = t("einr_cam_ok"); m.className = "einr-msg ok";
     }).catch(function () { m.textContent = permHelp("cammic"); m.className = "einr-msg err"; });
   });
+  $("einr-geo").addEventListener("click", function () {
+    var m = $("einr-geo-msg");
+    if (!navigator.geolocation) { m.textContent = t("geo_na"); return; }
+    navigator.geolocation.getCurrentPosition(function () {
+      m.textContent = t("einr_geo_ok"); m.className = "einr-msg ok";
+    }, function () {
+      m.textContent = t("einr_geo_fail"); m.className = "einr-msg err";
+    }, { enableHighAccuracy: true, timeout: 12000 });
+  });
+  $("einr-geo-save").addEventListener("change", function () { lsSet(LS_GEO_SAVE, $("einr-geo-save").checked ? "1" : "0"); });
   $("einr-test").addEventListener("change", function () {
     if ($("einr-test").checked) lsSet(LS_KTEST, "1"); else { try { localStorage.removeItem(LS_KTEST); } catch (e) {} $("einr-test-label").hidden = true; }
     renderKontrolle();
@@ -1602,7 +1658,13 @@
   });
   // Meldungen direkt unter dem Feld, dessen Knopf getippt wurde – nicht irgendwo unten auf der Seite.
   function fieldMsg(btn, text) { var m = btn.closest(".field").querySelector(".field-msg"); if (m) m.textContent = text || ""; }
-  $("p-ort").addEventListener("input", function () { if (!/Standort \(ermittelt /.test(this.value)) fieldMsg($("p-gps"), ""); });
+  $("p-ort").addEventListener("input", function () { if (!/Standort \(ermittelt /.test(this.value)) fieldMsg($("p-gps"), ""); syncOrtGeoHint(); });
+  $("p-ort-geo").addEventListener("click", function () {
+    var r = recentGeoRec(); if (!r) return;
+    var f = $("p-ort");
+    f.value = (f.value ? f.value + "\n" : "") + ortGeoText(r);
+    saveProto(); $("p-ort-geo").hidden = true;
+  });
   $("p-gps").addEventListener("click", function () {
     var b = $("p-gps");
     if (b.disabled) return;
