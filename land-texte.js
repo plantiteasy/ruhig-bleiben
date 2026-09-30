@@ -76,8 +76,8 @@ window.RB.landTexte = {
    "geprueft": false
   },
   "SN": {
-   "de": "In Sachsen gilt wie in BW ein 60-Sekunden-Puffer, die Speicherfrist ist mit 30 Tagen aber etwas kürzer als vier Wochen (§ 57 SächsPVDG).",
-   "ru": "В Саксонии, как и в BW, действует буфер в 60 секунд, но срок хранения — 30 дней, немного короче четырёх недель (§ 57 SächsPVDG).",
+   "de": "In Sachsen gilt wie in BW ein 60-Sekunden-Puffer, die Speicherfrist beträgt aber 30 Tage statt vier Wochen (§ 57 SächsPVDG).",
+   "ru": "В Саксонии, как и в BW, действует буфер в 60 секунд, но записи хранят 30 дней вместо четырёх недель (§ 57 SächsPVDG).",
    "norm": "§ 57 SächsPVDG",
    "src": "https://www.revosax.sachsen.de/vorschrift/18193-Saechsisches-Polizeivollzugsdienstgesetz-#p57",
    "geprueft": true
@@ -183,8 +183,8 @@ window.RB.landTexte = {
    "geprueft": false
   },
   "SN": {
-   "de": "In Sachsen gilt wie in BW ein 60-Sekunden-Puffer, die Speicherfrist ist mit 30 Tagen aber etwas kürzer als vier Wochen (§ 57 SächsPVDG).",
-   "ru": "В Саксонии, как и в BW, действует буфер в 60 секунд, но срок хранения — 30 дней, немного короче четырёх недель (§ 57 SächsPVDG).",
+   "de": "In Sachsen gilt wie in BW ein 60-Sekunden-Puffer, die Speicherfrist beträgt aber 30 Tage statt vier Wochen (§ 57 SächsPVDG).",
+   "ru": "В Саксонии, как и в BW, действует буфер в 60 секунд, но записи хранят 30 дней вместо четырёх недель (§ 57 SächsPVDG).",
    "norm": "§ 57 SächsPVDG",
    "src": "https://www.revosax.sachsen.de/vorschrift/18193-Saechsisches-Polizeivollzugsdienstgesetz-#p57",
    "geprueft": true

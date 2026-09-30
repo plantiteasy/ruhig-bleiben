@@ -379,7 +379,12 @@
   // Ersetzt BW-Paragrafen im angezeigten Text durch die Norm des gewählten Landes (id: Antwort-ID, für den Zahlen-Hinweis).
   function LT(text) { return RBL ? RBL.ersetzeNormen(text, currentLand(), landLang()) : text; }
   // Gesprochene Sätze und Briefe: Landesnorm statt BW-Norm, aber ohne Klammer-Hinweis.
-  function LS(text) { return RBL && text ? RBL.ersetzeNormen(text, currentLand(), landLang(), true) : text; }
+  // Dolmetscher-Satz: „für Russisch“ steht fest im deutschen Text – bei anderen UI-Sprachen die Sprache des Nutzers einsetzen.
+  var DOLM_SPRACHE = { en: "Englisch", uk: "Ukrainisch", tr: "Türkisch", ar: "Arabisch", ro: "Rumänisch", pl: "Polnisch", fa: "Dari oder Farsi" };
+  function LS(text) {
+    if (text && DOLM_SPRACHE[UI]) text = String(text).replace(/Dolmetscher für Russisch/g, "Dolmetscher für " + DOLM_SPRACHE[UI]);
+    return RBL && text ? RBL.ersetzeNormen(text, currentLand(), landLang(), true) : text;
+  }
   function landName(code) { return RBL ? RBL.landName(code, UI) : code; }
   function landInCap(code) { var s = RBL && RBL.landIn ? RBL.landIn(code, UI) : code; return s.charAt(0).toUpperCase() + s.slice(1); }
   function landBadgeText() { return t("land_badge", landName(currentLand())); }
