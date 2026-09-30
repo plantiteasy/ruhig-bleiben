@@ -1,6 +1,6 @@
 /* Sprachpaket "ar" (العربية) - automatisch erzeugt von tools/i18n_build.js aus i18n/ar.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/ar.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1514/1514 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1518/1518 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["ar"] = {
@@ -1523,6 +1523,10 @@ window.RB.i18n["ar"] = {
   "T.k_andere": "الشرطي يقول شيئًا آخر",
   "T.k_zu_phasen": "‹ رجوع: ماذا أقول",
   "T.einr_stimme": "الصوت عند التشغيل",
-  "T.ph_jederzeit": "في أي وقت"
+  "T.ph_jederzeit": "في أي وقت",
+  "T.sit_alle": "كل المواقف ({x}) ›",
+  "T.proto_mehr": "+ تفاصيل أخرى: الشرطة، الأقوال، الشهود، الإصابات، الاسم",
+  "phasen.immer.0": "لا أتكلم الألمانية جيدًا",
+  "phasen.immer.1": "لا أتكلم عن الموضوع"
  }
 };

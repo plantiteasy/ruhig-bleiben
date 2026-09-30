@@ -1,6 +1,6 @@
 /* Sprachpaket "pl" (Polski) - automatisch erzeugt von tools/i18n_build.js aus i18n/pl.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/pl.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1514/1514 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1518/1518 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["pl"] = {
@@ -1523,6 +1523,10 @@ window.RB.i18n["pl"] = {
   "T.k_andere": "Policjant mówi coś innego",
   "T.k_zu_phasen": "‹ Wróć: Co mam powiedzieć",
   "T.einr_stimme": "Głos przy odtwarzaniu",
-  "T.ph_jederzeit": "W każdej chwili"
+  "T.ph_jederzeit": "W każdej chwili",
+  "T.sit_alle": "Wszystkie sytuacje ({x}) ›",
+  "T.proto_mehr": "+ Więcej danych: policjanci, cytaty, świadkowie, obrażenia, nazwisko",
+  "phasen.immer.0": "słabo mówię po niemiecku",
+  "phasen.immer.1": "nic w sprawie"
  }
 };

@@ -42,11 +42,9 @@
     <p class="lead" data-t="jetzt_lead">Tippe auf deine Situation. Du bekommst sofort, was du sagen und was du lassen solltest.</p>
     <div id="fuer-dich"></div>
     <div class="sit-grid" id="sit-grid"></div>
-    <div class="quick">
-      <a class="btn primary" href="#aufnahme" id="q-film" data-act="film" data-t="act_film">Video ohne Ton</a>
-      <a class="btn" href="#fragen" data-t="q_ask">Frage stellen</a>
-      <a class="btn" href="#danach" data-t="q_proto">Protokoll</a>
-    </div>
+    <!-- Erst die 6 häufigsten Lagen, der Rest auf Tipp (Audit 30.09.2026: 27 Knöpfe auf dem Start). Die Reihe
+         „Video ohne Ton · Frage stellen · Protokoll“ ist entfallen: dasselbe gibt es als großen roten Knopf und als Tabs. -->
+    <button type="button" class="btn sit-alle" id="sit-alle" hidden></button>
   </section>
 
   <!-- Kontrolle: Aufnahme oben, darunter Knöpfe in der Reihenfolge der Kontrolle, Antwort ohne Scrollen -->
@@ -297,13 +295,16 @@
         <p class="hint field-msg" aria-live="polite"></p>
       </div>
       <div class="field">
-        <div class="lab-row"><label for="p-beamte" data-t="f_beamte">Beamte und Fahrzeuge</label><button type="button" class="tool dict" data-for="p-beamte" data-t-aria="dict">Diktieren</button></div>
-        <textarea id="p-beamte" name="beamte" rows="2" placeholder="Namen, Dienststelle, Kennzeichen, Aussehen" data-t-ph="ph_beamte"></textarea>
-        <p class="hint field-msg" aria-live="polite"></p>
-      </div>
-      <div class="field">
         <div class="lab-row"><label for="p-ablauf" data-t="f_ablauf">Was ist passiert?</label><button type="button" class="tool dict" data-for="p-ablauf" data-t-aria="dict">Diktieren</button></div>
         <textarea id="p-ablauf" name="ablauf" rows="6" placeholder="Der Reihe nach, mit Uhrzeiten, so genau wie möglich" data-t-ph="ph_ablauf"></textarea>
+        <p class="hint field-msg" aria-live="polite"></p>
+      </div>
+      <!-- Wer nach dem Schreck nur das Wichtigste festhält, sieht 3 Felder; der Rest auf Tipp (Audit 30.09.2026). -->
+      <details class="proto-mehr" id="proto-mehr">
+        <summary data-t="proto_mehr">+ Weitere Angaben: Beamte, Zitate, Zeugen, Schäden, Name</summary>
+      <div class="field">
+        <div class="lab-row"><label for="p-beamte" data-t="f_beamte">Beamte und Fahrzeuge</label><button type="button" class="tool dict" data-for="p-beamte" data-t-aria="dict">Diktieren</button></div>
+        <textarea id="p-beamte" name="beamte" rows="2" placeholder="Namen, Dienststelle, Kennzeichen, Aussehen" data-t-ph="ph_beamte"></textarea>
         <p class="hint field-msg" aria-live="polite"></p>
       </div>
       <div class="field">
@@ -326,6 +327,7 @@
         <p class="hint field-msg" aria-live="polite"></p>
       </div>
       <div class="field"><label for="p-name" data-t="f_name">Dein Name und Anschrift (für Briefe)</label><input id="p-name" name="name" type="text" placeholder="Vorname Nachname, Straße, PLZ Ort" data-t-ph="ph_name"></div>
+      </details>
     </form>
     <div class="actions">
       <button class="btn primary" type="button" id="p-copy" data-t="p_copy">Protokoll kopieren</button>

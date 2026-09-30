@@ -1,6 +1,6 @@
 /* Sprachpaket "tr" (Türkçe) - automatisch erzeugt von tools/i18n_build.js aus i18n/tr.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/tr.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1514/1514 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1518/1518 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["tr"] = {
@@ -1523,6 +1523,10 @@ window.RB.i18n["tr"] = {
   "T.k_andere": "Polis başka bir şey söylüyor",
   "T.k_zu_phasen": "‹ Geri: Ne söylemeliyim",
   "T.einr_stimme": "Oynatma sesi",
-  "T.ph_jederzeit": "Her an"
+  "T.ph_jederzeit": "Her an",
+  "T.sit_alle": "Tüm durumlar ({x}) ›",
+  "T.proto_mehr": "+ Daha fazla bilgi: memurlar, sözler, tanıklar, yaralanmalar, ad",
+  "phasen.immer.0": "az Almanca biliyorum",
+  "phasen.immer.1": "konu hakkında konuşmam"
  }
 };

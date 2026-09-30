@@ -124,7 +124,7 @@
       left_over: "abgelaufen", left_today: "heute", left_1: "noch 1 Tag", left_n: "noch {x} Tage",
       l_to: "An:", l_copy: "Kopieren", l_mail: "In Mail öffnen",
       wissen_h: "Wissen", w_label: "Wissen durchsuchen", w_ph: "Suchen: pusten, Ausweis, filmen …", w_cats: "Themen", w_all: "Alle",
-      w_empty: "Nichts gefunden. Versuch: pusten, Ausweis, filmen, Handy, Beschwerde.", w_sits: "Situationen",
+      w_empty: "Nichts gefunden. Versuch: pusten, Ausweis, filmen, Handy, Beschwerde.", w_sits: "Situationen", sit_alle: "Alle {x} Situationen ›", proto_mehr: "+ Weitere Angaben: Beamte, Zitate, Zeugen, Schäden, Name",
       data_note: "Protokoll, Profil und Aufnahmen bleiben auf dem Gerät. Ausnahmen: Ist der Tresor an, geht jede Aufnahme verschlüsselt an unseren Server (Cloudflare, EU; lesbar nur mit deinem Code). Diktieren und Fragen per Mikrofon verarbeitet dein Browser über Google (Android) oder Apple (iPhone).",
       disclaimer: "Allgemeine Information, keine Rechtsberatung. Geprüft anhand von Gesetzen und Gerichtsentscheidungen, noch nicht von einem Anwalt. Quellen: {links}",
       i_done: "<strong>Installiert.</strong> Situationen und Wissen funktionieren auch ohne Internet.",
@@ -261,7 +261,7 @@
       left_over: "срок истёк", left_today: "сегодня",
       l_to: "Кому:", l_copy: "Копировать", l_mail: "Открыть в почте",
       wissen_h: "Знания", w_label: "Поиск по знаниям", w_ph: "Поиск: дуть, паспорт, снимать …", w_cats: "Темы", w_all: "Все",
-      w_empty: "Ничего не найдено. Попробуй: дуть, паспорт, снимать, телефон, жалоба.", w_sits: "Ситуации",
+      w_empty: "Ничего не найдено. Попробуй: дуть, паспорт, снимать, телефон, жалоба.", w_sits: "Ситуации", sit_alle: "Все ситуации ({x}) ›", proto_mehr: "+ Ещё данные: полицейские, цитаты, свидетели, травмы, имя",
       data_note: "Протокол, профиль и записи остаются на телефоне. Исключения: если сейф включён, каждая запись в зашифрованном виде уходит на наш сервер (Cloudflare, ЕС; прочитать можно только с твоим кодом). Диктовку и вопросы голосом браузер обрабатывает через Google (Android) или Apple (iPhone).",
       disclaimer: "Общая информация, не юридическая консультация. Проверено по законам и решениям судов, адвокатом ещё не проверено. Источники: {links}",
       i_done: "<strong>Установлено.</strong> Ситуации и знания работают и без интернета.",
@@ -510,6 +510,9 @@
 
   /* ---------- Situations ---------- */
   function findSituation(id) { for (var i = 0; i < D.situations.length; i++) if (D.situations[i].id === id) return D.situations[i]; return null; }
+  // Start zeigt zuerst die häufigsten Lagen (Recherche 25./27.09.: Straße, Papiere, Tests, Personalien, Durchsuchung, Wache);
+  // „Alle 15 Situationen“ klappt den Rest auf und bleibt bis zum Neuladen offen.
+  var SIT_TOP = ["verkehr", "papiere", "test", "personalien", "durchsuchung", "festnahme"], sitAll = false;
   function renderGrid() {
     var names = {}, last = null;
     (D.groups || []).forEach(function (g) { names[g[0]] = Lr(g[1], g[2], "data.groups." + g[0]); });
@@ -517,13 +520,15 @@
       // Überschrift, sobald eine neue Gruppe beginnt – bei 15 Kacheln findet man so schneller die eigene Lage.
       var head = s.group && s.group !== last && names[s.group] ? '<h2 class="grid-h">' + esc(names[s.group]) + "</h2>" : "";
       last = s.group;
-      return head + '<button class="sit" type="button" data-id="' + s.id + '"><span class="sit-t">' + esc(L(s, "title")) + '</span><span class="sit-s">' + esc(L(s, "sub")) +
+      return head + '<button class="sit" type="button" data-id="' + s.id + '"' + (sitAll || SIT_TOP.indexOf(s.id) > -1 ? "" : " hidden") + '><span class="sit-t">' + esc(L(s, "title")) + '</span><span class="sit-s">' + esc(L(s, "sub")) +
         '</span><span class="pill ' + s.tone + '">' + esc(L(s, "toneLabel")) + "</span></button>";
     }).join("");
     [].forEach.call(document.querySelectorAll(".sit"), function (b) {
       b.addEventListener("click", function () { location.hash = "#s/" + b.getAttribute("data-id"); });
     });
+    $("sit-alle").hidden = sitAll; $("sit-alle").textContent = t("sit_alle", D.situations.length);
   }
+  $("sit-alle").addEventListener("click", function () { sitAll = true; renderGrid(); });
   // idBase (z. B. "data.situations.festnahme.say"): Übersetzung des deutschen Satzes aus dem Sprachpaket (app/lang/<code>.js);
   // bei DE/RU wie bisher das Paar aus data.js. Fehlt die Übersetzung, bleibt nur der deutsche Satz – nie Russisch für andere Sprachen.
   function sayButtons(list, idBase) {
@@ -1923,6 +1928,8 @@
     var d = $("p-datum").value;
     $("p-when-msg").textContent = d && d > isoDate(new Date()) ? t("d_future") : protoZeitOk ? "" : d && d !== isoDate(new Date()) ? t("when_time") : t("when_check");
     $("p-backup").hidden = !(o && o.ablauf && o.ablauf.trim()) || lsGet(LS_PROTO_SAVED) === protoStamp();
+    // Steht schon etwas in den weiteren Feldern (z. B. „Ins Protokoll“ beim Video), bleibt der Block offen – nichts verschwindet.
+    if (o && ["beamte", "zitate", "zeugen", "aufnahmen", "schaden", "name"].some(function (f) { return o[f] && String(o[f]).trim(); })) $("proto-mehr").open = true;
   }
   // Nur die Uhrzeit bestätigt die Vorfallzeit – wer nur das Datum ändert, hat oft noch die jetzige Uhrzeit drin (Persona-Audit 26.09.2026).
   $("p-zeit").addEventListener("change", function () { protoZeitOk = true; saveProto(); });

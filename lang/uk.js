@@ -1,6 +1,6 @@
 /* Sprachpaket "uk" (Українська) - automatisch erzeugt von tools/i18n_build.js aus i18n/uk.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/uk.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1514/1514 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1518/1518 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["uk"] = {
@@ -1523,6 +1523,10 @@ window.RB.i18n["uk"] = {
   "T.k_andere": "Поліцейський каже інше",
   "T.k_zu_phasen": "‹ Назад: що сказати",
   "T.einr_stimme": "Голос для відтворення",
-  "T.ph_jederzeit": "Будь-коли"
+  "T.ph_jederzeit": "Будь-коли",
+  "T.sit_alle": "Усі ситуації ({x}) ›",
+  "T.proto_mehr": "+ Більше даних: поліцейські, цитати, свідки, травми, імʼя",
+  "phasen.immer.0": "погано говорю",
+  "phasen.immer.1": "мовчу по суті"
  }
 };
