@@ -502,3 +502,16 @@ input::placeholder,textarea::placeholder{color:var(--faint);opacity:1}
 /* Hinweis Bundesland (nur ohne Standort und ohne eigene Wahl): ruhig, aber deutlich antippbar */
 .land-std{display:block;width:100%;margin:10px 0 0;padding:10px 14px;border:1px dashed var(--line);border-radius:12px;background:transparent;color:var(--ink);font:inherit;font-size:15px;text-align:start;cursor:pointer}
 .land-std::after{content:" ›";color:var(--muted)}
+
+/* Kontrolle, Variante B (30.09.2026): Rolle als Chip, Phasen als eine Leiste, „Weiter“ groß, Stimme in Einrichten */
+.k-who{appearance:none;font:inherit;font-size:14.5px;justify-self:start;background:none;border:1px solid var(--line);border-radius:999px;padding:6px 14px;min-height:40px;color:var(--ink);cursor:pointer}
+.k-who-a{color:var(--accent);font-weight:650}
+.k-zu-phasen{appearance:none;font:inherit;font-size:15px;font-weight:650;background:none;border:0;color:var(--accent);padding:8px 0;min-height:44px;cursor:pointer}
+.ph-chips{display:flex;grid-template-columns:none;overflow-x:auto;gap:6px;scrollbar-width:none;padding-bottom:2px}
+.ph-chips::-webkit-scrollbar{display:none}
+.ph-chips button{flex:0 0 auto;padding:4px 12px;min-height:36px}
+.ph-unten{justify-content:flex-start}
+.ph-weiter{order:-1;flex:1 1 100%;margin:4px 0 0;background:var(--surface);border:2px solid var(--accent);border-radius:14px;color:var(--accent);font-size:17px;min-height:52px}
+.ph-andere{width:100%;min-height:48px;font-size:15px;color:var(--muted)}
+.ph-immer{flex-wrap:wrap;align-items:center}
+.ph-immer .ph-label{flex:1 1 100%}

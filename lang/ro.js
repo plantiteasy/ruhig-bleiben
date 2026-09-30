@@ -1,6 +1,6 @@
 /* Sprachpaket "ro" (Română) - automatisch erzeugt von tools/i18n_build.js aus i18n/ro.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/ro.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1508/1508 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1514/1514 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["ro"] = {
@@ -1517,6 +1517,12 @@ window.RB.i18n["ro"] = {
   "data.cards.k-zoll.kw": "!vama, vames, !zoll, !fks, finanzkontrolle, schwarzarbeit, munca la negru, la negru, munca nedeclarata, permis de munca, autorizatie de munca, angajator, salar, ~santier, auskunftspflicht, contract de munca, ~munc",
   "data.cards.k-dolmetscher.kw": "traduc, interpret, nu inteleg, nu vorbesc germana, nu stiu germana, nemt, ~germana, limba germana, romaneste, limba romana, kein deutsch, deutsch, dolmetscher, ~gratuit, vorbesc romana",
   "data.cards.k-strafbefehl.kw": "strafbefehl, strafbefel, ordonanta penala, condamn, fara proces, zile amenda, cetatenie, naturaliz, expulz, deport, cazier, antecedente, ~penal, ~sedere, ~definitiv, einbuergerung, ausweisung, fuehrungszeugnis",
-  "T.land_std": "Răspunsurile sunt pentru Baden-Württemberg. Alt land? Alege aici"
+  "T.land_std": "Răspunsurile sunt pentru Baden-Württemberg. Alt land? Alege aici",
+  "T.k_du": "Tu: {x}",
+  "T.k_aendern": "schimbă",
+  "T.k_andere": "Polițistul spune altceva",
+  "T.k_zu_phasen": "‹ Înapoi: Ce spun",
+  "T.einr_stimme": "Vocea la redare",
+  "T.ph_jederzeit": "Oricând"
  }
 };

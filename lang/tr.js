@@ -1,6 +1,6 @@
 /* Sprachpaket "tr" (Türkçe) - automatisch erzeugt von tools/i18n_build.js aus i18n/tr.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/tr.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1508/1508 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1514/1514 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["tr"] = {
@@ -1517,6 +1517,12 @@ window.RB.i18n["tr"] = {
   "data.cards.k-zoll.kw": "!zoll, !fks, gümrük, gümrük soru, gümrük sorarsa, gümrük cevap, gümrük cevab, gümrük zorunda, finanzkontrolle, schwarzarbeit, kaçak çalış, kayıt dışı, çalışma izni, çalışma izin, işveren, patron, maaş, inşaat, şantiye, cevap vermek zorunda, sorulara cevap, bilgi vermek, auskunftspflicht, ~zorunda",
   "data.cards.k-dolmetscher.kw": "almanca, almanca bilmiyor, almanca anlam, anlamıy, anlamad, anlayam, tercüman, çevirmen, dolmetsch, übersetzer, uebersetzer, kein deutsch, verstehe, imzala, imza, ~dil, dilim, türkçe, türkçe konuş, türkçe bilen, anadil, ana dilim, kürtçe, arapça, rusça, yabancı dil, çeviri",
   "data.cards.k-strafbefehl.kw": "ceza emri, strafbefehl, straf, iki hafta, kesinleş, hüküm, mahkum, duruşma, günlük para, tagessatz, sabıka, adli sicil, führungszeugnis, fuehrungszeugnis, vatandaş, einbürgerung, oturum izni, oturma izni, sınır dışı, sınırdışı, deport, ausweisung, ülkeden çıkar, oturum iptal, yargı, ~mahkeme, hapis",
-  "T.land_std": "Cevaplar Baden-Württemberg için geçerli. Başka bir eyalet mi? Buradan seç"
+  "T.land_std": "Cevaplar Baden-Württemberg için geçerli. Başka bir eyalet mi? Buradan seç",
+  "T.k_du": "Sen: {x}",
+  "T.k_aendern": "değiştir",
+  "T.k_andere": "Polis başka bir şey söylüyor",
+  "T.k_zu_phasen": "‹ Geri: Ne söylemeliyim",
+  "T.einr_stimme": "Oynatma sesi",
+  "T.ph_jederzeit": "Her an"
  }
 };

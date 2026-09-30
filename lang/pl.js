@@ -1,6 +1,6 @@
 /* Sprachpaket "pl" (Polski) - automatisch erzeugt von tools/i18n_build.js aus i18n/pl.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/pl.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1508/1508 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1514/1514 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["pl"] = {
@@ -1517,6 +1517,12 @@ window.RB.i18n["pl"] = {
   "data.cards.k-zoll.kw": "!clo, !celnik, celn, urzad celny, kontrola celna, !fks, !zoll, finanzkontrolle, schwarzarbeit, praca na czarno, czarno, pozwolenie na prace, zezwolenie na prace, pracodawc, wynagrodzen, zarobki, ile zarabiasz, godziny pracy, czas pracy, na budowie, pytania o prace, auskunftspflicht, ~odpowiad",
   "data.cards.k-dolmetscher.kw": "tlumacz, tlumaczen, tlumaczyc, przetlumacz, nie rozumiem, nie rozumiem po niemiecku, nie znam niemieckiego, po niemiecku, niemieck, nie mowie po niemiecku, nie mowie, jezyk, jezyku, jezyka, po polsku, ~polski, ~polsku, po rosyjsku, dolmetscher, kein deutsch, nie podpisuj, nie podpisuj niczego, ~podpis, bezplatny tlumacz, tlumacz za darmo, nie znam jezyka",
   "data.cards.k-strafbefehl.kw": "strafbefehl, wyrok nakazowy, nakaz karny, nakazowy, wyrok, skazan, karalnosc, karany, niekarany, zaswiadczenie o niekaralnosci, niekaralnosc, stawka dzienna, stawki dzienne, dni stawkowe, ~grzywn, obywatelstw, naturalizacj, zostac obywatelem, wydalenie, deportac, wydalic, wydalony, utrata pobytu, cofniecie pobytu, ~pobyt, sprzeciw, termin na sprzeciw, bez rozprawy, einbuergerung, ausweisung",
-  "T.land_std": "Odpowiedzi dotyczą Badenii-Wirtembergii. Inny kraj związkowy? Wybierz tutaj"
+  "T.land_std": "Odpowiedzi dotyczą Badenii-Wirtembergii. Inny kraj związkowy? Wybierz tutaj",
+  "T.k_du": "Ty: {x}",
+  "T.k_aendern": "zmień",
+  "T.k_andere": "Policjant mówi coś innego",
+  "T.k_zu_phasen": "‹ Wróć: Co mam powiedzieć",
+  "T.einr_stimme": "Głos przy odtwarzaniu",
+  "T.ph_jederzeit": "W każdej chwili"
  }
 };

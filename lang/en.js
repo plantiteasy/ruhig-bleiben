@@ -1,6 +1,6 @@
 /* Sprachpaket "en" (English) - automatisch erzeugt von tools/i18n_build.js aus i18n/en.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/en.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1508/1508 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1514/1514 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["en"] = {
@@ -1517,6 +1517,12 @@ window.RB.i18n["en"] = {
   "data.cards.k-zoll.kw": "customs check, customs control, customs questions, customs officer, customs officers, answer customs, must answer customs, have to answer customs, duty to answer, obliged to answer, obligation to answer, information duty, !customs, !fks, !zoll, financial control, illegal work, undeclared work, black work, work permit, employer, construction site, building site, site inspection, wage, salary, working hours, work hours, raid, ~work",
   "data.cards.k-dolmetscher.kw": "understand german, speak german, no german, language, language barrier, !interpret, translator, translation, translate, translate documents, need translator, need an interpreter, free interpreter, free translator, russian, speak english, english speaking, my language, native language, in my language, sign nothing, do not sign, sign, understand, understood, non native, ~german, ~language",
   "data.cards.k-strafbefehl.kw": "penal order, !strafbefehl, straf befehl, criminal order, court order, conviction, convicted, convict, sentence, judgment, verdict, objection, appeal, appeal within 2 weeks, two weeks, 2 weeks, deadline, daily rate, daily rates, day fines, day fine, tagessatz, tagessaetze, criminal record, conviction record, clean record, police certificate, certificate of good conduct, good conduct, naturalisation, naturalization, citizenship, german citizenship, deportation, deport, expulsion, residence permit, ~record, ~permit",
-  "T.land_std": "Answers apply to Baden-Württemberg. Different federal state? Choose here"
+  "T.land_std": "Answers apply to Baden-Württemberg. Different federal state? Choose here",
+  "T.k_du": "You: {x}",
+  "T.k_aendern": "change",
+  "T.k_andere": "The officer says something else",
+  "T.k_zu_phasen": "‹ Back: What do I say",
+  "T.einr_stimme": "Voice for playback",
+  "T.ph_jederzeit": "Any time"
  }
 };

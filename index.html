@@ -73,11 +73,11 @@
         <p class="k-full" id="k-full" lang="de" translate="no"></p><p class="say-ru" id="k-full-ru" lang="ru"></p><p class="k-why" id="k-why"></p><p class="law" id="k-lawfull" lang="de" translate="no"></p><div id="k-land-info"></div></div>
     </div>
     <div class="k-pick" id="k-pick">
-      <div class="seg k-role" id="k-role" role="group" aria-label="Ich bin" data-t-aria="k_role_aria"></div>
-      <div class="seg k-modus" id="k-modus" role="group" aria-label="Modus" hidden>
-        <button type="button" class="seg-b" data-km="sagen" aria-pressed="true" data-t="k_modus_sagen">Was sage ich</button>
-        <button type="button" class="seg-b" data-km="polizist" aria-pressed="false" data-t="k_modus_polizist">Was sagt der Polizist</button>
-      </div>
+      <!-- Rolle gemerkt: nur ein Chip „Du: Fahrer · ändern“, die fünf Rollen erst nach Tipp (Audit 30.09.2026: 16 Wahlen bis zur ersten Antwort) -->
+      <button type="button" class="k-who" id="k-who" aria-expanded="false" aria-controls="k-role"></button>
+      <div class="seg k-role" id="k-role" role="group" aria-label="Ich bin" data-t-aria="k_role_aria" hidden></div>
+      <!-- Modus: kein Umschalter mehr – „Polizist sagt etwas anderes“ unter dem Satz, von dort zurück mit diesem Knopf -->
+      <div class="k-modus" id="k-modus" hidden><button type="button" class="k-zu-phasen" data-km="sagen" data-t="k_zu_phasen">‹ Zurück: Was sage ich</button></div>
       <h1 id="k-h" class="k-h" data-t="k_h">Was sagt der Polizist?</h1>
       <div class="k-grid" id="k-grid"></div>
       <p class="k-hint" id="k-hint" hidden></p>
@@ -91,10 +91,10 @@
       </div>
       <div class="k-phasen" id="k-phasen" hidden>
         <nav class="ph-chips" id="ph-chips" aria-label="Phase"></nav>
-        <div class="ph-immer" id="ph-immer"></div>
         <div class="ph-karte" id="ph-karte" aria-live="polite"></div>
+        <button type="button" class="btn ph-andere" data-km="polizist" data-t="k_andere">Polizist sagt etwas anderes</button>
+        <div class="ph-immer" id="ph-immer"></div>
         <div class="ph-extra" id="ph-extra"></div>
-        <div class="seg ph-stimme" id="ph-stimme" role="group"></div>
         <p class="hint ph-note" id="ph-note"></p>
         <a class="ph-ueben-link" href="#ueben" id="ph-ueben-link" data-t="ph_ueben_link">Üben ohne Polizei</a>
       </div>
@@ -142,6 +142,7 @@
         <li><p class="einr-t" data-t="einr_tr">Tresor: Kopie außerhalb des Handys</p>
           <p class="hint" data-t="einr_tr_h">Während du filmst, geht jede Sekunde verschlüsselt ins Netz.</p>
           <div class="einr-tr" id="einr-tr"></div></li>
+        <li><p class="einr-t" data-t="einr_stimme">Stimme beim Abspielen</p><div class="seg ph-stimme" id="ph-stimme" role="group"></div></li>
         <li><p class="einr-t" data-t="einr_6">Optional: Profil</p><a class="btn ghost" href="#profil" data-t="einr_prof">Führerschein, Aufenthalt – für passende Hinweise</a></li>
         <li><label class="check" id="einr-test-label" hidden><input type="checkbox" id="einr-test"> <span data-t="einr_test">Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google)</span></label></li>
       </ol>

@@ -1,6 +1,6 @@
 /* Sprachpaket "fa" (دری / فارسی) - automatisch erzeugt von tools/i18n_build.js aus i18n/fa.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/fa.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1508/1508 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1514/1514 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["fa"] = {
@@ -1517,6 +1517,12 @@ window.RB.i18n["fa"] = {
   "data.cards.k-zoll.kw": "گمرک, تسول, مامور گمرک, بازرسی گمرک, کار سیاه, کار غیرقانونی, کارگاه, ساختمانی, کارفرما, ~حقوق, مجوز کار, جواز کار, اجازه کار, موظف جواب, وظیفه پاسخ, الزامی, اف کا اس, !fks, کار بدون مجوز",
   "data.cards.k-dolmetscher.kw": "مترجم, ترجمان, ترجمه, المانی نمیفهمم, المانی بلد نیستم, المانی نمیدونم, زبان المانی, زبان, نمیفهمم, نفهمیدم, فهمم, فارسی, دری, پشتو, مترجم رایگان, مترجم میخوام, امضا نکنم, امضا نکن, امضا نمیکنم, دولمچر, ~المانی, بلد نیستم",
   "data.cards.k-strafbefehl.kw": "استرافبفل, اشتراف بفل, استراف بفل, شتراف بفل, حکم جزایی, حکم کیفری, محکوم, پیشینه کیفری, سوءپیشینه, سوپیشینه, سوء پیشینه, گواهی عدم سوءپیشینه, تابعیت, شهروندی, ~اقامت, اخراج از کشور, دیپورت, ترحیل, اعتراض دو هفته, دو هفته, روز جریمه, جزای نقدی, فوهرونگس, نچرالیزه",
-  "T.land_std": "پاسخ‌ها برای ایالت Baden-Württemberg است. ایالت دیگر؟ اینجا انتخاب کن"
+  "T.land_std": "پاسخ‌ها برای ایالت Baden-Württemberg است. ایالت دیگر؟ اینجا انتخاب کن",
+  "T.k_du": "شما: {x}",
+  "T.k_aendern": "تغییر",
+  "T.k_andere": "پلیس چیز دیگری می‌گوید",
+  "T.k_zu_phasen": "‹ بازگشت: چه بگویم",
+  "T.einr_stimme": "صدای پخش",
+  "T.ph_jederzeit": "هر زمان"
  }
 };

@@ -1,6 +1,6 @@
 /* Sprachpaket "ar" (العربية) - automatisch erzeugt von tools/i18n_build.js aus i18n/ar.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/ar.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1508/1508 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1514/1514 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["ar"] = {
@@ -1517,6 +1517,12 @@ window.RB.i18n["ar"] = {
   "data.cards.k-zoll.kw": "جمارك, الجمارك, جمرك, الجمرك, !تسول, اف كي اس, العمل الاسود, شغل بالاسود, عمل بدون تصريح, موقع البناء, ورشه, صاحب العمل, راتب, الراتب, معاش, الاجر, كم تقبض, ساعات العمل, تصريح العمل, اذن العمل, اجازه عمل, اسيله عن العمل, بدون اوراق, عامل بناء, بدون عقد, غرامه 5000, 5000 يورو",
   "data.cards.k-dolmetscher.kw": "لا افهم الالمانيه, ما افهم الالمانيه, مو فاهم, مش فاهم, ما بفهم, ما بحكي الماني, لا اتكلم الالمانيه, لا اتحدث الالمانيه, لا افهم, لم افهم, ~الماني, ~الالماني, ~بالالماني, بالعربي, بالعربيه, اتكلم عربي, بدي مترجم, اريد مترجم, مترجم, المترجم, ترجم, الترجمه, مترجم فوري, دولميتشر, دولمتشر, لا اوقع, ما اوقع, لغتي, بالكردي",
   "data.cards.k-strafbefehl.kw": "امر جزايي, امر العقوبه, شتراف بيفيل, شتراف بفيل, شترافبيفيل, رساله المحكمه, بدون محاكمه, ~حكم, ~غرامه, عقوبه, مهله اسبوعين, ~اعتراض, ~اقامه, ~الاقامه, سحب الاقامه, الغاء الاقامه, ترحيل, الترحيل, تجنس, التجنس, الجنسيه, الحصول علي الجنسيه, السجل العدلي, سوابق, السوابق, يوم غرامه, تاغيس زاتس, مدان, ادانه",
-  "T.land_std": "الإجابات خاصة بولاية Baden-Württemberg. ولاية أخرى؟ اختر هنا"
+  "T.land_std": "الإجابات خاصة بولاية Baden-Württemberg. ولاية أخرى؟ اختر هنا",
+  "T.k_du": "أنت: {x}",
+  "T.k_aendern": "تغيير",
+  "T.k_andere": "الشرطي يقول شيئًا آخر",
+  "T.k_zu_phasen": "‹ رجوع: ماذا أقول",
+  "T.einr_stimme": "الصوت عند التشغيل",
+  "T.ph_jederzeit": "في أي وقت"
  }
 };
