@@ -29,7 +29,7 @@
     </div>
     <button class="btn inst" type="button" data-install data-t="install" hidden>Installieren</button>
   </div>
-  <p class="meta" data-t="meta">Prototyp · Baden-Württemberg · Stand 28.09.2026 · keine Rechtsberatung</p>
+  <p class="meta" data-t="meta">Prototyp · Baden-Württemberg · Stand 30.09.2026 · keine Rechtsberatung</p>
 </header>
 
 <main id="main">
@@ -38,6 +38,7 @@
     <h1 id="h-jetzt" data-t="jetzt_h">Was passiert gerade?</h1>
     <a class="k-start" href="#kontrolle" id="k-start" data-act="kontrolle"><span class="k-start-t" data-t="k_start">Ich werde kontrolliert</span><span class="k-start-s" data-t="k_start_s">Video ohne Ton startet · Antworten mit § auf einem Bildschirm</span></a>
     <a class="k-start2" href="#kontrolle" id="k-start-filme" data-act="kontrolle-filme" data-t="k_start_filme">Ich filme eine Kontrolle (Freund, Fremde)</a>
+    <button type="button" class="land-std" id="land-std" hidden></button>
     <p class="lead" data-t="jetzt_lead">Tippe auf deine Situation. Du bekommst sofort, was du sagen und was du lassen solltest.</p>
     <div id="fuer-dich"></div>
     <div class="sit-grid" id="sit-grid"></div>
@@ -193,7 +194,7 @@
     <p class="lead" data-t="fragen_lead">Tippe auf das Mikrofon und frag kurz, zum Beispiel „Darf ich filmen?“ oder «Можно ли снимать?». Die Antwort erscheint als Text, sobald du fertig gesprochen hast. Danach hört das Mikrofon noch 5 Sekunden zu, falls du etwas ergänzen willst. Verarbeitet wird nur deine Frage.</p>
     <div class="seg" role="group" aria-label="Sprache der Spracheingabe" data-t-aria="seg_ask_aria">
       <button type="button" class="seg-b" data-lang="de-DE" aria-pressed="true" data-t="seg_de">Deutsch</button>
-      <button type="button" class="seg-b" data-lang="ru-RU" aria-pressed="false" data-t="seg_ru">Русский</button>
+      <button type="button" class="seg-b seg-own" data-lang="ru-RU" aria-pressed="false" data-t="seg_ru">Русский</button>
     </div>
     <button class="mic" type="button" id="mic" aria-pressed="false">
       <span class="mic-dot" aria-hidden="true"></span>
@@ -280,7 +281,7 @@
     <a class="btn danach-recs" href="#aufnahme" data-scroll="rec-mine" id="danach-recs" data-t="danach_recs">Meine Videos und Tresor →</a>
     <div class="seg" role="group" aria-label="Sprache fürs Diktieren" data-t-aria="seg_dict_aria">
       <button type="button" class="seg-b" data-lang="de-DE" aria-pressed="true" data-t="dict_de">Diktat Deutsch</button>
-      <button type="button" class="seg-b" data-lang="ru-RU" aria-pressed="false" data-t="dict_ru">Диктовка по-русски</button>
+      <button type="button" class="seg-b seg-own" data-lang="ru-RU" aria-pressed="false" data-t="dict_ru">Диктовка по-русски</button>
     </div>
 
     <form class="proto" id="proto" autocomplete="off">

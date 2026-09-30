@@ -498,3 +498,7 @@ input::placeholder,textarea::placeholder{color:var(--faint);opacity:1}
 .ueb-end-score{margin:0;font-size:22px;font-weight:750}
 .ueb-end-actions{display:grid;gap:10px;justify-items:stretch}
 @media (max-width:350px){.ueb-cop-de{font-size:clamp(17px,5.2vw,22px)}.ueb-ans-de{font-size:16px}}
+
+/* Hinweis Bundesland (nur ohne Standort und ohne eigene Wahl): ruhig, aber deutlich antippbar */
+.land-std{display:block;width:100%;margin:10px 0 0;padding:10px 14px;border:1px dashed var(--line);border-radius:12px;background:transparent;color:var(--ink);font:inherit;font-size:15px;text-align:start;cursor:pointer}
+.land-std::after{content:" ›";color:var(--muted)}

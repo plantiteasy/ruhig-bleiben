@@ -1,6 +1,6 @@
 /* Sprachpaket "ro" (Română) - automatisch erzeugt von tools/i18n_build.js aus i18n/ro.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/ro.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1459/1459 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1508/1508 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["ro"] = {
@@ -213,7 +213,7 @@ window.RB.i18n["ro"] = {
   "T.m_clock": " ora",
   "T.m_sec": " s",
   "T.m_silent": "fără sunet",
-  "T.meta": "Prototip · Baden-Württemberg · actualizat 28.09.2026 · nu este consultanță juridică",
+  "T.meta": "Prototip · Baden-Württemberg · actualizat 30.09.2026 · nu este consultanță juridică",
   "T.mic_idle": "Apasă și întreabă",
   "T.mic_on": "Ascult … apasă pentru a opri",
   "T.mode_audio": "Cu sunet (consimțământ {x})",
@@ -1468,6 +1468,55 @@ window.RB.i18n["ro"] = {
   "laender.name.ST": "Saxonia-Anhalt",
   "laender.name.TH": "Turingia",
   "laender.zahlen_hinweis": "Cifrele/termenele se aplică pentru Baden-Württemberg; {in} pot fi diferite.",
-  "quick.person-angehoerige.cop": "Dar dumneavoastră sunteți soția lui – spuneți-ne cât a băut."
+  "quick.person-angehoerige.cop": "Dar dumneavoastră sunteți soția lui – spuneți-ne cât a băut.",
+  "data.situations.verkehr.kw": "control rutier, politia rutiera, control de trafic, ~trafic, rutier, girofar, semnal de oprire, ~opri, ~opres, ~masin, ~autoturism, ~volan, talon, tehpasport, certificat de inmatriculare, cobor din masin, triunghi reflectorizant, trusa medicala, vesta reflectorizanta, incotro, de unde vii, unde mergi, camionet, motocicl, geam, maini pe volan, verkehrskontrol, anhaltesignal",
+  "data.situations.papiere.kw": "permis de conducere, ~permis, uitat permis, uitat acasa, permis acasa, ~acte, acte masin, documente masin, talon, permis strain, permis rusesc, permis rus, permis ucrainean, permis moldovenesc, preschimb, echivalar, conduc fara permis, permis digital, ikfz, ~aplicatie, poza permis, copie permis, fuehrerschein, fuhrerschein",
+  "data.situations.test.kw": "alcool, alcoolemie, etilotest, alcooltest, !fiola, sufl, baut, ~beau, ~beat, bere, ~vin, drog, narcotic, urin, sange, proba de sange, ~tampon, saliv, pupil, lanterna, ochi rosii, medicament, reteta, ritalin, promil, thc, ~test, pe un picior, deget nas",
+  "data.situations.escooter.kw": "!trotinet, trotineta electrica, monopat, e scooter, escooter, scooter, scuter, elektroroller, e roller, roller, trotuar, ~in doi, placuta asigurare, asigurare trotineta, versicherungskennzeichen, permis trotineta, alcool trotineta",
+  "data.situations.auto.kw": "!portbagaj, torpedou, perchezit masin, cauta masin, cotrob, scotoc, controlul masin, verifica masin, deschid portbagaj, deschid masin, genti masin, rucsac masin, trusa, vesta, triunghi, bord masin, auto durchsuch, kofferraum, handschuhfach",
+  "data.situations.handysteuer.kw": "telefon volan, mobil volan, vorb telefon, telefon in mana, navig, gps, semafor, ~mesaj, uitat telefon, uitam telefon, nu vorbeam, nu am vorbit, amenda telefon, ~telefon, ~mobil, ~deblocare, arat telefon, scarpin, telefon am steuer",
+  "data.situations.unfall.kw": "accident, tampona, lovit masin, daune materiale, pagub, zgar, ~bara, fuga de la locul, fugit, rani, !112, amiabil, parcat masin, ciocn, ~ambulant, ~salvare, parasit locul, unfall, blechschaden, ~lovit",
+  "data.situations.personalien.kw": "control de identitate, identitate, buletin, pasaport, ~legitim, personalien, ausweis, date personal, nume adres, adres, domiciliu, data naster, cum ma cheama, ~control, ~kontrol, ~strada, ~parc, pe jos, ~opri, identific, documente, ~acte, !act, act de identitate",
+  "data.situations.durchsuchung.kw": "perchezit, control corporal, geant, gent, rucsac, buzunar, pipai, palp, dezbrac, goles, mandat, ~locuint, ~apartament, ~gara, ~hain, cauta prin, scotoc, durchsuchung, beschluss",
+  "data.situations.kontrolleur.kw": "controlor, bilet, fara bilet, abonament, deutschlandticket, deutschland ticket, ticket, tichet, autobuz, tramvai, metrou, ~tren, s bahn, u bahn, stadtbahn, transport in comun, compost, ~valid, ~busul, kontrolleur, fahrkarte, fahrschein, schwarzfahr",
+  "data.situations.zoll.kw": "!vama, vames, !zoll, !fks, finanzkontrolle, schwarzarbeit, santier, ~munc, munca la negru, la negru, salar, angajator, ~angajat, patron, permis de munca, autorizatie de munca, ~lucr, cat castig, cat primesc, contract de munca, control la munca",
+  "data.situations.handy.kw": "!sterg, sters, confisc, sechestr, luat telefon, ia telefon, ridic telefon, ~telefon, ~mobil, !pin, parola, codul telefon, cod telefon, ~codul, debloc, descui, ~deget, face id, adeverint, ~dovad, biometric",
+  "data.situations.freund.kw": "prieten, martor, coleg, sotul, sotia, frate, ~sora, barbatul meu, iubit, cunostint, iau politist, a fost luat, luat de politie, ~sectie, ~distant, ~notez, zeuge, freund",
+  "data.situations.festnahme.kw": "retin, arest, sectie, sectia, avocat, ~traducator, rude, anunt famil, anunt rude, celula, ma iau, ma baga, merg cu ei, veniti cu noi, vino cu noi, festnahme, mitkomm",
+  "data.situations.filmen.kw": "film, inregistr, video, camera, sunet, audio, ~voce, microfon, consimt, ~acord, ~permisiune, fara sunet, cu sunet, captur, ~distant, pornesc camera, filmen",
+  "data.cards.k-ausweis.kw": "~buletin, carte de identitate, pasaport, personalausweis, ausweis, buletin la mine, pasaport la mine, acte la mine, asupra mea, uitat buletin, uitat pasaport, fara buletin, fara pasaport, fara acte, permis de sedere, sedere, aufenthaltstitel, card de sedere, ~santier, ~strain, ~identitate, !act, act de identitate",
+  "data.cards.k-fragen.kw": "trebuie sa raspund, ~raspun, intreb, tac, tacer, dreptul la tacere, nu spun nimic, ce sa spun, ~spun, declar, semnez, semnatur, ~martor, audiat, interog, depozit, refuz sa raspund, obligat sa raspund, aussage, schweigen",
+  "data.cards.k-grund.kw": "fara motiv, fara niciun motiv, fara temei, fara suspiciune, ~motiv, de ce ma controleaza, rasism, rasial, culoare piel, ~aspect, accent, ~strain, sunt strain, origine, etnie, discriminar, profilar, doar asa, pur si simplu, din senin, arbitrar, nejustificat, are voie politia, ohne grund",
+  "data.cards.k-paragraf.kw": "paragraf, articol, temei, baza legala, spune motivul, nu spune de ce, nu explica, acuz, banui, suspect, infractiun, ~fapt, repros, ~motiv, ~lege, vorwurf, straftat, paragraph",
+  "data.cards.k-name.kw": "nume politist, numar politist, insign, matricol, legitimatie politist, legitimatie de serviciu, cum il cheama, cum se numeste, cine esti, uniform, numar de serviciu, ~numar, ~numele, dienstnummer, dienstausweis, cum aflu numele",
+  "data.cards.k-filmen.kw": "film, video, camera, inregistr, sunet, audio, ~acord, consimt, film politi, inregistr politi, video politi, am voie film, ascuns, secret, bgh, microfon, ~voce, filmen erlaubt",
+  "data.cards.k-tabu.kw": "insult, injur, jign, ofens, obscen, vorbe urate, cuvinte urate, deget mijlociu, mijlociu, tutui, per tu, rezist, impin, smulg, ~porc, ce nu am voie, cuvinte interzise, beleidig, widerstand, ~obraznic, necuviinc",
+  "data.cards.k-platzverweis.kw": "platzverweis, plecati, ~plec, trebuie sa plec, parasi, parase, alung, goni, interdict, interzis accesul, ~dispozit, eliberati zona, evacu, aufenthaltsverbot, ordin pleca",
+  "data.cards.k-wohnung.kw": "!usa, usii, usile, la usa, soner, ciocan, bat la usa, politi usa, locuint, apartament, ~acasa, ~domiciliu, ~casa, intra in casa, mandat, mandat de perchezitie, hotarar, judecator, noapte, deschid usa, sa intre, wohnung",
+  "data.cards.k-bodycam.kw": "bodycam, body cam, camera corporala, camera politi, camera de pe piept, camera pe uniforma, camera de corp, sterge automat, secunde, ~saptaman, ~pastr, salvez inregistr, cer inregistrarea, securiz, koerperkamera, sichern",
+  "data.cards.k-beschwerde.kw": "reclam, plang, sesiz, denunt, batut, batai, violent, agres, brutal, abuz, maltrat, catus, lovit politist, unde ma plang, unde reclam, ombudsman, anzeige, beschwerde",
+  "data.cards.k-geld.kw": "despagubi, compensa, ~bani, daune morale, ~daune, in judecata, instanta, tribunal, actiun, actionez, ~proces, castig proces, pretentii, cer bani, primesc bani, schadensersatz, schmerzensgeld",
+  "data.cards.k-post.kw": "amend, amenz, radar, blitzer, geblitzt, vitez, scriso, ~plic, ~posta, corespondent, chestionar, formular, audier, contest, sofer, contraventi, carnet de bord, prescri, bussgeld, anhoerung",
+  "data.cards.k-drei-wege.kw": "dupa proba de sange, dupa recolt, dupa analiz, ce urmeaza, ce se intampla dupa, ce se intampla acum, mai departe, ~rezultat, !mpu, retragere permis, suspend permis, parchet, fuehrerscheinstelle, fuhrerscheinstelle, trei cai, ~urmeaz",
+  "data.cards.k-vorladung.kw": "citati, convoc, chemat politi, chemare politi, invit politi, prezint politi, prezent politi, audiat, inculpat, invinuit, ~martor, ~dosar, acces la dosar, vorladung, vorgeladen, merg politi",
+  "data.cards.k-messer.kw": "!cutit, briceag, cuter, !arma, arme, zona de interdictie, zona interzisa, zona cu arme, scule, unelt, uneal, surubelnit, ~gara, ~stuttgart, ~autobuz, hauptbahnhof, verbotszone, waffenverbotszone, messer",
+  "data.cards.k-dauer.kw": "cat timp poate, cat ma tine, cat timp retin, cate ore, cat dureaza, cat de mult, pana cand, durata, ~termen, custodie, gewahrsam, festhalten, 12 ore, cate zile, ~ore, ~maxim, ~judecator, cat stau",
+  "data.cards.k-ed.kw": "amprent, dactilosc, fotograf, ~poze, ~poza, identificare criminalistic, criminalist, biometr, ~degete, ~imagin, fac poze, fingerabdr, erkennungsdienst",
+  "data.cards.k-minderjaehrig.kw": "minor, sub 18, adolescent, tanar, tiner, copil, fiul, fiu, fiica, baiat, parint, elev, liceean, ~14, ~15, ~16, ~17, ~varsta, ~tutor, persoana de incredere, jugendlich, minderjahrig",
+  "data.cards.k-auslfs.kw": "permis strain, permis rus, rusesc, ruseasc, rusia, kazah, moldov, ~afara ue, non ue, 6 luni, sase luni, cat valabil, valabil, ~luni, preschimb, echivalar, schimb permis, ~tert, permis international, ~permis, ~traducere, locuiesc germania, russischer fuehrerschein",
+  "data.cards.k-ukrainefs.kw": "permis ucrainean, ucrain, refugi, protecti, statut, paragraful 24, falsific, ~fals, permis vech, 2022 1280, ~regulament, fara traducere, razboi, imprimat, printat, schutzstatus, gefaelscht, nu stie regula, ~permis",
+  "data.cards.k-fsweg.kw": "luat permis, ia permis, ridic permis, retra permis, confisc permis, preda permis, adeverint, ~dovad, anula permis, abgenommen, fuehrerschein abgenommen, fuhrerschein abgenommen, fuhrerschein weg, ~permis, ~opun, eingezogen",
+  "data.cards.k-nichteinverstanden.kw": "nu sunt de acord, ~acord, nu accept, nu consimt, obiecti, obiectez, protest, voce tare, spun tare, spun nu, zic nu, nu dau voie, ~impotriva, einverstanden, nicht einverstanden, tacer acord, ~refuz",
+  "data.cards.k-urintest.kw": "urin, test de urina, pipi, recipient, ~pahar, amenint, refuz, daca refuz, ~sange, proba de sange, priveste, se uita, supravegh, toaleta, ~sectie, nu vreau testul, ~costur, urintest, blutprobe, droh",
+  "data.cards.k-cannabis.kw": "canabis, cannabis, marijuana, marihuana, !iarba, joint, weed, kiff, ~fumat, ~fumez, fumat iarba, fumat ieri, ~ieri, gram, cate gram, hasis, hash, ~plante, ~thc, ~legal, cultiv",
+  "data.cards.k-notdienst.kw": "~avocat, avocat de garda, avocat din oficiu, avocat imediat, avocat urgen, numar avocat, telefon avocat, sun avocat, aparator, penalist, notdienst, anwalt, non stop, ~garda, caut avocat, nevoie avocat, barou, 24 de ore, ~urgen, serviciu de urgenta",
+  "data.cards.k-essen.kw": "manc, manan, cafea, tigar, ~fumat, ~fumez, ~apa, ~beau, sandvis, burger, doner, shaorm, gustar, fumat volan, fumez volan, manc volan, neatent, distras, energizant",
+  "data.cards.k-unfallflucht.kw": "cat astept, astept, asteapt, biletel, lasat bilet, lasat datele, lasat numar, fugit, fuga, parasit locul, plecat de la locul, zgar, parca, unfallflucht, fahrerflucht, ~minut",
+  "data.cards.k-ticket.kw": "fara bilet valabil, bilet valabil, ~prins, 60 euro, taxa 60, tarif majorat, majorat, ~tarif, ~taxa, uitat abonament, uitat bilet, uitat ticket, uitat deutschland, abonament acasa, 7 euro, ~saptaman, schwarzfahr, ohne ticket, fara bilet, ~abonament, ~bilet",
+  "data.cards.k-bundespolizei.kw": "bundespolizei, politia federala, federal, frontier, granit, in tren, tren, gara, peron, ~statie, db, bahn, deutsche bahn, politi tren, politi gara, zugkontrolle, grenzkontrolle, bahnhof",
+  "data.cards.k-zoll.kw": "!vama, vames, !zoll, !fks, finanzkontrolle, schwarzarbeit, munca la negru, la negru, munca nedeclarata, permis de munca, autorizatie de munca, angajator, salar, ~santier, auskunftspflicht, contract de munca, ~munc",
+  "data.cards.k-dolmetscher.kw": "traduc, interpret, nu inteleg, nu vorbesc germana, nu stiu germana, nemt, ~germana, limba germana, romaneste, limba romana, kein deutsch, deutsch, dolmetscher, ~gratuit, vorbesc romana",
+  "data.cards.k-strafbefehl.kw": "strafbefehl, strafbefel, ordonanta penala, condamn, fara proces, zile amenda, cetatenie, naturaliz, expulz, deport, cazier, antecedente, ~penal, ~sedere, ~definitiv, einbuergerung, ausweisung, fuehrungszeugnis",
+  "T.land_std": "Răspunsurile sunt pentru Baden-Württemberg. Alt land? Alege aici"
  }
 };

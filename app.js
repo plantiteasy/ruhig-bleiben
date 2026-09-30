@@ -27,7 +27,7 @@
   var UI = lsGet(LS_UI) || (/^(ru|uk|be|kk)/i.test(navigator.language || "") ? "ru" : "de");
   var T = {
     de: {
-      meta: "Prototyp · Baden-Württemberg · Stand 28.09.2026 · keine Rechtsberatung", install: "Installieren", install_app: "App installieren",
+      meta: "Prototyp · Baden-Württemberg · Stand 30.09.2026 · keine Rechtsberatung", install: "Installieren", install_app: "App installieren",
       tab_jetzt: "Jetzt", tab_fragen: "Fragen", tab_aufnahme: "Aufnahme", tab_danach: "Danach", tab_wissen: "Wissen", tab_vorb: "Vorbereiten", vorb_h: "Vorbereiten", vorb_lead: "In Ruhe, bevor etwas passiert: Frage stellen, Rechte nachlesen, App einrichten.", vorb_einr: "Einrichten", danach_recs: "Meine Videos und Tresor →", tabs_aria: "Bereiche",
       jetzt_h: "Was passiert gerade?", jetzt_lead: "Tippe auf deine Situation. Du bekommst sofort, was du sagen und was du lassen solltest.",
       q_ask: "Frage stellen", q_proto: "Protokoll", back: "Zurück", close: "Schließen",
@@ -51,7 +51,7 @@
       einr_cam: "Jetzt erlauben", einr_cam_ok: "✓ Erlaubt", einr_4: "Auf den Startbildschirm", einr_4h: "Danach: lange auf das App-Symbol drücken → „Kontrolle“ startet sofort das Video.",
       einr_geo: "Standort erlauben", einr_geo_h: "Beim Start einer Aufnahme wird der Ort gespeichert – nur auf diesem Handy.", einr_geo_on: "Jetzt erlauben", einr_geo_ok: "✓ Erlaubt", einr_geo_fail: "Nicht erlaubt – in den Einstellungen des Handys änderbar", einr_geo_save: "Ort bei Aufnahme speichern",
       einr_land: "Bundesland", einr_land_h: "Legt fest, welche Landesnorm bei den Antworten steht. Automatisch nur, wenn Standort erlaubt ist – sonst Baden-Württemberg als Standard.",
-      land_auto: "Automatisch (Standort)", land_badge: "Recht: {x}", land_status_auto: "Erkannt: {x}", land_status_standard: "Standort unklar oder nicht erlaubt – Baden-Württemberg als Standard",
+      land_auto: "Automatisch (Standort)", land_badge: "Recht: {x}", land_status_auto: "Erkannt: {x}", land_status_standard: "Standort unklar oder nicht erlaubt – Baden-Württemberg als Standard", land_std: "Antworten gelten für Baden-Württemberg. Anderes Bundesland? Hier wählen",
       land_anders: "{x} anders:", land_ungeprueft: "nicht bestätigt",
       einr_5: "Einmal üben", einr_ueben: "Sätze üben (2 Minuten)", einr_try: "Kontrolle-Bildschirm ansehen (ohne Aufnahme)", einr_test: "Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google bzw. Apple)",
       einr_6: "Optional: Profil", einr_prof: "Führerschein, Aufenthalt – für passende Hinweise", einr_done: "Fertig", einr_more: "Mehr einrichten (optional)",
@@ -165,7 +165,7 @@
       lang_more: "Mehr Sprachen", lang_dialog_h: "Sprache wählen", lang_dialog_close: "Schließen", lang_loading: "Wird geladen …", lang_fallback: "unvollständig übersetzt, zeigt teils Deutsch"
     },
     ru: {
-      meta: "Прототип · Баден-Вюртемберг · на 28.09.2026 · не юридическая консультация", install: "Установить", install_app: "Установить приложение",
+      meta: "Прототип · Баден-Вюртемберг · на 30.09.2026 · не юридическая консультация", install: "Установить", install_app: "Установить приложение",
       tab_jetzt: "Сейчас", tab_fragen: "Вопрос", tab_aufnahme: "Запись", tab_danach: "После", tab_wissen: "Знания", tab_vorb: "Подготовка", vorb_h: "Подготовка", vorb_lead: "Спокойно, заранее: задать вопрос, прочитать о правах, настроить приложение.", vorb_einr: "Настроить", danach_recs: "Мои видео и сейф →", tabs_aria: "Разделы",
       jetzt_h: "Что происходит?", jetzt_lead: "Нажми на свою ситуацию — сразу увидишь, что сказать и чего не делать.",
       q_ask: "Задать вопрос", q_proto: "Протокол", back: "Назад", close: "Закрыть",
@@ -188,7 +188,7 @@
       einr_cam: "Разрешить сейчас", einr_cam_ok: "✓ Разрешено", einr_4: "Значок на главный экран", einr_4h: "Потом: долго нажми на значок приложения → «Kontrolle» сразу включает видео.",
       einr_geo: "Разрешить местоположение", einr_geo_h: "При старте записи сохранится место — только на этом телефоне.", einr_geo_on: "Разрешить сейчас", einr_geo_ok: "✓ Разрешено", einr_geo_fail: "Не разрешено — можно изменить в настройках телефона", einr_geo_save: "Сохранять место при записи",
       einr_land: "Земля (Bundesland)", einr_land_h: "Определяет, какая земельная норма указана в ответах. Автоматически — только если разрешено местоположение, иначе Baden-Württemberg по умолчанию.",
-      land_auto: "Автоматически (по местоположению)", land_badge: "Право: {x}", land_status_auto: "Определено: {x}", land_status_standard: "Местоположение неизвестно или не разрешено — Baden-Württemberg по умолчанию",
+      land_auto: "Автоматически (по местоположению)", land_badge: "Право: {x}", land_status_auto: "Определено: {x}", land_status_standard: "Местоположение неизвестно или не разрешено — Baden-Württemberg по умолчанию", land_std: "Ответы для Баден-Вюртемберга. Другая земля? Выбери здесь",
       land_anders: "{x} иначе:", land_ungeprueft: "не подтверждено",
       einr_5: "Один раз попробовать", einr_ueben: "Потренировать фразы (2 минуты)", einr_try: "Посмотреть экран проверки (без записи)", einr_test: "Потренироваться с другом: включить тест прослушивания (звук уходит в Google или Apple)",
       einr_6: "По желанию: профиль", einr_prof: "Права, вид на жительство — для точных подсказок", einr_done: "Готово", einr_more: "Ещё настроить (по желанию)",
@@ -364,7 +364,8 @@
   }
   // Sprachcode fürs Sprachausgabe-/Spracheingabe-BCP-47-Tag; unbekannte Sprachen (noch kein Eintrag) gehen 1:1 durch,
   // die meisten Engines akzeptieren auch nur "tr" statt "tr-TR".
-  function speechLocale(code) { var m = { de: "de-DE", ru: "ru-RU" }; return m[code || UI] || (code || UI); }
+  // Regionale Tags für die Pakete, damit Android/Chrome sicher die richtige Erkennung wählt (ar/fa: Hochsprache, am Handy prüfen).
+  function speechLocale(code) { var m = { de: "de-DE", ru: "ru-RU", en: "en-GB", uk: "uk-UA", tr: "tr-TR", pl: "pl-PL", ro: "ro-RO", ar: "ar-SA", fa: "fa-IR" }; return m[code || UI] || (code || UI); }
 
   /* ---------- Bundesland: automatisch per Standort (offline), manuell änderbar (app/laender.js) ----------
      Quelldaten in quick.js/kontrolle.js/phasen.js/data.js bleiben Baden-Württemberg; hier nur Anzeige-Ersetzung. */
@@ -404,8 +405,14 @@
   function syncLandBadges() {
     var txt = landBadgeText();
     [].forEach.call(document.querySelectorAll(".land-badge"), function (el) { el.textContent = txt; });
+    // Ohne Standort und ohne eigene Wahl gilt still BW – ein Berliner merkte das nur an der kleinen Kopfzeile (Audit 30.09.).
+    var std = $("land-std");
+    if (std) { std.hidden = !RBL || RBL.status().quelle !== "standard"; std.textContent = t("land_std"); }
     var m = document.querySelector('[data-t="meta"]');
-    if (m) m.textContent = t("meta").replace("Baden-Württemberg", landName(currentLand())).replace("Баден-Вюртемберг", landName(currentLand()));
+    // Paket kann BW übersetzt haben („Badenia-Wirtembergia“) – dann ersetzte das feste „Baden-Württemberg“ nichts (PL bis v42).
+    if (m) { var mt = t("meta"), cur = landName(currentLand());
+      ["Baden-Württemberg", "Баден-Вюртемберг", landName("BW")].forEach(function (bw) { if (bw && mt.indexOf(bw) > -1) mt = mt.split(bw).join(cur); });
+      m.textContent = mt; }
   }
   function renderLandSelect() {
     var sel = $("einr-land"); if (!sel || !RBL) return;
@@ -521,10 +528,10 @@
   // bei DE/RU wie bisher das Paar aus data.js. Fehlt die Übersetzung, bleibt nur der deutsche Satz – nie Russisch für andere Sprachen.
   function sayButtons(list, idBase) {
     return (list || []).map(function (p, i) {
-      var tr = UI === "ru" ? (p[1] || "") : UI === "de" ? (p[1] || "") : (idBase && window.RB.i18nGet ? window.RB.i18nGet(UI, idBase + "." + i) || "" : "");
-      var tl = UI === "de" ? "ru" : UI;
+      // Deutsch: keine Übersetzungszeile (Rest der RU-ersten Fassung vom 24.09.; der Kontrolle-Bildschirm zeigt bei DE auch keine)
+      var tr = UI === "ru" ? (p[1] || "") : UI === "de" ? "" : (idBase && window.RB.i18nGet ? window.RB.i18nGet(UI, idBase + "." + i) || "" : "");
       return '<button class="say-b" type="button" data-de="' + esc(LS(p[0])) + '" data-ru="' + esc(LS(tr)) + '"><span class="say-de" lang="de" dir="ltr" translate="no">' + esc(LS(p[0])) +
-        '</span><span class="say-ru" lang="' + tl + '">' + esc(LS(tr)) + '</span><span class="say-tap">' + esc(t("tap")) + "</span></button>";
+        "</span>" + (tr ? '<span class="say-ru" lang="' + UI + '">' + esc(LS(tr)) + "</span>" : "") + '<span class="say-tap">' + esc(t("tap")) + "</span></button>";
     }).join("");
   }
   function actionButtons(actions) {
@@ -647,7 +654,7 @@
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest(".say-b");
     if (b) openBig(b.getAttribute("data-de"), b.getAttribute("data-ru"), b, b.getAttribute("data-law") || "", b.getAttribute("data-why") || "", { id: b.getAttribute("data-id") || "" });
-    var lb = e.target.closest && e.target.closest(".land-badge");
+    var lb = e.target.closest && e.target.closest(".land-badge, .land-std");
     if (lb) { location.hash = "#einrichten"; setTimeout(function () { var more = $("einr-more"); if (more) more.open = true; var sel = $("einr-land"); if (sel) sel.focus(); }, 60); }
     var a = e.target.closest && e.target.closest("[data-act]");
     if (a) {
@@ -659,23 +666,45 @@
   });
 
   /* ---------- Matching ---------- */
-  function norm(s) {
-    return String(s || "").toLowerCase().replace(/\u00ad/g, "").replace(/ё/g, "е").replace(/[ії]/g, "и").replace(/є/g, "е").replace(/ґ/g, "г").replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue").replace(/ß/g, "ss")
-      .replace(/[^a-z0-9а-я ]+/g, " ").replace(/\s+/g, " ").trim();
+  // mode "x" (Sprachpakete jenseits DE/RU): ä/ö/ü → a/o/u statt ae/oe/ue – Türken, Polen, Rumänen tippen oft ohne
+  // Sonderzeichen („uflemek“ = „üflemek“). Ohne mode bleibt Deutsch/Russisch exakt wie bisher (Suchwörter in data.js
+  // sind in ae/oe/ue-Form geschrieben). Bis v42 fielen hier alle Buchstaben außer a-z/а-я weg: türkische, polnische,
+  // rumänische, arabische und persische Fragen wurden leer (tests/test_suche_sprachen.js).
+  function norm(s, mode) {
+    s = String(s || "").toLowerCase().replace(/[­‌‍]/g, "").replace(/ё/g, "е").replace(/[ії]/g, "и").replace(/є/g, "е").replace(/ґ/g, "г").replace(/ß/g, "ss");
+    if (mode !== "x") s = s.replace(/ä/g, "ae").replace(/ö/g, "oe").replace(/ü/g, "ue");
+    else s = s.replace(/['’ʼ`]/g, ""); // „ім'я“ = „імя“, „don't“ = „dont“ (sonst zwei Wörter)
+    s = s.replace(/[À-ɏ]/g, function (c) { return c.normalize ? c.normalize("NFD") : c; }).replace(/[̀-ͯ]/g, "")
+      .replace(/ı/g, "i").replace(/ł/g, "l").replace(/đ/g, "d").replace(/ø/g, "o").replace(/æ/g, "ae").replace(/œ/g, "oe")
+      // Arabisch/Persisch: Vokalzeichen und Dehnstrich weg, Schreibvarianten vereinheitlichen (ی/ي, ک/ك, أ/ا …)
+      .replace(/[ً-ٰٟـ]/g, "").replace(/[أإآٱ]/g, "ا").replace(/[ىیئ]/g, "ي").replace(/ک/g, "ك").replace(/ة/g, "ه").replace(/ؤ/g, "و");
+    return s.replace(/[^a-z0-9а-яء-يٮ-ۓ۰-۹ ]+/g, " ").replace(/\s+/g, " ").trim();
   }
   // „~“ vor dem Suchwort: allgemein, zählt 1 Punkt (z. B. „за рул“ passt zu vielen Fragen).
   // „!“ davor: kurz, aber eindeutig, zählt 4 Punkte (z. B. „zoll“, „дтп“).
-  function kwList(list) {
+  function kwList(list, mode) {
     return list.map(function (k) {
       var c = k.charAt(0), mark = c === "~" || c === "!";
-      return { k: norm(mark ? k.slice(1) : k), weak: c === "~", strong: c === "!" };
+      return { k: norm(mark ? k.slice(1) : k, mode), weak: c === "~", strong: c === "!" };
     });
   }
   var corpus = [];
   function buildCorpus() {
     // Titel nur deutsch: Russische Fragen laufen über die Suchwörter (russische Titel brachten im Test nur Fehltreffer).
-    D.situations.forEach(function (s) { corpus.push({ kind: "s", item: s, kw: kwList(s.kw), title: norm(s.title + " " + s.sub) }); });
-    D.cards.forEach(function (c) { corpus.push({ kind: "c", item: c, kw: kwList(c.kw), title: norm(c.title) }); });
+    D.situations.forEach(function (s) { corpus.push({ kind: "s", item: s, kw: kwList(s.kw), title: norm(s.title + " " + s.sub), kwId: "data.situations." + s.id + ".kw" }); });
+    D.cards.forEach(function (c) { corpus.push({ kind: "c", item: c, kw: kwList(c.kw), title: norm(c.title), kwId: "data.cards." + c.id + ".kw" }); });
+  }
+  // Sprachpakete jenseits DE/RU: eigene Suchwörter (Paket-ID "<…>.kw", komma-getrennt, gleiche ~/!-Regeln) und der
+  // übersetzte Titel – einmal je Sprache gebaut. Deutsch/Russisch: null, die Suche bleibt dort unverändert.
+  function langSearch(e) {
+    if (UI === "de" || UI === "ru") return null;
+    var c = e.lang || (e.lang = {});
+    if (!c[UI]) {
+      var p = window.RB.i18n[UI], s = p && p.t && p.t[e.kwId];
+      c[UI] = { kw: s ? kwList(s.split(/[,،]/).map(function (x) { return x.trim(); }).filter(Boolean), "x") : [],
+        title: norm(L(e.item, "title") + " " + (e.kind === "s" ? L(e.item, "sub") : ""), "x") };
+    }
+    return c[UI];
   }
   // Ein Wort der Frage passt, wenn es mit dem Suchwort beginnt (2). Ab 5 Buchstaben darf die Endung abweichen (1):
   // „пописать“ findet „пописал“, „травы“ findet „траву“.
@@ -707,17 +736,23 @@
     "можно", "меня", "если", "нужно", "надо", "полиция", "полицию", "полиции", "чтобы", "могут", "может", "должен", "сейчас", "почему"];
   function match(q) { return score(q).slice(0, 3); }
   function score(q) {
-    var nq = " " + norm(q) + " ";
+    var nq = " " + norm(q) + " ", nx = UI === "de" || UI === "ru" ? "" : " " + norm(q, "x") + " ";
     if (nq.trim().length < 2) return [];
-    var all = nq.trim().split(" ");
-    var words = all.filter(function (w) { return w.length > 3 && STOP.indexOf(w) < 0; }).map(function (w) { return w.length > 6 ? w.slice(0, w.length - 2) : w; });
+    var all = nq.trim().split(" "), allx = nx.trim().split(" ");
+    var cut = function (w) { return w.length > 6 ? w.slice(0, w.length - 2) : w; };
+    var words = all.filter(function (w) { return w.length > 3 && STOP.indexOf(w) < 0; }).map(cut);
+    var wordsx = nx ? allx.filter(function (w) { return w.length > 3; }).map(cut) : [];
     return corpus.map(function (e) {
-      var sc = 0, best = 0;
-      e.kw.forEach(function (x) {
-        var h = x.k ? kwHit(x.k, nq, all) : 0; if (!h) return;
-        var pts = x.weak ? 1 : x.strong ? 4 : x.k.length < 6 ? 2 : x.k.length < 10 ? 3 : 4;
-        sc += h === 2 || x.weak ? pts : pts - 1; if (x.k.length > best) best = x.k.length;
-      });
+      var sc = 0, best = 0, ls = nx && langSearch(e);
+      var add = function (list, nqq, allq) {
+        list.forEach(function (x) {
+          var h = x.k ? kwHit(x.k, nqq, allq) : 0; if (!h) return;
+          var pts = x.weak ? 1 : x.strong ? 4 : x.k.length < 6 ? 2 : x.k.length < 10 ? 3 : 4;
+          sc += h === 2 || x.weak ? pts : pts - 1; if (x.k.length > best) best = x.k.length;
+        });
+      };
+      add(e.kw, nq, all);
+      if (ls) { add(ls.kw, nx, allx); wordsx.forEach(function (w) { if (ls.title.indexOf(w) > -1) sc += 1; }); }
       words.forEach(function (w) { if (e.title.indexOf(w) > -1) sc += 1; });
       return { e: e, sc: sc, best: best };
     }).filter(function (r) { return r.sc > 0; }).sort(function (a, b) { return b.sc - a.sc || b.best - a.best; });
@@ -804,7 +839,7 @@
     if (kq) box.innerHTML = quickAnsHTML(kq);
     else if (!res.length) {
       // Russisch gefragt oder russische Oberfläche: Hinweis auf Russisch
-      box.innerHTML = '<p class="err">' + esc(UI === "ru" || /[а-яё]/i.test(q) ? T.ru.no_card : T.de.no_card) + "</p>";
+      box.innerHTML = '<p class="err">' + esc(UI === "de" && /[а-яё]/i.test(q) ? T.ru.no_card : t("no_card")) + "</p>";
     } else {
       box.innerHTML = res.map(function (r, i) {
         var it = r.e.item, sit = r.e.kind === "s";
@@ -837,6 +872,17 @@
   var lang = lsGet(LS_LANG) || speechLocale();
   function syncSeg() {
     [].forEach.call(document.querySelectorAll(".seg-b[data-lang]"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-lang") === lang ? "true" : "false"); });
+  }
+  // Spracheingabe (Frage stellen, Diktat): erster Knopf Deutsch, zweiter die Sprache der Oberfläche – bei DE/RU wie bisher
+  // Russisch. Bis v42 stand dort bei jeder Sprache „Русский“, obwohl die Erkennung schon in der eigenen Sprache lief.
+  function syncSpeechSeg() {
+    var own = UI !== "de" && UI !== "ru", loc = own ? speechLocale(UI) : "ru-RU", p = window.RB.i18n[UI];
+    [].forEach.call(document.querySelectorAll(".seg-own"), function (b) {
+      b.setAttribute("data-lang", loc); b.setAttribute("lang", own ? UI : "ru");
+      if (own) b.textContent = (p && p.meta && p.meta.name) || UI;
+    });
+    if (own && lang !== "de-DE" && lang !== loc) lang = loc;
+    syncSeg();
   }
   [].forEach.call(document.querySelectorAll(".seg-b[data-lang]"), function (b) {
     b.addEventListener("click", function () { lang = b.getAttribute("data-lang"); lsSet(LS_LANG, lang); syncSeg(); });
@@ -2076,10 +2122,13 @@
       sits = hits.filter(function (r) { return r.e.kind === "s"; }).slice(0, 3).map(function (r) { return r.e.item; });
       list = hits.filter(function (r) { return r.e.kind === "c"; }).map(function (r) { return r.e.item; });
       if (!list.length) {
-        var words = nq.split(" ").map(function (w) { return w.length > 6 ? w.slice(0, w.length - 2) : w; });
+        var cut = function (w) { return w.length > 6 ? w.slice(0, w.length - 2) : w; };
+        var words = nq.split(" ").map(cut), own = UI !== "de" && UI !== "ru", wx = own ? norm(q, "x").split(" ").map(cut) : [];
+        var every = function (ws, hay) { return ws.length && ws.every(function (w) { return hay.some(function (x) { return x.indexOf(w) === 0; }); }); };
         list = D.cards.filter(function (c) {
           var hay = norm(c.title + " " + c.text + " " + c.kw.join(" ") + (c.ru ? " " + c.ru.title + " " + c.ru.text : "")).split(" ");
-          return words.every(function (w) { return hay.some(function (x) { return x.indexOf(w) === 0; }); });
+          // Sprachpaket: auch im übersetzten Titel/Text suchen (Wortanfänge, ohne Sonderzeichen)
+          return every(words, hay) || (own && every(wx, norm(L(c, "title") + " " + L(c, "text"), "x").split(" ")));
         });
       }
     } else list = D.cards.filter(function (c) { return !wCat || c.cat === wCat; });
@@ -2283,7 +2332,7 @@
     var disc = document.querySelector('[data-t-html="disclaimer"]'); // Quellen-Links bleiben, nur der Text davor wechselt
     if (disc) { if (linksHTML === null) linksHTML = disc.innerHTML.slice(disc.innerHTML.indexOf("<a ")); disc.innerHTML = t("disclaimer").replace("{links}", linksHTML); }
     [].forEach.call(document.querySelectorAll('[data-t-html="rec_note"]'), function (el) { el.innerHTML = t("rec_note"); });
-    syncLangButtons();
+    syncLangButtons(); syncSpeechSeg();
     $("mic-label").textContent = activeListen ? t("mic_on") : t("mic_idle");
     [].forEach.call(document.querySelectorAll(".dict"), function (b) { b.textContent = b.getAttribute("aria-pressed") === "true" ? t("stop") : t("dict"); });
     if (recState && recState.r) $("rec-mode").textContent = recModeText(recState.r);
@@ -2296,7 +2345,8 @@
   function syncLangButtons() {
     var last = lastLangCode(), le = langEntry(last) || { code: "ru", name: "Русский" };
     [].forEach.call(document.querySelectorAll(".lang-2nd"), function (b) {
-      b.setAttribute("data-ui", le.code); b.setAttribute("lang", le.code); b.textContent = le.code.toUpperCase();
+      b.setAttribute("data-ui", le.code); b.setAttribute("lang", le.code);
+      b.textContent = b.closest("#einr-lang") ? (le.name || le.code) : le.code.toUpperCase(); // Einrichten: „Deutsch · Русский“, nicht „Deutsch · RU“
       b.title = le.name || le.code;
     });
     [].forEach.call(document.querySelectorAll(".lang-b[data-ui]"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-ui") === UI ? "true" : "false"); });
