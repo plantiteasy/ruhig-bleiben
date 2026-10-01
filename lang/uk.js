@@ -1,6 +1,6 @@
 /* Sprachpaket "uk" (Українська) - automatisch erzeugt von tools/i18n_build.js aus i18n/uk.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/uk.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1520/1520 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1529/1529 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["uk"] = {
@@ -1529,6 +1529,15 @@ window.RB.i18n["uk"] = {
   "phasen.immer.0": "погано говорю",
   "phasen.immer.1": "мовчу по суті",
   "T.p_aufn": "Відео за {x} ще не в протоколі.",
-  "T.p_aufn_take": "Додати в протокол"
+  "T.p_aufn_take": "Додати в протокол",
+  "T.k_sig": "Повідомити своїм",
+  "T.k_sig_wait": "Місце …",
+  "T.k_sig_jetzt": "Надіслати",
+  "T.sig_msg": "Мене зараз перевіряє поліція. Якщо я не озвуся протягом 30 хвилин, подзвони мені.",
+  "T.sig_zeit": "Час: {x}",
+  "T.sig_ort": "Місце: {x}",
+  "T.einr_sig": "Повідомити своїм: кому?",
+  "T.einr_sig_h": "На екрані перевірки кнопка «Повідомити своїм» відкриває SMS на цей номер: перевірка поліції, час, місце. Без номера обереш контакт під час надсилання. Зберігається лише на цьому телефоні.",
+  "T.einr_sig_tel": "Номер телефону"
  }
 };

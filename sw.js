@@ -1,4 +1,4 @@
-var CACHE = "rb-v44";
+var CACHE = "rb-v45";
 // lang/<code>.js (Sprachpakete jenseits DE/RU) bewusst NICHT hier: sie werden erst beim Wählen der Sprache
 // nachgeladen und dann vom generischen fetch-Handler unten wie jede andere Datei gecacht (Laufzeit-Cache), damit
 // niemand ungefragt 5-10 zusätzliche Sprachdateien vorab herunterlädt. app/lang/manifest.json (nur der kleine

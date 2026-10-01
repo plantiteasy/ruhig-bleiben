@@ -1,6 +1,6 @@
 /* Sprachpaket "fa" (دری / فارسی) - automatisch erzeugt von tools/i18n_build.js aus i18n/fa.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/fa.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1520/1520 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1529/1529 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["fa"] = {
@@ -1529,6 +1529,15 @@ window.RB.i18n["fa"] = {
   "phasen.immer.0": "آلمانی کم بلدم",
   "phasen.immer.1": "درباره موضوع حرفی نمی‌زنم",
   "T.p_aufn": "ویدیوهای {x} هنوز در گزارش نیستند.",
-  "T.p_aufn_take": "افزودن به گزارش"
+  "T.p_aufn_take": "افزودن به گزارش",
+  "T.k_sig": "خبر دادن",
+  "T.k_sig_wait": "مکان …",
+  "T.k_sig_jetzt": "اکنون بفرست",
+  "T.sig_msg": "پلیس الان مرا کنترل می‌کند. اگر تا ۳۰ دقیقه خبری از من نشد، لطفاً به من زنگ بزن.",
+  "T.sig_zeit": "ساعت: {x}",
+  "T.sig_ort": "مکان: {x}",
+  "T.einr_sig": "خبر دادن: به چه کسی؟",
+  "T.einr_sig_h": "در صفحهٔ کنترل، دکمهٔ «خبر دادن» یک پیامک به این شماره باز می‌کند: کنترل پلیس، ساعت، مکان. بدون شماره، هنگام ارسال مخاطب را انتخاب می‌کنی. فقط روی همین گوشی می‌ماند.",
+  "T.einr_sig_tel": "شماره تلفن"
  }
 };

@@ -1,6 +1,6 @@
 /* Sprachpaket "en" (English) - automatisch erzeugt von tools/i18n_build.js aus i18n/en.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/en.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1520/1520 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1529/1529 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["en"] = {
@@ -1529,6 +1529,15 @@ window.RB.i18n["en"] = {
   "phasen.immer.0": "I speak little German",
   "phasen.immer.1": "nothing about the case",
   "T.p_aufn": "Videos from {x} are not in the record yet.",
-  "T.p_aufn_take": "Add to record"
+  "T.p_aufn_take": "Add to record",
+  "T.k_sig": "Tell someone",
+  "T.k_sig_wait": "Location …",
+  "T.k_sig_jetzt": "Send now",
+  "T.sig_msg": "I'm being stopped by the police right now. If you don't hear from me within 30 minutes, please call me.",
+  "T.sig_zeit": "Time: {x}",
+  "T.sig_ort": "Location: {x}",
+  "T.einr_sig": "Tell someone: who?",
+  "T.einr_sig_h": "On the police-stop screen, “Tell someone” opens a text message to this number: police stop, time, location. Without a number you choose the contact when sending. Stays on this phone only.",
+  "T.einr_sig_tel": "Phone number"
  }
 };

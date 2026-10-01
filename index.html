@@ -101,6 +101,7 @@
       <p class="k-heard" id="k-heard" aria-live="polite"></p>
       <div class="k-foot-row">
         <button class="btn k-ptt" type="button" id="k-ptt" aria-pressed="false"><span class="mic-dot" aria-hidden="true"></span><span id="k-ptt-l" data-t="k_ptt">Stichwort sagen</span></button>
+        <button class="btn k-sig" type="button" id="k-sig" data-t="k_sig">Bescheid geben</button>
         <a class="btn k-menu" href="#jetzt" id="k-menu" data-t="k_menu">Menü</a>
       </div>
     </div>
@@ -140,6 +141,9 @@
         <li><p class="einr-t" data-t="einr_tr">Tresor: Kopie außerhalb des Handys</p>
           <p class="hint" data-t="einr_tr_h">Während du filmst, geht jede Sekunde verschlüsselt ins Netz.</p>
           <div class="einr-tr" id="einr-tr"></div></li>
+        <li><p class="einr-t" data-t="einr_sig">Bescheid geben: an wen?</p>
+          <p class="hint" data-t="einr_sig_h">Auf dem Kontrolle-Bildschirm öffnet „Bescheid geben“ eine SMS an diese Nummer: Polizeikontrolle, Uhrzeit, Ort. Ohne Nummer wählst du den Kontakt beim Senden. Bleibt nur auf diesem Handy.</p>
+          <div class="field"><label for="einr-sig-tel" class="sr" data-t="einr_sig_tel">Telefonnummer</label><input id="einr-sig-tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="+49 …" data-t-ph="einr_sig_tel"></div></li>
         <li><p class="einr-t" data-t="einr_stimme">Stimme beim Abspielen</p><div class="seg ph-stimme" id="ph-stimme" role="group"></div></li>
         <li><p class="einr-t" data-t="einr_6">Optional: Profil</p><a class="btn ghost" href="#profil" data-t="einr_prof">Führerschein, Aufenthalt – für passende Hinweise</a></li>
         <li><label class="check" id="einr-test-label" hidden><input type="checkbox" id="einr-test"> <span data-t="einr_test">Mit einem Freund üben: Mithör-Test einschalten (Ton geht an Google)</span></label></li>

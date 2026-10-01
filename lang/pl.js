@@ -1,6 +1,6 @@
 /* Sprachpaket "pl" (Polski) - automatisch erzeugt von tools/i18n_build.js aus i18n/pl.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/pl.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1520/1520 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1529/1529 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["pl"] = {
@@ -1529,6 +1529,15 @@ window.RB.i18n["pl"] = {
   "phasen.immer.0": "słabo mówię po niemiecku",
   "phasen.immer.1": "nic w sprawie",
   "T.p_aufn": "Nagrania wideo z {x} nie są jeszcze w protokole.",
-  "T.p_aufn_take": "Dodaj do protokołu"
+  "T.p_aufn_take": "Dodaj do protokołu",
+  "T.k_sig": "Daj znać",
+  "T.k_sig_wait": "Miejsce …",
+  "T.k_sig_jetzt": "Wyślij teraz",
+  "T.sig_msg": "Właśnie kontroluje mnie policja. Jeśli nie odezwę się w ciągu 30 minut, zadzwoń do mnie.",
+  "T.sig_zeit": "Godzina: {x}",
+  "T.sig_ort": "Miejsce: {x}",
+  "T.einr_sig": "Daj znać: komu?",
+  "T.einr_sig_h": "Na ekranie kontroli przycisk „Daj znać” otwiera SMS na ten numer: kontrola policji, godzina, miejsce. Bez numeru wybierzesz kontakt przy wysyłaniu. Zostaje tylko na tym telefonie.",
+  "T.einr_sig_tel": "Numer telefonu"
  }
 };

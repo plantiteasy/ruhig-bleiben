@@ -327,7 +327,11 @@ body.k-mode{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 96px)}
 body.k-mode main{padding-top:calc(env(safe-area-inset-top,0px) + 8px)}
 .k-foot{position:fixed;left:0;right:0;bottom:0;z-index:10;display:grid;gap:6px;padding:8px 16px calc(env(safe-area-inset-bottom,0px) + 10px);
   background:color-mix(in srgb,var(--surface) 96%,transparent);border-top:1px solid var(--line);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.k-foot-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;max-width:680px;width:100%;margin:0 auto}
+.k-foot-row{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:8px;max-width:680px;width:100%;margin:0 auto}
+.k-sig{min-height:54px;padding:8px 10px;max-width:32vw;white-space:normal;line-height:1.15}
+.k-foot .k-foot-row .btn{font-size:15px;line-height:1.15}
+.k-foot .k-ptt .mic-dot{flex:none}
+.k-foot .k-ptt{padding-inline:10px;gap:8px}
 .k-foot .k-ptt{min-height:54px}
 .k-menu{min-height:54px;padding:10px 16px}
 .k-foot .k-heard{max-width:680px;margin:0 auto;width:100%;text-align:left}

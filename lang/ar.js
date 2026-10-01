@@ -1,6 +1,6 @@
 /* Sprachpaket "ar" (العربية) - automatisch erzeugt von tools/i18n_build.js aus i18n/ar.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/ar.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1520/1520 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1529/1529 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["ar"] = {
@@ -1529,6 +1529,15 @@ window.RB.i18n["ar"] = {
   "phasen.immer.0": "لا أتكلم الألمانية جيدًا",
   "phasen.immer.1": "لا أتكلم عن الموضوع",
   "T.p_aufn": "مقاطع الفيديو بتاريخ {x} ليست في المحضر بعد.",
-  "T.p_aufn_take": "إضافة إلى المحضر"
+  "T.p_aufn_take": "إضافة إلى المحضر",
+  "T.k_sig": "إبلاغ شخص",
+  "T.k_sig_wait": "الموقع …",
+  "T.k_sig_jetzt": "إرسال الآن",
+  "T.sig_msg": "الشرطة توقفني للتفتيش الآن. إذا لم أتواصل معك خلال 30 دقيقة، اتصل بي من فضلك.",
+  "T.sig_zeit": "الوقت: {x}",
+  "T.sig_ort": "الموقع: {x}",
+  "T.einr_sig": "إبلاغ شخص: من؟",
+  "T.einr_sig_h": "في شاشة التفتيش يفتح زر «إبلاغ شخص» رسالة نصية إلى هذا الرقم: تفتيش الشرطة، الوقت، الموقع. بدون رقم تختار جهة الاتصال عند الإرسال. يبقى على هذا الهاتف فقط.",
+  "T.einr_sig_tel": "رقم الهاتف"
  }
 };

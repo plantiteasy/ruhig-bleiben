@@ -40,7 +40,9 @@
       k_saved: "Aufnahme gespeichert.", k_sichern: "Jetzt sichern", k_sichern_again: "Nochmal sichern", k_shared: "geteilt {x} ✓", k_big: "Zeigen", k_more: "Mehr und warum",
       k_test_warn: "Testmodus: nur mit Freunden, die Polizei spielen und einverstanden sind. Der Ton geht zur Erkennung an Google (Android) bzw. Apple (iPhone). Nicht bei echter Polizei benutzen.",
       k_listen: "Mithören starten (Test)", k_listen_on: "Mithören stoppen", k_live: "Hört mit (Test):", k_log_share: "Log teilen", k_test_off: "Testmodus aus", k_log_none: "kein Treffer",
-      k_start_filme: "Ich filme eine Kontrolle (Freund, Fremde)", k_menu: "Menü", k_stop_sure: "Wirklich stoppen?", big_speak: "Vorlesen (Deutsch)",
+      k_start_filme: "Ich filme eine Kontrolle (Freund, Fremde)", k_menu: "Menü", k_sig: "Bescheid geben", k_sig_wait: "Ort …", k_sig_jetzt: "Jetzt senden",
+      sig_msg: "Ich werde gerade von der Polizei kontrolliert. Wenn ich mich in 30 Minuten nicht melde, ruf mich bitte an.", sig_zeit: "Uhrzeit: {x}", sig_ort: "Ort: {x}",
+      einr_sig: "Bescheid geben: an wen?", einr_sig_h: "Auf dem Kontrolle-Bildschirm öffnet „Bescheid geben“ eine SMS an diese Nummer: Polizeikontrolle, Uhrzeit, Ort. Ohne Nummer wählst du den Kontakt beim Senden. Bleibt nur auf diesem Handy.", einr_sig_tel: "Telefonnummer", k_stop_sure: "Wirklich stoppen?", big_speak: "Vorlesen (Deutsch)",
       // „Sagen“-Modus (nur Fahrer): Phasen statt Knopf-Raster, ein Satz mit Play-Knopf statt 10 Knöpfen
       k_modus_sagen: "Was sage ich", k_modus_polizist: "Was sagt der Polizist", k_du: "Du: {x}", k_aendern: "ändern", k_andere: "Polizist sagt etwas anderes", k_zu_phasen: "‹ Zurück: Was sage ich", einr_stimme: "Stimme beim Abspielen", ph_jederzeit: "Jederzeit",
       ph_play: "Abspielen", ph_stop: "Stopp", ph_show: "Zeigen", ph_wenn_noetig: "Wenn nötig", ph_mehr: "Mehr und warum", ph_weiter: "Weiter: {x} ›",
@@ -178,7 +180,9 @@
       k_saved: "Запись сохранена.", k_sichern: "Сохранить копию", k_sichern_again: "Сохранить ещё раз", k_shared: "отправлено {x} ✓", k_big: "Показать полицейскому", k_more: "Подробнее и почему",
       k_test_warn: "Тестовый режим: только с друзьями, которые играют полицию и согласны. Звук для распознавания уходит в Google (Android) или Apple (iPhone). Не использовать с настоящей полицией.",
       k_listen: "Начать прослушивание (тест)", k_listen_on: "Остановить прослушивание", k_live: "Слушает (тест):", k_log_share: "Поделиться логом", k_test_off: "Выключить тест", k_log_none: "нет совпадения",
-      k_start_filme: "Я снимаю проверку (друга, чужих)", k_menu: "Меню", k_stop_sure: "Точно остановить?", big_speak: "Прочитать вслух по-немецки",
+      k_start_filme: "Я снимаю проверку (друга, чужих)", k_menu: "Меню", k_sig: "Сообщить своим", k_sig_wait: "Место …", k_sig_jetzt: "Отправить",
+      sig_msg: "Меня сейчас проверяет полиция. Если я не дам о себе знать через 30 минут, позвони мне.", sig_zeit: "Время: {x}", sig_ort: "Место: {x}",
+      einr_sig: "Сообщить своим: кому?", einr_sig_h: "На экране проверки кнопка «Сообщить своим» открывает СМС на этот номер: проверка полиции, время, место. Без номера выберешь контакт при отправке. Хранится только на этом телефоне.", einr_sig_tel: "Номер телефона", k_stop_sure: "Точно остановить?", big_speak: "Прочитать вслух по-немецки",
       k_modus_sagen: "Что сказать", k_modus_polizist: "Слова полиции", k_du: "Ты: {x}", k_aendern: "сменить", k_andere: "Полицейский говорит другое", k_zu_phasen: "‹ Назад: что сказать", einr_stimme: "Голос при воспроизведении", ph_jederzeit: "В любой момент",
       ph_play: "Воспроизвести", ph_stop: "Стоп", ph_show: "Показать", ph_wenn_noetig: "Если нужно", ph_mehr: "Подробнее и почему", ph_weiter: "Дальше: {x} ›",
       ph_stimme: "Голос:", ph_mann: "мужской", ph_frau: "женский", ph_nicht: "Не надо:",
@@ -1743,6 +1747,39 @@
   // „Einmal üben“ → Kontrolle → „Menü“ führt zurück in die Einrichtung, nicht auf die Startseite
   var kFromEinr = false;
   $("einr-try").addEventListener("click", function () { kFromEinr = true; if (kRole === "filme") { kRole = ownRole(); hideK(); renderKontrolle(); } });
+  // „Bescheid geben“ (Wettbewerb 01.10.2026: Witness, MyBodyCam, TurnSignl u. a. haben ein Signal an Angehörige).
+  // Kein Server: SMS-App bzw. Teilen-Menü des Handys mit fertigem Text. Der Ort geht nur an die Person, die der Nutzer selbst wählt.
+  var LS_SIG = "rb-bescheid-tel-v1", sigPos = null;
+  function sigTel() { return (lsGet(LS_SIG) || "").replace(/[^\d+]/g, ""); }
+  function sigText(pos) {
+    var now = new Date();
+    return t("sig_msg") + "\n" + t("sig_zeit", fmtTime(now)) +
+      (pos ? "\n" + t("sig_ort", "https://www.openstreetmap.org/?mlat=" + pos.lat.toFixed(5) + "&mlon=" + pos.lon.toFixed(5) + "#map=18/" + pos.lat.toFixed(5) + "/" + pos.lon.toFixed(5) + " (± " + pos.acc + " m)") : "");
+  }
+  function sigSend(pos) {
+    var text = sigText(pos), tel = sigTel(), b = $("k-sig");
+    b.textContent = t("k_sig"); b.removeAttribute("data-bereit");
+    if (tel) { var a = document.createElement("a"); a.href = "sms:" + tel + "?&body=" + encodeURIComponent(text); document.body.appendChild(a); a.click(); a.remove(); return; }
+    if (navigator.share) navigator.share({ text: text }).catch(function () {});
+    else copyText(text, $("k-heard"));
+  }
+  $("k-sig").addEventListener("click", function () {
+    var b = this, rec = recState && recState.r && recState.r.geo;
+    if (b.hasAttribute("data-bereit")) { sigSend(sigPos); return; }
+    var pos = rec ? recState.r.geo : sigPos && Date.now() - sigPos.at < 5 * 60000 ? sigPos : null;
+    if (pos || !navigator.geolocation) { sigSend(pos); return; }
+    // Ort holen dauert – danach ist die Tipp-Erlaubnis fürs Teilen abgelaufen, also ein zweiter Tipp „Jetzt senden“.
+    b.textContent = t("k_sig_wait");
+    var fertig = false, weiter = function (p) {
+      if (fertig) return; fertig = true; sigPos = p;
+      b.setAttribute("data-bereit", "1"); b.textContent = t("k_sig_jetzt");
+    };
+    navigator.geolocation.getCurrentPosition(function (p) { weiter({ lat: p.coords.latitude, lon: p.coords.longitude, acc: Math.round(p.coords.accuracy), at: Date.now() }); },
+      function () { weiter(null); }, { enableHighAccuracy: true, timeout: 6000, maximumAge: 120000 });
+    setTimeout(function () { weiter(null); }, 6500);
+  });
+  $("einr-sig-tel").value = lsGet(LS_SIG) || "";
+  $("einr-sig-tel").addEventListener("input", function () { lsSet(LS_SIG, this.value.trim()); });
   $("k-menu").addEventListener("click", function (e) { if (kFromEinr) { e.preventDefault(); kFromEinr = false; location.hash = "#einrichten"; } });
   $("einr-back").addEventListener("click", goBack);
   $("ueben-back").addEventListener("click", goBack);

@@ -1,6 +1,6 @@
 /* Sprachpaket "tr" (Türkçe) - automatisch erzeugt von tools/i18n_build.js aus i18n/tr.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/tr.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1520/1520 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1529/1529 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["tr"] = {
@@ -1529,6 +1529,15 @@ window.RB.i18n["tr"] = {
   "phasen.immer.0": "az Almanca biliyorum",
   "phasen.immer.1": "konu hakkında konuşmam",
   "T.p_aufn": "{x} tarihli videolar henüz tutanakta değil.",
-  "T.p_aufn_take": "Tutanağa ekle"
+  "T.p_aufn_take": "Tutanağa ekle",
+  "T.k_sig": "Haber ver",
+  "T.k_sig_wait": "Konum …",
+  "T.k_sig_jetzt": "Şimdi gönder",
+  "T.sig_msg": "Şu anda polis tarafından kontrol ediliyorum. 30 dakika içinde senden haber alamazsam beni ara lütfen.",
+  "T.sig_zeit": "Saat: {x}",
+  "T.sig_ort": "Konum: {x}",
+  "T.einr_sig": "Haber ver: kime?",
+  "T.einr_sig_h": "Kontrol ekranında „Haber ver“ bu numaraya bir SMS açar: polis kontrolü, saat, konum. Numara yoksa göndermeden önce kişiyi seçersin. Sadece bu telefonda kalır.",
+  "T.einr_sig_tel": "Telefon numarası"
  }
 };
