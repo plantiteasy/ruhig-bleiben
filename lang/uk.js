@@ -1,6 +1,6 @@
 /* Sprachpaket "uk" (Українська) - automatisch erzeugt von tools/i18n_build.js aus i18n/uk.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/uk.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1518/1518 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1520/1520 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["uk"] = {
@@ -1527,6 +1527,8 @@ window.RB.i18n["uk"] = {
   "T.sit_alle": "Усі ситуації ({x}) ›",
   "T.proto_mehr": "+ Більше даних: поліцейські, цитати, свідки, травми, імʼя",
   "phasen.immer.0": "погано говорю",
-  "phasen.immer.1": "мовчу по суті"
+  "phasen.immer.1": "мовчу по суті",
+  "T.p_aufn": "Відео за {x} ще не в протоколі.",
+  "T.p_aufn_take": "Додати в протокол"
  }
 };

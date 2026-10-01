@@ -1,6 +1,6 @@
 /* Sprachpaket "fa" (دری / فارسی) - automatisch erzeugt von tools/i18n_build.js aus i18n/fa.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/fa.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1518/1518 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1520/1520 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["fa"] = {
@@ -1527,6 +1527,8 @@ window.RB.i18n["fa"] = {
   "T.sit_alle": "همه موقعیت‌ها ({x}) ›",
   "T.proto_mehr": "+ جزئیات بیشتر: مأموران، نقل‌قول‌ها، شاهدان، آسیب‌ها، نام",
   "phasen.immer.0": "آلمانی کم بلدم",
-  "phasen.immer.1": "درباره موضوع حرفی نمی‌زنم"
+  "phasen.immer.1": "درباره موضوع حرفی نمی‌زنم",
+  "T.p_aufn": "ویدیوهای {x} هنوز در گزارش نیستند.",
+  "T.p_aufn_take": "افزودن به گزارش"
  }
 };

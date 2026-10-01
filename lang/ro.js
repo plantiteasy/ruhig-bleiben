@@ -1,6 +1,6 @@
 /* Sprachpaket "ro" (Română) - automatisch erzeugt von tools/i18n_build.js aus i18n/ro.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/ro.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1518/1518 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1520/1520 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["ro"] = {
@@ -1527,6 +1527,8 @@ window.RB.i18n["ro"] = {
   "T.sit_alle": "Toate situațiile ({x}) ›",
   "T.proto_mehr": "+ Mai multe detalii: polițiști, citate, martori, răni, nume",
   "phasen.immer.0": "vorbesc puțină germană",
-  "phasen.immer.1": "nu spun nimic despre caz"
+  "phasen.immer.1": "nu spun nimic despre caz",
+  "T.p_aufn": "Videoclipurile din {x} nu sunt încă în procesul-verbal.",
+  "T.p_aufn_take": "Adaugă în procesul-verbal"
  }
 };

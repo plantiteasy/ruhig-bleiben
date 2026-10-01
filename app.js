@@ -100,7 +100,7 @@
       b_share: "Sichern", b_dl: "Herunterladen", b_proto: "Ins Protokoll", b_del: "Löschen", b_del_sure: "Wirklich löschen?", b_taken: "Übernommen",
       m_clock: " Uhr", m_ca: "ca. ", m_sec: " s", m_audio: "mit Ton, Einwilligung {x}", m_silent: "ohne Ton",
       danach_h: "Danach", danach_lead: "Noch am selben Tag: Gedächtnisprotokoll. Diktieren geht mit dem Mikrofon neben jedem Feld.",
-      seg_dict_aria: "Sprache fürs Diktieren", dict_de: "Diktat Deutsch", dict_ru: "Диктовка по-русски", dict: "Diktieren", gps: "Standort einfügen", gps_wait: "Suche …", p_ort_geo: "Ort aus der Aufnahme übernehmen",
+      seg_dict_aria: "Sprache fürs Diktieren", dict_de: "Diktat Deutsch", dict_ru: "Диктовка по-русски", dict: "Diktieren", gps: "Standort einfügen", gps_wait: "Suche …", p_ort_geo: "Ort aus der Aufnahme übernehmen", p_aufn: "Videos vom {x} stehen noch nicht im Protokoll.", p_aufn_take: "Ins Protokoll übernehmen",
       f_datum: "Datum", f_zeit: "Uhrzeit", f_ort: "Ort", f_beamte: "Beamte und Fahrzeuge", f_ablauf: "Was ist passiert?", f_zitate: "Wörtliche Aussagen", f_zeugen: "Zeugen",
       f_aufnahmen: "Aufnahmen", f_schaden: "Verletzungen und Schäden", f_name: "Dein Name und Anschrift (für Briefe)",
       ph_ort: "Straße, Haltestelle, Richtung", ph_beamte: "Namen, Dienststelle, Kennzeichen, Aussehen", ph_ablauf: "Der Reihe nach, mit Uhrzeiten, so genau wie möglich",
@@ -237,7 +237,7 @@
       b_share: "Сохранить копию", b_dl: "Скачать", b_proto: "В протокол", b_del: "Удалить", b_del_sure: "Точно удалить?", b_taken: "Добавлено",
       m_clock: "", m_ca: "ок. ", m_sec: " с", m_audio: "со звуком, согласие {x}", m_silent: "без звука",
       danach_h: "После", danach_lead: "В тот же день: протокол по памяти. Надиктовать можно кнопкой у каждого поля.",
-      seg_dict_aria: "Язык диктовки", dict_de: "Диктовка по-немецки", dict_ru: "Диктовка по-русски", dict: "Диктовать", gps: "Вставить место", gps_wait: "Ищу …", p_ort_geo: "Взять место из записи",
+      seg_dict_aria: "Язык диктовки", dict_de: "Диктовка по-немецки", dict_ru: "Диктовка по-русски", dict: "Диктовать", gps: "Вставить место", gps_wait: "Ищу …", p_ort_geo: "Взять место из записи", p_aufn: "Видео за {x} ещё не в протоколе.", p_aufn_take: "Добавить в протокол",
       f_datum: "Дата", f_zeit: "Время", f_ort: "Место", f_beamte: "Полицейские и машины", f_ablauf: "Что произошло?", f_zitate: "Точные слова", f_zeugen: "Свидетели",
       f_aufnahmen: "Записи", f_schaden: "Травмы и ущерб", f_name: "Твоё имя и адрес (для писем)",
       ph_ort: "Улица, остановка, направление", ph_beamte: "Имена, участок, номера машин, внешность", ph_ablauf: "По порядку, со временем, как можно точнее",
@@ -1197,7 +1197,9 @@
   function recLine(r) {
     return fmtDate(r.started) + " " + fmtTime(r.started) + " Uhr, " + (r.approx ? "ca. " : "") + r.dur + " s, " +
       (r.withAudio ? "mit Ton, Einwilligung um " + fmtTime(r.consentAt) : "ohne Ton") +
-      (r.status === "recovered" ? ", unterbrochen und wiederhergestellt" : "") + (r.hash ? ", SHA-256 " + r.hash : "") + ", Datei " + r.name;
+      (r.status === "recovered" ? ", unterbrochen und wiederhergestellt" : "") + (r.hash ? ", SHA-256 " + r.hash : "") + ", Datei " + r.name +
+      // Der Tresor-Server löscht nach 30 Tagen selbst (tresor.js) – das Datum braucht der Anwalt, um rechtzeitig abzuholen.
+      (r.trDone ? ", verschlüsselte Kopie im Tresor bis ca. " + fmtDate(addDays(r.started, 30)) : "");
   }
   // Ort bleibt nur auf dem Gerät: hier nur zum Anzeigen, geht NIE in den Tresor-Upload oder eine geteilte Datei.
   function geoLine(r) {
@@ -1222,7 +1224,7 @@
   }
   function renderRecs() {
     var box = $("rec-list");
-    if (!recordings.length) { box.innerHTML = "<h2>" + esc(t("recs_h")) + '</h2><p class="hint">' + esc(t("recs_none")) + "</p>"; syncOrtGeoHint(); return; }
+    if (!recordings.length) { box.innerHTML = "<h2>" + esc(t("recs_h")) + '</h2><p class="hint">' + esc(t("recs_none")) + "</p>"; syncOrtGeoHint(); syncAufnHint(); return; }
     var total = 0; recordings.forEach(function (r) { total += r.size || 0; });
     box.innerHTML = "<h2>" + esc(t("recs_h")) + '</h2><p class="hint">' + esc(recCount(recordings.length)) + ", " + mb(total) + ". " + esc(t("recs_hint")) + "</p>" +
       recordings.map(function (r) {
@@ -1241,7 +1243,7 @@
           '<button class="btn" type="button" data-proto>' + esc(t(inProto(r) ? "b_taken" : "b_proto")) + "</button>" +
           '<button class="btn ghost" type="button" data-del>' + esc(t("b_del")) + '</button></div><p class="field-msg rec-msg" aria-live="polite"></p></div>';
       }).join("");
-    syncOrtGeoHint();
+    syncOrtGeoHint(); syncAufnHint();
   }
   function inProto(r) { return !!r.name && $("p-aufnahmen").value.indexOf(r.name) > -1; }
   function addToProto(r, b) {
@@ -1250,6 +1252,28 @@
     if (!r.hash && !r.noHash) { b.textContent = t("hash_wait"); setTimeout(function () { addToProto(r, b); }, 400); return; }
     var f = $("p-aufnahmen"); f.value = (f.value ? f.value + "\n" : "") + recLine(r); saveProto(); b.textContent = t("b_taken");
   }
+  // Ein Dokument für den Anwalt (Wettbewerb 01.10.2026, Punkt 8): Videos vom Vorfalltag, die noch nicht im Protokoll stehen,
+  // mit einem Tipp übernehmen – sichtbar im Feld „Aufnahmen“, nichts wird ungesehen angehängt.
+  function dayRecs() {
+    var d = protoDateObj(); if (!d) return [];
+    return recordings.filter(function (r) { return r.started && isoDate(r.started) === isoDate(d) && !inProto(r); })
+      .sort(function (a, b) { return a.started - b.started; });
+  }
+  function syncAufnHint() {
+    var box = $("p-aufn"); if (!box) return;
+    var n = dayRecs().length;
+    box.hidden = !n;
+    if (n) $("p-aufn-t").textContent = t("p_aufn", protoDateText());
+  }
+  $("p-aufn-take").addEventListener("click", function () {
+    var list = dayRecs(), b = this;
+    if (!list.length) { syncAufnHint(); return; }
+    // Erst wenn alle Prüfsummen fertig sind – sonst fehlen sie im Protokoll.
+    if (list.some(function (r) { return !r.hash && !r.noHash; })) { b.disabled = true; setTimeout(function () { b.disabled = false; b.click(); }, 400); return; }
+    var f = $("p-aufnahmen");
+    f.value = (f.value ? f.value + "\n" : "") + list.map(recLine).join("\n"); f.rows = Math.max(f.rows, 5); // Prüfsummen sind lang – sichtbar lassen
+    $("proto-mehr").open = true; saveProto(); renderRecs();
+  });
   var SHARE_MAX = 50 * 1048576; // Chrome teilt größere Dateien nicht (Web Share)
   function recFallback(r, item) {
     downloadURL(r.url, r.name); item.querySelector(".rec-msg").textContent = t("rec_share_big");
@@ -1930,6 +1954,7 @@
     $("p-backup").hidden = !(o && o.ablauf && o.ablauf.trim()) || lsGet(LS_PROTO_SAVED) === protoStamp();
     // Steht schon etwas in den weiteren Feldern (z. B. „Ins Protokoll“ beim Video), bleibt der Block offen – nichts verschwindet.
     if (o && ["beamte", "zitate", "zeugen", "aufnahmen", "schaden", "name"].some(function (f) { return o[f] && String(o[f]).trim(); })) $("proto-mehr").open = true;
+    syncAufnHint();
   }
   // Nur die Uhrzeit bestätigt die Vorfallzeit – wer nur das Datum ändert, hat oft noch die jetzige Uhrzeit drin (Persona-Audit 26.09.2026).
   $("p-zeit").addEventListener("change", function () { protoZeitOk = true; saveProto(); });
@@ -1964,7 +1989,15 @@
       "Ort: " + (o.ort || "-") + "\n\nBeteiligte Beamte und Fahrzeuge:\n" + (o.beamte || "-") +
       "\n\nAblauf:\n" + (o.ablauf || "-") + "\n\nWörtliche Aussagen:\n" + (o.zitate || "-") +
       "\n\nZeugen:\n" + (o.zeugen || "-") + "\n\nAufnahmen:\n" + (o.aufnahmen || "-") +
-      "\n\nVerletzungen und Schäden:\n" + (o.schaden || "-") + (o.name ? "\n\nVerfasst von: " + o.name : "") + "\n";
+      "\n\nVerletzungen und Schäden:\n" + (o.schaden || "-") + (o.name ? "\n\nVerfasst von: " + o.name : "") + protoHinweise(o) + "\n";
+  }
+  // Was ein Anwalt sonst nachfragen würde: wo die Videos sind, wozu die Prüfsumme dient, in welcher Sprache die Freitexte sein können.
+  function protoHinweise(o) {
+    var h = [], frei = ["ort", "beamte", "ablauf", "zitate", "zeugen", "schaden"].some(function (f) { return o[f]; }), spr = UI === "ru" ? "Russisch" : DOLM_SPRACHE[UI];
+    if (/SHA-256/.test(o.aufnahmen || "")) h.push("Die Videodateien selbst sind nicht Teil dieses Textes. Mit der SHA-256-Prüfsumme lässt sich prüfen, ob eine Datei seit der Aufnahme unverändert ist.");
+    if (/im Tresor/.test(o.aufnahmen || "")) h.push("Den Zugangscode für die Kopie im Tresor gebe ich Ihnen ebenfalls gesondert.");
+    if (frei && spr) h.push("Die App war auf " + spr + " eingestellt; Freitexte können auf " + spr + " verfasst sein.");
+    return h.length ? "\n\nHinweise:\n" + h.map(function (x) { return "- " + x; }).join("\n") : "";
   }
   function copyText(text, msgEl) {
     try {

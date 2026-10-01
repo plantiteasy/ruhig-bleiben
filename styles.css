@@ -243,6 +243,7 @@ select:focus-visible{outline:none;border-color:var(--accent);box-shadow:0 0 0 3p
 .dsel{display:grid;grid-template-columns:minmax(0,4.8em) minmax(0,1fr) minmax(0,4.8em);gap:6px}
 .dsel select{padding-left:8px;padding-right:24px;background-position:calc(100% - 15px) 50%,calc(100% - 10px) 50%}
 .dsel-msg,.field-msg{color:var(--warn);font-weight:600;font-size:14px}.dsel-msg:empty,.field-msg:empty{display:none}
+.p-aufn{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:12px 0 0}
 
 /* Lange Links (GPS) in Briefen umbrechen statt die Seite zu verbreitern */
 .letter pre{overflow-wrap:anywhere}
