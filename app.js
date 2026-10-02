@@ -482,6 +482,7 @@
     if (currentView === "kontrolle" && name !== "kontrolle") phStopAudio(); // „Sagen“-Modus: Ton stoppt beim Verlassen der Kontrolle
     if (currentView === "ueben" && name !== "ueben") uebStopAudio(); // Üben: Ton stoppt beim Verlassen
     currentView = name;
+    if (name === "kontrolle" || name === "ueben") zaehle(name);
     views.forEach(function (v) { $("v-" + v).hidden = v !== name; });
     var TAB = { jetzt: "jetzt", kontrolle: "jetzt", einrichten: "jetzt", danach: "danach", tresor: "danach", wissen: "wissen", fragen: "wissen", profil: "wissen" };
     var tab = name === "situation" ? lastTab : name === "aufnahme" ? (lastTab === "danach" ? "danach" : "jetzt") : name === "einrichten" ? (lastTab === "wissen" ? "wissen" : "jetzt") : TAB[name] || "jetzt"; lastTab = tab;
@@ -2044,10 +2045,10 @@
   function shareText(title, text, msgEl) {
     if (navigator.share) navigator.share({ title: title, text: text }).catch(function () {}); else copyText(text, msgEl);
   }
-  $("p-copy").addEventListener("click", function () { copyText(protoText(), $("p-msg")); });
+  $("p-copy").addEventListener("click", function () { zaehle("protokoll"); copyText(protoText(), $("p-msg")); });
   $("p-share").addEventListener("click", function () { shareText("Gedächtnisprotokoll", protoText(), $("p-msg")); protoSaved(); });
   function protoStamp() { return protoText().replace(/^.*(Erstellt am|Создано).*$/m, ""); }
-  function protoSaved() { lsSet(LS_PROTO_SAVED, protoStamp()); $("p-backup").hidden = true; }
+  function protoSaved() { zaehle("protokoll"); lsSet(LS_PROTO_SAVED, protoStamp()); $("p-backup").hidden = true; }
   $("p-file").addEventListener("click", function () {
     var blob = new Blob([protoText()], { type: "text/plain;charset=utf-8" });
     downloadURL(URL.createObjectURL(blob), "gedaechtnisprotokoll_" + ($("p-datum").value || isoDate(new Date())) + ".txt");
@@ -2245,7 +2246,7 @@
     $("install-help").innerHTML = t(k);
   }
   window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); installEv = e; syncInstall(); });
-  window.addEventListener("appinstalled", function () { installEv = null; syncInstall(); });
+  window.addEventListener("appinstalled", function () { installEv = null; syncInstall(); zaehle("installiert"); });
   document.addEventListener("click", function (e) {
     var b = e.target.closest && e.target.closest("[data-install]");
     if (!b || !installEv) return;
@@ -2493,12 +2494,26 @@
     langDialogEl.addEventListener("cancel", function () { langDialogOpen = false; });
   }
 
+  /* ---------- Anonyme Zählung (Testphase) ---------- */
+  // Nur Summen pro Tag: Ereignis, App-Sprache, Link-Quelle (?von=…), installierte App ja/nein. Keine Cookies, nichts auf dem Handy gespeichert,
+  // keine Inhalte, kein Ort. Nur auf der echten Adresse, nicht in automatischen Tests; „Do Not Track“/GPC im Browser schaltet sie ab.
+  var ZAEHLER_URL = "https://ruhig-bleiben-zaehler.ruhig-bleiben-tresor.workers.dev/v1/z", zGezaehlt = {};
+  var zVon = (location.search.match(/[?&]von=([a-z0-9-]{1,16})/i) || [])[1] || "";
+  if (zVon) { try { history.replaceState(history.state, "", location.pathname + location.search.replace(/([?&])von=[^&]*&?/i, "$1").replace(/[?&]$/, "") + location.hash); } catch (e) {} }
+  function zaehle(ev) {
+    if (zGezaehlt[ev]) return; zGezaehlt[ev] = 1; // pro Öffnen einmal je Ereignis
+    if (location.hostname !== "plantiteasy.github.io" || navigator.webdriver || navigator.doNotTrack === "1" || navigator.globalPrivacyControl) return;
+    var body = JSON.stringify({ e: ev, s: UI, v: ev === "start" ? zVon.toLowerCase() : "", a: isStandalone() ? 1 : 0 });
+    try { if (navigator.sendBeacon && navigator.sendBeacon(ZAEHLER_URL, new Blob([body], { type: "text/plain" }))) return; } catch (e) {}
+    try { fetch(ZAEHLER_URL, { method: "POST", body: body, keepalive: true, mode: "no-cors" }).catch(function () {}); } catch (e) {}
+  }
+
   /* ---------- Start ---------- */
   // Homescreen-Shortcut „Kontrolle“ (./?start=1#kontrolle): Video ohne Ton sofort starten; ?start aus der Adresse nehmen, damit Neuladen nicht erneut startet.
   var kAuto = /[?&]start=1/.test(location.search);
   if (kAuto) { try { history.replaceState(history.state, "", location.pathname + "#kontrolle"); } catch (e) {} }
   applyUI(); loadProfile(); fillProfileForm(); renderFuerDich(); buildCorpus(); renderGrid(); syncSeg(); loadProto(); renderDeadlines(); renderLetters(); renderCats(); renderWissen(""); renderQuick(); renderKontrolle(); syncInstall(); route(); loadRecs();
-  landAutoErkennen();
+  landAutoErkennen(); zaehle("start");
   if (kAuto && !recState) startRecording(false, null);
   if ("serviceWorker" in navigator && (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
     var hadController = !!navigator.serviceWorker.controller;
