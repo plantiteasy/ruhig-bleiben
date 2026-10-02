@@ -1,6 +1,6 @@
 /* Sprachpaket "ro" (Română) - automatisch erzeugt von tools/i18n_build.js aus i18n/ro.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/ro.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1529/1529 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1530/1530 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["ro"] = {
@@ -1538,6 +1538,7 @@ window.RB.i18n["ro"] = {
   "T.sig_ort": "Locul: {x}",
   "T.einr_sig": "Anunță pe cineva: pe cine?",
   "T.einr_sig_h": "Pe ecranul de control, „Anunță pe cineva” deschide un SMS către acest număr: control al poliției, ora, locul. Fără număr alegi contactul la trimitere. Rămâne doar pe acest telefon.",
-  "T.einr_sig_tel": "Număr de telefon"
+  "T.einr_sig_tel": "Număr de telefon",
+  "T.impressum_link": "Impressum și protecția datelor (în germană)"
  }
 };

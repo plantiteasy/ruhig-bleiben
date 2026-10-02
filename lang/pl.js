@@ -1,6 +1,6 @@
 /* Sprachpaket "pl" (Polski) - automatisch erzeugt von tools/i18n_build.js aus i18n/pl.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/pl.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1529/1529 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1530/1530 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["pl"] = {
@@ -1538,6 +1538,7 @@ window.RB.i18n["pl"] = {
   "T.sig_ort": "Miejsce: {x}",
   "T.einr_sig": "Daj znać: komu?",
   "T.einr_sig_h": "Na ekranie kontroli przycisk „Daj znać” otwiera SMS na ten numer: kontrola policji, godzina, miejsce. Bez numeru wybierzesz kontakt przy wysyłaniu. Zostaje tylko na tym telefonie.",
-  "T.einr_sig_tel": "Numer telefonu"
+  "T.einr_sig_tel": "Numer telefonu",
+  "T.impressum_link": "Impressum i ochrona danych (po niemiecku)"
  }
 };

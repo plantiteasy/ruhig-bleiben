@@ -1,6 +1,6 @@
 /* Sprachpaket "tr" (Türkçe) - automatisch erzeugt von tools/i18n_build.js aus i18n/tr.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/tr.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1529/1529 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1530/1530 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["tr"] = {
@@ -1538,6 +1538,7 @@ window.RB.i18n["tr"] = {
   "T.sig_ort": "Konum: {x}",
   "T.einr_sig": "Haber ver: kime?",
   "T.einr_sig_h": "Kontrol ekranında „Haber ver“ bu numaraya bir SMS açar: polis kontrolü, saat, konum. Numara yoksa göndermeden önce kişiyi seçersin. Sadece bu telefonda kalır.",
-  "T.einr_sig_tel": "Telefon numarası"
+  "T.einr_sig_tel": "Telefon numarası",
+  "T.impressum_link": "Künye ve veri koruma (Almanca)"
  }
 };

@@ -1,6 +1,6 @@
 /* Sprachpaket "ar" (العربية) - automatisch erzeugt von tools/i18n_build.js aus i18n/ar.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/ar.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1529/1529 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1530/1530 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["ar"] = {
@@ -1538,6 +1538,7 @@ window.RB.i18n["ar"] = {
   "T.sig_ort": "الموقع: {x}",
   "T.einr_sig": "إبلاغ شخص: من؟",
   "T.einr_sig_h": "في شاشة التفتيش يفتح زر «إبلاغ شخص» رسالة نصية إلى هذا الرقم: تفتيش الشرطة، الوقت، الموقع. بدون رقم تختار جهة الاتصال عند الإرسال. يبقى على هذا الهاتف فقط.",
-  "T.einr_sig_tel": "رقم الهاتف"
+  "T.einr_sig_tel": "رقم الهاتف",
+  "T.impressum_link": "بيانات الناشر وحماية البيانات (بالألمانية)"
  }
 };

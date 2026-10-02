@@ -1,6 +1,6 @@
 /* Sprachpaket "uk" (Українська) - automatisch erzeugt von tools/i18n_build.js aus i18n/uk.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/uk.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1529/1529 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1530/1530 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["uk"] = {
@@ -1538,6 +1538,7 @@ window.RB.i18n["uk"] = {
   "T.sig_ort": "Місце: {x}",
   "T.einr_sig": "Повідомити своїм: кому?",
   "T.einr_sig_h": "На екрані перевірки кнопка «Повідомити своїм» відкриває SMS на цей номер: перевірка поліції, час, місце. Без номера обереш контакт під час надсилання. Зберігається лише на цьому телефоні.",
-  "T.einr_sig_tel": "Номер телефону"
+  "T.einr_sig_tel": "Номер телефону",
+  "T.impressum_link": "Impressum і захист даних (німецькою)"
  }
 };

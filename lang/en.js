@@ -1,6 +1,6 @@
 /* Sprachpaket "en" (English) - automatisch erzeugt von tools/i18n_build.js aus i18n/en.json.
    NICHT von Hand bearbeiten - Änderungen bitte in i18n/en.json machen, dann neu bauen (siehe tools/I18N.md).
-   Vollständigkeit beim letzten Bauen: 1529/1529 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
+   Vollständigkeit beim letzten Bauen: 1530/1530 (100 %); fehlende IDs zeigen zur Laufzeit Deutsch (Fallback, siehe app/i18n-runtime.js). */
 window.RB = window.RB || {};
 window.RB.i18n = window.RB.i18n || {};
 window.RB.i18n["en"] = {
@@ -1538,6 +1538,7 @@ window.RB.i18n["en"] = {
   "T.sig_ort": "Location: {x}",
   "T.einr_sig": "Tell someone: who?",
   "T.einr_sig_h": "On the police-stop screen, “Tell someone” opens a text message to this number: police stop, time, location. Without a number you choose the contact when sending. Stays on this phone only.",
-  "T.einr_sig_tel": "Phone number"
+  "T.einr_sig_tel": "Phone number",
+  "T.impressum_link": "Legal notice and privacy (German)"
  }
 };
